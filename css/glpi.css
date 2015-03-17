@@ -1,0 +1,33 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 15.03.2015, 17:59:23
+    Author     : ubka
+*/
+.container-search {
+    background-color: #E7E7E7;
+    border-color: #E7E7E7;
+}
+
+.navbar-brand {
+    padding:8px;
+}
+
+/** Icon mapping */
+
+
+
+.glyphicon-add:before {
+    content: "\e081";
+}
+
+.glyphicon-template:before {
+    content: "\e118";
+}
+
+.table {
+    margin-bottom: 0;
+}
