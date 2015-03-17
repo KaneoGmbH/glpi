@@ -621,7 +621,7 @@ class Computer_SoftwareVersion extends CommonDBRelation {
       }
 
       echo "<div class='center'>";
-      echo "<table class='tab_cadre'><tr>";
+      echo "<table class='table table-striped table-hover'><tr>";
       echo "<th>".__('Entity')."</th>";
       echo "<th>".self::getTypeName(Session::getPluralNumber())."</th>";
       echo "</tr>\n";

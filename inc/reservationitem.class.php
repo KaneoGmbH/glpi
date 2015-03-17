@@ -318,7 +318,7 @@ class ReservationItem extends CommonDBChild {
 
          echo "<div class='center'><form method='post' name=form action='".$this->getFormURL()."'>";
          echo "<input type='hidden' name='id' value='$ID'>";
-         echo "<table class='tab_cadre'>";
+         echo "<table class='table table-striped table-hover'>";
          echo "<tr><th colspan='2'>".__s('Modify the comment')."</th></tr>";
 
          // Ajouter le nom du materiel

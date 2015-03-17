@@ -620,7 +620,7 @@ if (Session::haveRight('backup', CREATE)) {
               ">".__('XML Dump')."</a>&nbsp;</td>";
    echo "</tr></table>";
 }
-echo "<br><table class='tab_cadre' cellpadding='5'>".
+echo "<br><table class='table table-striped table-hover' cellpadding='5'>".
      "<tr class='center'>".
      "<th><u><i>".__('File')."</i></u></th>".
      "<th><u><i>".__('Size')."</i></u></th>".

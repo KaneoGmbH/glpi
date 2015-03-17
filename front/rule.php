@@ -39,7 +39,7 @@ Html::header(Rule::getTypeName(Session::getPluralNumber()), $_SERVER['PHP_SELF']
 
 RuleCollection::titleBackup();
 
-echo "<table class='tab_cadre'>";
+echo "<table class='table table-striped table-hover'>";
 echo "<tr><th>" . __('Rule type') . "</th></tr>";
 
 foreach ($CFG_GLPI["rulecollections_types"] as $rulecollectionclass) {

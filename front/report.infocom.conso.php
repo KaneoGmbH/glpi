@@ -55,7 +55,7 @@ if (!empty($_POST["date1"])
 Report::title();
 
 echo "\n<form method='post' name='form' action='".$_SERVER['PHP_SELF']."'>";
-echo "<table class='tab_cadre'><tr >";
+echo "<table class='table table-striped table-hover'><tr >";
 echo "<td class='right'>".__('Start date')."</td><td>";
 Html::showDateField("date1", array('value' => $_POST["date1"]));
 echo "</td><td rowspan='2' class='center'>";
@@ -123,7 +123,7 @@ function display_infocoms_report($itemtype, $begin, $end) {
           && ($item = getItemForItemtype($itemtype))) {
 
          echo "<h2>".$item->getTypeName(1)."</h2>";
-         echo "<table class='tab_cadre'>";
+         echo "<table class='table table-striped table-hover'>";
 
          $valeursoustot      = 0;
          $valeurnettesoustot = 0;

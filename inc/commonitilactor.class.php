@@ -158,7 +158,7 @@ abstract class CommonITILActor extends CommonDBRelation {
 
       echo "<br><form method='post' action='".$_SERVER['PHP_SELF']."'>";
       echo "<div class='center'>";
-      echo "<table class='tab_cadre' width='80%'>";
+      echo "<table class='table table-striped table-hover' width='80%'>";
       echo "<tr ><td>".$item->getTypeName(1)."</td>";
       echo "<td>";
       if ($item->getFromDB($this->fields[static::getItilObjectForeignKey()])) {
@@ -240,7 +240,7 @@ abstract class CommonITILActor extends CommonDBRelation {
 
       echo "<br><form method='post' action='".$_SERVER['PHP_SELF']."'>";
       echo "<div class='center'>";
-      echo "<table class='tab_cadre' width='80%'>";
+      echo "<table class='table table-striped table-hover' width='80%'>";
       echo "<tr ><td>".$item->getTypeName(1)."</td>";
       echo "<td>";
       if ($item->getFromDB($this->fields[static::getItilObjectForeignKey()])) {

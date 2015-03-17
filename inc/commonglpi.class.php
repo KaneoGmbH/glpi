@@ -1166,7 +1166,7 @@ class CommonGLPI {
          echo "\n<form method='get' action='".$CFG_GLPI['root_doc']."/front/display.options.php'>\n";
          echo "<input type='hidden' name='itemtype' value='NetworkPort'>\n";
          echo "<input type='hidden' name='sub_itemtype' value='$sub_itemtype'>\n";
-         echo "<table class='tab_cadre'>";
+         echo "<table class='table table-striped table-hover'>";
          echo "<tr><th colspan='2'>".__s('Display options')."</th></tr>\n";
          echo "<tr><td colspan='2'>";
          echo "<input type='submit' class='btn btn-primary' name='reset' value=\"".

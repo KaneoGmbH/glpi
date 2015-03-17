@@ -59,7 +59,7 @@ if (!$CFG_GLPI['use_mailing']) {
       Html::redirect($CFG_GLPI["root_doc"].'/front/notification.php');
 
    } else {
-      echo "<table class='tab_cadre'>";
+      echo "<table class='table table-striped table-hover'>";
       echo "<tr><th>" . _n('Notification', 'Notifications',2)."</th></tr>";
       if (Session::haveRight("config", UPDATE)) {
          echo "<tr ><td class='center'>".

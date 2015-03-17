@@ -2449,7 +2449,7 @@ class Html {
           && ($max < ($p['num_displayed']+10))) {
          if (!$p['ontop']
              || (isset($p['forcecreate']) && $p['forcecreate'])) {
-            echo "<table class='tab_cadre' width='$width'><tr >".
+            echo "<table class='table table-striped table-hover' width='$width'><tr >".
                   "<td><span class='b'>";
             echo __('Selection too large, massive action disabled.')."</span>";
             if ($_SESSION['glpi_use_mode'] == Session::DEBUG_MODE) {
@@ -3626,7 +3626,7 @@ class Html {
    static function printCleanArray($tab, $pad=0,$jsexpand=false) {
 
       if (count($tab)) {
-         echo "<table class='tab_cadre'>";
+         echo "<table class='table table-striped table-hover'>";
          // For debug / no gettext
          echo "<tr><th>KEY</th><th>=></th><th>VALUE</th></tr>";
 

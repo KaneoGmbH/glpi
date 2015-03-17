@@ -4169,7 +4169,7 @@ class CommonDBTM extends CommonGLPI {
       $query .= " ORDER by `template_name`";
 
       if ($result = $DB->query($query)) {
-         echo "<div class='center'><table class='tab_cadre'>";
+         echo "<div class='center'><table class='table table-striped table-hover'>";
          if ($add) {
             $blank_params =
                (strpos($target, '?') ? '&amp;' : '?')

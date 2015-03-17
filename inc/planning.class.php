@@ -655,7 +655,7 @@ class Planning extends CommonGLPI {
             echo "</table></div>";
          }
       }
-      echo "<div><table class='tab_cadre'>";
+      echo "<div><table class='table table-striped table-hover'>";
       echo "<tr >";
       echo "<th>".__('Caption')."</th>";
       echo "<td class='available' colspan=8>".__('Available')."</td>";

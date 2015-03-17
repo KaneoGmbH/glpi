@@ -286,7 +286,7 @@ class Computer_SoftwareLicense extends CommonDBRelation {
       }
 
       echo "<div class='center'>";
-      echo "<table class='tab_cadre'><tr>";
+      echo "<table class='table table-striped table-hover'><tr>";
       echo "<th>".__('Entity')."</th>";
       echo "<th>".__('Number of affected computers')."</th>";
       echo "</tr>\n";

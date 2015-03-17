@@ -1121,7 +1121,7 @@ class Rule extends CommonDBTM {
 
       if ($p['readonly']) {
          $canedit = false;
-         $style   = "class='tab_cadrehov'";
+         $style   = "class='table table-striped table-hover'";
       }
 
       if ($canedit) {
@@ -1976,7 +1976,7 @@ class Rule extends CommonDBTM {
       }
 
       echo "<div class='spaced'>";
-      echo "<table class='tab_cadrehov'>";
+      echo "<table class='table table-striped table-hover'>";
       echo "<tr><th colspan='4'>" . __('Result details') . "</th></tr>";
 
       echo "<tr >";
@@ -2001,7 +2001,7 @@ class Rule extends CommonDBTM {
       $global_result = (isset($output["_rule_process"])?1:0);
 
       echo "<div class='spaced'>";
-      echo "<table class='tab_cadrehov'>";
+      echo "<table class='table table-striped table-hover'>";
       echo "<tr><th colspan='2'>" . __('Rule results') . "</th></tr>";
       echo "<tr >";
       echo "<td class='center b'>".__('Validation')."</td><td>";
@@ -2029,7 +2029,7 @@ class Rule extends CommonDBTM {
          echo "<td>".__('Result of the regular expression')."</td>";
          echo "<td>";
          if (!empty($this->regex_results[0])) {
-            echo "<table class='tab_cadre'>";
+            echo "<table class='table table-striped table-hover'>";
             echo "<tr><th>".__('Key')."</th><th>".__('Value')."</th></tr>";
             foreach ($this->regex_results[0] as $key => $value) {
                echo "<tr >";

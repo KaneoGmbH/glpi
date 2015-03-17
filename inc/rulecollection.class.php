@@ -1160,7 +1160,7 @@ class RuleCollection extends CommonDBTM {
          //print report
          echo "<form name='form' method='post' action='rule.backup.php' >";
          echo "<div class='spaced' id='tabsbody'>";
-         echo "<table class='tab_cadre'>";
+         echo "<table class='table table-striped table-hover'>";
          echo "<input type='hidden' name='action' value='process_import'>";
          echo "<tr><th colspan='3'>".__('Rules refused')."</th></tr>";
          echo "<tr>";
@@ -1186,7 +1186,7 @@ class RuleCollection extends CommonDBTM {
             echo "<td>".$rules['rule'][$k_rule]['name']."</td>";
             echo "<td>";
 
-            echo "<table class='tab_cadre' style='width:100%'>";
+            echo "<table class='table table-striped table-hover' style='width:100%'>";
             //show entity select
             if (!isset($refused['criterias']) && !isset($refused['actions'])) {
                if (isset($refused['entity'])) {
@@ -1212,7 +1212,7 @@ class RuleCollection extends CommonDBTM {
                echo "<td>".__('Criteria refused')."</td>";
                echo "<td>";
 
-               echo "<table class='tab_cadre' style='width:100%'>";
+               echo "<table class='table table-striped table-hover' style='width:100%'>";
                echo "<tr >";
                echo "<th class='center b'>"._n('Criterion', 'Criteria', 1)."</th>\n";
                echo "<th class='center b'>".__('Condition')."</th>\n";
@@ -1244,7 +1244,7 @@ class RuleCollection extends CommonDBTM {
                echo "<td>".__('Actions refused')."</td>";
                echo "<td>";
 
-               echo "<table class='tab_cadre' style='width:100%'>";
+               echo "<table class='table table-striped table-hover' style='width:100%'>";
                echo "<tr >";
                echo "<th class='center b'>"._n('Field', 'Fields', Session::getPluralNumber())."</th>";
                echo "<th class='center b'>".__('Action type')."</th>";
@@ -1706,7 +1706,7 @@ class RuleCollection extends CommonDBTM {
       unset($output["result"]);
       $global_result = (count($output)?1:0);
 
-      echo "<br><table class='tab_cadrehov'>";
+      echo "<br><table class='table table-striped table-hover'>";
       $this->showTestResults($rule, $output, $global_result);
       echo "</table></div>";
 }
@@ -1746,7 +1746,7 @@ class RuleCollection extends CommonDBTM {
    function showTestResults($rule, array $output, $global_result) {
 
       $actions = $rule->getAllActions();
-      echo "<table class='tab_cadrehov'>";
+      echo "<table class='table table-striped table-hover'>";
       echo "<tr><th colspan='2'>" . __('Rule results') . "</th></tr>\n";
       echo "<tr >";
       echo "<td class='center'>".__('Validation')."</td>";

@@ -61,7 +61,7 @@ if (isset($_POST["end"]) && !empty($_POST["end"])) {
    $end = date("Y-m-d H:i:s",strtotime($begin)+HOUR_TIMESTAMP);
 }
 
-echo "<table class='tab_cadre'>";
+echo "<table class='table table-striped table-hover'>";
 
 echo "<tr ><td>".__('Start date')."</td><td>";
 $rand_begin = Html::showDateTimeField("plan[begin]",

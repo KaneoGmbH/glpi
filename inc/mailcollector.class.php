@@ -325,7 +325,7 @@ class MailCollector  extends CommonDBTM {
 
       echo "<br><br><div class='center'>";
       echo "<form name='form' method='post' action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
-      echo "<table class='tab_cadre'>";
+      echo "<table class='table table-striped table-hover'>";
       echo "<tr ><td class='center'>";
       echo "<input type='submit' name='get_mails' value=\""._sx('button','Get email tickets now').
              "\" class='btn btn-primary'>";

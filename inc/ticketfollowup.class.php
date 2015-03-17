@@ -884,7 +884,7 @@ class TicketFollowup  extends CommonDBTM {
 
       $out = "";
       if ($DB->numrows($result) > 0) {
-         $out .= "<div class='center'><table class='tab_cadre' width='100%'>\n
+         $out .= "<div class='center'><table class='table table-striped table-hover' width='100%'>\n
                   <tr><th>".__('Date')."</th><th>".__('Requester')."</th>
                   <th>".__('Description')."</th></tr>\n";
 

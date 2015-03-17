@@ -518,7 +518,7 @@ abstract class CommonDropdown extends CommonDBTM {
          echo "<p>".__('If you confirm the deletion, all uses of this dropdown will be blanked.') .
               "</p>";
          echo "<form action='$target' method='post'>";
-         echo "<table class='tab_cadre'><tr>";
+         echo "<table class='table table-striped table-hover'><tr>";
          echo "<td><input type='hidden' name='id' value='$ID'>";
          echo "<input type='hidden' name='forcepurge' value='1'>";
          echo "<input class='btn btn-primary' type='submit' name='purge'
@@ -533,7 +533,7 @@ abstract class CommonDropdown extends CommonDBTM {
       // Replace form (set to new value)
       echo "<p>". __('You can also replace all uses of this dropdown by another.') ."</p>";
       echo "<form action='$target' method='post'>";
-      echo "<table class='tab_cadre'><tr><td>";
+      echo "<table class='table table-striped table-hover'><tr><td>";
 
       if ($this instanceof CommonTreeDropdown) {
          // TreeDropdown => default replacement is parent

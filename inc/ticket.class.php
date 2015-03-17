@@ -4679,7 +4679,7 @@ class Ticket extends CommonITILObject {
       $options['criteria'][0]['link']       = 'AND';
       $options['reset']         ='reset';
 
-      echo "<table class='tab_cadrehov' >";
+      echo "<table class='table table-striped table-hover' >";
       echo "<tr class='noHover'><th colspan='2'>";
 
       if ($_SESSION["glpiactiveprofile"]["interface"] != "central") {

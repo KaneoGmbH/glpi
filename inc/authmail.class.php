@@ -214,7 +214,7 @@ class AuthMail extends CommonDBTM {
       if ($this->getFromDB($ID)) {
          echo "<form method='post' action='".$this->getFormURL()."'>";
          echo "<input type='hidden' name='imap_string' value=\"".$this->fields['connect_string']."\">";
-         echo "<div class='center'><table class='tab_cadre'>";
+         echo "<div class='center'><table class='table table-striped table-hover'>";
          echo "<tr><th colspan='2'>" . __('Test connection to email server') . "</th></tr>";
 
          echo "<tr ><td class='center'>" . __('Login') . "</td>";

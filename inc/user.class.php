@@ -3270,7 +3270,7 @@ class User extends CommonDBTM {
       echo "<div class='center'>\n";
       echo "<form method='post' action='".Toolbox::getItemTypeFormURL('User')."'>\n";
 
-      echo "<table class='tab_cadre'>\n";
+      echo "<table class='table table-striped table-hover'>\n";
       echo "<tr><th colspan='4'>".__('Automatically add a user of an external source')."</th></tr>\n";
 
       echo "<tr ><td>".__('Login')."</td>\n";
@@ -3727,7 +3727,7 @@ class User extends CommonDBTM {
       if ($token_ok) {
          echo "<form method='post' name='forgetpassword' action='".$CFG_GLPI['root_doc'].
                 "/front/lostpassword.php'>";
-         echo "<table class='tab_cadre'>";
+         echo "<table class='table table-striped table-hover'>";
          echo "<tr><th colspan='2'>" . __('Forgotten password?')."</th></tr>";
 
          echo "<tr >";
@@ -3775,7 +3775,7 @@ class User extends CommonDBTM {
       echo "<div class='center'>";
       echo "<form method='post' name='forgetpassword' action='".$CFG_GLPI['root_doc'].
              "/front/lostpassword.php'>";
-      echo "<table class='tab_cadre'>";
+      echo "<table class='table table-striped table-hover'>";
       echo "<tr><th colspan='2'>" . __('Forgotten password?')."</th></tr>";
 
       echo "<tr ><td colspan='2'>" .

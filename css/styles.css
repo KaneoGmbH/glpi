@@ -204,17 +204,6 @@ table {
    font-size: 11px;
 }
 
-.tab_resa {
-   border:1px dashed #cccccc;
-   background-color: #d7d7d2;
-   font-size:10px
-}
-
-.tab_resa:hover {
-   background-color: #ffffff;
-   border:1px dotted #000000;
-}
-
 .central {
    padding-top: 15px;
    width: 100%;

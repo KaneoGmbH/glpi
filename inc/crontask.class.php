@@ -914,7 +914,7 @@ class CronTask extends CommonDBTM{
       global $DB, $CFG_GLPI;
 
       echo "<br><div class='center'>";
-      echo "<table class='tab_cadre'>";
+      echo "<table class='table table-striped table-hover'>";
       echo "<tr><th colspan='2'>&nbsp;".__('Statistics')."</th></tr>\n";
 
       $nbstart = countElementsInTable('glpi_crontasklogs',
@@ -1108,7 +1108,7 @@ class CronTask extends CommonDBTM{
 
       if ($result = $DB->query($query)) {
          if ($data = $DB->fetch_assoc($result)) {
-            echo "<table class='tab_cadrehov'><tr>";
+            echo "<table class='table table-striped table-hover'><tr>";
             echo "<th>".__('Date')."</th>";
             echo "<th>".__('Status')."</th>";
             echo "<th>". __('Duration')."</th>";

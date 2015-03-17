@@ -37,7 +37,7 @@ Session::checkRight("config", READ);
 
 Html::header(__('External authentication sources'), $_SERVER['PHP_SELF'], "config", "auth", -1);
 
-echo "<table class='tab_cadre'>";
+echo "<table class='table table-striped table-hover'>";
 echo "<tr><th>&nbsp;" . __('External authentications') . "</th></tr>";
 if (Session::haveRight("config", UPDATE)) {
    echo "<tr ><td class='center b'>".

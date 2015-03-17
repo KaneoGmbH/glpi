@@ -40,9 +40,9 @@ Html::header(__('Administration'), $_SERVER['PHP_SELF'], "admin", "dictionnary",
 
 RuleCollection::titleBackup();
 
-echo "<div class='center'><table class='tab_cadre'>";
+echo "<div class='center'><table class='table table-striped table-hover'>";
 echo "<tr><th colspan='4'>" . __('Dictionaries') . "</th></tr>";
-echo "<tr ><td class='top'><table class='tab_cadre'>";
+echo "<tr ><td class='top'><table class='table table-striped table-hover'>";
 echo "<tr><th>".__('Global dictionary')."</th></tr>";
 
 if (Session::haveRight("rule_dictionnary_software", READ)) {
@@ -61,7 +61,7 @@ if (Session::haveRight("rule_dictionnary_printer", READ)) {
 
 echo "</table></td>";
 
-echo "<td class='top'><table class='tab_cadre'>";
+echo "<td class='top'><table class='table table-striped table-hover'>";
 if (Session::haveRight("rule_dictionnary_dropdown", READ)) {
    echo "<tr><th>"._n('Model','Models',2)."</th></tr>";
    echo "<tr ><td class='center b'>".
@@ -86,7 +86,7 @@ if (Session::haveRight("rule_dictionnary_dropdown", READ)) {
 }
 echo "</table></td>";
 
-echo "<td class='top'><table class='tab_cadre'>";
+echo "<td class='top'><table class='table table-striped table-hover'>";
 if (Session::haveRight("rule_dictionnary_dropdown", READ)) {
    echo "<tr><th>"._n('Type','Types',2)."</th></tr>";
    echo "<tr ><td class='center b'>".
@@ -111,7 +111,7 @@ if (Session::haveRight("rule_dictionnary_dropdown", READ)) {
 }
 echo "</table></td>";
 
-echo "<td class='top'><table class='tab_cadre'>";
+echo "<td class='top'><table class='table table-striped table-hover'>";
 if (Session::haveRight("rule_dictionnary_dropdown", READ)) {
    echo "<tr><th>"._n('Operating system','Operating systems',2)."</th></tr>";
    echo "<tr ><td class='center b'>".

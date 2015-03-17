@@ -520,7 +520,7 @@ class Reservation extends CommonDBChild {
       echo "</td><td class='top' width='100%'>";
 
       // test
-      echo "<table width='100%' class='tab_cadre'><tr>";
+      echo "<table width='100%' class='table table-striped table-hover'><tr>";
       echo "<th width='14%'>".__('Monday')."</th>";
       echo "<th width='14%'>".__('Tuesday')."</th>";
       echo "<th width='14%'>".__('Wednesday')."</th>";
@@ -639,7 +639,7 @@ class Reservation extends CommonDBChild {
          echo "<input type='hidden' name='id' value='$ID'>";
       }
 
-      echo "<table class='tab_cadre' width='700px'>";
+      echo "<table class='table table-striped table-hover' width='700px'>";
       echo "<tr><th colspan='2'>".__('Reserve an item')."</th></tr>\n";
 
       // Add Hardware name

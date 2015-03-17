@@ -44,7 +44,7 @@ if (!isset($_GET["id"])) {
 Report::title();
 
 echo "<form method='get' name='form' action='report.reservation.php'>";
-echo "<table class='tab_cadre' width='500'><tr >";
+echo "<table class='table table-striped table-hover' width='500'><tr >";
 echo "<td class='center' width='300'>";
 User::dropdown(array('name'   => 'id',
                      'value'  => $_GET["id"],

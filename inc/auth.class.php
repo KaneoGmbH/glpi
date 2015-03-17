@@ -1128,7 +1128,7 @@ class Auth extends CommonGLPI {
                              AND `is_active` = 1";
                $result = $DB->query($sql);
                if ($DB->numrows($result) > 0) {
-                  echo "<table class='tab_cadre'><tr ><td>";
+                  echo "<table class='table table-striped table-hover'><tr ><td>";
                   echo "<input type='hidden' name='id' value='".$user->getID()."'>";
                   echo "<input class=submit type='submit' name='force_ldap_resynch' value='" .
                          __s('Force synchronization') . "'>";
@@ -1143,7 +1143,7 @@ class Auth extends CommonGLPI {
          echo "</div>";
 
          echo "<div class='spaced'>";
-         echo "<table class='tab_cadre'>";
+         echo "<table class='table table-striped table-hover'>";
          echo "<tr><th>".__('Change of the authentication method')."</th></tr>";
          echo "<tr ><td class='center'>";
          $rand             = self::dropdown(array('name' => 'authtype'));
