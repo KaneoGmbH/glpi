@@ -129,9 +129,9 @@ class Item_Project extends CommonDBRelation{
                 action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
          echo "<table class='table table-striped'>";
-         echo "<tr class='tab_bg_2'><th colspan='2'>".__('Add an item')."</th></tr>";
+         echo "<tr ><th colspan='2'>".__('Add an item')."</th></tr>";
 
-         echo "<tr class='tab_bg_1'><td>";
+         echo "<tr ><td>";
          Dropdown::showSelectItemFromItemtypes(array('itemtypes'
                                                       => $CFG_GLPI["project_asset_types"],
                                                      'entity_restrict'
@@ -216,7 +216,7 @@ class Item_Project extends CommonDBRelation{
                $link     = Toolbox::getItemTypeFormURL($itemtype);
                $namelink = "<a href=\"".$link."?id=".$data["id"]."\">".$name."</a>";
 
-               echo "<tr class='tab_bg_1'>";
+               echo "<tr >";
                if ($canedit) {
                   echo "<td width='10'>";
                   Html::showMassiveActionCheckBox(__CLASS__, $data["IDD"]);
@@ -242,7 +242,7 @@ class Item_Project extends CommonDBRelation{
          }
       }
       if ($totalnb > 0) {
-         echo "<tr class='tab_bg_2'>";
+         echo "<tr >";
          echo "<td class='center' colspan='2'>".
                (($totalnb > 0) ? sprintf(__('%1$s = %2$s'), __('Total'), $totalnb) :"&nbsp;");
          echo "</td><td colspan='4'>&nbsp;</td></tr> ";

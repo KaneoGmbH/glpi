@@ -101,8 +101,8 @@ class Calendar_Holiday extends CommonDBRelation {
                 action='";
          echo Toolbox::getItemTypeFormURL(__CLASS__)."'>";
          echo "<table class='table table-striped'>";
-         echo "<tr class='tab_bg_1'><th colspan='7'>".__('Add a close time')."</tr>";
-         echo "<tr class='tab_bg_2'><td class='right'  colspan='4'>";
+         echo "<tr ><th colspan='7'>".__('Add a close time')."</tr>";
+         echo "<tr ><td class='right'  colspan='4'>";
          echo "<input type='hidden' name='calendars_id' value='$ID'>";
          Holiday::dropdown(array('used'   => $used,
                                  'entity' => $calendar->fields["entities_id"]));
@@ -122,7 +122,7 @@ class Calendar_Holiday extends CommonDBRelation {
                            'container'     => 'mass'.__CLASS__.$rand);
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='table table-hover'>";
       echo "<tr>";
       if ($canedit && $numrows) {
          echo "<th width='10'>";
@@ -146,7 +146,7 @@ class Calendar_Holiday extends CommonDBRelation {
 
          foreach ($holidays as $data) {
             Session::addToNavigateListItems('Holiday', $data["id"]);
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr >";
             if ($canedit) {
                echo "<td>";
                Html::showMassiveActionCheckBox(__CLASS__, $data["linkID"]);

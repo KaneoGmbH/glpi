@@ -214,7 +214,7 @@ abstract class CommonDropdown extends CommonDBTM {
       $fields = $this->getAdditionalFields();
       $nb     = count($fields);
 
-      echo "<tr class='tab_bg_1'><td>".__('Name')."</td>";
+      echo "<tr ><td>".__('Name')."</td>";
       echo "<td>";
       if ($this instanceof CommonDevice) {
          // Awfull hack for CommonDevice where name is designation
@@ -233,7 +233,7 @@ abstract class CommonDropdown extends CommonDBTM {
          if (($field['name'] == 'entities_id')
              && ($ID == 0)) {
             // No display for root entity
-            echo "<tr class='tab_bg_1'><td colspan='2'>&nbsp;</td></tr>";
+            echo "<tr ><td colspan='2'>&nbsp;</td></tr>";
             break;
          }
 
@@ -242,11 +242,11 @@ abstract class CommonDropdown extends CommonDBTM {
          }
 
          if ($field['name'] == 'header') {
-            echo "<tr class='tab_bg_1'><th colspan='2'>".$field['label']."</th></tr>";
+            echo "<tr ><th colspan='2'>".$field['label']."</th></tr>";
             continue;
          }
 
-         echo "<tr class='tab_bg_1'><td>".$field['label'];
+         echo "<tr ><td>".$field['label'];
          if (isset($field['comment']) && !empty($field['comment'])) {
             echo "&nbsp;";
             Html::showToolTip($field['comment']);

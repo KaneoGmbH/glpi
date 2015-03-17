@@ -278,7 +278,7 @@ class Log extends CommonDBTM {
       Html::printAjaxPager(self::getTypeName(1), $start, $number);
 
       // Output events
-      echo "<div class='center'><table class='tab_cadre_fixehov'>";
+      echo "<div class='center'><table class='table table-hover'>";
       
       $header = "<tr><th>".__('ID')."</th><th>".__('Date')."</th>";
       $header .= "<th>".__('User')."</th><th>".__('Field')."</th>";
@@ -289,7 +289,7 @@ class Log extends CommonDBTM {
       foreach (self::getHistoryData($item,$start, $_SESSION['glpilist_limit']) as $data) {
          if ($data['display_history']) {
             // show line
-            echo "<tr class='tab_bg_2'>";
+            echo "<tr >";
             echo "<td>".$data['id']."</td><td>".$data['date_mod']."</td>".
                  "<td>".$data['user_name']."</td><td>".$data['field']."</td>";
             echo "<td width='60%'>".$data['change']."</td></tr>";

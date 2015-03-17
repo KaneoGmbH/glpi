@@ -62,20 +62,20 @@ if (!$CFG_GLPI['use_mailing']) {
       echo "<table class='tab_cadre'>";
       echo "<tr><th>" . _n('Notification', 'Notifications',2)."</th></tr>";
       if (Session::haveRight("config", UPDATE)) {
-         echo "<tr class='tab_bg_1'><td class='center'>".
+         echo "<tr ><td class='center'>".
               "<a href='notificationmailsetting.form.php'>". __('Email followups configuration') .
               "</a></td></tr>";
       }
       if (Session::haveRight("config", READ)) {
-         echo "<tr class='tab_bg_1'><td class='center'><a href='notificationtemplate.php'>" .
+         echo "<tr ><td class='center'><a href='notificationtemplate.php'>" .
                _n('Notification template', 'Notification templates', 2) ."</a></td> </tr>";
       }
 
       if (Session::haveRight("notification", READ) && $CFG_GLPI['use_mailing']) {
-         echo "<tr class='tab_bg_1'><td class='center'>".
+         echo "<tr ><td class='center'>".
               "<a href='notification.php'>". _n('Notification', 'Notifications',2)."</a></td></tr>";
       } else {
-            echo "<tr class='tab_bg_1'><td class='center'>" .
+            echo "<tr ><td class='center'>" .
             __('Impossible to configure the notifications: please configure your email followup using the above configuration.') .
                  "</td></tr>";
       }

@@ -166,7 +166,7 @@ class Peripheral extends CommonDBTM {
       $withtemplate = $this->initForm($ID, $options);
       $this->showFormHeader($options);
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       //TRANS: %1$s is a string, %2$s a second one without spaces between them : to change for RTL
       echo "<td>".sprintf(__('%1$s%2$s'), __('Name'),
                           (isset($options['withtemplate']) && $options['withtemplate']?"*":""));
@@ -184,7 +184,7 @@ class Peripheral extends CommonDBTM {
                             'condition' => "`is_visible_peripheral`"));
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Location')."</td>\n";
       echo "<td>";
       Location::dropdown(array('value'  => $this->fields["locations_id"],
@@ -195,7 +195,7 @@ class Peripheral extends CommonDBTM {
       PeripheralType::dropdown(array('value' => $this->fields["peripheraltypes_id"]));
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Technician in charge of the hardware')."</td>\n";
       echo "<td>";
       User::dropdown(array('name'   => 'users_id_tech',
@@ -208,7 +208,7 @@ class Peripheral extends CommonDBTM {
       Manufacturer::dropdown(array('value' => $this->fields["manufacturers_id"]));
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Group in charge of the hardware')."</td>";
       echo "<td>";
       Group::dropdown(array('name'      => 'groups_id_tech',
@@ -221,7 +221,7 @@ class Peripheral extends CommonDBTM {
       PeripheralModel::dropdown(array('value' => $this->fields["peripheralmodels_id"]));
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Alternate username number')."</td>\n";
       echo "<td>";
       Html::autocompletionTextField($this, "contact_num");
@@ -231,7 +231,7 @@ class Peripheral extends CommonDBTM {
       Html::autocompletionTextField($this, "serial");
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Alternate username')."</td>\n";
       echo "<td>";
       Html::autocompletionTextField($this, "contact");
@@ -246,7 +246,7 @@ class Peripheral extends CommonDBTM {
       Html::autocompletionTextField($this, "otherserial", array('value' => $objectName));
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('User')."</td>\n";
       echo "<td>";
       User::dropdown(array('value'  => $this->fields["users_id"],
@@ -273,7 +273,7 @@ class Peripheral extends CommonDBTM {
           $rowspan       -= 1;
        }
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Group')."</td>\n";
       echo "<td>";
       Group::dropdown(array('value'     => $this->fields["groups_id"],
@@ -285,13 +285,13 @@ class Peripheral extends CommonDBTM {
             <textarea cols='45' rows='".($rowspan+3)."' name='comment' >".$this->fields["comment"];
       echo "</textarea></td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Brand')."</td>\n";
       echo "<td>";
       Html::autocompletionTextField($this, "brand");
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>";
       if ((!isset($options['withtemplate']) || ($options['withtemplate'] == 0))
           && !empty($this->fields['template_name'])) {

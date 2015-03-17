@@ -114,7 +114,7 @@ class Report extends CommonGLPI{
       //Affichage du tableau de presentation des stats
       echo "<table class='table table-striped'>";
       echo "<tr><th colspan='2'>".__('Select the report you want to generate')."</th></tr>";
-      echo "<tr class='tab_bg_1'><td class='center'>";
+      echo "<tr ><td class='center'>";
 
       $count    = count($report_list);
       $selected = -1;
@@ -207,11 +207,11 @@ class Report extends CommonGLPI{
          $result = $DB->query($query);
          $number = $DB->result($result,0,0);
 
-         echo "<tr class='tab_bg_2'><td>".$itemtype::getTypeName(Session::getPluralNumber())."</td>";
+         echo "<tr ><td>".$itemtype::getTypeName(Session::getPluralNumber())."</td>";
          echo "<td class='numeric'>$number</td></tr>";
       }
 
-      echo "<tr class='tab_bg_1'><td colspan='2' class='b'>".__('Operating system')."</td></tr>";
+      echo "<tr ><td colspan='2' class='b'>".__('Operating system')."</td></tr>";
 
 
       # 2. Get some more number data (operating systems per computer)
@@ -232,7 +232,7 @@ class Report extends CommonGLPI{
          if (empty($data['name'])) {
             $data['name'] = Dropdown::EMPTY_VALUE;
          }
-         echo "<tr class='tab_bg_2'><td>".$data['name']."</td>";
+         echo "<tr ><td>".$data['name']."</td>";
          echo "<td class='numeric'>".$data['count']."</td></tr>";
       }
 
@@ -243,7 +243,7 @@ class Report extends CommonGLPI{
       $items = array_flip($val);
 
       foreach ($items as $itemtype) {
-         echo "<tr class='tab_bg_1'><td colspan='2' class='b'>".$itemtype::getTypeName(Session::getPluralNumber()).
+         echo "<tr ><td colspan='2' class='b'>".$itemtype::getTypeName(Session::getPluralNumber()).
               "</td></tr>";
 
          $table_item = getTableForItemType($itemtype);
@@ -275,7 +275,7 @@ class Report extends CommonGLPI{
             if (empty($data['name'])) {
                $data['name'] = Dropdown:: EMPTY_VALUE;
             }
-            echo "<tr class='tab_bg_2'><td>".$data['name']."</td>";
+            echo "<tr ><td>".$data['name']."</td>";
             echo "<td class='numeric'>".$data['count']."</td></tr>";
          }
       }
@@ -349,7 +349,7 @@ class Report extends CommonGLPI{
 
       $result = $DB->request($query);
       if ($result->numrows() > 0) {
-         echo "<table class='tab_cadre_fixehov'>";
+         echo "<table class='table table-hover'>";
          echo "<tr>";
          if (!empty($extra)) {
             echo "<td>&nbsp;</td>";
@@ -375,7 +375,7 @@ class Report extends CommonGLPI{
          echo "</tr>\n";
 
          foreach ($result as $line) {
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr >";
 
             // To ensure that the NetworkEquipment remain the first item, we test its type
             if ($line['itemtype_2'] == 'NetworkEquipment') {

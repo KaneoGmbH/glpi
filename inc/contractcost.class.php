@@ -262,7 +262,7 @@ class ContractCost extends CommonDBChild {
       }
 
       $this->showFormHeader($options);
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Name')."</td>";
       echo "<td>";
       echo "<input type='hidden' name='contracts_id' value='".$this->fields['contracts_id']."'>";
@@ -274,7 +274,7 @@ class ContractCost extends CommonDBChild {
              size='14'>";
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'><td>".__('Begin date')."</td>";
+      echo "<tr ><td>".__('Begin date')."</td>";
       echo "<td>";
       Html::showDateField("begin_date", array('value' => $this->fields['begin_date']));
       echo "</td>";
@@ -285,12 +285,12 @@ class ContractCost extends CommonDBChild {
            "</textarea>";
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'><td>".__('End date')."</td>";
+      echo "<tr ><td>".__('End date')."</td>";
       echo "<td>";
       Html::showDateField("end_date", array('value' => $this->fields['end_date']));
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'><td>".__('Budget')."</td>";
+      echo "<tr ><td>".__('Budget')."</td>";
       echo "<td>";
       Budget::dropdown(array('value' => $this->fields["budgets_id"]));
       echo "</td></tr>";
@@ -347,7 +347,7 @@ class ContractCost extends CommonDBChild {
       }
 
       if ($result = $DB->query($query)) {
-         echo "<table class='tab_cadre_fixehov'>";
+         echo "<table class='table table-hover'>";
          echo "<tr><th colspan='5'>".self::getTypeName($DB->numrows($result))."</th></tr>";
 
          if ($DB->numrows($result)) {
@@ -366,7 +366,7 @@ class ContractCost extends CommonDBChild {
 
             $total = 0;
             while ($data = $DB->fetch_assoc($result)) {
-               echo "<tr class='tab_bg_2' ".
+               echo "<tr  ".
                      ($canedit
                       ? "style='cursor:pointer' onClick=\"viewEditCost".$data['contracts_id']."_".
                         $data['id']."_$rand();\"": '') .">";

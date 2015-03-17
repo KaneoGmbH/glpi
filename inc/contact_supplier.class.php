@@ -183,9 +183,9 @@ class Contact_Supplier extends CommonDBRelation{
                 method='post' action='";
          echo Toolbox::getItemTypeFormURL(__CLASS__)."'>";
          echo "<table class='table table-striped'>";
-         echo "<tr class='tab_bg_1'><th colspan='2'>".__('Add a supplier')."</tr>";
+         echo "<tr ><th colspan='2'>".__('Add a supplier')."</tr>";
 
-         echo "<tr class='tab_bg_2'><td class='center'>";
+         echo "<tr ><td class='center'>";
          echo "<input type='hidden' name='contacts_id' value='$instID'>";
          Supplier::dropdown(array('used'        => $used,
                                   'entity'      => $contact->fields["entities_id"],
@@ -206,7 +206,7 @@ class Contact_Supplier extends CommonDBRelation{
                                       'container'     => 'mass'.__CLASS__.$rand);
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='table table-hover'>";
       $header_begin  = "<tr>";
       $header_top    = '';
       $header_bottom = '';
@@ -318,9 +318,9 @@ class Contact_Supplier extends CommonDBRelation{
                 method='post' action='";
          echo Toolbox::getItemTypeFormURL(__CLASS__)."'>";
          echo "<table class='table'>";
-         echo "<tr class='tab_bg_1'><th colspan='2'>".__('Add a contact')."</tr>";
+         echo "<tr ><th colspan='2'>".__('Add a contact')."</tr>";
 
-         echo "<tr class='tab_bg_2'><td class='center'>";
+         echo "<tr ><td class='center'>";
          echo "<input type='hidden' name='suppliers_id' value='$instID'>";
 
          Contact::dropdown(array('used'        => $used,
@@ -343,7 +343,7 @@ class Contact_Supplier extends CommonDBRelation{
                                       'container'     => 'mass'.__CLASS__.$rand);
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='table table-hover'>";
 
       $header_begin  = "<tr>";
       $header_top    = '';

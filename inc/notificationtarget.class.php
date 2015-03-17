@@ -315,7 +315,7 @@ class NotificationTarget extends CommonDBChild {
          }
          echo "<table class='table table-striped'>";
          echo "<tr><th colspan='4'>" . _n('Recipient', 'Recipients', Session::getPluralNumber()) . "</th></tr>";
-         echo "<tr class='tab_bg_2'>";
+         echo "<tr >";
 
          $values = array();
          foreach ($this->notification_targets as $key => $val) {
@@ -1226,7 +1226,7 @@ class NotificationTarget extends CommonDBChild {
             Session::addToNavigateListItems('Notification', $data['id']);
 
             if ($notif->getFromDB($data['id'])) {
-               echo "<tr class='tab_bg_2'><td>".$notif->getLink();
+               echo "<tr ><td>".$notif->getLink();
                echo "</td><td>".Dropdown::getDropdownName('glpi_entities', $notif->getEntityID());
                echo "</td><td>".Dropdown::getYesNo($notif->getField('is_active'))."</td><td>";
                $itemtype = $notif->getField('itemtype');
@@ -1245,7 +1245,7 @@ class NotificationTarget extends CommonDBChild {
             }
          }
       } else {
-      echo "<tr class='tab_bg_2'><td class='b center'>".__('No item found')."</td></tr>";
+      echo "<tr ><td class='b center'>".__('No item found')."</td></tr>";
       }
       echo "</table>";
    }

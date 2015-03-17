@@ -119,9 +119,9 @@ class SlaLevel extends RuleTicket {
          echo Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
          echo "<table class='table table-striped'>";
-         echo "<tr class='tab_bg_1'><th colspan='7'>".__('Add an escalation level')."</tr>";
+         echo "<tr ><th colspan='7'>".__('Add an escalation level')."</tr>";
 
-         echo "<tr class='tab_bg_2'><td class='center'>".__('Name')."";
+         echo "<tr ><td class='center'>".__('Name')."";
          echo "<input type='hidden' name='slas_id' value='$ID'>";
          echo "<input type='hidden' name='entities_id' value='".$sla->getEntityID()."'>";
          echo "<input type='hidden' name='is_recursive' value='".$sla->isRecursive()."'>";
@@ -162,7 +162,7 @@ class SlaLevel extends RuleTicket {
          Html::showMassiveActions($massiveactionparams);
       }
 
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='table table-hover'>";
       echo "<tr>";
       if ($canedit && $numrows) {
          echo "<th width='10'>".Html::getCheckAllAsCheckbox('mass'.__CLASS__.$rand)."</th>";
@@ -179,7 +179,7 @@ class SlaLevel extends RuleTicket {
       while ($data = $DB->fetch_assoc($result)) {
          Session::addToNavigateListItems('SlaLevel', $data["id"]);
 
-         echo "<tr class='tab_bg_2'>";
+         echo "<tr >";
          if ($canedit) {
             echo "<td>".Html::getMassiveActionCheckBox(__CLASS__, $data["id"])."</td>";
          }
@@ -202,7 +202,7 @@ class SlaLevel extends RuleTicket {
          echo "<td>".Dropdown::getYesNo($data["is_active"])."</td>";
          echo "</tr>";
 
-         echo "<tr class='tab_bg_1'><td colspan='2'>";
+         echo "<tr ><td colspan='2'>";
          $this->getRuleWithCriteriasAndActions($data['id'],1,1);
          $this->showCriteriasList($data["id"], array('readonly' => true));
          echo "</td><td colspan='2'>";
@@ -280,7 +280,7 @@ class SlaLevel extends RuleTicket {
       $this->initForm($ID, $options);
       $this->showFormHeader($options);
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Name')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "name");
@@ -293,7 +293,7 @@ class SlaLevel extends RuleTicket {
       $sla = new SLA();
       $sla->getFromDB($this->fields['slas_id']);
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".SLA::getTypeName(1)."</td>";
       echo "<td>".$sla->getLink()."</td>";
       echo "<td>".__('Execution')."</td>";
@@ -310,7 +310,7 @@ class SlaLevel extends RuleTicket {
                                              => $this->fields['execution_time']));
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Logical operator')."</td>";
       echo "<td>";
       $this->dropdownRulesMatch(array('value' => $this->fields["match"]));

@@ -254,8 +254,8 @@ class Location extends CommonTreeDropdown {
       }
       // Mini Search engine
       echo "<table class='table table-striped'>";
-      echo "<tr class='tab_bg_1'><th colspan='2'>".__('Type')."</th></tr>";
-      echo "<tr class='tab_bg_1'><td class='center'>";
+      echo "<tr ><th colspan='2'>".__('Type')."</th></tr>";
+      echo "<tr ><td class='center'>";
       echo __('Type')."&nbsp;";
       Dropdown::showItemType($CFG_GLPI['location_types'],
                              array('value'      => $crit,
@@ -278,7 +278,7 @@ class Location extends CommonTreeDropdown {
          for ($row=0 ; ($data=$DB->fetch_assoc($result)) && ($row<$_SESSION['glpilist_limit']) ; $row++) {
             $item = getItemForItemtype($data['type']);
             $item->getFromDB($data['id']);
-            echo "<tr class='tab_bg_1'><td class='center top'>".$item->getTypeName()."</td>";
+            echo "<tr ><td class='center top'>".$item->getTypeName()."</td>";
             echo "<td class='center'>".Dropdown::getDropdownName("glpi_entities",
                                                                  $item->getEntityID());
             echo "</td><td class='center'>".$item->getLink()."</td>";

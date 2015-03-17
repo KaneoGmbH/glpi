@@ -899,7 +899,7 @@ class Dropdown {
    static function showItemTypeMenu($title, $optgroup, $value='') {
 
       echo "<table class='tab_cadre' width='50%'>";
-      echo "<tr class='tab_bg_1'><td class='b'>&nbsp;".$title."&nbsp; ";
+      echo "<tr ><td class='b'>&nbsp;".$title."&nbsp; ";
       $values   = array('' => self::EMPTY_VALUE);
       $selected = '';
 
@@ -943,10 +943,10 @@ class Dropdown {
          echo "<tr><th>$label</th></tr>\n";
 
          foreach ($dp as $key => $val) {
-            $class="class='tab_bg_4'";
+            $class="";
             if (($itemtype = getItemForItemtype($key))
                 && $itemtype->isEntityAssign()) {
-               $class="class='tab_bg_2'";
+               $class="";
             }
             echo "<tr $class><td><a href='".$key::getSearchURL()."'>";
             echo "$val</a></td></tr>\n";

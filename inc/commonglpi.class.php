@@ -739,8 +739,8 @@ class CommonGLPI {
             }
          }
          $cleantarget = HTML::cleanParametersURL($target);
-         echo "<div class='navigationheader'><table class='tab_cadre_pager'>";
-         echo "<tr class='tab_bg_2'>";
+         echo "<div class='navigationheader'><table class='table'>";
+         echo "<tr >";
 
          if ($first >= 0) {
             echo "<td class='left'><a href='$cleantarget?id=$first$extraparamhtml'>".

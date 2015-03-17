@@ -166,24 +166,24 @@ class AuthMail extends CommonDBTM {
          $options['colspan'] = 1;
          $this->showFormHeader($options);
 
-         echo "<tr class='tab_bg_1'><td>" . __('Name') . "</td>";
+         echo "<tr ><td>" . __('Name') . "</td>";
          echo "<td><input size='30' type='text' name='name' value='". $this->fields["name"] ."'>";
          echo "</td></tr>";
 
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr >";
          echo "<td>" . __('Active') . "</td>";
          echo "<td colspan='3'>";
          Dropdown::showYesNo('is_active', $this->fields['is_active']);
          echo "</td></tr>";
 
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr >";
          echo "<td>". __('Email domain Name (users email will be login@domain)') ."</td>";
          echo "<td><input size='30' type='text' name='host' value='" . $this->fields["host"] . "'>";
          echo "</td></tr>";
 
          Toolbox::showMailServerConfig($this->fields["connect_string"]);
 
-         echo "<tr class='tab_bg_1'><td>" . __('Comments') . "</td>";
+         echo "<tr ><td>" . __('Comments') . "</td>";
          echo "<td>";
          echo "<textarea cols='40' rows='4' name='comment'>".$this->fields["comment"]."</textarea>";
          if ($ID>0) {
@@ -199,7 +199,7 @@ class AuthMail extends CommonDBTM {
       } else {
          echo "<div class='center'>&nbsp;<table class='table table-striped'>";
          echo "<tr><th colspan='2'>" . __('Email server configuration') . "</th></tr>";
-         echo "<tr class='tab_bg_2'><td class='center'>";
+         echo "<tr ><td class='center'>";
          echo "<p class='red'>".__('Your PHP parser was compiled without the IMAP functions')."</p>";
          echo "<p>". __('Impossible to use email server as external source of connection')."</p>";
          echo "</td></tr></table></div>";
@@ -217,14 +217,14 @@ class AuthMail extends CommonDBTM {
          echo "<div class='center'><table class='tab_cadre'>";
          echo "<tr><th colspan='2'>" . __('Test connection to email server') . "</th></tr>";
 
-         echo "<tr class='tab_bg_2'><td class='center'>" . __('Login') . "</td>";
+         echo "<tr ><td class='center'>" . __('Login') . "</td>";
          echo "<td><input size='30' type='text' name='imap_login' value=''></td></tr>";
 
-         echo "<tr class='tab_bg_2'><td class='center'>" . __('Password') . "</td>";
+         echo "<tr ><td class='center'>" . __('Password') . "</td>";
          echo "<td><input size='30' type='password' name='imap_password' value=''
                     autocomplete='off'></td></tr>";
 
-         echo "<tr class='tab_bg_2'><td class='center' colspan='2'>";
+         echo "<tr ><td class='center' colspan='2'>";
          echo "<input type='submit' name='test' class='btn btn-primary' value=\""._sx('button','Test')."\">".
               "</td>";
          echo "</tr></table></div>";

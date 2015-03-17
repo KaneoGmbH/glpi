@@ -133,9 +133,9 @@ class Profile_User extends CommonDBRelation {
          echo "<form name='entityuser_form$rand' id='entityuser_form$rand' method='post' action='";
          echo Toolbox::getItemTypeFormURL(__CLASS__)."'>";
          echo "<table class='table table-striped'>";
-         echo "<tr class='tab_bg_1'><th colspan='6'>".__('Add an authorization to a user')."</tr>";
+         echo "<tr ><th colspan='6'>".__('Add an authorization to a user')."</tr>";
 
-         echo "<tr class='tab_bg_2'><td class='center'>";
+         echo "<tr ><td class='center'>";
          echo "<input type='hidden' name='users_id' value='$ID'>";
          Entity::dropdown(array('entity' => $_SESSION['glpiactiveentities']));
          echo "</td><td class='center'>".self::getTypeName(1)."</td><td>";
@@ -178,7 +178,7 @@ class Profile_User extends CommonDBRelation {
       }
 
       if ($num > 0) {
-         echo "<table class='tab_cadre_fixehov'>";
+         echo "<table class='table table-hover'>";
          $header_begin  = "<tr>";
          $header_top    = '';
          $header_bottom = '';
@@ -196,7 +196,7 @@ class Profile_User extends CommonDBRelation {
          echo $header_begin.$header_top.$header_end;
 
          while ($data = $DB->fetch_assoc($result)) {
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr >";
             if ($canedit) {
                echo "<td width='10'>";
                if (in_array($data["entities_id"], $_SESSION['glpiactiveentities'])) {
@@ -292,8 +292,8 @@ class Profile_User extends CommonDBRelation {
          echo "<form name='entityuser_form$rand' id='entityuser_form$rand' method='post' action='";
          echo Toolbox::getItemTypeFormURL(__CLASS__)."'>";
          echo "<table class='table'>";
-         echo "<tr class='tab_bg_1'><th colspan='6'>".__('Add an authorization to a user')."</tr>";
-         echo "<tr class='tab_bg_1'><td class='tab_bg_2 center'>".__('User')."&nbsp;";
+         echo "<tr ><th colspan='6'>".__('Add an authorization to a user')."</tr>";
+         echo "<tr ><td class='tab_bg_2 center'>".__('User')."&nbsp;";
          echo "<input type='hidden' name='entities_id' value='$ID'>";
          User::dropdown(array('right' => 'all'));
          echo "</td><td class='tab_bg_2 center'>".self::getTypeName(1)."</td><td>";
@@ -329,7 +329,7 @@ class Profile_User extends CommonDBRelation {
                         => array('purge' => _x('button', 'Delete permanently')));
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='table table-hover'>";
       echo "<thead><tr>";
 
       echo "<th class='noHover' colspan='$headerspan'>";
@@ -383,7 +383,7 @@ class Profile_User extends CommonDBRelation {
                      if ($i  !=0) {
                         echo "</tr>";
                      }
-                     echo "<tr class='tab_bg_1'>";
+                     echo "<tr >";
                   }
                   if ($canedit) {
                      echo "<td width='10'>";
@@ -501,7 +501,7 @@ class Profile_User extends CommonDBRelation {
                   if ($canedit_entity) {
                      echo "<td width='10'>&nbsp;</td>";
                   }
-                  echo "<td class='tab_bg_1'>&nbsp;</td>\n";
+                  echo "<td >&nbsp;</td>\n";
                   $i++;
                }
 
@@ -516,7 +516,7 @@ class Profile_User extends CommonDBRelation {
                $temp           = $data["entity"];
                $canedit_entity = $canedit && in_array($temp, $_SESSION['glpiactiveentities']);
                $rand           = mt_rand();
-               echo "<tr class='tab_bg_2'>";
+               echo "<tr >";
                echo "<td>";
                echo "<a href=\"javascript:showHideDiv('entity$temp$rand','imgcat$temp', '".
                         $CFG_GLPI['root_doc']."/pics/folder.png','".$CFG_GLPI['root_doc']."/pics/folder-open.png');\">";
@@ -527,7 +527,7 @@ class Profile_User extends CommonDBRelation {
 
                echo "</td></tr>\n";
 
-               echo "<tr class='tab_bg_2'><td>";
+               echo "<tr ><td>";
                echo "<div class='center' id='entity$temp$rand' style='display:none;'>\n";
                echo Html::checkAllAsCheckbox("entity$temp$rand").__('All');
 
@@ -538,7 +538,7 @@ class Profile_User extends CommonDBRelation {
                if ($i != 0) {
                   echo "</tr>\n";
                }
-               echo "<tr class='tab_bg_1'>\n";
+               echo "<tr >\n";
                $i = 0;
             }
 
@@ -564,7 +564,7 @@ class Profile_User extends CommonDBRelation {
                }
                $username = sprintf(__('%1$s%2$s'), $username, ")</span>");
             }
-            echo "<td class='tab_bg_1'>". $username."</td>\n";
+            echo "<td >". $username."</td>\n";
             $i++;
          }
 
@@ -573,7 +573,7 @@ class Profile_User extends CommonDBRelation {
                if ($canedit_entity) {
                   echo "<td width='10'>&nbsp;</td>";
                }
-               echo "<td class='tab_bg_1'>&nbsp;</td>";
+               echo "<td >&nbsp;</td>";
                $i++;
             }
          }
@@ -585,7 +585,7 @@ class Profile_User extends CommonDBRelation {
          }
 
       } else {
-         echo "<tr class='tab_bg_2'><td class='tab_bg_1 center'>".__('No user found').
+         echo "<tr ><td class='tab_bg_1 center'>".__('No user found').
                "</td></tr>\n";
       }
       echo "</table>";

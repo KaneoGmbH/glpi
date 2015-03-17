@@ -267,9 +267,9 @@ class Problem_Ticket extends CommonDBRelation{
                action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
          echo "<table class='table table-striped'>";
-         echo "<tr class='tab_bg_2'><th colspan='2'>".__('Add a ticket')."</th></tr>";
+         echo "<tr ><th colspan='2'>".__('Add a ticket')."</th></tr>";
 
-         echo "<tr class='tab_bg_2'><td class='right'>";
+         echo "<tr ><td class='right'>";
          echo "<input type='hidden' name='problems_id' value='$ID'>";
          $condition = "`glpi_tickets`.`status`
                         NOT IN ('".implode("', '", array_merge(Ticket::getSolvedStatusArray(),
@@ -303,7 +303,7 @@ class Problem_Ticket extends CommonDBRelation{
                                       'height'           => 500);
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='table table-hover'>";
       echo "<tr class='noHover'><th colspan='12'>".Ticket::getTypeName($numrows)."</th>";
       echo "</tr>";
       if ($numrows) {
@@ -378,8 +378,8 @@ class Problem_Ticket extends CommonDBRelation{
                 action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
          echo "<table class='table'>";
-         echo "<tr class='tab_bg_2'><th colspan='3'>".__('Add a problem')."</th></tr>";
-         echo "<tr class='tab_bg_2'><td>";
+         echo "<tr ><th colspan='3'>".__('Add a problem')."</th></tr>";
+         echo "<tr ><td>";
          echo "<input type='hidden' name='tickets_id' value='$ID'>";
          $condition = "`glpi_problems`.`status` NOT IN ('".implode("', '",
                                                                   array_merge(Problem::getSolvedStatusArray(),
@@ -406,7 +406,7 @@ class Problem_Ticket extends CommonDBRelation{
                                       'container'      => 'mass'.__CLASS__.$rand);
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='table table-hover'>";
       echo "<tr class='noHover'><th colspan='12'>".Problem::getTypeName($numrows)."</th>";
       echo "</tr>";
       if ($numrows) {

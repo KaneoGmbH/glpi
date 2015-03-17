@@ -159,9 +159,9 @@ class Change_Problem extends CommonDBRelation{
                 action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
          echo "<table class='table table-striped'>";
-         echo "<tr class='tab_bg_2'><th colspan='3'>".__('Add a change')."</th></tr>";
+         echo "<tr ><th colspan='3'>".__('Add a change')."</th></tr>";
 
-         echo "<tr class='tab_bg_2'><td>";
+         echo "<tr ><td>";
          echo "<input type='hidden' name='problems_id' value='$ID'>";
          Change::dropdown(array('used'        => $used,
                                 'entity'      => $problem->getEntityID(),
@@ -187,7 +187,7 @@ class Change_Problem extends CommonDBRelation{
          Html::showMassiveActions($massiveactionparams);
       }
 
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='table table-hover'>";
       echo "<tr class='noHover'><th colspan='12'>".Change::getTypeName($numrows)."</th>";
       echo "</tr>";
       if ($numrows) {
@@ -262,9 +262,9 @@ class Change_Problem extends CommonDBRelation{
                 action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
          echo "<table class='table'>";
-         echo "<tr class='tab_bg_2'><th colspan='2'>".__('Add a problem')."</th></tr>";
+         echo "<tr ><th colspan='2'>".__('Add a problem')."</th></tr>";
 
-         echo "<tr class='tab_bg_2'><td>";
+         echo "<tr ><td>";
          echo "<input type='hidden' name='changes_id' value='$ID'>";
          Problem::dropdown(array('used'   => $used,
                                  'entity' => $change->getEntityID()));
@@ -283,7 +283,7 @@ class Change_Problem extends CommonDBRelation{
          Html::showMassiveActions($massiveactionparams);
       }
 
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='table table-hover'>";
       echo "<tr class='noHover'><th colspan='12'>".Problem::getTypeName($numrows)."</th>";
       echo "</tr>";
       if ($numrows) {

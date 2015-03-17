@@ -317,7 +317,7 @@ class Planning extends CommonGLPI {
       }
 
       echo "<div class='center'><form method='get' name='form' action='planning.php'>\n";
-      echo "<table class='table table-striped'><tr class='tab_bg_1'>";
+      echo "<table class='table table-striped'><tr >";
       echo "<td>";
       echo "<a href=\"".$CFG_GLPI["root_doc"]."/front/planning.php?type=".$type."&amp;uID=".$uID.
              "&amp;date=$prev&amp;usertype=$usertype&amp;gID=$gID&amp;limititemtype=$limititemtype\">";
@@ -493,10 +493,10 @@ class Planning extends CommonGLPI {
       if (count($users) > 1) {
          $colspan++;
       }
-      echo "<tr class='tab_bg_1'><th colspan='$colspan'>".__('Availability')."</th>";
+      echo "<tr ><th colspan='$colspan'>".__('Availability')."</th>";
       echo "</tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Start')."</td>\n";
       echo "<td>";
       Html::showDateField("begin", array('value'      => $begin,
@@ -565,10 +565,10 @@ class Planning extends CommonGLPI {
             }
 
             // Print Headers
-            echo "<tr class='tab_bg_1'><th colspan='$colnumber'>";
+            echo "<tr ><th colspan='$colnumber'>";
             echo $whoname;
             echo "</th></tr>";
-            echo "<tr class='tab_bg_1'><th width='15%'>&nbsp;</th>";
+            echo "<tr ><th width='15%'>&nbsp;</th>";
             echo $timeheader;
             echo "</tr>";
 
@@ -651,12 +651,12 @@ class Planning extends CommonGLPI {
                }
                echo "</tr>";
             }
-            echo "<tr class='tab_bg_1'><td colspan='$colnumber'>&nbsp;</td></tr>";
+            echo "<tr ><td colspan='$colnumber'>&nbsp;</td></tr>";
             echo "</table></div>";
          }
       }
       echo "<div><table class='tab_cadre'>";
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<th>".__('Caption')."</th>";
       echo "<td class='available' colspan=8>".__('Available')."</td>";
       echo "<td class='notavailable' colspan=8>".__('Unavailable')."</td>";
@@ -742,7 +742,7 @@ class Planning extends CommonGLPI {
       // Print Headers
       echo "<div class='center'><table class='table'>";
       // Print Headers
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       switch ($type) {
          case "month" :
             for ($i=1 ; $i<=7 ; $i++) {
@@ -884,7 +884,7 @@ class Planning extends CommonGLPI {
             break;
 
          case "month" :
-            echo "<tr class='tab_bg_3'>";
+            echo "<tr >";
             // Display first day out of the month
             for ($i=1 ; $i<$begin_month_day ; $i++) {
                echo "<td style='background-color:#ffffff'>&nbsp;</td>";
@@ -904,7 +904,7 @@ class Planning extends CommonGLPI {
                echo "<span style='font-family: arial,helvetica,sans-serif; font-size: 14px; color: black'>".
                       $day."</span></td></tr>";
 
-               echo "<tr class='tab_bg_3'>";
+               echo "<tr >";
                echo "<td class='tab_bg_3 top' width='12%'>";
                $begin_day = date("Y-m-d H:i:s", $time);
                $end_day   = date("Y-m-d H:i:s", $time+DAY_TIMESTAMP);
@@ -1063,7 +1063,7 @@ class Planning extends CommonGLPI {
       $type = '';
       if (count($interv) > 0) {
          foreach ($interv as $key => $val) {
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr >";
             echo "<td>";
             if ($val["begin"] < $begin) {
                $val["begin"] = $begin;

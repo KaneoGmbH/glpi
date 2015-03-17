@@ -315,7 +315,7 @@ class ITILCategory extends CommonTreeDropdown {
             echo "</tr>";
 
             while ($data = $DB->fetch_assoc($result)) {
-               echo "<tr class='tab_bg_2'>";
+               echo "<tr >";
                $itilcategory->getFromDB($data['id']);
                echo "<td>".$itilcategory->getLink(array('comments' => true))."</td>";
                if ($data['tickettemplates_id_incident'] == $ID) {

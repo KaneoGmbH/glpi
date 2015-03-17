@@ -113,7 +113,7 @@ class NetworkAlias extends FQDNLabel {
       $options['entities_id'] = $lastItem->getField('entities_id');
       $this->showFormHeader($options);
 
-      echo "<tr class='tab_bg_1'><td>";
+      echo "<tr ><td>";
       $this->displayRecursiveItems($recursiveItems, 'Type');
       echo "&nbsp;:</td>\n<td>";
 
@@ -126,7 +126,7 @@ class NetworkAlias extends FQDNLabel {
       Html::autocompletionTextField($this, "name");
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".FQDN::getTypeName()."</td><td>";
       Dropdown::show(getItemTypeForTable(getTableNameForForeignKeyField("fqdns_id")),
                      array('value'        => $this->fields["fqdns_id"],
@@ -290,7 +290,7 @@ class NetworkAlias extends FQDNLabel {
                                       'container'     => 'mass'.__CLASS__.$rand);
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='table table-hover'>";
       $header_begin  = "<tr>";
       $header_top    = '';
       $header_bottom = '';
@@ -313,7 +313,7 @@ class NetworkAlias extends FQDNLabel {
          $showviewjs = ($canedit
                         ? "style='cursor:pointer' onClick=\"viewEditAlias".$data['id']."$rand();\""
                         : '');
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr >";
          if ($canedit) {
             echo "<td>";
             Html::showMassiveActionCheckBox(__CLASS__, $data["id"]);
@@ -421,7 +421,7 @@ class NetworkAlias extends FQDNLabel {
          foreach ($DB->request($query) as $data) {
             Session::addToNavigateListItems($alias->getType(),$data["alias_id"]);
             if ($address->getFromDB($data["address_id"])) {
-               echo "<tr class='tab_bg_1'>";
+               echo "<tr >";
                echo "<td><a href='".$alias->getFormURL().'?id='.$data['alias_id']."'>" .
                           $data['alias']. "</a></td>";
                echo "<td><a href='".$address->getLinkURL()."'>".$address->getInternetName().

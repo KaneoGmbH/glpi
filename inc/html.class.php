@@ -2449,7 +2449,7 @@ class Html {
           && ($max < ($p['num_displayed']+10))) {
          if (!$p['ontop']
              || (isset($p['forcecreate']) && $p['forcecreate'])) {
-            echo "<table class='tab_cadre' width='$width'><tr class='tab_bg_1'>".
+            echo "<table class='tab_cadre' width='$width'><tr >".
                   "<td><span class='b'>";
             echo __('Selection too large, massive action disabled.')."</span>";
             if ($_SESSION['glpi_use_mode'] == Session::DEBUG_MODE) {
@@ -3568,7 +3568,7 @@ class Html {
       }
 
       // Print it
-      echo "<div><table class='tab_cadre_pager'>";
+      echo "<div><table class='table'>";
       if (!empty($title)) {
          echo "<tr><th colspan='6'>$title</th></tr>";
       }
@@ -3584,11 +3584,11 @@ class Html {
                 "\" title=\"".__s('Previous')."\"></th>";
       }
 
-      echo "<td width='50%' class='tab_bg_2'>";
+      echo "<td width='50%' >";
       self::printPagerForm();
       echo "</td>";
       if (!empty($additional_info)) {
-         echo "<td class='tab_bg_2'>";
+         echo "<td >";
          echo $additional_info;
          echo "</td>";
       }
@@ -3631,7 +3631,7 @@ class Html {
          echo "<tr><th>KEY</th><th>=></th><th>VALUE</th></tr>";
 
          foreach ($tab as $key => $val) {
-            echo "<tr class='tab_bg_1'><td class='top right'>";
+            echo "<tr ><td class='top right'>";
             echo $key;
             $is_array = is_array($val);
             $rand     = mt_rand();
@@ -3722,7 +3722,7 @@ class Html {
       }
 
       // Print it
-      echo "<div><table class='tab_cadre_pager'>";
+      echo "<div><table class='table'>";
       echo "<tr>";
 
       // Back and fast backward button
@@ -3740,12 +3740,12 @@ class Html {
       }
 
       // Print the "where am I?"
-      echo "<td width='50%' class='tab_bg_2'>";
+      echo "<td width='50%' >";
       self::printPagerForm("$target?$parameters&amp;start=$start");
       echo "</td>";
 
       if (!empty($additional_info)) {
-         echo "<td class='tab_bg_2'>";
+         echo "<td >";
          echo $additional_info;
          echo "</td>";
       }
@@ -3754,7 +3754,7 @@ class Html {
           && isset($_SESSION["glpiactiveprofile"])
           && ($_SESSION["glpiactiveprofile"]["interface"] == "central")) {
 
-         echo "<td class='tab_bg_2' width='30%'>";
+         echo "<td  width='30%'>";
          echo "<form method='GET' action='".$CFG_GLPI["root_doc"]."/front/report.dynamic.php'
                 target='_blank'>";
          echo Html::hidden('item_type', array('value' => $item_type_output));
@@ -4952,7 +4952,7 @@ class Html {
          echo "\t</tr>\n";
       }
 
-      echo "\t<tr class='tab_bg_1'>\n";
+      echo "\t<tr >\n";
       echo "\t\t<td>".$param['first_cell']."</td>\n";
       foreach ($columns as $col_name => $column) {
          $nb_cb_per_col[$col_name] = array('total'   => 0,
@@ -4992,7 +4992,7 @@ class Html {
             continue;
          }
 
-         echo "\t<tr class='tab_bg_1'>\n";
+         echo "\t<tr >\n";
 
          if (is_string($row)) {
             echo "\t\t<th colspan='$number_columns'>$row</th>\n";
@@ -5085,7 +5085,7 @@ class Html {
       }
 
       if ($param['col_check_all']) {
-         echo "\t<tr class='tab_bg_1'>\n";
+         echo "\t<tr >\n";
          echo "\t\t<td>".__('Select/unselect all')."</td>\n";
          foreach ($columns as $col_name => $column) {
             echo "\t\t<td class='center'>";

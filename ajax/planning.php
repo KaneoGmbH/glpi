@@ -63,7 +63,7 @@ if (isset($_POST["end"]) && !empty($_POST["end"])) {
 
 echo "<table class='tab_cadre'>";
 
-echo "<tr class='tab_bg_2'><td>".__('Start date')."</td><td>";
+echo "<tr ><td>".__('Start date')."</td><td>";
 $rand_begin = Html::showDateTimeField("plan[begin]",
                                       array('value'      => $begin,
                                             'timestep'   => -1,
@@ -75,7 +75,7 @@ $rand_begin = Html::showDateTimeField("plan[begin]",
                                             'maxtime'    => $CFG_GLPI["planning_end"]));
 echo "</td></tr>\n";
 
-echo "<tr class='tab_bg_2'><td>".__('Period')."&nbsp;";
+echo "<tr ><td>".__('Period')."&nbsp;";
 
 if (isset($_POST["rand_user"])) {
    echo "<span id='user_available".$_POST["rand_user"]."'>";
@@ -112,7 +112,7 @@ echo "</td></tr>\n";
 if ((!isset($_POST["id"]) || ($_POST["id"] == 0))
     && isset($_POST['itemtype'])
     && PlanningRecall::isAvailable()) {
-   echo "<tr class='tab_bg_2'><td>"._x('Planning','Reminder')."</td><td>";
+   echo "<tr ><td>"._x('Planning','Reminder')."</td><td>";
    PlanningRecall::dropdown(array('itemtype' => $_POST['itemtype'],
                                   'items_id' => $_POST['items_id']));
    echo "</td></tr>";

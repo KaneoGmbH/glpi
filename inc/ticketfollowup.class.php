@@ -584,7 +584,7 @@ class TicketFollowup  extends CommonDBTM {
       if ($tech) {
          $this->showFormHeader($options);
 
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr >";
          echo "<td rowspan='3' class='middle right'>".__('Description')."</td>";
          echo "<td class='center middle' rowspan='3'>";
          echo "<textarea name='content' cols='70' rows='6'>".$this->fields["content"]."</textarea>";
@@ -603,12 +603,12 @@ class TicketFollowup  extends CommonDBTM {
 
          echo "</td></tr>\n";
 
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr >";
          echo "<td>".__('Source of followup')."</td><td>";
          RequestType::dropdown(array('value' => $this->fields["requesttypes_id"]));
          echo "</td></tr>\n";
 
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr >";
          echo "<td>".__('Private')."</td><td>";
          Dropdown::showYesNo('is_private', $this->fields["is_private"]);
          echo "</td></tr>";
@@ -620,7 +620,7 @@ class TicketFollowup  extends CommonDBTM {
 
          $this->showFormHeader($options);
 
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr >";
          echo "<td class='middle right'>".__('Description')."</td>";
          echo "<td class='center middle'>";
          echo "<textarea name='content' cols='80' rows='6'>".$this->fields["content"]."</textarea>";
@@ -731,7 +731,7 @@ class TicketFollowup  extends CommonDBTM {
       }
 
       if ($DB->numrows($result) == 0) {
-         echo "<table class='table table-striped'><tr class='tab_bg_2'>";
+         echo "<table class='table table-striped'><tr >";
          echo "<th class='b'>" . __('No followup for this ticket.')."</th></tr></table>";
       } else {
          $today          = strtotime('today');
@@ -893,7 +893,7 @@ class TicketFollowup  extends CommonDBTM {
             $showuserlink = 1;
          }
          while ($data = $DB->fetch_assoc($result)) {
-            $out .= "<tr class='tab_bg_3'>
+            $out .= "<tr >
                      <td class='center'>".Html::convDateTime($data["date"])."</td>
                      <td class='center'>".getUserName($data["users_id"], $showuserlink)."</td>
                      <td width='70%' class='b'>".Html::resume_text($data["content"],
@@ -922,7 +922,7 @@ class TicketFollowup  extends CommonDBTM {
          echo "<table class='table'>";
          echo "<tr><th colspan='4'>". __('Approval of the solution')."</th></tr>";
 
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr >";
          echo "<td colspan='2'>".__('Comments')."<br>(".__('Optional when approved').")</td>";
          echo "<td class='center middle' colspan='2'>";
          echo "<textarea name='content' cols='70' rows='6'></textarea>";
@@ -931,7 +931,7 @@ class TicketFollowup  extends CommonDBTM {
                 RequestType::getDefault('helpdesk')."'>";
          echo "</td></tr>\n";
 
-         echo "<tr class='tab_bg_2'>";
+         echo "<tr >";
          echo "<td class='tab_bg_2 center' colspan='2' width='200'>\n";
          echo "<input type='submit' name='add_close' value=\"".__('Approve the solution')."\"
                 class='btn btn-primary'>";

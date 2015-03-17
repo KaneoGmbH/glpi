@@ -253,7 +253,7 @@ class NetworkEquipment extends CommonDBTM {
       $this->initForm($ID, $options);
       $this->showFormHeader($options);
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       //TRANS: %1$s is a string, %2$s a second one without spaces between them : to change for RTL
       echo "<td>".sprintf(__('%1$s%2$s'),__('Name'),
                           (isset($options['withtemplate']) && $options['withtemplate']?"*":"")).
@@ -271,7 +271,7 @@ class NetworkEquipment extends CommonDBTM {
                             'condition' => "`is_visible_networkequipment`"));
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Location')."</td>";
       echo "<td>";
       Location::dropdown(array('value'  => $this->fields["locations_id"],
@@ -282,7 +282,7 @@ class NetworkEquipment extends CommonDBTM {
       NetworkEquipmentType::dropdown(array('value' => $this->fields["networkequipmenttypes_id"]));
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Technician in charge of the hardware')."</td>";
       echo "<td>";
       User::dropdown(array('name'   => 'users_id_tech',
@@ -295,7 +295,7 @@ class NetworkEquipment extends CommonDBTM {
       Manufacturer::dropdown(array('value' => $this->fields["manufacturers_id"]));
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Group in charge of the hardware')."</td>";
       echo "<td>";
       Group::dropdown(array('name'      => 'groups_id_tech',
@@ -308,7 +308,7 @@ class NetworkEquipment extends CommonDBTM {
       NetworkEquipmentModel::dropdown(array('value' => $this->fields["networkequipmentmodels_id"]));
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Alternate username number')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "contact_num");
@@ -318,7 +318,7 @@ class NetworkEquipment extends CommonDBTM {
       Html::autocompletionTextField($this, "serial");
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Alternate username')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "contact");
@@ -333,7 +333,7 @@ class NetworkEquipment extends CommonDBTM {
       Html::autocompletionTextField($this, "otherserial", array('value' => $objectName));
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('User')."</td>";
       echo "<td>";
       User::dropdown(array('value'  => $this->fields["users_id"],
@@ -355,7 +355,7 @@ class NetworkEquipment extends CommonDBTM {
           $rowspan       -= 3;
        }
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Group')."</td>";
       echo "<td>";
       Group::dropdown(array('value'     => $this->fields["groups_id"],
@@ -367,18 +367,18 @@ class NetworkEquipment extends CommonDBTM {
             <textarea cols='45' rows='".($rowspan+3)."' name='comment' >".$this->fields["comment"];
       echo "</textarea></td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Domain')."</td>";
       echo "<td>";
       Domain::dropdown(array('value'  => $this->fields["domains_id"],
                              'entity' => $this->fields["entities_id"]));
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td colspan=2>".__('The MAC address and the IP of the equipment are included in an aggregated network port')."</td>";
       echo "</tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>"._n('Firmware', 'Firmwares', 1)."</td>";
       echo "<td>";
       NetworkEquipmentFirmware::dropdown(array('value' => $this->fields["networkequipmentfirmwares_id"]));
@@ -391,13 +391,13 @@ class NetworkEquipment extends CommonDBTM {
       }
       echo "</tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".sprintf(__('%1$s (%2$s)'),__('Memory'),__('Mio'))."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "ram");
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>";
       if ((!isset($options['withtemplate']) || ($options['withtemplate'] == 0))
           && !empty($this->fields['template_name'])) {

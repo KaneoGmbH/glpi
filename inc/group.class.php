@@ -231,7 +231,7 @@ class Group extends CommonTreeDropdown {
       $this->initForm($ID, $options);
       $this->showFormHeader($options);
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Name')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "name");
@@ -241,7 +241,7 @@ class Group extends CommonTreeDropdown {
       echo "<textarea cols='45' rows='8' name='comment' >".$this->fields["comment"]."</textarea>";
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('As child of')."</td><td>";
       self::dropdown(array('value'  => $this->fields['groups_id'],
                            'name'   => 'groups_id',
@@ -249,48 +249,48 @@ class Group extends CommonTreeDropdown {
                            'used'   => (($ID > 0) ? getSonsOf($this->getTable(), $ID) : array())));
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td class='subheader' colspan='2'>".__('Visible in a ticket');
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Requester')."</td>";
       echo "<td>";
       Dropdown::showYesNo('is_requester', $this->fields['is_requester']);
       echo "</td></tr>";
 
-      echo "<tr  class='tab_bg_1'>";
+      echo "<tr  >";
       echo "<td>".__('Assigned to')."</td><td>";
       Dropdown::showYesNo('is_assign', $this->fields['is_assign']);
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Can be notified')."</td>";
       echo "<td>";
       Dropdown::showYesNo('is_notify', $this->fields['is_notify']);
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td class='subheader' colspan='2'>".__('Visible in a project');
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Can be manager')."</td>";
       echo "<td>";
       Dropdown::showYesNo('is_manager', $this->fields['is_manager']);
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td class='subheader' colspan='2'>".__('Can contain');
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>"._n('Item', 'Items', Session::getPluralNumber())."</td>";
       echo "<td>";
       Dropdown::showYesNo('is_itemgroup', $this->fields['is_itemgroup']);
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>"._n('User', 'Users', Session::getPluralNumber())."</td><td>";
       Dropdown::showYesNo('is_usergroup', $this->fields['is_usergroup']);
       echo "</td>";
@@ -520,26 +520,26 @@ class Group extends CommonTreeDropdown {
       if (Group::canUpdate()
           && Session::haveRight("user", User::UPDATEAUTHENT)
           && AuthLdap::useAuthLdap()) {
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr >";
          echo "<th colspan='2' class='center'>".__('In users')."</th></tr>";
 
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr >";
          echo "<td>".__('Attribute of the user containing its groups')."</td>";
          echo "<td>";
          Html::autocompletionTextField($this, "ldap_field");
          echo "</td></tr>";
 
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr >";
          echo "<td>".__('Attribute value')."</td>";
          echo "<td>";
          Html::autocompletionTextField($this, "ldap_value");
          echo "</td></tr>";
 
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr >";
          echo "<th colspan='2' class='center'>".__('In groups')."</th>";
          echo "</tr>";
 
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr >";
          echo "<td>".__('Group DN')."</td>";
          echo "<td>";
          Html::autocompletionTextField($this, "ldap_group_dn");
@@ -679,8 +679,8 @@ class Group extends CommonTreeDropdown {
       echo "<div class='spaced'>";
       // Mini Search engine
       echo "<table class='table'>";
-      echo "<tr class='tab_bg_1'><th colspan='3'>$title</tr>";
-      echo "<tr class='tab_bg_1'><td class='center'>";
+      echo "<tr ><th colspan='3'>$title</tr>";
+      echo "<tr ><td class='center'>";
       echo __('Type')."&nbsp;";
       Dropdown::showItemType($types,
                              array('value'      => $type,
@@ -730,7 +730,7 @@ class Group extends CommonTreeDropdown {
                                                        'changegroup' => __('Move')) );
          Html::showMassiveActions($massiveactionparams);
 
-         echo "<table class='tab_cadre_fixehov'>";
+         echo "<table class='table table-hover'>";
          $header_begin  = "<tr><th width='10'>";
          $header_top    = Html::getCheckAllAsCheckbox('mass'.__CLASS__.$rand);
          $header_bottom = Html::getCheckAllAsCheckbox('mass'.__CLASS__.$rand);
@@ -752,7 +752,7 @@ class Group extends CommonTreeDropdown {
             if (!($item = getItemForItemtype($data['itemtype']))) {
                continue;
             }
-            echo "<tr class='tab_bg_1'><td>";
+            echo "<tr ><td>";
             if ($item->canEdit($data['items_id'])) {
                Html::showMassiveActionCheckBox($data['itemtype'], $data['items_id']);
             }

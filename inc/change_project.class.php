@@ -159,9 +159,9 @@ class Change_Project extends CommonDBRelation{
                 action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
          echo "<table class='table table-striped'>";
-         echo "<tr class='tab_bg_2'><th colspan='2'>".__('Add a change')."</th></tr>";
+         echo "<tr ><th colspan='2'>".__('Add a change')."</th></tr>";
 
-         echo "<tr class='tab_bg_2'><td>";
+         echo "<tr ><td>";
          echo "<input type='hidden' name='projects_id' value='$ID'>";
          Change::dropdown(array('used'        => $used,
                                 'entity'      => $project->getEntityID(),
@@ -181,7 +181,7 @@ class Change_Project extends CommonDBRelation{
          Html::showMassiveActions($massiveactionparams);
       }
 
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='table table-hover'>";
       echo "<tr class='noHover'><th colspan='12'>".Change::getTypeName($numrows)."</th></tr>";
       if ($numrows) {
          Change::commonListHeader(Search::HTML_OUTPUT, 'mass'.__CLASS__.$rand);
@@ -255,9 +255,9 @@ class Change_Project extends CommonDBRelation{
                 action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
          echo "<table class='table'>";
-         echo "<tr class='tab_bg_2'><th colspan='2'>".__('Add a project')."</th></tr>";
+         echo "<tr ><th colspan='2'>".__('Add a project')."</th></tr>";
 
-         echo "<tr class='tab_bg_2'><td>";
+         echo "<tr ><td>";
          echo "<input type='hidden' name='changes_id' value='$ID'>";
          Project::dropdown(array('used'   => $used,
                                  'entity' => $change->getEntityID()));
@@ -276,7 +276,7 @@ class Change_Project extends CommonDBRelation{
          Html::showMassiveActions($massiveactionparams);
       }
 
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='table table-hover'>";
       echo "<tr class='noHover'><th colspan='12'>".Project::getTypeName($numrows)."</th></tr>";
       if ($numrows) {
          Project::commonListHeader(Search::HTML_OUTPUT, 'mass'.__CLASS__.$rand);

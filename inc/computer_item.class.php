@@ -396,9 +396,9 @@ class Computer_Item extends CommonDBRelation{
                 action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
          echo "<table class='table table-striped'>";
-         echo "<tr class='tab_bg_2'><th colspan='2'>".__('Connect an item')."</th></tr>";
+         echo "<tr ><th colspan='2'>".__('Connect an item')."</th></tr>";
 
-         echo "<tr class='tab_bg_1'><td>";
+         echo "<tr ><td>";
          if (!empty($withtemplate)) {
             echo "<input type='hidden' name='_no_history' value='1'>";
          }
@@ -426,7 +426,7 @@ class Computer_Item extends CommonDBRelation{
                            => 'mass'.__CLASS__.$rand);
             Html::showMassiveActions($massiveactionparams);
          }
-         echo "<table class='tab_cadre_fixehov'>";
+         echo "<table class='table table-hover'>";
          $header_begin  = "<tr>";
          $header_top    = '';
          $header_bottom = '';
@@ -459,7 +459,7 @@ class Computer_Item extends CommonDBRelation{
             $link = Toolbox::getItemTypeFormURL($itemtype);
             $name = "<a href=\"".$link."?id=".$data["id"]."\">".$linkname."</a>";
 
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr >";
 
             if ($canedit) {
                echo "<td width='10'>";
@@ -538,9 +538,9 @@ class Computer_Item extends CommonDBRelation{
                 action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
          echo "<table class='table'>";
-         echo "<tr class='tab_bg_2'><th colspan='2'>".__('Connect a computer')."</th></tr>";
+         echo "<tr ><th colspan='2'>".__('Connect a computer')."</th></tr>";
 
-         echo "<tr class='tab_bg_1'><td class='right'>";
+         echo "<tr ><td class='right'>";
          echo "<input type='hidden' name='items_id' value='$ID'>";
          echo "<input type='hidden' name='itemtype' value='".$item->getType()."'>";
          if ($item->isRecursive()) {
@@ -570,7 +570,7 @@ class Computer_Item extends CommonDBRelation{
                         => 'mass'.__CLASS__.$rand);
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='table table-hover'>";
 
       if ($number > 0) {
          $header_begin  = "<tr>";
@@ -598,7 +598,7 @@ class Computer_Item extends CommonDBRelation{
          foreach ($compids as $key => $compid) {
             $comp->getFromDB($compid);
 
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr >";
 
             if ($canedit) {
                echo "<td width='10'>";

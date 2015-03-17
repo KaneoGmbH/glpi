@@ -121,7 +121,7 @@ echo "<div class='center'><form method='get' name='form' action='stat.tracking.p
 echo "<input type='hidden' name='itemtype' value=\"". $_GET["itemtype"] ."\">";
 
 echo "<table class='table table-striped'>";
-echo "<tr class='tab_bg_2'><td rowspan='2' class='center' width='30%'>";
+echo "<tr ><td rowspan='2' class='center' width='30%'>";
 Dropdown::showFromArray('type', $values, array('value' => $_GET['type']));
 echo "</td>";
 echo "<td class='right'>".__('Start date')."</td><td>";
@@ -132,7 +132,7 @@ echo "<td rowspan='2' class='center'>";
 echo "<input type='submit' class='btn btn-primary' name='submit' value=\"".__s('Display report')."\"></td>".
      "</tr>";
 
-echo "<tr class='tab_bg_2'><td class='right'>".__('End date')."</td><td>";
+echo "<tr ><td class='right'>".__('End date')."</td><td>";
 Html::showDateField("date2", array('value' => $_GET["date2"]));
 echo "</td><td class='center'>";
 echo "<input type='hidden' name='value2' value='".$_GET["value2"]."'>";

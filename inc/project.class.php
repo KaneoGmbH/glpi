@@ -700,7 +700,7 @@ class Project extends CommonDBTM {
          // Finish Line
          echo Search::showEndLine($p['output_type']);
       } else {
-         echo "<tr class='tab_bg_2'>";
+         echo "<tr >";
          echo "<td colspan='6' ><i>".__('No item in progress.')."</i></td></tr>";
       }
    }
@@ -755,7 +755,7 @@ class Project extends CommonDBTM {
       }
 
       echo "<div class='spaced'>";
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='table table-hover'>";
       echo "<tr class='noHover'><th colspan='12'>".Project::getTypeName($numrows)."</th></tr>";
       if ($numrows) {
          Project::commonListHeader();
@@ -794,7 +794,7 @@ class Project extends CommonDBTM {
       $this->initForm($ID, $options);
       $this->showFormHeader($options);
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Creation date')."</td>";
       echo "<td>";
 
@@ -814,7 +814,7 @@ class Project extends CommonDBTM {
       }
       echo "</tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Name')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this,'name');
@@ -825,7 +825,7 @@ class Project extends CommonDBTM {
       echo "</td>";
       echo "</tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Priority')."</td>";
       echo "<td>";
       CommonITILObject::dropdownPriority(array('value' => $this->fields['priority'],
@@ -839,7 +839,7 @@ class Project extends CommonDBTM {
       echo "</td>";
       echo "</tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>"._x('item', 'State')."</td>";
       echo "<td>";
       ProjectState::dropdown(array('value' => $this->fields["projectstates_id"]));
@@ -854,7 +854,7 @@ class Project extends CommonDBTM {
       echo "</td>";
       echo "</tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Type')."</td>";
       echo "<td>";
       ProjectType::dropdown(array('value' => $this->fields["projecttypes_id"]));
@@ -867,7 +867,7 @@ class Project extends CommonDBTM {
 
       echo "<tr><td colspan='4' class='subheader'>".__('Manager')."</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('User')."</td>";
       echo "<td>";
       User::dropdown(array('name'   => 'users_id',
@@ -885,7 +885,7 @@ class Project extends CommonDBTM {
 
       echo "<tr><td colspan='4' class='subheader'>".__('Planning')."</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Planned start date')."</td>";
       echo "<td>";
       Html::showDateTimeField("plan_start_date", array('value' => $this->fields['plan_start_date']));
@@ -895,7 +895,7 @@ class Project extends CommonDBTM {
       Html::showDateTimeField("real_start_date", array('value' => $this->fields['real_start_date']));
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Planned end date')."</td>";
       echo "<td>";
       Html::showDateTimeField("plan_end_date", array('value' => $this->fields['plan_end_date']));
@@ -905,7 +905,7 @@ class Project extends CommonDBTM {
       Html::showDateTimeField("real_end_date", array('value' => $this->fields['real_end_date']));
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Planned duration');
       echo Html::showTooltip(__('Sum of planned durations of tasks'));
       echo "</td>";
@@ -921,7 +921,7 @@ class Project extends CommonDBTM {
                                    false);
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Description')."</td>";
       echo "<td colspan='3'>";
       echo "<textarea id='content' name='content' cols='90' rows='6'>".$this->fields["content"].
@@ -929,7 +929,7 @@ class Project extends CommonDBTM {
       echo "</td>";
       echo "</tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Comments')."</td>";
       echo "<td colspan='3'>";
       echo "<textarea id='comment' name='comment' cols='90' rows='6'>".$this->fields["comment"].
@@ -1003,8 +1003,8 @@ class Project extends CommonDBTM {
          echo " method='post' action='".Toolbox::getItemTypeFormURL('ProjectTeam')."'>";
          echo "<input type='hidden' name='projects_id' value='$ID'>";
          echo "<table class='table table-striped'>";
-         echo "<tr class='tab_bg_1'><th colspan='2'>".__('Add a team member')."</tr>";
-         echo "<tr class='tab_bg_2'><td>";
+         echo "<tr ><th colspan='2'>".__('Add a team member')."</tr>";
+         echo "<tr ><td>";
 
          $params = array('itemtypes'       => ProjectTeam::$available_types,
                          'entity_restrict' => ($project->fields['is_recursive']
@@ -1038,7 +1038,7 @@ class Project extends CommonDBTM {
 //          }
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='table table-hover'>";
       $header_begin  = "<tr>";
       $header_top    = '';
       $header_bottom = '';
@@ -1059,7 +1059,7 @@ class Project extends CommonDBTM {
             if ($item = getItemForItemtype($type)) {
                foreach ($project->team[$type] as $data) {
                   $item->getFromDB($data['items_id']);
-                  echo "<tr class='tab_bg_2'>";
+                  echo "<tr >";
                   if ($canedit) {
                      echo "<td>";
                      Html::showMassiveActionCheckBox('ProjectTeam',$data["id"]);

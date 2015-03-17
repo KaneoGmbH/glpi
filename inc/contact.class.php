@@ -150,7 +150,7 @@ class Contact extends CommonDBTM{
       $this->initForm($ID, $options);
       $this->showFormHeader($options);
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Surname')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "name");
@@ -160,25 +160,25 @@ class Contact extends CommonDBTM{
       echo "<textarea cols='45' rows='7' name='comment' >".$this->fields["comment"]."</textarea>";
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('First name')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "firstname");
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>". __('Phone')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "phone");
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>". __('Phone 2')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "phone2");
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Mobile phone')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "mobile");
@@ -188,7 +188,7 @@ class Contact extends CommonDBTM{
       echo "<textarea cols='37' rows='3' name='address'>".$this->fields["address"]."</textarea>";
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Fax')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "fax");
@@ -200,7 +200,7 @@ class Contact extends CommonDBTM{
       Html::autocompletionTextField($this, "town", array('size' => 23));
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>"._n('Email', 'Emails', 1)."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "email");
@@ -210,7 +210,7 @@ class Contact extends CommonDBTM{
       Html::autocompletionTextField($this, "state");
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Type')."</td>";
       echo "<td>";
       ContactType::dropdown(array('value' => $this->fields["contacttypes_id"]));
@@ -220,7 +220,7 @@ class Contact extends CommonDBTM{
       Html::autocompletionTextField($this, "country");
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'><td>" . _x('person','Title') . "</td><td>";
+      echo "<tr ><td>" . _x('person','Title') . "</td><td>";
       UserTitle::dropdown(array('value' => $this->fields["usertitles_id"]));
       echo "<td>&nbsp;</td><td class='center'>";
       if ($ID > 0) {

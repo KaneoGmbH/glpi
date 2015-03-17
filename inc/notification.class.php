@@ -197,7 +197,7 @@ class Notification extends CommonDBTM {
       $this->initForm($ID, $options);
       $this->showFormHeader($options);
 
-      echo "<tr class='tab_bg_1'><td>" . __('Name') . "</td>";
+      echo "<tr ><td>" . __('Name') . "</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "name");
       echo "</td>";
@@ -206,12 +206,12 @@ class Notification extends CommonDBTM {
       echo "<td class='center middle' rowspan='6'><textarea cols='45' rows='9' name='comment' >".
              $this->fields["comment"]."</textarea></td></tr>";
 
-      echo "<tr class='tab_bg_1'><td>" . __('Active') . "</td>";
+      echo "<tr ><td>" . __('Active') . "</td>";
       echo "<td>";
       Dropdown::showYesNo('is_active', $this->fields['is_active']);
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'><td>" . __('Type') . "</td>";
+      echo "<tr ><td>" . __('Type') . "</td>";
       echo "<td>";
       if (!Session::haveRight(static::$rightname, UPDATE)) {
          $itemtype = $this->fields['itemtype'];
@@ -237,18 +237,18 @@ class Notification extends CommonDBTM {
                                     $params);
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'><td>" . __('Notification method') . "</td>";
+      echo "<tr ><td>" . __('Notification method') . "</td>";
       echo "<td>";
       self::dropdownMode(array('value'=>$this->fields['mode']));
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'><td>" . NotificationEvent::getTypeName(1) . "</td>";
+      echo "<tr ><td>" . NotificationEvent::getTypeName(1) . "</td>";
       echo "<td><span id='show_events'>";
       NotificationEvent::dropdownEvents($this->fields['itemtype'],
                                         array('value'=>$this->fields['event']));
       echo "</span></td></tr>";
 
-      echo "<tr class='tab_bg_1'><td>". NotificationTemplate::getTypeName(1)."</td>";
+      echo "<tr ><td>". NotificationTemplate::getTypeName(1)."</td>";
       echo "<td><span id='show_templates'>";
       NotificationTemplate::dropdownTemplates('notificationtemplates_id', $this->fields['itemtype'],
                                               $this->fields['notificationtemplates_id']);

@@ -499,7 +499,7 @@ class Consumable extends CommonDBChild {
          echo "<input type='hidden' name='consumableitems_id' value='$tID'>\n";
       }
 
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='table table-hover'>";
       if (!$show_old) {
          echo "<tr><th colspan=".($canedit?'5':'4').">";
          echo self::getCount($tID, -1);
@@ -535,7 +535,7 @@ class Consumable extends CommonDBChild {
             $date_in  = Html::convDate($data["date_in"]);
             $date_out = Html::convDate($data["date_out"]);
 
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr >";
             if ($canedit) {
                echo "<td width='10'>";
                Html::showMassiveActionCheckBox(__CLASS__, $data["id"]);
@@ -646,7 +646,7 @@ class Consumable extends CommonDBChild {
          echo "</tr>";
 
          // new
-         echo "<tr class='tab_bg_2'><td class='b'>".__('In stock')."</td>";
+         echo "<tr ><td class='b'>".__('In stock')."</td>";
          $tot = 0;
          foreach ($types as $id_type => $type) {
             if (!isset($new[$id_type])) {
@@ -660,7 +660,7 @@ class Consumable extends CommonDBChild {
          echo "</tr>";
 
          foreach ($used as $itemtype_items_id => $val) {
-            echo "<tr class='tab_bg_2'><td>";
+            echo "<tr ><td>";
             list($itemtype,$items_id) = explode('####',$itemtype_items_id);
             $item = new $itemtype();
             if ($item->getFromDB($items_id)) {
@@ -680,7 +680,7 @@ class Consumable extends CommonDBChild {
          echo "<td class='numeric'>".$tot."</td>";
          echo "</tr>";
          }
-         echo "<tr class='tab_bg_1'><td class='b'>".__('Total')."</td>";
+         echo "<tr ><td class='b'>".__('Total')."</td>";
          $tot = 0;
          foreach ($types as $id_type => $type) {
             $tot += $total[$id_type];

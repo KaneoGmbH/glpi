@@ -2720,7 +2720,7 @@ class Ticket extends CommonITILObject {
          }
 
          echo "</th></tr>";
-         echo "<tr class='tab_bg_1'><td colspan='2' class='center'>";
+         echo "<tr ><td colspan='2' class='center'>";
          echo "<div id='show_result$rand'>";
 
          $self = new self();
@@ -2747,7 +2747,7 @@ class Ticket extends CommonITILObject {
          if ($CFG_GLPI['use_check_pref']) {
             echo "<div class='center'><table class='table table-striped'>";
             echo "<tr><th>".__('Check your personnal information')."</th></tr>";
-            echo "<tr class='tab_bg_1'><td class='center'>";
+            echo "<tr ><td class='center'>";
             User::showPersonalInformation(Session::getLoginUserID());
             echo "</td></tr>";
             echo "</table></div>";
@@ -2831,14 +2831,14 @@ class Ticket extends CommonITILObject {
       }
       echo "</th></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".sprintf(__('%1$s%2$s'), __('Type'), $tt->getMandatoryMark('type'))."</td>";
       echo "<td>";
       self::dropdownType('type', array('value'     => $values['type'],
                                        'on_change' => 'this.form.submit()'));
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".sprintf(__('%1$s%2$s'), __('Category'),
                           $tt->getMandatoryMark('itilcategories_id'))."</td>";
       echo "<td>";
@@ -2866,7 +2866,7 @@ class Ticket extends CommonITILObject {
 
       if ($CFG_GLPI['urgency_mask'] != (1<<3)) {
          if (!$tt->isHiddenField('urgency')) {
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr >";
             echo "<td>".sprintf(__('%1$s%2$s'), __('Urgency'), $tt->getMandatoryMark('urgency')).
                  "</td>";
             echo "<td>";
@@ -2877,7 +2877,7 @@ class Ticket extends CommonITILObject {
 
       if (empty($delegating)
           && NotificationTargetTicket::isAuthorMailingActivatedForHelpdesk()) {
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr >";
          echo "<td>".__('Inform me about the actions taken')."</td>";
          echo "<td>";
          if ($values["_users_id_requester"] == 0) {
@@ -2893,7 +2893,7 @@ class Ticket extends CommonITILObject {
       if (($_SESSION["glpiactiveprofile"]["helpdesk_hardware"] != 0)
           && (count($_SESSION["glpiactiveprofile"]["helpdesk_item_type"]))) {
          if (!$tt->isHiddenField('itemtype')) {
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr >";
             echo "<td>".sprintf(__('%1$s%2$s'), __('Hardware type'),
                                 $tt->getMandatoryMark('itemtype'))."</td>";
             echo "<td>";
@@ -2909,7 +2909,7 @@ class Ticket extends CommonITILObject {
       }
 
       if (!$tt->isHiddenField('locations_id')) {
-         echo "<tr class='tab_bg_1'><td>";
+         echo "<tr ><td>";
          printf(__('%1$s%2$s'), __('Location'), $tt->getMandatoryMark('locations_id'));
          echo "</td><td>";
          Location::dropdown(array('value'  => $values["locations_id"]));
@@ -2918,7 +2918,7 @@ class Ticket extends CommonITILObject {
 
       if (!$tt->isHiddenField('_users_id_observer')
           || $tt->isPredefinedField('_users_id_observer')) {
-         echo "<tr class='tab_bg_1'><td>".__('Watcher')."</td>";
+         echo "<tr ><td>".__('Watcher')."</td>";
          echo "<td>";
          $values['_right'] = "groups";
          // Observer
@@ -2938,7 +2938,7 @@ class Ticket extends CommonITILObject {
       }
 
       if ($tt->isPredefinedField('name')) {
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr >";
          echo "<td>".sprintf(__('%1$s%2$s'), __('Title'), $tt->getMandatoryMark('name'))."<td>";
          if (!$tt->isHiddenField('name')) {
             echo "<input type='text' maxlength='250' size='80' name='name'
@@ -2951,7 +2951,7 @@ class Ticket extends CommonITILObject {
 
       if (!$tt->isHiddenField('content')
           || $tt->isPredefinedField('content')) {
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr >";
          echo "<td>".sprintf(__('%1$s%2$s'), __('Description'), $tt->getMandatoryMark('content')).
               "</td><td>";
          $rand      = mt_rand();
@@ -2980,7 +2980,7 @@ class Ticket extends CommonITILObject {
       if ($CFG_GLPI['use_rich_text']) {
          $width = '50%';
       }
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td class='top'>".sprintf(__('%1$s (%2$s)'), __('File'), Document::getMaxUploadSize());
       DocumentType::showAvailableTypesLink();
       echo "</td>";
@@ -2989,7 +2989,7 @@ class Ticket extends CommonITILObject {
       echo "</td>";
       echo "</tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td colspan='4'>";
       echo "<table width='100%'><tr>";
       echo "<td width='$width '>";
@@ -3016,7 +3016,7 @@ class Ticket extends CommonITILObject {
 
 
       if (!$ticket_template) {
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr >";
          echo "<td colspan='2' class='center'>";
 
          if ($tt->isField('id') && ($tt->fields['id'] > 0)) {
@@ -3472,7 +3472,7 @@ class Ticket extends CommonITILObject {
       }
       echo "</th></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<th width='$colsize1%'>";
       echo $tt->getBeginHiddenFieldText('date');
       if (!$ID) {
@@ -3608,7 +3608,7 @@ class Ticket extends CommonITILObject {
       echo "</td></tr>";
 
       if ($ID) {
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr >";
          echo "<th width='$colsize1%'>".__('By')."</th>";
          echo "<td width='$colsize2%'>";
          if ($canupdate) {
@@ -3636,7 +3636,7 @@ class Ticket extends CommonITILObject {
           && (in_array($this->fields["status"], $this->getSolvedStatusArray())
               || in_array($this->fields["status"], $this->getClosedStatusArray()))) {
 
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr >";
          echo "<th width='$colsize1%'>".__('Resolution date')."</th>";
          echo "<td width='$colsize2%'>";
          Html::showDateTimeField("solvedate", array('value'      => $this->fields["solvedate"],
@@ -3663,7 +3663,7 @@ class Ticket extends CommonITILObject {
          echo "<table  class='table table-striped' id='mainformtable2'>";
       }
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<th width='$colsize1%'>".sprintf(__('%1$s%2$s'), __('Type'),
                                              $tt->getMandatoryMark('type'))."</th>";
       echo "<td width='$colsize2%'>";
@@ -3743,7 +3743,7 @@ class Ticket extends CommonITILObject {
          echo "<table class='table' id='mainformtable3'>";
       }
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<th width='$colsize1%'>".$tt->getBeginHiddenFieldText('status');
       printf(__('%1$s%2$s'), __('Status'), $tt->getMandatoryMark('status'));
       echo $tt->getEndHiddenFieldText('status')."</th>";
@@ -3778,7 +3778,7 @@ class Ticket extends CommonITILObject {
       echo "</td>";
       echo "</tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<th>".$tt->getBeginHiddenFieldText('urgency');
       printf(__('%1$s%2$s'), __('Urgency'), $tt->getMandatoryMark('urgency'));
       echo $tt->getEndHiddenFieldText('urgency')."</th>";
@@ -3853,7 +3853,7 @@ class Ticket extends CommonITILObject {
       }
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<th>".$tt->getBeginHiddenFieldText('impact');
       printf(__('%1$s%2$s'), __('Impact'), $tt->getMandatoryMark('impact'));
       echo $tt->getEndHiddenFieldText('impact')."</th>";
@@ -3886,7 +3886,7 @@ class Ticket extends CommonITILObject {
       echo "</tr>";
 
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<th>".sprintf(__('%1$s%2$s'), __('Priority'), $tt->getMandatoryMark('priority'))."</th>";
       echo "<td>";
       $idajax = 'change_priority_' . mt_rand();
@@ -3951,7 +3951,7 @@ class Ticket extends CommonITILObject {
       echo "</tr>";
 
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       // Need comment right to add a followup with the actiontime
       if (!$ID
           && Session::haveRight('followup', TicketFollowup::ADDALLTICKET)) {
@@ -3976,7 +3976,7 @@ class Ticket extends CommonITILObject {
       $view_linked_tickets = ($ID || $canupdate);
 
       echo "<table class='table' id='mainformtable4'>";
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<th width='$colsize1%'>".$tt->getBeginHiddenFieldText('name');
       printf(__('%1$s%2$s'), __('Title'), $tt->getMandatoryMark('name'));
       echo $tt->getEndHiddenFieldText('name')."</th>";
@@ -3997,7 +3997,7 @@ class Ticket extends CommonITILObject {
       echo "</td>";
       echo "</tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<th width='$colsize1%'>".$tt->getBeginHiddenFieldText('content');
       printf(__('%1$s%2$s'), __('Description'), $tt->getMandatoryMark('content'));
       if (!$ID
@@ -4037,7 +4037,7 @@ class Ticket extends CommonITILObject {
       echo "</td>";
       echo "</tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       if ($view_linked_tickets) {
          echo "<th width='$colsize1%'>". _n('Linked ticket', 'Linked tickets', Session::getPluralNumber());
          $rand_linked_ticket = mt_rand();
@@ -4080,7 +4080,7 @@ class Ticket extends CommonITILObject {
       echo "</tr>";
 
       // View files added
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       // Permit to add doc when creating a ticket
       echo "<th width='$colsize1%'>";
       echo $tt->getBeginHiddenFieldText('_documents_id');
@@ -4121,7 +4121,7 @@ class Ticket extends CommonITILObject {
            || Session::haveRightsOr(self::$rightname, array(self::ASSIGN, self::STEAL)))
           && !$options['template_preview']) {
 
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr >";
 
          if ($ID) {
             if (Session::haveRightsOr(self::$rightname, array(UPDATE, DELETE, PURGE))
@@ -4172,7 +4172,7 @@ class Ticket extends CommonITILObject {
       if (!$CFG_GLPI['use_rich_text']) {
          $colspan = 4;
       }
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td colspan='$colspan'>";
       echo $tt->getBeginHiddenFieldValue('_documents_id');
 
@@ -4695,7 +4695,7 @@ class Ticket extends CommonITILObject {
 
       foreach ($status as $key => $val) {
          $options['criteria'][0]['value'] = $key;
-         echo "<tr class='tab_bg_2'>";
+         echo "<tr >";
          echo "<td><a href=\"".$CFG_GLPI["root_doc"]."/front/ticket.php?".
                     Toolbox::append_params($options,'&amp;')."\">".self::getStatus($key)."</a></td>";
          echo "<td class='numeric'>$val</td></tr>";
@@ -4703,7 +4703,7 @@ class Ticket extends CommonITILObject {
 
       $options['criteria'][0]['value'] = 'all';
       $options['is_deleted']  = 1;
-      echo "<tr class='tab_bg_2'>";
+      echo "<tr >";
       echo "<td><a href=\"".$CFG_GLPI["root_doc"]."/front/ticket.php?".
                  Toolbox::append_params($options,'&amp;')."\">".__('Deleted')."</a></td>";
       echo "<td class='numeric'>".$number_deleted."</td></tr>";
@@ -4827,8 +4827,8 @@ class Ticket extends CommonITILObject {
             if ($item->haveChildren()) {
                $tree = Session::getSavedOption(__CLASS__, 'tree', 0);
                echo "<table class='table'>";
-               echo "<tr class='tab_bg_1'><th>".__('Last tickets')."</th></tr>";
-               echo "<tr class='tab_bg_1'><td class='center'>";
+               echo "<tr ><th>".__('Last tickets')."</th></tr>";
+               echo "<tr ><td class='center'>";
                echo __('Child groups')."&nbsp;";
                Dropdown::showYesNo('tree', $tree, -1,
                                    array('on_change' => 'reloadTab("start=0&tree="+this.value)'));
@@ -4908,7 +4908,7 @@ class Ticket extends CommonITILObject {
                                     'items_id' => $item->getID()));
       }
       echo "</div><div>";
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='table table-hover'>";
 
       if ($number > 0) {
          if (Session::haveRight(self::$rightname, self::READALL)) {
@@ -5017,7 +5017,7 @@ class Ticket extends CommonITILObject {
       if ($job->getFromDBwithData($ID, 0)) {
          $bgcolor = $_SESSION["glpipriority_".$job->fields["priority"]];
    //      $rand    = mt_rand();
-         echo "<tr class='tab_bg_2'>";
+         echo "<tr >";
          echo "<td class='center' bgcolor='$bgcolor'>".sprintf(__('%1$s: %2$s'), __('ID'),
                                                                $job->fields["id"])."</td>";
          echo "<td class='center'>";
@@ -5091,7 +5091,7 @@ class Ticket extends CommonITILObject {
          // Finish Line
          echo "</tr>";
       } else {
-         echo "<tr class='tab_bg_2'>";
+         echo "<tr >";
          echo "<td colspan='6' ><i>".__('No ticket in progress.')."</i></td></tr>";
       }
    }
@@ -5148,7 +5148,7 @@ class Ticket extends CommonITILObject {
 
          if ($item = getItemForItemtype($output["itemtype"])) {
             if ($item->getFromDB($output["items_id"])) {
-               echo "<tr class='tab_bg_2'>";
+               echo "<tr >";
                echo "<td>".__('Assign equipment')."</td>";
 
                echo "<td>".$item->getLink(array('comments' => true))."</td>";

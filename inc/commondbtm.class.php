@@ -1982,7 +1982,7 @@ class CommonDBTM extends CommonGLPI {
          }
          return false;
       }
-      echo "<tr class='tab_bg_2'>";
+      echo "<tr >";
 
       if ($params['withtemplate']
           ||$this->isNewID($ID)) {
@@ -2008,7 +2008,7 @@ class CommonDBTM extends CommonGLPI {
                 && $this->can($ID, UPDATE)) {
                echo "<td class='center' colspan='".($params['colspan']*2)."'>\n";
                echo Html::submit(_x('button','Save'), array('name' => 'update'));
-               echo "</td></tr><tr class='tab_bg_2'>\n";
+               echo "</td></tr><tr >\n";
             }
             if ($this->isDeleted()
                 && $this->can($ID, PURGE)) {
@@ -2063,7 +2063,7 @@ class CommonDBTM extends CommonGLPI {
 
       if ($params['canedit']
           && count($params['addbuttons'])) {
-         echo "<tr class='tab_bg_2'>";
+         echo "<tr >";
          if ((($params['colspan']*2) - count($params['addbuttons'])) > 0) {
             echo "<td colspan='".($params['colspan']*2 - count($params['addbuttons']))."'>&nbsp;".
                  "</td>";

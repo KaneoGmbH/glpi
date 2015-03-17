@@ -583,7 +583,7 @@ class Plugin extends CommonDBTM {
          }
 
       } else {
-         echo "<tr class='tab_bg_1'><td class='center' colspan='7'>".__('No plugin installed').
+         echo "<tr ><td class='center' colspan='7'>".__('No plugin installed').
               "</td></tr>";
       }
       echo "</table></div>";
@@ -940,8 +940,8 @@ class Plugin extends CommonDBTM {
 
       // No need to translate, this part always display in english (for copy/paste to forum)
 
-      echo "\n<tr class='tab_bg_2'><th>Plugins list</th></tr>";
-      echo "<tr class='tab_bg_1'><td><pre>\n&nbsp;\n";
+      echo "\n<tr ><th>Plugins list</th></tr>";
+      echo "<tr ><td><pre>\n&nbsp;\n";
 
       $plug     = new Plugin();
       $pluglist = $plug->find("","name, directory");

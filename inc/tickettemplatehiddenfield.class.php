@@ -206,8 +206,8 @@ class TicketTemplateHiddenField extends CommonDBChild {
                    action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
             echo "<table class='table table-striped'>";
-            echo "<tr class='tab_bg_2'><th colspan='2'>".__('Add a hidden field')."</th></tr>";
-            echo "<tr class='tab_bg_2'><td class='right'>";
+            echo "<tr ><th colspan='2'>".__('Add a hidden field')."</th></tr>";
+            echo "<tr ><td class='right'>";
             echo "<input type='hidden' name='tickettemplates_id' value='$ID'>";
             Dropdown::showFromArray('num', $fields, array('used'=> $used));
             echo "</td><td class='center'>";
@@ -228,7 +228,7 @@ class TicketTemplateHiddenField extends CommonDBChild {
                                          'container'     => 'mass'.__CLASS__.$rand);
             Html::showMassiveActions($massiveactionparams);
          }
-         echo "<table class='tab_cadre_fixehov'>";
+         echo "<table class='table table-hover'>";
          echo "<tr class='noHover'><th colspan='2'>";
          echo self::getTypeName($DB->numrows($result));
          echo "</th></tr>";
@@ -248,7 +248,7 @@ class TicketTemplateHiddenField extends CommonDBChild {
             echo $header_begin.$header_top.$header_end;
 
             foreach ($hiddenfields as $data) {
-               echo "<tr class='tab_bg_2'>";
+               echo "<tr >";
                if ($canedit) {
                   echo "<td>".Html::getMassiveActionCheckBox(__CLASS__, $data["id"])."</td>";
                }

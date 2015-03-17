@@ -1720,7 +1720,7 @@ class Search {
       echo Html::scriptBlock($js);
 
       echo "<table class='table table-striped' >";
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
 
       if ((count($p['criteria']) + count($p['metacriteria'])) > 1) {
          echo "<td width='10' class='center'>";
@@ -5583,7 +5583,7 @@ class Search {
 
          default :
             if ($fixed) {
-               $out = "<div class='center'><table border='0' class='tab_cadre_fixehov'>\n";
+               $out = "<div class='center'><table border='0' class='table table-hover'>\n";
             } else {
                $out = "<div class='center'><table border='0' class='table table-striped table-hover'>\n";
             }

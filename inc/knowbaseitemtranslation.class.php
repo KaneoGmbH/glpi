@@ -135,7 +135,7 @@ class KnowbaseItemTranslation extends CommonDBChild {
             Html::showMassiveActions($massiveactionparams);
          }
          echo "<div class='center'>";
-         echo "<table class='tab_cadre_fixehov'><tr class='tab_bg_2'>";
+         echo "<table class='table table-hover'><tr >";
          echo "<th colspan='4'>".__("List of translations")."</th></tr>";
          if ($canedit) {
             echo "<th width='10'>";
@@ -145,7 +145,7 @@ class KnowbaseItemTranslation extends CommonDBChild {
          echo "<th>".__("Language")."</th>";
          echo "<th>".__("Subject")."</th>";
          foreach ($found as $data) {
-            echo "<tr class='tab_bg_1' ".($canedit ? "style='cursor:pointer'
+            echo "<tr  ".($canedit ? "style='cursor:pointer'
                      onClick=\"viewEditTranslation".$data['id']."$rand();\"" : '') .
                  ">";
             if ($canedit) {
@@ -183,7 +183,7 @@ class KnowbaseItemTranslation extends CommonDBChild {
             Html::closeForm();
          }
       } else {
-         echo "<table class='table table-striped'><tr class='tab_bg_2'>";
+         echo "<table class='table table-striped'><tr >";
          echo "<th class='b'>" . __("No translation found")."</th></tr></table>";
       }
 
@@ -214,7 +214,7 @@ class KnowbaseItemTranslation extends CommonDBChild {
       }
       Html::initEditorSystem('answer');
       $this->showFormHeader($options);
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Language')."&nbsp;:</td>";
       echo "<td>";
       echo "<input type='hidden' name='knowbaseitems_id' value='".$item->getID()."'>";
@@ -228,13 +228,13 @@ class KnowbaseItemTranslation extends CommonDBChild {
       }
       echo "</td><td colspan='2'>&nbsp;</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Subject')."</td>";
       echo "<td colspan='3'>";
       echo "<textarea cols='100' rows='1' name='name'>".$this->fields["name"]."</textarea>";
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Content')."</td>";
       echo "<td colspan='3'>";
       echo "<textarea cols='100' rows='30' id='answer' name='answer'>".$this->fields["answer"];

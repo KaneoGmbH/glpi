@@ -353,7 +353,7 @@ class Netpoint extends CommonDropdown {
 
          foreach ($DB->request('glpi_netpoints', $crit) as $data) {
             Session::addToNavigateListItems('Netpoint',$data["id"]);
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr >";
 
             if ($canedit) {
                echo "<td>".Html::getMassiveActionCheckBox(__CLASS__, $data["id"])."</td>";

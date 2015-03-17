@@ -625,7 +625,7 @@ class KnowbaseItem extends CommonDBTM {
       Html::initEditorSystem('answer');
       $this->initForm($ID, $options);
       $this->showFormHeader($options);
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Category name')."</td>";
       echo "<td>";
       echo "<input type='hidden' name='users_id' value=\"".Session::getLoginUserID()."\">";
@@ -644,7 +644,7 @@ class KnowbaseItem extends CommonDBTM {
       echo "</td>";
       echo "</tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       if (Session::haveRight(self::$rightname, self::PUBLISHFAQ)) {
          echo "<td>".__('Put this item in the FAQ')."</td>";
          echo "<td>";
@@ -677,7 +677,7 @@ class KnowbaseItem extends CommonDBTM {
       echo "</td>";
       echo "</tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Visible since')."</td><td>";
       Html::showDateTimeField("begin_date", array('value'       => $this->fields["begin_date"],
                                                   'timestep'    => 1,
@@ -693,14 +693,14 @@ class KnowbaseItem extends CommonDBTM {
 
 
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Subject')."</td>";
       echo "<td colspan='3'>";
       echo "<textarea cols='100' rows='1' name='name'>".$this->fields["name"]."</textarea>";
       echo "</td>";
       echo "</tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Content')."</td>";
       echo "<td colspan='3'>";
 
@@ -717,7 +717,7 @@ class KnowbaseItem extends CommonDBTM {
       echo "</tr>\n";
 
       if ($this->isNewID($ID)) {
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr >";
          echo "<td>"._n('Target','Targets',1)."</td>";
          echo "<td>";
          $types   = array('Entity', 'Group', 'Profile', 'User');
@@ -804,10 +804,10 @@ class KnowbaseItem extends CommonDBTM {
       $tmp = "<a href='".$this->getSearchURL().
              "?knowbaseitemcategories_id=$knowbaseitemcategories_id'>".$fullcategoryname."</a>";
       echo "<table class='table table-striped'>";
-      echo "<tr class='tab_bg_3'><th colspan='4'>".sprintf(__('%1$s: %2$s'), __('Category'), $tmp);
+      echo "<tr ><th colspan='4'>".sprintf(__('%1$s: %2$s'), __('Category'), $tmp);
       echo "</th></tr>";
 
-      echo "<tr class='tab_bg_3'><td class='left' colspan='4'><h2>".__('Subject')."</h2>";
+      echo "<tr ><td class='left' colspan='4'><h2>".__('Subject')."</h2>";
       if (KnowbaseItemTranslation::canBeTranslated($this)) {
          echo KnowbaseItemTranslation::getTranslatedValue($this, 'name');
       } else {
@@ -815,7 +815,7 @@ class KnowbaseItem extends CommonDBTM {
       }
 
       echo "</td></tr>";
-      echo "<tr class='tab_bg_3'><td class='left' colspan='4'><h2>".__('Content')."</h2>\n";
+      echo "<tr ><td class='left' colspan='4'><h2>".__('Content')."</h2>\n";
 
       echo "<div id='kbanswer'>";
       if (KnowbaseItemTranslation::canBeTranslated($this)) {
@@ -899,7 +899,7 @@ class KnowbaseItem extends CommonDBTM {
       echo "<div>";
       echo "<form method='get' action='".$this->getSearchURL()."'>";
       echo "<table class='table'>";
-      echo "<tr class='tab_bg_2'><td class='right' width='50%'>";
+      echo "<tr ><td class='right' width='50%'>";
       echo "<input type='text' size='50' name='contains' value=\"".
              Html::cleanInputText(stripslashes($params["contains"]))."\"></td>";
       echo "<td class='left'>";
@@ -949,7 +949,7 @@ class KnowbaseItem extends CommonDBTM {
          echo "<div>";
          echo "<form method='get' action='".$this->getSearchURL()."'>";
          echo "<table class='table'>";
-         echo "<tr class='tab_bg_2'><td class='right' width='50%'>".__('Category')."&nbsp;";
+         echo "<tr ><td class='right' width='50%'>".__('Category')."&nbsp;";
          KnowbaseItemCategory::dropdown(array('value' => $params["knowbaseitemcategories_id"]));
          echo "</td><td class='left'>";
          echo "<input type='submit' value=\""._sx('button','Post')."\" class='btn btn-primary'></td>";
@@ -993,7 +993,7 @@ class KnowbaseItem extends CommonDBTM {
       echo "<div>";
       echo "<form method='get' action='".$this->getSearchURL()."'>";
       echo "<table class='table'>";
-      echo "<tr class='tab_bg_2'><td class='right' width='50%'>";
+      echo "<tr ><td class='right' width='50%'>";
       $values = array('myunpublished' => __('My unpublished articles'),
                       'allmy'         => __('All my articles'));
       if (Session::haveRight(self::$rightname, self::KNOWBASEADMIN)) {
@@ -1495,7 +1495,7 @@ class KnowbaseItem extends CommonDBTM {
             if (isset($data['transname']) && !empty($data['transname'])) {
                $name = $data['transname'];
             }
-            echo "<tr class='tab_bg_2'><td class='left'>";
+            echo "<tr ><td class='left'>";
             echo "<a ".($data['is_faq']?" class='pubfaq' ":" class='knowbase' ")." href=\"".
                   $CFG_GLPI["root_doc"]."/front/knowbaseitem.form.php?id=".$data["id"]."\">".
                   Html::resume_text($name,80)."</a></td></tr>";
@@ -1611,8 +1611,8 @@ class KnowbaseItem extends CommonDBTM {
          echo " method='post' action='".Toolbox::getItemTypeFormURL('KnowbaseItem')."'>";
          echo "<input type='hidden' name='knowbaseitems_id' value='$ID'>";
          echo "<table class='table'>";
-         echo "<tr class='tab_bg_1'><th colspan='4'>".__('Add a target')."</th></tr>";
-         echo "<tr class='tab_bg_2'><td width='100px'>";
+         echo "<tr ><th colspan='4'>".__('Add a target')."</th></tr>";
+         echo "<tr ><td width='100px'>";
 
          $types = array('Entity', 'Group', 'Profile', 'User');
 
@@ -1650,7 +1650,7 @@ class KnowbaseItem extends CommonDBTM {
          }
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='table table-hover'>";
       $header_begin  = "<tr>";
       $header_top    = '';
       $header_bottom = '';
@@ -1670,7 +1670,7 @@ class KnowbaseItem extends CommonDBTM {
       if (count($this->users)) {
          foreach ($this->users as $key => $val) {
             foreach ($val as $data) {
-               echo "<tr class='tab_bg_1'>";
+               echo "<tr >";
                if ($canedit) {
                   echo "<td>";
                   Html::showMassiveActionCheckBox('KnowbaseItem_User',$data["id"]);
@@ -1687,7 +1687,7 @@ class KnowbaseItem extends CommonDBTM {
       if (count($this->groups)) {
          foreach ($this->groups as $key => $val) {
             foreach ($val as $data) {
-               echo "<tr class='tab_bg_1'>";
+               echo "<tr >";
                if ($canedit) {
                   echo "<td>";
                   Html::showMassiveActionCheckBox('Group_KnowbaseItem',$data["id"]);
@@ -1718,7 +1718,7 @@ class KnowbaseItem extends CommonDBTM {
       if (count($this->entities)) {
          foreach ($this->entities as $key => $val) {
             foreach ($val as $data) {
-               echo "<tr class='tab_bg_1'>";
+               echo "<tr >";
                if ($canedit) {
                   echo "<td>";
                   Html::showMassiveActionCheckBox('Entity_KnowbaseItem',$data["id"]);
@@ -1744,7 +1744,7 @@ class KnowbaseItem extends CommonDBTM {
       if (count($this->profiles)) {
          foreach ($this->profiles as $key => $val) {
             foreach ($val as $data) {
-               echo "<tr class='tab_bg_1'>";
+               echo "<tr >";
                if ($canedit) {
                   echo "<td>";
                   Html::showMassiveActionCheckBox('KnowbaseItem_Profile',$data["id"]);

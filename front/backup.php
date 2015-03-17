@@ -596,7 +596,7 @@ if (isset($_POST["delfile"])) {
 
 if (Session::haveRight('backup', Backup::CHECKUPDATE)) {
    echo "<div class='center spaced'><table class='tab_glpi'>";
-   echo "<tr class='tab_bg_1'><td colspan='4' class='center b'>";
+   echo "<tr ><td colspan='4' class='center b'>";
    Html::showSimpleForm($_SERVER['PHP_SELF'], 'check_version',
                         __('Check if a new version is available'));
    echo "</td></tr></table></div>";
@@ -643,7 +643,7 @@ arsort($files);
 if (count($files)) {
    foreach ($files as $file => $date) {
       $taille_fic = filesize($path."/".$file);
-      echo "<tr class='tab_bg_2'><td>$file&nbsp;</td>".
+      echo "<tr ><td>$file&nbsp;</td>".
            "<td class='right'>".Toolbox::getSize($taille_fic)."</td>".
            "<td>&nbsp;" . Html::convDateTime(date("Y-m-d H:i",$date)) . "</td>";
       if (Session::haveRight('backup', PURGE)) {
@@ -694,8 +694,8 @@ arsort($files);
 if (count($files)) {
    foreach ($files as $file => $date) {
       $taille_fic = filesize($path."/".$file);
-      echo "<tr class='tab_bg_1'><td colspan='6'><hr noshade></td></tr>".
-           "<tr class='tab_bg_2'><td>$file&nbsp;</td>".
+      echo "<tr ><td colspan='6'><hr noshade></td></tr>".
+           "<tr ><td>$file&nbsp;</td>".
             "<td class='right'>".Toolbox::getSize($taille_fic)."</td>".
             "<td>&nbsp;" . Html::convDateTime(date("Y-m-d H:i",$date)) . "</td>";
       if (Session::haveRight('backup', PURGE)) {

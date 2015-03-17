@@ -160,7 +160,7 @@ class ComputerDisk extends CommonDBChild {
          echo "<input type='hidden' name='computers_id' value='".$options['computers_id']."'>";
       }
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Computer')."</td>";
       echo "<td>".$comp->getLink()."</td>";
       if (Plugin::haveImport()) {
@@ -177,7 +177,7 @@ class ComputerDisk extends CommonDBChild {
       }
       echo "</tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Name')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "name");
@@ -186,7 +186,7 @@ class ComputerDisk extends CommonDBChild {
       Html::autocompletionTextField($this, "device");
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Mount point')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "mountpoint");
@@ -195,7 +195,7 @@ class ComputerDisk extends CommonDBChild {
       FileSystem::dropdown(array('value' => $this->fields["filesystems_id"]));
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Global size')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "totalsize");
@@ -253,7 +253,7 @@ class ComputerDisk extends CommonDBChild {
                       AND `is_deleted` = '0'";
 
       if ($result = $DB->query($query)) {
-         echo "<table class='tab_cadre_fixehov'>";
+         echo "<table class='table table-hover'>";
          $colspan = 7;
          if (Plugin::haveImport()) {
             $colspan++;
@@ -285,7 +285,7 @@ class ComputerDisk extends CommonDBChild {
             $disk = new self();
             while ($data = $DB->fetch_assoc($result)) {
                $disk->getFromDB($data['id']);
-               echo "<tr class='tab_bg_2'>";
+               echo "<tr >";
                echo "<td>".$disk->getLink()."</td>";
                if (Plugin::haveImport()) {
                   echo "<td>".Dropdown::getYesNo($data['is_dynamic'])."</td>";
@@ -311,7 +311,7 @@ class ComputerDisk extends CommonDBChild {
             }
             echo $header;
          } else {
-            echo "<tr class='tab_bg_2'><th colspan='$colspan'>".__('No item found')."</th></tr>";
+            echo "<tr ><th colspan='$colspan'>".__('No item found')."</th></tr>";
          }
 
          echo "</table>";

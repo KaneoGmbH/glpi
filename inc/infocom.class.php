@@ -949,9 +949,9 @@ class Infocom extends CommonDBChild {
             if ($ic->can(-1, CREATE, $input)
                 && ($withtemplate != 2)) {
                echo "<div class='spaced b'>";
-               echo "<table class='table table-striped'><tr class='tab_bg_1'><th>";
+               echo "<table class='table table-striped'><tr ><th>";
                echo sprintf(__('%1$s - %2$s'), $item->getTypeName(1), $item->getName())."</th></tr>";
-               echo "<tr class='tab_bg_1'><td class='center'>";
+               echo "<tr ><td class='center'>";
 
                Html::showSimpleForm($CFG_GLPI["root_doc"]."/front/infocom.form.php",
                                     'add', __('Enable the financial and administrative information'),
@@ -972,7 +972,7 @@ class Infocom extends CommonDBChild {
 
             echo "<tr><th colspan='4'>".__('Financial and administrative information')."</th></tr>";
 
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr >";
             echo "<td>".__('Supplier')."</td>";
             echo "<td>";
             if ($withtemplate == 2) {
@@ -996,7 +996,7 @@ class Infocom extends CommonDBChild {
             // Can edit calendar ?
             $editcalendar = ($withtemplate != 2);
 
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr >";
             echo "<td>".__('Order number')."</td>";
             echo "<td >";
             Html::autocompletionTextField($ic, "order_number", array('option' => $option));
@@ -1007,7 +1007,7 @@ class Infocom extends CommonDBChild {
                                                     'canedit'    => $editcalendar));
             echo "</td></tr>";
 
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr >";
             $istemplate = '';
             if ($item->isTemplate()
                 || in_array($item->getType(),
@@ -1027,7 +1027,7 @@ class Infocom extends CommonDBChild {
                                                   'canedit'    => $editcalendar));
             echo "</td></tr>";
 
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr >";
             echo "<td>".__('Invoice number')."</td>";
             echo "<td>";
             Html::autocompletionTextField($ic, "bill", array('option' => $option));
@@ -1038,7 +1038,7 @@ class Infocom extends CommonDBChild {
                                                        'canedit'    => $editcalendar));
             echo "</td></tr>";
 
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr >";
             echo "<td>".__('Delivery form')."</td><td>";
             Html::autocompletionTextField($ic, "delivery_number", array('option' => $option));
             echo "</td>";
@@ -1048,7 +1048,7 @@ class Infocom extends CommonDBChild {
                                                   'canedit'    => $editcalendar));
             echo "</td></tr>";
 
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr >";
             echo "<td>"._x('price', 'Value')."</td>";
             echo "<td><input type='text' name='value' $option value='".
                    Html::formatNumber($ic->fields["value"], true)."' size='14'></td>";
@@ -1059,7 +1059,7 @@ class Infocom extends CommonDBChild {
                                       'canedit'    => $editcalendar));
             echo "</td></tr>";
 
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr >";
             echo "<td>".__('Warranty extension value')."</td>";
             echo "<td><input type='text' $option name='warranty_value' value='".
                        Html::formatNumber($ic->fields["warranty_value"], true)."' size='14'></td>";
@@ -1068,7 +1068,7 @@ class Infocom extends CommonDBChild {
             echo "<textarea cols='45' rows='9' name='comment' >".$ic->fields["comment"];
             echo "</textarea></td></tr>\n";
 
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr >";
             echo "<td>".__('Account net value')."</td><td>";
             echo Html::formatNumber(self::Amort($ic->fields["sink_type"], $ic->fields["value"],
                                                 $ic->fields["sink_time"], $ic->fields["sink_coeff"],
@@ -1076,7 +1076,7 @@ class Infocom extends CommonDBChild {
                                                 $ic->fields["use_date"], $date_tax,"n"));
             echo "</td></tr>";
 
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr >";
             echo "<td>".__('Amortization type')."</td><td >";
             if ($withtemplate == 2) {
                echo self::getAmortTypeName($ic->fields["sink_type"]);
@@ -1085,7 +1085,7 @@ class Infocom extends CommonDBChild {
             }
             echo "</td></tr>";
 
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr >";
             echo "<td>".__('Amortization duration')."</td><td>";
             if ($withtemplate == 2) {
                printf(_n('%d year', '%d years', $ic->fields["sink_time"]), $ic->fields["sink_time"]);
@@ -1096,14 +1096,14 @@ class Infocom extends CommonDBChild {
             }
             echo "</td></tr>";
 
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr >";
             echo "<td>".__('Amortization coefficient')."</td>";
             echo "<td>";
             Html::autocompletionTextField($ic, "sink_coeff", array('size'   => 14,
                                                                    'option' => $option));
             echo "</td></tr>";
 
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr >";
             if (!in_array($item->getType(), array('Cartridge', 'CartridgeItem', 'Consumable',
                                                   'ConsumableItem', 'Software',
                                                   'SoftwareLicense'))) {
@@ -1125,7 +1125,7 @@ class Infocom extends CommonDBChild {
             echo "</td></tr>";
 
             echo "<tr><th colspan='4'>".__('Warranty information')."</th></tr>";
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr >";
             echo "<td>".__('Start date of warranty')."</td><td>";
             Html::showDateField("warranty_date", array('value'      => $ic->fields["warranty_date"],
                                                        'maybeempty' => true,
@@ -1158,7 +1158,7 @@ class Infocom extends CommonDBChild {
             }
             echo "</td></tr>";
 
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr >";
             echo "<td>".__('Warranty information')."</td>";
             echo "<td >";
             Html::autocompletionTextField($ic, "warranty_info", array('option' => $option));

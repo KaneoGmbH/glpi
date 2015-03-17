@@ -47,7 +47,7 @@ echo "<table class='table table-striped' >";
 echo "<tr><th colspan='4'>".__('Hardware under contract')." </th></tr>";
 
 # 3. Selection d'affichage pour generer la liste
-echo "<tr class='tab_bg_1'>";
+echo "<tr >";
 echo "<td class='center' width='20%'>". __('Item type')."</td>";
 echo "<td width='30%'>";
 $values = array(0 => __('All'));

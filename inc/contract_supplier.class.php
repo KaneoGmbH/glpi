@@ -178,9 +178,9 @@ class Contract_Supplier extends CommonDBRelation {
          echo "<input type='hidden' name='suppliers_id' value='$ID'>";
 
          echo "<table class='table table-striped'>";
-         echo "<tr class='tab_bg_2'><th colspan='2'>".__('Add a contract')."</th></tr>";
+         echo "<tr ><th colspan='2'>".__('Add a contract')."</th></tr>";
 
-         echo "<tr class='tab_bg_1'><td class='right'>";
+         echo "<tr ><td class='right'>";
          Contract::dropdown(array('used'         => $used,
                                   'entity'       => $supplier->fields["entities_id"],
                                   'entity_sons'  => $supplier->fields["is_recursive"],
@@ -322,9 +322,9 @@ class Contract_Supplier extends CommonDBRelation {
          echo "<input type='hidden' name='contracts_id' value='$instID'>";
 
          echo "<table class='table'>";
-         echo "<tr class='tab_bg_2'><th colspan='2'>".__('Add a supplier')."</th></tr>";
+         echo "<tr ><th colspan='2'>".__('Add a supplier')."</th></tr>";
 
-         echo "<tr class='tab_bg_1'><td class='right'>";
+         echo "<tr ><td class='right'>";
 
          Supplier::dropdown(array('used'         => $used,
                                   'entity'       => $contract->fields["entities_id"],
@@ -377,7 +377,7 @@ class Contract_Supplier extends CommonDBRelation {
          $entity        = $data['entity'];
          $used[$entID]  = $entID;
          $entname       = Dropdown::getDropdownName("glpi_suppliers", $entID);
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr >";
          if ($canedit) {
             echo "<td>";
             Html::showMassiveActionCheckBox(__CLASS__, $data["id"]);

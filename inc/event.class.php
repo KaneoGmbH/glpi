@@ -266,7 +266,7 @@ class Event extends CommonDBTM {
             }
          }
 
-         echo "<tr class='tab_bg_2'><td>".$itemtype."</td>";
+         echo "<tr ><td>".$itemtype."</td>";
          echo "<td class='center'>";
          self::displayItemLogID($type, $items_id);
          echo "</td><td class='center'>".Html::convDateTime($date)."</td>";
@@ -337,7 +337,7 @@ class Event extends CommonDBTM {
       $parameters = "sort=$sort&amp;order=$order";
       Html::printPager($start, $numrows, $target, $parameters);
 
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='table table-hover'>";
       echo "<tr>";
 
       foreach ($items as $field => $args) {
@@ -373,7 +373,7 @@ class Event extends CommonDBTM {
             }
          }
 
-         echo "<tr class='tab_bg_2'>";
+         echo "<tr >";
          echo "<td>$itemtype</td>";
          echo "<td class='center b'>";
          self::displayItemLogID($type, $items_id);

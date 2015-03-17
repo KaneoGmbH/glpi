@@ -78,13 +78,13 @@ class NetworkPortEthernet extends NetworkPortInstantiation {
    function showInstantiationForm(NetworkPort $netport, $options=array(), $recursiveItems) {
 
       if (!$options['several']) {
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr >";
          $this->showNetpointField($netport, $options, $recursiveItems);
          $this->showNetworkCardField($netport, $options, $recursiveItems);
          echo "</tr>\n";
       }
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>" . __('Ethernet port type') . "</td><td>\n";
       Dropdown::showFromArray('type', self::getPortTypeName(),
                               array('value' => $this->fields['type']));
@@ -105,7 +105,7 @@ class NetworkPortEthernet extends NetworkPortInstantiation {
       echo "</td>";
       echo "</tr>\n";
 
-      echo "<tr class='tab_bg_1'>\n";
+      echo "<tr >\n";
       $this->showMacField($netport, $options);
 
       echo "<td>".__('Connected to').'</td><td>';
