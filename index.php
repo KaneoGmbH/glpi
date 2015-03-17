@@ -62,6 +62,13 @@ if (!file_exists(GLPI_CONFIG_DIR . "/config_db.php")) {
    // Send UTF8 Headers
    header("Content-Type: text/html; charset=UTF-8");
 
+//    $login = new Savant3(array(
+//        'template_path' => GLPI_ROOT.'/templates/core'
+//    ));
+//    echo $login->display('login.tpl.php');
+//    die();
+// todo: move to template
+
    // Start the page
    echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" '.
          '"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">'."\n";
