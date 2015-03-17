@@ -177,7 +177,7 @@ class Contract_Supplier extends CommonDBRelation {
                 action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
          echo "<input type='hidden' name='suppliers_id' value='$ID'>";
 
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table table-striped'>";
          echo "<tr class='tab_bg_2'><th colspan='2'>".__('Add a contract')."</th></tr>";
 
          echo "<tr class='tab_bg_1'><td class='right'>";
@@ -187,7 +187,7 @@ class Contract_Supplier extends CommonDBRelation {
                                   'nochecklimit' => true));
 
          echo "</td><td class='center'>";
-         echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='submit'>";
+         echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='btn btn-primary'>";
          echo "</td></tr>";
          echo "</table>";
          Html::closeForm();
@@ -330,7 +330,7 @@ class Contract_Supplier extends CommonDBRelation {
                                   'entity'       => $contract->fields["entities_id"],
                                   'entity_sons'  => $contract->fields["is_recursive"]));
          echo "</td><td class='center'>";
-         echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='submit'>";
+         echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='btn btn-primary'>";
          echo "</td></tr>";
          echo "</table>";
          Html::closeForm();

@@ -197,7 +197,7 @@ class AuthMail extends CommonDBTM {
          $this->showFormButtons($options);
 
       } else {
-         echo "<div class='center'>&nbsp;<table class='tab_cadre_fixe'>";
+         echo "<div class='center'>&nbsp;<table class='table table-striped'>";
          echo "<tr><th colspan='2'>" . __('Email server configuration') . "</th></tr>";
          echo "<tr class='tab_bg_2'><td class='center'>";
          echo "<p class='red'>".__('Your PHP parser was compiled without the IMAP functions')."</p>";
@@ -225,7 +225,7 @@ class AuthMail extends CommonDBTM {
                     autocomplete='off'></td></tr>";
 
          echo "<tr class='tab_bg_2'><td class='center' colspan='2'>";
-         echo "<input type='submit' name='test' class='submit' value=\""._sx('button','Test')."\">".
+         echo "<input type='submit' name='test' class='btn btn-primary' value=\""._sx('button','Test')."\">".
               "</td>";
          echo "</tr></table></div>";
          Html::closeForm();

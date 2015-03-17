@@ -3243,13 +3243,13 @@ class Transfer extends CommonDBTM {
       } else {
          echo "<form method='post' name=form action='".$options['target']."'>";
          echo "<div class='center' id='tabsbody' >";
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table table-striped'>";
 
          echo "<tr><td class='tab_bg_2 top' colspan='4'>";
          echo "<div class='center'>";
          Entity::dropdown(array('name' => 'to_entity'));
          echo "&nbsp;<input type='submit' name='transfer' value=\"".__s('Execute')."\"
-                      class='submit'></div>";
+                      class='btn btn-primary'></div>";
          echo "</td></tr>";
       }
 

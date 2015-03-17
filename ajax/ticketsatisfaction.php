@@ -55,7 +55,7 @@ if (isset($_POST['inquest_config']) && isset($_POST['entities_id'])) {
    }
 
    if ($_POST['inquest_config'] > 0) {
-      echo "<table class='tab_cadre_fixe' width='50%'>";
+      echo "<table class='table table-striped' width='50%'>";
       echo "<tr class='tab_bg_1'><td width='50%'>".__('Create survey after')."</td>";
       echo "<td>";
       Dropdown::showNumber('inquest_delay',

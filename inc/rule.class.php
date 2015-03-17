@@ -619,7 +619,7 @@ class Rule extends CommonDBTM {
                                  'condition'       => $condition,
                                  'entity'          => $entity,
                                  'width'           => '50%'));
-            echo "<br><br><input type='submit' name='massiveaction' class='submit' value='".
+            echo "<br><br><input type='submit' name='massiveaction' class='btn btn-primary' value='".
                            _sx('button', 'Move')."'>\n";
             return true;
       }
@@ -878,7 +878,7 @@ class Rule extends CommonDBTM {
                $url = $CFG_GLPI["root_doc"];
             }
             echo "<tr><td class='tab_bg_2 center' colspan='4'>";
-            echo "<a class='vsubmit' href='#' onClick=\"".
+            echo "<a class='btn btn-info btn-xs' href='#' onClick=\"".
                   Html::jsGetElementbyID('ruletest'.$rand).".dialog('open');\">".
                   _x('button', 'Test')."</a>";
             Ajax::createIframeModalWindow('ruletest'.$rand,
@@ -967,7 +967,7 @@ class Rule extends CommonDBTM {
              && (in_array('regex_result', $val['force_actions'])
                  || in_array('append_regex_result', $val['force_actions']))) {
 
-            echo "<table class='tab_cadre_fixe'>";
+            echo "<table class='table table-striped'>";
             echo "<tr class='tab_bg_2'><td>".
                   __('It is possible to affect the result of a regular expression using the string #0').
                  "</td></tr>\n";
@@ -1012,7 +1012,7 @@ class Rule extends CommonDBTM {
 
       if ($p['readonly']) {
          $canedit = false;
-         $style   = "class='tab_cadrehov'";
+         $style   = "class='table table-striped table-hover'";
       }
       $this->getTitleAction();
 
@@ -1036,7 +1036,7 @@ class Rule extends CommonDBTM {
          echo "};";
          echo "</script>\n";
          echo "<div class='center firstbloc'>".
-               "<a class='vsubmit' href='javascript:viewAddAction".$rules_id."$rand();'>";
+               "<a class='btn btn-info btn-xs' href='javascript:viewAddAction".$rules_id."$rand();'>";
          echo __('Add a new action')."</a></div>\n";
       }
 
@@ -1138,7 +1138,7 @@ class Rule extends CommonDBTM {
          echo "};";
          echo "</script>\n";
          echo "<div class='center firstbloc'>".
-               "<a class='vsubmit' href='javascript:viewAddCriteria".$rules_id."$rand();'>";
+               "<a class='btn btn-info btn-xs' href='javascript:viewAddCriteria".$rules_id."$rand();'>";
          echo __('Add a new criteria')."</a></div>\n";
       }
 
@@ -2496,7 +2496,7 @@ class Rule extends CommonDBTM {
 
          echo "<tr><td class='tab_bg_2 center' colspan='3'>";
          echo "<input type='submit' name='test_rule' value=\""._sx('button','Test')."\"
-                class='submit'>";
+                class='btn btn-primary'>";
          echo "<input type='hidden' name='".$this->rules_id_field."' value='$rules_id'>";
          echo "<input type='hidden' name='sub_type' value='" . $this->getType() . "'>";
          echo "</td></tr>\n";
@@ -2701,7 +2701,7 @@ class Rule extends CommonDBTM {
       echo "<input type=hidden name='entities_id' value='-1'>";
       echo "<input type=hidden name='affectentity' value='$ID'>";
       echo "<input type=hidden name='_method' value='AddRule'>";
-      echo "<input type='submit' name='execute' value=\""._sx('button','Add')."\" class='submit'>";
+      echo "<input type='submit' name='execute' value=\""._sx('button','Add')."\" class='btn btn-primary'>";
       echo "</td></tr>\n";
       echo "</table>";
       Html::closeForm();

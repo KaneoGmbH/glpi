@@ -410,7 +410,7 @@ class AuthLDAP extends CommonDBTM {
          $this->showFormButtons($options);
 
       } else {
-         echo "<div class='center'>&nbsp;<table class='tab_cadre_fixe'>";
+         echo "<div class='center'>&nbsp;<table class='table table-striped'>";
          echo "<tr><th colspan='2'>" . self::getTypeName(1) . "</th></tr>";
          echo "<tr class='tab_bg_2'><td class='center'>";
          echo "<p class='red'>". __("The LDAP extension of your PHP parser isn't installed")."</p>";
@@ -482,7 +482,7 @@ class AuthLDAP extends CommonDBTM {
       echo"</td></tr>";
 
       echo "<tr class='tab_bg_2'><td class='center' colspan='4'>";
-      echo "<input type='submit' name='update' class='submit' value=\"".__s('Save')."\">";
+      echo "<input type='submit' name='update' class='btn btn-primary' value=\"".__s('Save')."\">";
       echo $hidden;
       echo "</td></tr>";
 
@@ -640,7 +640,7 @@ class AuthLDAP extends CommonDBTM {
       echo "</td></tr>";
 
       echo "<tr class='tab_bg_2'><td class='center' colspan='4'>";
-      echo "<input type='submit' name='update' class='submit' value=\"".__s('Save')."\">";
+      echo "<input type='submit' name='update' class='btn btn-primary' value=\"".__s('Save')."\">";
       echo "</td></tr>";
       echo "</table>";
       Html::closeForm();
@@ -667,7 +667,7 @@ class AuthLDAP extends CommonDBTM {
          }
 
          echo "<tr class='tab_bg_2'><td class='center' colspan='4'>";
-         echo "<input type='submit' name='test_ldap' class='submit' value=\"".
+         echo "<input type='submit' name='test_ldap' class='btn btn-primary' value=\"".
                 _sx('button','Test')."\">";
          echo "</td></tr>";
          echo "</table>";
@@ -749,7 +749,7 @@ class AuthLDAP extends CommonDBTM {
 
 
       echo "<tr class='tab_bg_2'><td class='center' colspan='4'>";
-      echo "<input type='submit' name='update' class='submit' value=\"".__s('Save')."\">";
+      echo "<input type='submit' name='update' class='btn btn-primary' value=\"".__s('Save')."\">";
       echo "</td></tr>";
       echo "</table>";
       Html::closeForm();
@@ -780,7 +780,7 @@ class AuthLDAP extends CommonDBTM {
              size='100'></td></tr>";
 
       echo "<tr class='tab_bg_2'><td class='center' colspan='4'>";
-      echo "<input type='submit' name='update' class='submit' value=\"".__s('Save')."\">";
+      echo "<input type='submit' name='update' class='btn btn-primary' value=\"".__s('Save')."\">";
       echo "</td></tr>";
       echo "</table>";
       Html::closeForm();
@@ -1974,7 +1974,7 @@ class AuthLDAP extends CommonDBTM {
          echo "</td></tr>";
 
          echo "<tr class='tab_bg_2'><td class='center' colspan='2'>";
-         echo "<input class='submit' type='submit' name='ldap_showusers' value=\"".
+         echo "<input class='btn btn-primary' type='submit' name='ldap_showusers' value=\"".
                _sx('button','Post') . "\"></td></tr>";
 
       } else {
@@ -2685,7 +2685,7 @@ class AuthLDAP extends CommonDBTM {
                                        'condition'   => "`is_active` = '1'",
                                        'display_emptychoice'
                                                      => false));
-                  echo "&nbsp;<input class='submit' type='submit' name='change_directory'
+                  echo "&nbsp;<input class='btn btn-primary' type='submit' name='change_directory'
                         value=\""._sx('button','To change')."\">";
                   echo "</td></tr>";
                }
@@ -2791,7 +2791,7 @@ class AuthLDAP extends CommonDBTM {
 
          if ($_SESSION['ldap_import']['authldaps_id']) {
             echo "<tr class='tab_bg_2'><td colspan='4' class='center'>";
-            echo "<input class='submit' type='submit' name='search' value=\"".
+            echo "<input class='btn btn-primary' type='submit' name='search' value=\"".
                    _sx('button','Search')."\">";
             echo "</td></tr>";
          } else {

@@ -737,7 +737,7 @@ class Reminder extends CommonDBTM {
                                                      Planning::READALL))) {
 
             echo "<div id='plan' onClick='showPlan()'>\n";
-            echo "<a href='#' class='vsubmit'>".__('Add to schedule')."</a>";
+            echo "<a href='#' class='btn btn-info btn-xs'>".__('Add to schedule')."</a>";
          }
 
       } else {
@@ -1071,7 +1071,7 @@ class Reminder extends CommonDBTM {
       $result = $DB->query($query);
       $nb     = $DB->numrows($result);
 
-      echo "<br><table class='tab_cadrehov'>";
+      echo "<br><table class='table table-striped table-hover'>";
       echo "<tr class='noHover'><th><div class='relative'><span>$titre</span>";
 
       if (($personal && self::canCreate()) 
@@ -1139,7 +1139,7 @@ class Reminder extends CommonDBTM {
          echo "<form name='remindervisibility_form$rand' id='remindervisibility_form$rand' ";
          echo " method='post' action='".Toolbox::getItemTypeFormURL('Reminder')."'>";
          echo "<input type='hidden' name='reminders_id' value='$ID'>";
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table table-striped'>";
          echo "<tr class='tab_bg_1'><th colspan='4'>".__('Add a target')."</tr>";
          echo "<tr class='tab_bg_2'><td width='100px'>";
 

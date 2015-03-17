@@ -1549,7 +1549,7 @@ class Html {
          if (!isset($_GET['full_page_tab'])
              && strstr($_SERVER['REQUEST_URI'], '/ajax/common.tabs.php')) {
             echo "&nbsp;&nbsp;&nbsp;&nbsp;";
-            echo "<a href='".$_SERVER['REQUEST_URI']."&full_page_tab=1' class='vsubmit'>Display only tab for debug</a>";
+            echo "<a href='".$_SERVER['REQUEST_URI']."&full_page_tab=1' class='btn btn-info btn-xs'>Display only tab for debug</a>";
          }
          echo "</div>";
          echo "<div id='see_ajaxdebug$rand' name='see_ajaxdebug$rand' style=\"display:none;\">";
@@ -2067,7 +2067,7 @@ class Html {
                if (is_array($confirm) && isset($confirm[$name])) {
                   echo self::addConfirmationOnAction($confirm[$name]);
                }
-               echo "value=\"".addslashes($label)."\" class='submit'>&nbsp;";
+               echo "value=\"".addslashes($label)."\" class='btn btn-primary'>&nbsp;";
             }
          }
       }
@@ -2494,7 +2494,7 @@ class Html {
                    ($p['ontop']?'-top':'').".png' alt=''></td>";
          }
          echo "<td width='100%' class='left'>";
-         echo "<a class='vsubmit' ";
+         echo "<a class='btn btn-info btn-xs' ";
          if (is_array($p['confirm'] || strlen($p['confirm']))) {
             echo self::addConfirmationOnAction($p['confirm'], "massiveaction_window$identifier.dialog(\"open\");");
          }  else {
@@ -3893,7 +3893,7 @@ class Html {
       // Do not force class if already defined
       if (!strstr($btoption, 'class=')) {
          if (empty($btimage)) {
-            $link .= " class='vsubmit' ";
+            $link .= " class='btn btn-info btn-xs' ";
          } else {
             $link .= " class='pointer' ";
          }
@@ -3928,7 +3928,7 @@ class Html {
 //       }
 //       $SIMPLE_FORMS .= "<input type='hidden' name='$btname' value='$btname'>";
 //
-//       echo "<a href='#' class='vsubmit' class='submit' $btoption
+//       echo "<a href='#' class='btn btn-info btn-xs' class='btn btn-primary' $btoption
 //             onClick=\"document.$id.submit()\">";
 //       $btlabel = htmlentities($btlabel, ENT_QUOTES, 'UTF-8');
 //       if (empty($btimage)) {

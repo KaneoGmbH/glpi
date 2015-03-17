@@ -1276,7 +1276,7 @@ abstract class CommonITILTask  extends CommonDBTM {
 
             if ($canplan) {
                echo "<div id='plan'  onClick='showPlanUpdate()'>\n";
-               echo "<span class='vsubmit'>".__('Plan this task')."</span>";
+               echo "<span class='btn btn-info btn-xs'>".__('Plan this task')."</span>";
                echo "</div>\n";
                echo "<div id='viewplan'></div>\n";
             }
@@ -1354,13 +1354,13 @@ abstract class CommonITILTask  extends CommonDBTM {
          if (($item->fields["status"] != CommonITILObject::SOLVED)
              && ($item->fields["status"] != CommonITILObject::CLOSED)) {
             echo "<div class='center'>".
-                 "<a class='vsubmit' href='javascript:viewAddTask".$item->fields['id']."$rand();'>";
+                 "<a class='btn btn-info btn-xs' href='javascript:viewAddTask".$item->fields['id']."$rand();'>";
             echo __('Add a new task')."</a></div><br>\n";
          }
       }
 
       if ($DB->numrows($result) == 0) {
-         echo "<table class='tab_cadre_fixe'><tr class='tab_bg_2'><th>" . __('No task found.');
+         echo "<table class='table table-striped'><tr class='tab_bg_2'><th>" . __('No task found.');
          echo "</th></tr></table>";
       } else {
          echo "<table class='tab_cadre_fixehov'>";
@@ -1399,7 +1399,7 @@ abstract class CommonITILTask  extends CommonDBTM {
       if ($this->maybePrivate()) {
          echo "<input type='hidden' name='is_private' value='".$_SESSION['glpitask_private']."'>";
       }
-      echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='submit'>";
+      echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='btn btn-primary'>";
    }
 
 

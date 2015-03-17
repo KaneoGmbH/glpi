@@ -121,7 +121,7 @@ class NotificationTemplateTranslation extends CommonDBChild {
       Ajax::createIframeModalWindow("tags".$rand,
                                     $CFG_GLPI['root_doc']."/front/notification.tags.php?sub_type=".
                                        $template->getField('itemtype'));
-      echo "<a class='vsubmit' href='#' onClick=\"".Html::jsGetElementbyID("tags".$rand).".dialog('open');\">".__('Show list of available tags')."</a>";
+      echo "<a class='btn btn-info btn-xs' href='#' onClick=\"".Html::jsGetElementbyID("tags".$rand).".dialog('open');\">".__('Show list of available tags')."</a>";
       echo "</td></tr>";
 
       echo "<tr class='tab_bg_1'>";
@@ -177,7 +177,7 @@ class NotificationTemplateTranslation extends CommonDBChild {
 
       if ($canedit) {
          echo "<div class='center'>".
-              "<a class='vsubmit' href='".Toolbox::getItemTypeFormURL('NotificationTemplateTranslation').
+              "<a class='btn btn-info btn-xs' href='".Toolbox::getItemTypeFormURL('NotificationTemplateTranslation').
                 "?notificationtemplates_id=".$nID."'>". __('Add a new translation')."</a></div><br>";
       }
 
@@ -196,7 +196,7 @@ class NotificationTemplateTranslation extends CommonDBChild {
          Html::showMassiveActions($massiveactionparams);
       }
 
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table table-striped'>";
       echo "<tr class='tab_bg_1'>";
       if ($canedit) {
          echo "<th width='10'>";

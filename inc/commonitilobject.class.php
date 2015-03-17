@@ -3468,7 +3468,7 @@ abstract class CommonITILObject extends CommonDBTM {
       }
 
       // Manage actors : requester and assign
-      echo "<table class='tab_cadre_fixe' id='mainformtable5'>";
+      echo "<table class='table table-striped' id='mainformtable5'>";
       echo "<tr class='tab_bg_1'>";
       echo "<th rowspan='2' width='13%'>".__('Actor')."</th>";
       echo "<th width='29%'>";
@@ -3918,7 +3918,7 @@ abstract class CommonITILObject extends CommonDBTM {
 
          echo "</td><td colspan='2'>";
          if (Session::haveRightsOr('knowbase', array(READ, KnowbaseItem::READFAQ))) {
-            echo "<a class='vsubmit' title=\"".__s('Search a solution')."\"
+            echo "<a class='btn btn-info btn-xs' title=\"".__s('Search a solution')."\"
                    href='".$CFG_GLPI['root_doc']."/front/knowbaseitem.php?item_itemtype=".
                    $this->getType()."&amp;item_items_id=".$this->getField('id').
                    "&amp;forcetab=Knowbase$1'>".__('Search a solution')."</a>";

@@ -414,7 +414,7 @@ class Reservation extends CommonDBChild {
 
          if ((!isset($m->fields['is_active'])) || !$m->fields['is_active']) {
             echo "<div class='center'>";
-            echo "<table class='tab_cadre_fixe'>";
+            echo "<table class='table table-striped'>";
             echo "<tr class='tab_bg_2'>";
             echo "<td class='center b'>".__('Device temporarily unavailable')."</td></tr>";
             echo "<tr class='tab_bg_1'><td class='center b'>";
@@ -435,7 +435,7 @@ class Reservation extends CommonDBChild {
             $name = sprintf(__('%1$s - %2$s'), $type, $name);
          }
 
-         $all = "<a class='vsubmit' href='reservation.php?reservationitems_id=&amp;mois_courant=".
+         $all = "<a class='btn btn-info btn-xs' href='reservation.php?reservationitems_id=&amp;mois_courant=".
                   "$mois_courant&amp;annee_courante=$annee_courante'>".__('Show all')."</a>";
 
       } else {
@@ -745,21 +745,21 @@ class Reservation extends CommonDBChild {
       if (empty($ID)) {
          echo "<tr class='tab_bg_2'>";
          echo "<td colspan='2' class='top center'>";
-         echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='submit'>";
+         echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='btn btn-primary'>";
          echo "</td></tr>\n";
 
       } else {
          echo "<tr class='tab_bg_2'>";
          echo "<td class='top center'>";
          echo "<input type='submit' name='purge' value=\""._sx('button', 'Delete permanently')."\"
-                class='submit'>";
+                class='btn btn-primary'>";
          if ($resa->fields["group"] > 0) {
             echo "<br><input type='checkbox' name='_delete_group'>&nbsp;".
                   __s('Delete all rehearsals');
          }
          echo "</td><td class='top center'>";
          echo "<input type='submit' name='update' value=\""._sx('button', 'Save')."\"
-                class='submit'>";
+                class='btn btn-primary'>";
          echo "</td></tr>\n";
       }
       echo "</table>";

@@ -907,7 +907,7 @@ class RSSFeed extends CommonDBTM {
          }
       }
 
-      echo "<br><table class='tab_cadrehov'>";
+      echo "<br><table class='table table-striped table-hover'>";
       echo "<tr class='noHover'><th colspan='2'><div class='relative'><span>$titre</span>";
 
       if (($personal && self::canCreate()) 
@@ -978,7 +978,7 @@ class RSSFeed extends CommonDBTM {
          echo "<form name='rssfeedvisibility_form$rand' id='rssfeedvisibility_form$rand' ";
          echo " method='post' action='".Toolbox::getItemTypeFormURL('RSSFeed')."'>";
          echo "<input type='hidden' name='rssfeeds_id' value='$ID'>";
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table table-striped'>";
          echo "<tr class='tab_bg_1'><th colspan='4'>".__('Add a target')."</tr>";
          echo "<tr class='tab_bg_1'><td class='tab_bg_2' width='100px'>";
 

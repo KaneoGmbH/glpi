@@ -412,7 +412,7 @@ class Link extends CommonDBTM {
 
       $result = $DB->query($query);
 
-      echo "<div class='spaced'><table class='tab_cadre_fixe'>";
+      echo "<div class='spaced'><table class='table table-striped'>";
 
       if ($DB->numrows($result) > 0) {
          echo "<tr><th>".self::getTypeName(Session::getPluralNumber())."</th></tr>";

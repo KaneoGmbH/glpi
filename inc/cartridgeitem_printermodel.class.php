@@ -143,7 +143,7 @@ class CartridgeItem_PrinterModel extends CommonDBRelation {
          echo "<form name='printermodel_form$rand' id='printermodel_form$rand' method='post'";
          echo " action='".static::getFormURL()."'>";
 
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table table-striped'>";
          echo "<tr class='tab_bg_1'>";
          echo "<th colspan='6'>".__('Add a compatible printer model')."</th></tr>";
 
@@ -151,7 +151,7 @@ class CartridgeItem_PrinterModel extends CommonDBRelation {
          echo "<input type='hidden' name='cartridgeitems_id' value='$instID'>";
          PrinterModel::dropdown(array('used' => $used));
          echo "</td><td class='tab_bg_2 center'>";
-         echo "<input type='submit' name='add' value=\""._sx('button','Add')."\" class='submit'>";
+         echo "<input type='submit' name='add' value=\""._sx('button','Add')."\" class='btn btn-primary'>";
          echo "</td></tr>";
          echo "</table>";
          Html::closeForm();

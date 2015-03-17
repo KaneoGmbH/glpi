@@ -1000,7 +1000,7 @@ class Software extends CommonDBTM {
       $ID = $this->getField('id');
 
       echo "<div class='center'>";
-      echo "<table class='tab_cadrehov'><tr><th>".__('Merging')."</th></tr>";
+      echo "<table class='table table-striped table-hover'><tr><th>".__('Merging')."</th></tr>";
       echo "<tr class='tab_bg_2'><td>";
       Html::createProgressBar(__('Work in progress...'));
       echo "</td></tr></table></div>\n";

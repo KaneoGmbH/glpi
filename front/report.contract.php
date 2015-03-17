@@ -43,7 +43,7 @@ Report::title();
 
 echo "<form name='form' method='post' action='report.contract.list.php'>";
 
-echo "<table class='tab_cadre_fixe' >";
+echo "<table class='table table-striped' >";
 echo "<tr><th colspan='4'>".__('Hardware under contract')." </th></tr>";
 
 # 3. Selection d'affichage pour generer la liste
@@ -73,7 +73,7 @@ Dropdown::showFromArray('year',$values, array('value'    => $y,
 echo "</td></tr>";
 
 echo "<tr><td class='tab_bg_1 center' colspan='4'>";
-echo "<input type='submit' value=\"".__s('Display report')."\" class='submit'></td></tr>";
+echo "<input type='submit' value=\"".__s('Display report')."\" class='btn btn-primary'></td></tr>";
 
 echo "</table>";
 Html::closeForm();

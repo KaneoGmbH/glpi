@@ -820,7 +820,7 @@ class Cartridge extends CommonDBChild {
       if ($ID > 0) {
          echo "<div class='firstbloc'>";
          echo "<form method='post' action=\"".static::getFormURL()."\">";
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table table-striped'>";
          echo "<tr><td class='center tab_bg_2' width='20%'>";
          echo "<input type='hidden' name='cartridgeitems_id' value='$ID'>\n";
          Dropdown::showNumber('to_add', array('value' => 1,
@@ -828,7 +828,7 @@ class Cartridge extends CommonDBChild {
                                               'max'   => 100));
          echo "</td><td>";
          echo " <input type='submit' name='add' value=\"".__s('Add cartridges')."\"
-                class='submit'>";
+                class='btn btn-primary'>";
          echo "</td></tr>";
          echo "</table>";
          Html::closeForm();
@@ -901,7 +901,7 @@ class Cartridge extends CommonDBChild {
 
 
          echo "</td><td><input type='submit' name='install' value=\""._sx('button','Install')."\"
-                         ".($installok?'':'disabled')." class='submit'>";
+                         ".($installok?'':'disabled')." class='btn btn-primary'>";
          echo "</td></tr>";
          echo "</table>";
          Html::closeForm();

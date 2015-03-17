@@ -158,7 +158,7 @@ class ProjectTask_Ticket extends CommonDBRelation{
          echo "<form name='projecttaskticket_form$rand' id='projecttaskticket_form$rand'
                 method='post' action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table table-striped'>";
          echo "<tr class='tab_bg_2'><th colspan='3'>".__('Add a ticket')."</th></tr>";
 
          echo "<tr class='tab_bg_2'><td class='right'>";
@@ -178,7 +178,7 @@ class ProjectTask_Ticket extends CommonDBRelation{
          _e('Create a ticket from this task');
          echo "</a>";
          echo "</td><td class='center'>";
-         echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='submit'>";
+         echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='btn btn-primary'>";
          echo "</td></tr>";
 
          echo "</table>";

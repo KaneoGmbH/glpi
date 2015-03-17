@@ -396,7 +396,7 @@ class Computer_SoftwareVersion extends CommonDBRelation {
 
       echo "<div class='center'>";
       if ($number < 1) {
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table table-striped'>";
          echo "<tr><th>".__('No item found')."</th></tr>";
          echo "</table></div>\n";
          return;
@@ -720,7 +720,7 @@ class Computer_SoftwareVersion extends CommonDBRelation {
          Software::dropdownSoftwareToInstall("softwareversions_id", $entities_id);
          echo "</td><td width='20%'>";
          echo "<input type='submit' name='add' value=\""._sx('button', 'Install')."\"
-                class='submit'>";
+                class='btn btn-primary'>";
          echo "</td>";
          echo "</tr>\n";
          echo "</table></div>\n";
@@ -838,7 +838,7 @@ class Computer_SoftwareVersion extends CommonDBRelation {
          echo "<input type='hidden' name='computers_id' value='$computers_id'>";
          Software::dropdownLicenseToInstall("softwarelicenses_id", $entities_id);
          echo "</td><td width='20%'>";
-         echo "<input type='submit' name='add' value=\"" ._sx('button', 'Add')."\" class='submit'>";
+         echo "<input type='submit' name='add' value=\"" ._sx('button', 'Add')."\" class='btn btn-primary'>";
          echo "</td></tr>\n";
          echo "</table></div>\n";
          Html::closeForm();

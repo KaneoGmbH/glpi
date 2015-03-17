@@ -277,7 +277,7 @@ class NetworkAlias extends FQDNLabel {
                                 $CFG_GLPI["root_doc"]."/ajax/viewsubitem.php", $params);
          echo "};";
          echo "</script>";
-         echo "<a class='vsubmit' href='javascript:viewAddAlias$rand();'>";
+         echo "<a class='btn btn-info btn-xs' href='javascript:viewAddAlias$rand();'>";
          echo __('Add a network alias')."</a>\n";
          echo "</div>\n";
       }
@@ -387,13 +387,13 @@ class NetworkAlias extends FQDNLabel {
       echo "<br><div class='center'>";
 
       if ($number < 1) {
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table table-striped'>";
          echo "<tr><th>".self::getTypeName(1)."</th><th>".__('No item found')."</th></tr>";
          echo "</table>\n";
       } else {
          Html::printAjaxPager(self::getTypeName($number), $start, $number);
 
-         echo "<table class='tab_cadre_fixe'><tr>";
+         echo "<table class='table table-striped'><tr>";
 
          echo "<th><a href='javascript:reloadTab(\"order=alias\");'>".self::getTypeName(1).
               "</a></th>"; // Alias

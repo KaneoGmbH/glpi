@@ -869,7 +869,7 @@ class Contract extends CommonDBTM {
       $result        = $DB->query($query);
       $contractpre30 = $DB->result($result,0,0);
 
-      echo "<table class='tab_cadrehov'>";
+      echo "<table class='table table-striped table-hover'>";
       echo "<tr class='noHover'><th colspan='2'>";
       echo "<a href=\"".$CFG_GLPI["root_doc"]."/front/contract.php?reset=reset\">".
              self::getTypeName(1)."</a></th></tr>";

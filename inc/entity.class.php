@@ -1010,7 +1010,7 @@ class Entity extends CommonTreeDropdown {
          echo "<form method='post' name=form action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
       }
 
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table table-striped'>";
       echo "<tr><th colspan='4'>".__('Address')."</th></tr>";
 
       echo "<tr class='tab_bg_1'>";
@@ -1064,7 +1064,7 @@ class Entity extends CommonTreeDropdown {
          echo "<tr>";
          echo "<td class='tab_bg_2 center' colspan='4'>";
          echo "<input type='hidden' name='id' value='".$entity->fields["id"]."'>";
-         echo "<input type='submit' name='update' value=\""._sx('button','Save')."\" class='submit'>";
+         echo "<input type='submit' name='update' value=\""._sx('button','Save')."\" class='btn btn-primary'>";
 
          echo "</td></tr>";
          echo "</table>";
@@ -1151,7 +1151,7 @@ class Entity extends CommonTreeDropdown {
          echo "<tr>";
          echo "<td class='tab_bg_2 center' colspan='2'>";
          echo "<input type='hidden' name='id' value='".$entity->fields["id"]."'>";
-         echo "<input type='submit' name='update' value=\""._sx('button','Save')."\" class='submit'>";
+         echo "<input type='submit' name='update' value=\""._sx('button','Save')."\" class='btn btn-primary'>";
 
          echo "</td></tr>";
          echo "</table>";
@@ -1283,7 +1283,7 @@ class Entity extends CommonTreeDropdown {
          echo "<tr>";
          echo "<td class='tab_bg_2 center' colspan='4'>";
          echo "<input type='hidden' name='id' value='".$entity->fields["id"]."'>";
-         echo "<input type='submit' name='update' value=\""._sx('button','Save')."\" class='submit'>";
+         echo "<input type='submit' name='update' value=\""._sx('button','Save')."\" class='btn btn-primary'>";
 
          echo "</td></tr>";
          echo "</table>";
@@ -1622,7 +1622,7 @@ class Entity extends CommonTreeDropdown {
          echo "<tr>";
          echo "<td class='tab_bg_2 center' colspan='4'>";
          echo "<input type='hidden' name='id' value='".$entity->fields["id"]."'>";
-         echo "<input type='submit' name='update' value=\""._sx('button','Save')."\" class='submit'>";
+         echo "<input type='submit' name='update' value=\""._sx('button','Save')."\" class='btn btn-primary'>";
          echo "</td></tr>";
          echo "</table>";
          Html::closeForm();
@@ -1935,7 +1935,7 @@ class Entity extends CommonTreeDropdown {
          echo "<td class='center' colspan='4'>";
          echo "<input type='hidden' name='id' value='".$entity->fields["id"]."'>";
          echo "<input type='submit' name='update' value=\""._sx('button','Save')."\"
-                  class='submit'>";
+                  class='btn btn-primary'>";
 
          echo "</td></tr>";
          echo "</table>";

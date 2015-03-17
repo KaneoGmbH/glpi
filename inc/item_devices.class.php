@@ -420,7 +420,7 @@ class Item_Devices extends CommonDBRelation {
       }
 
       if ($canedit) {
-         echo "<table class='tab_cadre_fixe'><tr class='tab_bg_1'><td>";
+         echo "<table class='table table-striped'><tr class='tab_bg_1'><td>";
          echo __('Add a new component')."</td><td class=left width='70%'>";
          if ($is_device) {
             Dropdown::showNumber('number_devices_to_add', array('value' => 0,
@@ -435,7 +435,7 @@ class Item_Devices extends CommonDBRelation {
                                                                  .'/ajax/selectUnaffectedOrNewItem_Device.php'));
          }
          echo "</td><td>";
-         echo "<input type='submit' class='submit' name='add' value='"._sx('button', 'Add')."'>";
+         echo "<input type='submit' class='btn btn-primary' name='add' value='"._sx('button', 'Add')."'>";
          echo "</td></tr></table>";
          Html::closeForm();
       }
@@ -451,7 +451,7 @@ class Item_Devices extends CommonDBRelation {
                             'display_title_for_each_group' => false));
 
       if ($canedit) {
-//          echo "<input type='submit' class='submit' name='updateall' value='" .
+//          echo "<input type='submit' class='btn btn-primary' name='updateall' value='" .
 //               _sx('button', 'Save')."'>";
 
          Html::closeForm();

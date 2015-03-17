@@ -378,7 +378,7 @@ class Group extends CommonTreeDropdown {
                                           'used'      => array($group->fields["id"]),
                                           'condition' => ($input['is_tech'] ? '`is_assign`'
                                                                             : '`is_itemgroup`')));
-                     echo "<br><br><input type='submit' name='massiveaction' class='submit' value='".
+                     echo "<br><br><input type='submit' name='massiveaction' class='btn btn-primary' value='".
                                     _sx('button', 'Move')."'>";
                      return true;
                   }
@@ -515,7 +515,7 @@ class Group extends CommonTreeDropdown {
 
       echo "<form name='groupldap_form' id='groupldap_form' method='post' action='".
              $this->getFormURL()."'>";
-      echo "<div class='spaced'><table class='tab_cadre_fixe'>";
+      echo "<div class='spaced'><table class='table table-striped'>";
 
       if (Group::canUpdate()
           && Session::haveRight("user", User::UPDATEAUTHENT)

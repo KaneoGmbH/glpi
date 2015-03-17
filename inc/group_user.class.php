@@ -143,7 +143,7 @@ class Group_User extends CommonDBRelation{
          echo "<form name='groupuser_form$rand' id='groupuser_form$rand' method='post'";
          echo " action='".Toolbox::getItemTypeFormURL('User')."'>";
 
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table table-striped'>";
          echo "<tr class='tab_bg_1'><th colspan='6'>".__('Associate to a group')."</th></tr>";
          echo "<tr class='tab_bg_2'><td class='center'>";
          echo "<input type='hidden' name='users_id' value='$ID'>";
@@ -171,7 +171,7 @@ class Group_User extends CommonDBRelation{
 
             echo "</td><td class='tab_bg_2 center'>";
             echo "<input type='submit' name='addgroup' value=\""._sx('button','Add')."\"
-                   class='submit'>";
+                   class='btn btn-primary'>";
 
          } else {
             _e('None');
@@ -313,7 +313,7 @@ class Group_User extends CommonDBRelation{
 
          echo "</td><td class='tab_bg_2 center'>";
          echo "<input type='hidden' name'is_dynamic' value='0'>";
-         echo "<input type='submit' name='add' value=\""._sx('button','Add')."\" class='submit'>";
+         echo "<input type='submit' name='add' value=\""._sx('button','Add')."\" class='btn btn-primary'>";
          echo "</td></tr>";
          echo "</table></div>";
          Html::closeForm();

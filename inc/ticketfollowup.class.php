@@ -488,7 +488,7 @@ class TicketFollowup  extends CommonDBTM {
       echo "<textarea name='content' cols='50' rows='6'></textarea>&nbsp;";
 
       echo "<input type='hidden' name='is_private' value='".$_SESSION['glpifollowup_private']."'>";
-      echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='submit'>";
+      echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='btn btn-primary'>";
    }
 
 
@@ -717,7 +717,7 @@ class TicketFollowup  extends CommonDBTM {
                echo Html::scriptBlock("viewAddFollowup".$ticket->fields['id']."$rand()");
             } else {
                echo "<div id='addbutton".$ticket->fields['id'] . "$rand' class='center firstbloc'>".
-                    "<a class='vsubmit' href='javascript:viewAddFollowup".$ticket->fields['id'].
+                    "<a class='btn btn-info btn-xs' href='javascript:viewAddFollowup".$ticket->fields['id'].
                                               "$rand();'>";
                if ($reopen_case) {
                   _e('Reopen the ticket');
@@ -731,7 +731,7 @@ class TicketFollowup  extends CommonDBTM {
       }
 
       if ($DB->numrows($result) == 0) {
-         echo "<table class='tab_cadre_fixe'><tr class='tab_bg_2'>";
+         echo "<table class='table table-striped'><tr class='tab_bg_2'>";
          echo "<th class='b'>" . __('No followup for this ticket.')."</th></tr></table>";
       } else {
          $today          = strtotime('today');
@@ -934,11 +934,11 @@ class TicketFollowup  extends CommonDBTM {
          echo "<tr class='tab_bg_2'>";
          echo "<td class='tab_bg_2 center' colspan='2' width='200'>\n";
          echo "<input type='submit' name='add_close' value=\"".__('Approve the solution')."\"
-                class='submit'>";
+                class='btn btn-primary'>";
          echo "</td>\n";
          echo "<td class='tab_bg_2 center' colspan='2'>\n";
          echo "<input type='submit' name='add_reopen' value=\"".__('Refuse the solution')."\"
-                class='submit'>";
+                class='btn btn-primary'>";
          echo "</td></tr>\n";
          echo "</table>";
          Html::closeForm();

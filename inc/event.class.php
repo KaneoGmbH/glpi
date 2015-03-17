@@ -227,7 +227,7 @@ class Event extends CommonDBTM {
 
       // No Events in database
       if ($number < 1) {
-         echo "<br><div class='spaced'><table class='tab_cadrehov'>";
+         echo "<br><div class='spaced'><table class='table table-striped table-hover'>";
          echo "<tr><th>".__('No Event')."</th></tr>";
          echo "</table></div>";
          return;

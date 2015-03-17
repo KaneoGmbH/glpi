@@ -143,7 +143,7 @@ class State extends CommonTreeDropdown {
 
       if (count($states)) {
          // Produce headline
-         echo "<div class='center'><table class='tab_cadrehov'><tr>";
+         echo "<div class='center'><table class='table table-striped table-hover'><tr>";
 
          // Type
          echo "<th>".__('Status')."</th>";

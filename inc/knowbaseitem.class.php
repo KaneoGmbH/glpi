@@ -803,7 +803,7 @@ class KnowbaseItem extends CommonDBTM {
 
       $tmp = "<a href='".$this->getSearchURL().
              "?knowbaseitemcategories_id=$knowbaseitemcategories_id'>".$fullcategoryname."</a>";
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table table-striped'>";
       echo "<tr class='tab_bg_3'><th colspan='4'>".sprintf(__('%1$s: %2$s'), __('Category'), $tmp);
       echo "</th></tr>";
 
@@ -903,7 +903,7 @@ class KnowbaseItem extends CommonDBTM {
       echo "<input type='text' size='50' name='contains' value=\"".
              Html::cleanInputText(stripslashes($params["contains"]))."\"></td>";
       echo "<td class='left'>";
-      echo "<input type='submit' value=\""._sx('button','Search')."\" class='submit'></td></tr>";
+      echo "<input type='submit' value=\""._sx('button','Search')."\" class='btn btn-primary'></td></tr>";
       echo "</table>";
       if (isset($options['item_itemtype'])
           && isset($options['item_items_id'])) {
@@ -952,7 +952,7 @@ class KnowbaseItem extends CommonDBTM {
          echo "<tr class='tab_bg_2'><td class='right' width='50%'>".__('Category')."&nbsp;";
          KnowbaseItemCategory::dropdown(array('value' => $params["knowbaseitemcategories_id"]));
          echo "</td><td class='left'>";
-         echo "<input type='submit' value=\""._sx('button','Post')."\" class='submit'></td>";
+         echo "<input type='submit' value=\""._sx('button','Post')."\" class='btn btn-primary'></td>";
          echo "</tr></table>";
          if (isset($options['item_itemtype'])
              && isset($options['item_items_id'])) {
@@ -1001,7 +1001,7 @@ class KnowbaseItem extends CommonDBTM {
       }
       Dropdown::showFromArray('unpublished', $values, array('value' => $params['unpublished']));
       echo "</td><td class='left'>";
-      echo "<input type='submit' value=\""._sx('button','Post')."\" class='submit'></td>";
+      echo "<input type='submit' value=\""._sx('button','Post')."\" class='btn btn-primary'></td>";
       echo "</tr></table>";
       Html::closeForm();
       echo "</div>";
@@ -1487,7 +1487,7 @@ class KnowbaseItem extends CommonDBTM {
       $number = $DB->numrows($result);
 
       if ($number > 0) {
-         echo "<table class='tab_cadrehov'>";
+         echo "<table class='table table-striped table-hover'>";
          echo "<tr class='noHover'><th>".$title."</th></tr>";
          while ($data = $DB->fetch_assoc($result)) {
             $name = $data['name'];

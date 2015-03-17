@@ -171,7 +171,7 @@ if (isset($query) && count($query)) {
       if ($result && $DB->numrows($result)) {
          $item = new $key();
          echo "<div class='center'><span class='b'>".$item->getTypeName(1)."</span></div>";
-         echo "<table class='tab_cadrehov'>";
+         echo "<table class='table table-striped table-hover'>";
          echo "<tr><th>".__('Name')."</th>";
          echo "<th>".__('Deleted')."</th>";
          if ($display_entity) {

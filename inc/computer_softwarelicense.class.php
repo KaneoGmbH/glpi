@@ -381,14 +381,14 @@ class Computer_SoftwareLicense extends CommonDBRelation {
                 $CFG_GLPI["root_doc"]."/front/computer_softwarelicense.form.php'>";
          echo "<input type='hidden' name='softwarelicenses_id' value='$searchID'>";
 
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table table-striped'>";
          echo "<tr class='tab_bg_2 center'>";
          echo "<td>";
          Computer::dropdown(array('entity'      => $license->fields['entities_id'],
                                   'entity_sons' => $license->fields['is_recursive']));
 
          echo "</td>";
-         echo "<td><input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='submit'>";
+         echo "<td><input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='btn btn-primary'>";
          echo "</td></tr>";
 
          echo "</table>";

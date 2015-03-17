@@ -240,7 +240,7 @@ class Config extends CommonDBTM {
          echo "<form name='form' action=\"".Toolbox::getItemTypeFormURL(__CLASS__)."\" method='post'>";
       }
       echo "<div class='center' id='tabsbody'>";
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table table-striped'>";
 
       echo "<tr><th colspan='4'>" . __('General setup') . "</th></tr>";
       echo "<tr class='tab_bg_2'>";
@@ -375,7 +375,7 @@ class Config extends CommonDBTM {
       if ($canedit) {
          echo "<tr class='tab_bg_2'>";
          echo "<td colspan='4' class='center'>";
-         echo "<input type='submit' name='update' class='submit' value=\""._sx('button','Save')."\">";
+         echo "<input type='submit' name='update' class='btn btn-primary' value=\""._sx('button','Save')."\">";
          echo "</td></tr>";
       }
 
@@ -515,7 +515,7 @@ class Config extends CommonDBTM {
       if ($canedit) {
          echo "<tr class='tab_bg_2'>";
          echo "<td colspan='6' class='center'>";
-         echo "<input type='submit' name='update' class='submit' value=\""._sx('button', 'Save')."\">";
+         echo "<input type='submit' name='update' class='btn btn-primary' value=\""._sx('button', 'Save')."\">";
          echo "</td></tr>";
       }
 
@@ -559,7 +559,7 @@ class Config extends CommonDBTM {
 
       echo "<tr class='tab_bg_2'>";
       echo "<td colspan='4' class='center'>";
-      echo "<input type='submit' name='update_auth' class='submit' value=\""._sx('button', 'Save').
+      echo "<input type='submit' name='update_auth' class='btn btn-primary' value=\""._sx('button', 'Save').
            "\">";
       echo "</td></tr>";
 
@@ -629,7 +629,7 @@ class Config extends CommonDBTM {
       }
 
       echo "<tr class='tab_bg_2'><td colspan='4' class='center'>";
-      echo "<input type='submit' name='update' class='submit' value=\""._sx('button', 'Save')."\">";
+      echo "<input type='submit' name='update' class='btn btn-primary' value=\""._sx('button', 'Save')."\">";
       echo "</td></tr>";
 
       echo "</table></div>";
@@ -792,7 +792,7 @@ class Config extends CommonDBTM {
       if ($canedit) {
          echo "<tr class='tab_bg_2'>";
          echo "<td colspan='7' class='center'>";
-         echo "<input type='submit' name='update' class='submit' value=\""._sx('button','Save')."\">";
+         echo "<input type='submit' name='update' class='btn btn-primary' value=\""._sx('button','Save')."\">";
          echo "</td></tr>";
       }
 
@@ -1096,7 +1096,7 @@ class Config extends CommonDBTM {
 
          echo "<tr class='tab_bg_2'>";
          echo "<td colspan='4' class='center'>";
-         echo "<input type='submit' name='update' class='submit' value=\""._sx('button', 'Save')."\">";
+         echo "<input type='submit' name='update' class='btn btn-primary' value=\""._sx('button', 'Save')."\">";
          echo "</td></tr>";
 
       echo "</table></div>";
@@ -1357,7 +1357,7 @@ class Config extends CommonDBTM {
 
       echo "<tr class='tab_bg_2'>";
       echo "<td colspan='4' class='center'>";
-      echo "<input type='submit' name='update' class='submit' value=\""._sx('button', 'Save')."\">";
+      echo "<input type='submit' name='update' class='btn btn-primary' value=\""._sx('button', 'Save')."\">";
       echo "</td></tr>";
 
       echo "</table>";

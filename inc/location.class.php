@@ -253,7 +253,7 @@ class Location extends CommonTreeDropdown {
          $start = 0;
       }
       // Mini Search engine
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table table-striped'>";
       echo "<tr class='tab_bg_1'><th colspan='2'>".__('Type')."</th></tr>";
       echo "<tr class='tab_bg_1'><td class='center'>";
       echo __('Type')."&nbsp;";

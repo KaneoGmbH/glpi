@@ -261,7 +261,7 @@ class SoftwareVersion extends CommonDBChild {
 
       if ($canedit) {
          echo "<div class='center firstbloc'>";
-         echo "<a class='vsubmit' href='softwareversion.form.php?softwares_id=$softwares_id'>".
+         echo "<a class='btn btn-info btn-xs' href='softwareversion.form.php?softwares_id=$softwares_id'>".
                 _x('button', 'Add a version')."</a>";
          echo "</div>";
       }
@@ -309,7 +309,7 @@ class SoftwareVersion extends CommonDBChild {
             echo "</table>\n";
 
          } else {
-            echo "<table class='tab_cadre_fixe'>";
+            echo "<table class='table table-striped'>";
             echo "<tr><th>".__('No item found')."</th></tr>";
             echo "</table>\n";
          }

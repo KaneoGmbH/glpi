@@ -260,7 +260,7 @@ class ReservationItem extends CommonDBChild {
       $ri = new self();
 
       echo "<div>";
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table table-striped'>";
       echo "<tr><th colspan='2'>".__('Reserve an item')."</th></tr>";
       echo "<tr class='tab_bg_1'>";
       if ($ri->getFromDBbyItem($item->getType(),$item->getID())) {
@@ -330,7 +330,7 @@ class ReservationItem extends CommonDBChild {
          echo "</textarea></td></tr>\n";
 
          echo "<tr class='tab_bg_2'><td colspan='2' class='top center'>";
-         echo "<input type='submit' name='update' value=\""._sx('button','Save')."\" class='submit'>";
+         echo "<input type='submit' name='update' value=\""._sx('button','Save')."\" class='btn btn-primary'>";
          echo "</td></tr>\n";
 
          echo "</table>";
@@ -379,7 +379,7 @@ class ReservationItem extends CommonDBChild {
          $_POST['reservation_types'] = '';
       }
       echo "<form method='post' name='form' action='".Toolbox::getItemTypeSearchURL(__CLASS__)."'>";
-      echo "<table class='tab_cadre_fixe'><tr class='tab_bg_2'>";
+      echo "<table class='table table-striped'><tr class='tab_bg_2'>";
       echo "<th colspan='3'>".__('Find a free item in a specific period')."</th></tr>";
 
 
@@ -387,7 +387,7 @@ class ReservationItem extends CommonDBChild {
       Html::showDateTimeField("reserve[begin]", array('value'      =>  $_POST['reserve']["begin"],
                                                       'maybeempty' => false));
       echo "</td><td rowspan='3'>";
-      echo "<input type='submit' class='submit' name='submit' value=\""._sx('button', 'Search')."\">";
+      echo "<input type='submit' class='btn btn-primary' name='submit' value=\""._sx('button', 'Search')."\">";
       echo "</td></tr>";
 
       echo "<tr class='tab_bg_2'><td>".__('Duration')."</td><td>";
@@ -542,7 +542,7 @@ class ReservationItem extends CommonDBChild {
             echo Html::hidden('begin', array('value' => $_POST['reserve']["begin"]));
             echo Html::hidden('end', array('value'   => $_POST['reserve']["end"]));
          }
-         echo "<input type='submit' value=\""._sx('button','Add')."\" class='submit'></td></tr>\n";
+         echo "<input type='submit' value=\""._sx('button','Add')."\" class='btn btn-primary'></td></tr>\n";
 
       }
       echo "</table>\n";

@@ -781,7 +781,7 @@ class ProjectTask extends CommonDBChild {
 
       if ($canedit) {
          echo "<div class='center firstbloc'>";
-         echo "<a class='vsubmit' href='projecttask.form.php?projects_id=$ID'>".
+         echo "<a class='btn btn-info btn-xs' href='projecttask.form.php?projects_id=$ID'>".
                 _x('button', 'Add a task')."</a>";
          echo "</div>";
       }
@@ -864,7 +864,7 @@ class ProjectTask extends CommonDBChild {
             echo "</table>\n";
 
          } else {
-            echo "<table class='tab_cadre_fixe'>";
+            echo "<table class='table table-striped'>";
             echo "<tr><th>".__('No item found')."</th></tr>";
             echo "</table>\n";
          }
@@ -953,7 +953,7 @@ class ProjectTask extends CommonDBChild {
 
          echo "</td>";
          echo "<td width='20%'>";
-         echo "<input type='submit' name='add' value=\""._sx('button','Add')."\" class='submit'>";
+         echo "<input type='submit' name='add' value=\""._sx('button','Add')."\" class='btn btn-primary'>";
          echo "</td>";
          echo "</tr>";
          echo "</table>";

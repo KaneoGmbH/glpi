@@ -236,7 +236,7 @@ class ComputerDisk extends CommonDBChild {
       if ($canedit
           && !(!empty($withtemplate) && ($withtemplate == 2))) {
          echo "<div class='center firstbloc'>".
-               "<a class='vsubmit' href='computerdisk.form.php?computers_id=$ID&amp;withtemplate=".
+               "<a class='btn btn-info btn-xs' href='computerdisk.form.php?computers_id=$ID&amp;withtemplate=".
                   $withtemplate."'>";
          _e('Add a volume');
          echo "</a></div>\n";

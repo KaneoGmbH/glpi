@@ -28,6 +28,8 @@ and open the template in the editor.
     content: "\e118";
 }
 
-.table {
-    margin-bottom: 0;
+
+.tab-content {
+    border: 1px solid #ddd;
+    border-top: none;
 }

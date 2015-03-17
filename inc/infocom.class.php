@@ -949,7 +949,7 @@ class Infocom extends CommonDBChild {
             if ($ic->can(-1, CREATE, $input)
                 && ($withtemplate != 2)) {
                echo "<div class='spaced b'>";
-               echo "<table class='tab_cadre_fixe'><tr class='tab_bg_1'><th>";
+               echo "<table class='table table-striped'><tr class='tab_bg_1'><th>";
                echo sprintf(__('%1$s - %2$s'), $item->getTypeName(1), $item->getName())."</th></tr>";
                echo "<tr class='tab_bg_1'><td class='center'>";
 
@@ -1180,12 +1180,12 @@ class Infocom extends CommonDBChild {
                echo "<td class='tab_bg_2 center' colspan='2'>";
                echo "<input type='hidden' name='id' value='".$ic->fields['id']."'>";
                echo "<input type='submit' name='update' value=\""._sx('button','Save')."\"
-                      class='submit'>";
+                      class='btn btn-primary'>";
                echo "</td>";
                echo "<td class='tab_bg_2 center' colspan='2'>";
                echo "<input type='submit' name='purge' value=\""._sx('button',
                                                                       'Delete permanently')."\"
-                      class='submit'>";
+                      class='btn btn-primary'>";
                echo "</td></tr>";
                echo "</table>";
                Html::closeForm();

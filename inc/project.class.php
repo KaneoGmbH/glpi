@@ -217,9 +217,7 @@ class Project extends CommonDBTM {
       $links = array();
       if (static::canView()
           || Session::haveRight('projecttask', ProjectTask::READMY)) {
-         $pic_validate = "<img title=\""._sn('Task','Tasks',2)."\" alt=\"".
-                           _sn('Task','Tasks',2)."\" src='".
-                           $CFG_GLPI["root_doc"]."/pics/menu_showall.png'>";
+         $pic_validate = _sn('Task','Tasks', 2);
 
          $links[$pic_validate] = '/front/projecttask.php';
 
@@ -1004,7 +1002,7 @@ class Project extends CommonDBTM {
          echo "<form name='projectteam_form$rand' id='projectteam_form$rand' ";
          echo " method='post' action='".Toolbox::getItemTypeFormURL('ProjectTeam')."'>";
          echo "<input type='hidden' name='projects_id' value='$ID'>";
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table table-striped'>";
          echo "<tr class='tab_bg_1'><th colspan='2'>".__('Add a team member')."</tr>";
          echo "<tr class='tab_bg_2'><td>";
 
@@ -1019,7 +1017,7 @@ class Project extends CommonDBTM {
          echo "</td>";
          echo "<td width='20%'>";
          echo "<input type='submit' name='add' value=\""._sx('button','Add')."\"
-               class='submit'>";
+               class='btn btn-primary'>";
          echo "</td>";
          echo "</tr>";
          echo "</table>";

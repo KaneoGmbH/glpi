@@ -93,7 +93,7 @@ if (isset($_POST["validatortype"])) {
 
          // Display all/none buttons to select all or no users in group
          if (!empty($_POST['groups_id'])){
-            echo "<br><br><a id='all_users' class='vsubmit'>".__('All')."</a>";
+            echo "<br><br><a id='all_users' class='btn btn-info btn-xs'>".__('All')."</a>";
             $param_button['validatortype']      = 'list_users';
             $param_button['name']               = !empty($_POST['name']) ? $_POST['name']:'';
             $param_button['users_id_validate']  = '';
@@ -105,7 +105,7 @@ if (isset($_POST["validatortype"])) {
                                     $CFG_GLPI["root_doc"]."/ajax/dropdownValidator.php",
                                     $param_button, array('click'));
 
-            echo "&nbsp;<a id='no_users' class='vsubmit'>".__('None')."</a>";
+            echo "&nbsp;<a id='no_users' class='btn btn-info btn-xs'>".__('None')."</a>";
             $param_button['all_users'] = 0;
             Ajax::updateItemOnEvent('no_users', 'show_list_users',
                                     $CFG_GLPI["root_doc"]."/ajax/dropdownValidator.php",

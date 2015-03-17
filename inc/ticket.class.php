@@ -177,11 +177,8 @@ class Ticket extends CommonITILObject {
          $opt['criteria'][1]['value']      = Session::getLoginUserID();
          $opt['criteria'][1]['link']       = 'AND';
 
-         $pic_validate = "<img title=\"".__s('Ticket waiting for your approval')."\" alt=\"".
-                           __s('Ticket waiting for your approval')."\" src='".
-                           $CFG_GLPI["root_doc"]."/pics/menu_showall.png'>";
 
-         $links[$pic_validate] = '/front/ticket.php?'.Toolbox::append_params($opt, '&amp;');
+         $links['my_tickets'] = '/front/ticket.php?'.Toolbox::append_params($opt, '&amp;');
       }
       if (count($links)) {
          return $links;
@@ -2697,7 +2694,7 @@ class Ticket extends CommonITILObject {
       $delegating = User::getDelegateGroupsForUser($values['entities_id']);
 
       if (count($delegating)) {
-         echo "<div class='center'><table class='tab_cadre_fixe'>";
+         echo "<div class='center'><table class='table table-striped'>";
          echo "<tr><th colspan='2'>".__('This ticket concerns me')." ";
 
          $rand   = Dropdown::showYesNo("nodelegate", $values['nodelegate']);
@@ -2748,7 +2745,7 @@ class Ticket extends CommonITILObject {
          $values['_users_id_requester'] = Session::getLoginUserID();
 
          if ($CFG_GLPI['use_check_pref']) {
-            echo "<div class='center'><table class='tab_cadre_fixe'>";
+            echo "<div class='center'><table class='table table-striped'>";
             echo "<tr><th>".__('Check your personnal information')."</th></tr>";
             echo "<tr class='tab_bg_1'><td class='center'>";
             User::showPersonalInformation(Session::getLoginUserID());
@@ -2826,7 +2823,7 @@ class Ticket extends CommonITILObject {
          echo "<input type='hidden' name='locations_id' value='".$values['locations_id']."'>";
       }
       echo "<input type='hidden' name='entities_id' value='".$_SESSION["glpiactive_entity"]."'>";
-      echo "<div class='center'><table class='tab_cadre_fixe'>";
+      echo "<div class='center'><table class='table table-striped'>";
 
       echo "<tr><th>".__('Describe the incident or request')."</th><th>";
       if (Session::isMultiEntitiesMode()) {
@@ -3027,7 +3024,7 @@ class Ticket extends CommonITILObject {
             echo "<input type='hidden' name='_predefined_fields'
                    value=\"".Toolbox::prepareArrayForInput($predefined_fields)."\">";
          }
-         echo "<input type='submit' name='add' value=\"".__s('Submit message')."\" class='submit'>";
+         echo "<input type='submit' name='add' value=\"".__s('Submit message')."\" class='btn btn-primary'>";
          echo "</td></tr>";
       }
 
@@ -3449,7 +3446,7 @@ class Ticket extends CommonITILObject {
          }
       }
       echo "<div class='spaced' id='tabsbody'>";
-      echo "<table class='tab_cadre_fixe' id='mainformtable'>";
+      echo "<table class='table table-striped' id='mainformtable'>";
 
       // Optional line
       $ismultientities = Session::isMultiEntitiesMode();
@@ -3567,7 +3564,7 @@ class Ticket extends CommonITILObject {
                echo "<td>";
                echo $tt->getBeginHiddenFieldText('slas_id');
                echo "<span id='sla_action'>";
-               echo "<a class='vsubmit' ".
+               echo "<a class='btn btn-info btn-xs' ".
                       Html::addConfirmationOnAction(array(__('The assignment of a SLA to a ticket causes the recalculation of the due date.'),
                        __("Escalations defined in the SLA will be triggered under this new date.")),
                                                     "cleanhide('sla_action');cleandisplay('sla_choice');").
@@ -3663,7 +3660,7 @@ class Ticket extends CommonITILObject {
 
       if ($ID) {
          echo "</table>";
-         echo "<table  class='tab_cadre_fixe' id='mainformtable2'>";
+         echo "<table  class='table table-striped' id='mainformtable2'>";
       }
 
       echo "<tr class='tab_bg_1'>";
@@ -3760,7 +3757,7 @@ class Ticket extends CommonITILObject {
          echo self::getStatus($this->fields["status"]);
          if (in_array($this->fields["status"], $this->getClosedStatusArray())
              && $this->isAllowedStatus($this->fields['status'], Ticket::INCOMING)) {
-            echo "&nbsp;<a class='vsubmit' href='".$this->getLinkURL().
+            echo "&nbsp;<a class='btn btn-info btn-xs' href='".$this->getLinkURL().
                   "&amp;forcetab=TicketFollowup$1&amp;_openfollowup=1'>". __('Reopen')."</a>";
          }
       }
@@ -4133,24 +4130,24 @@ class Ticket extends CommonITILObject {
                echo "<td class='tab_bg_2 center' colspan='4'>";
                if ($this->fields["is_deleted"] == 1) {
                   if (self::canPurge()) {
-                     echo "<input type='submit' class='submit' name='restore' value='".
+                     echo "<input type='submit' class='btn btn-primary' name='restore' value='".
                             _sx('button', 'Restore')."'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
                   }
                } else {
                   if (self::canUpdate() ) {
-                     echo "<input type='submit' class='submit' name='update' value='".
+                     echo "<input type='submit' class='btn btn-primary' name='update' value='".
                             _sx('button', 'Save')."'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
                   }
                }
                if ($this->fields["is_deleted"] == 1) {
                   if (self::canPurge()) {
-                     echo "<input type='submit' class='submit' name='purge' value='".
+                     echo "<input type='submit' class='btn btn-primary' name='purge' value='".
                             _sx('button', 'Delete permanently')."' ".
                             Html::addConfirmationOnAction(__('Confirm the final deletion?')).">";
                   }
                } else {
                   if (self::canDelete()) {
-                     echo "<input type='submit' class='submit' name='delete' value='".
+                     echo "<input type='submit' class='btn btn-primary' name='delete' value='".
                             _sx('button', 'Put in dustbin')."'>";
                   }
                }
@@ -4161,7 +4158,7 @@ class Ticket extends CommonITILObject {
 
          } else {
             echo "<td class='tab_bg_2 center' colspan='4'>";
-            echo "<input type='submit' name='add' value=\""._sx('button','Add')."\" class='submit'>";
+            echo "<input type='submit' name='add' value=\""._sx('button','Add')."\" class='btn btn-primary'>";
             if ($tt->isField('id') && ($tt->fields['id'] > 0)) {
                echo "<input type='hidden' name='_tickettemplates_id' value='".$tt->fields['id']."'>";
                echo "<input type='hidden' name='_predefined_fields'
@@ -4361,7 +4358,7 @@ class Ticket extends CommonITILObject {
       }
 
       if ($numrows > 0) {
-         echo "<table class='tab_cadrehov'>";
+         echo "<table class='table table-striped table-hover'>";
          echo "<tr class='noHover'><th colspan='4'>";
 
          $options['reset'] = 'reset';

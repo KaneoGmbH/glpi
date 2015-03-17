@@ -727,7 +727,7 @@ abstract class CommonITILValidation  extends CommonDBChild {
          echo "<form method='post' name=form action='".
                 Toolbox::getItemTypeFormURL(static::$itemtype)."'>";
       }
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table table-striped'>";
       echo "<tr>";
       echo "<th colspan='3'>".self::getTypeName(Session::getPluralNumber())."</th>";
       echo "</tr>";
@@ -753,7 +753,7 @@ abstract class CommonITILValidation  extends CommonDBChild {
          echo $item->getValueToSelect('validation_percent', 'validation_percent',
                                       $item->fields["validation_percent"]);
          echo "</td>";
-         echo "<td><input type='submit' name='update' class='submit' value='".
+         echo "<td><input type='submit' name='update' class='btn btn-primary' value='".
                     _sx('button','Save')."'>";
          if (!empty($tID)) {
             echo "<input type='hidden' name='id' value='$tID'>";
@@ -787,7 +787,7 @@ abstract class CommonITILValidation  extends CommonDBChild {
          if (!in_array($item->fields['status'], array_merge($item->getSolvedStatusArray(),
                                                            $item->getClosedStatusArray()))) {
             echo "<div class='center'>";
-            echo "<a class='vsubmit' href='javascript:viewAddValidation".$tID."$rand();'>";
+            echo "<a class='btn btn-info btn-xs' href='javascript:viewAddValidation".$tID."$rand();'>";
             echo __('Send an approval request')."</a></div><br>\n";
          }
       }

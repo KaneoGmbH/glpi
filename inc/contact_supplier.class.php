@@ -182,7 +182,7 @@ class Contact_Supplier extends CommonDBRelation{
          echo "<form name='contactsupplier_form$rand' id='contactsupplier_form$rand'
                 method='post' action='";
          echo Toolbox::getItemTypeFormURL(__CLASS__)."'>";
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table table-striped'>";
          echo "<tr class='tab_bg_1'><th colspan='2'>".__('Add a supplier')."</tr>";
 
          echo "<tr class='tab_bg_2'><td class='center'>";
@@ -191,7 +191,7 @@ class Contact_Supplier extends CommonDBRelation{
                                   'entity'      => $contact->fields["entities_id"],
                                   'entity_sons' => $contact->fields["is_recursive"]));
          echo "</td><td class='center'>";
-         echo "<input type='submit' name='add' value=\""._sx('button','Add')."\" class='submit'>";
+         echo "<input type='submit' name='add' value=\""._sx('button','Add')."\" class='btn btn-primary'>";
          echo "</td></tr>";
 
          echo "</table>";
@@ -328,7 +328,7 @@ class Contact_Supplier extends CommonDBRelation{
                                  'entity_sons' => $supplier->fields["is_recursive"]));
 
          echo "</td><td class='center'>";
-         echo "<input type='submit' name='add' value=\""._sx('button','Add')."\" class='submit'>";
+         echo "<input type='submit' name='add' value=\""._sx('button','Add')."\" class='btn btn-primary'>";
          echo "</td></tr>";
 
          echo "</table>";

@@ -132,7 +132,7 @@ class Profile_User extends CommonDBRelation {
          echo "<div class='firstbloc'>";
          echo "<form name='entityuser_form$rand' id='entityuser_form$rand' method='post' action='";
          echo Toolbox::getItemTypeFormURL(__CLASS__)."'>";
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table table-striped'>";
          echo "<tr class='tab_bg_1'><th colspan='6'>".__('Add an authorization to a user')."</tr>";
 
          echo "<tr class='tab_bg_2'><td class='center'>";
@@ -143,7 +143,7 @@ class Profile_User extends CommonDBRelation {
          echo "</td><td>".__('Recursive')."</td><td>";
          Dropdown::showYesNo("is_recursive",0);
          echo "</td><td class='center'>";
-         echo "<input type='submit' name='add' value=\""._sx('button','Add')."\" class='submit'>";
+         echo "<input type='submit' name='add' value=\""._sx('button','Add')."\" class='btn btn-primary'>";
          echo "</td></tr>";
 
          echo "</table>";
@@ -248,7 +248,7 @@ class Profile_User extends CommonDBRelation {
          echo $header_begin.$header_bottom.$header_end;
          echo "</table>";
       } else {
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table table-striped'>";
          echo "<tr><th>".__('No item found')."</th></tr>";
          echo "</table>\n";
       }
@@ -301,7 +301,7 @@ class Profile_User extends CommonDBRelation {
          echo "</td><td class='tab_bg_2 center'>".__('Recursive')."</td><td>";
          Dropdown::showYesNo("is_recursive", 0);
          echo "</td><td class='tab_bg_2 center'>";
-         echo "<input type='submit' name='add' value=\""._sx('button','Add')."\" class='submit'>";
+         echo "<input type='submit' name='add' value=\""._sx('button','Add')."\" class='btn btn-primary'>";
          echo "</td></tr>";
          echo "</table>";
          Html::closeForm();

@@ -287,13 +287,13 @@ class DisplayPreference extends CommonDBTM {
 
       if ($numrows == 0) {
          Session::checkRight(self::$rightname, self::PERSONAL);
-         echo "<table class='tab_cadre_fixe'><tr><th colspan='4'>";
+         echo "<table class='table table-striped'><tr><th colspan='4'>";
          echo "<form method='post' action='$target'>";
          echo "<input type='hidden' name='itemtype' value='$itemtype'>";
          echo "<input type='hidden' name='users_id' value='$IDuser'>";
          echo __('No personal criteria. Create personal parameters?')."<span class='small_space'>";
          echo "<input type='submit' name='activate' value=\"".__('Create')."\"
-                class='submit'>";
+                class='btn btn-primary'>";
          echo "</span>";
          Html::closeForm();
          echo "</th></tr></table>\n";
@@ -301,13 +301,13 @@ class DisplayPreference extends CommonDBTM {
       } else {
          $already_added = self::getForTypeUser($itemtype, $IDuser);
 
-         echo "<table class='tab_cadre_fixe'><tr><th colspan='4'>";
+         echo "<table class='table table-striped'><tr><th colspan='4'>";
          echo "<form method='post' action='$target'>";
          echo "<input type='hidden' name='itemtype' value='$itemtype'>";
          echo "<input type='hidden' name='users_id' value='$IDuser'>";
          echo __('Select default items to show')."<span class='small_space'>";
          echo "<input type='submit' name='disable' value=\"".__('Delete')."\"
-                class='submit'>";
+                class='btn btn-primary'>";
          echo "</span>";
          Html::closeForm();
          
@@ -331,7 +331,7 @@ class DisplayPreference extends CommonDBTM {
          if ($values) {
             Dropdown::showFromArray('num', $values);
             echo "<span class='small_space'>";
-            echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='submit'>";
+            echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='btn btn-primary'>";
             echo "</span>";
          }
          Html::closeForm();
@@ -455,7 +455,7 @@ class DisplayPreference extends CommonDBTM {
       $result  = $DB->query($query);
       $numrows = $DB->numrows($result);
 
-      echo "<table class='tab_cadre_fixe'><tr><th colspan='4'>";
+      echo "<table class='table table-striped'><tr><th colspan='4'>";
       echo __('Select default items to show')."</th></tr>\n";
 
       if ($global_write) {
@@ -479,7 +479,7 @@ class DisplayPreference extends CommonDBTM {
          if ($values) {
             Dropdown::showFromArray('num', $values);
             echo "<span class='small_space'>";
-            echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='submit'>";
+            echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='btn btn-primary'>";
             echo "</span>";
          }
          Html::closeForm();

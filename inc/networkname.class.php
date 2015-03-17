@@ -663,7 +663,7 @@ class NetworkName extends FQDNLabel {
 
          echo "<div class='firstbloc'>\n";
          echo "<form method='post' action='".static::getFormURL()."'>\n";
-         echo "<table class='tab_cadre_fixe'>\n";
+         echo "<table class='table table-striped'>\n";
          echo "<tr><th colspan='4'>".__('Add a network name')."</th></tr>";
 
          echo "<tr class='tab_bg_1'><td class='right'>";
@@ -675,7 +675,7 @@ class NetworkName extends FQDNLabel {
                               'condition' => '`items_id`=0'));
          echo "</td><td class='left'>";
          echo "<input type='submit' name='assign_address' value='"._sx('button','Associate').
-                "' class='submit'>";
+                "' class='btn btn-primary'>";
          echo "</td>";
          if (static::canCreate()) {
             echo "<td class='right' width='30%'>";
@@ -771,7 +771,7 @@ class NetworkName extends FQDNLabel {
             Html::printAjaxPager(self::getTypeName(Session::getPluralNumber()), $start, self::countForItem($item));
          }
       } else {
-         echo "<table class='tab_cadre_fixe'><tr><th>".__('No network name found')."</th></tr>";
+         echo "<table class='table table-striped'><tr><th>".__('No network name found')."</th></tr>";
          echo "</table>";
       }
    }

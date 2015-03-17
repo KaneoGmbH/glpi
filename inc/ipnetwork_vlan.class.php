@@ -130,14 +130,14 @@ class IPNetwork_Vlan extends CommonDBRelation {
       if ($canedit) {
          echo "<div class='firstbloc'>\n";
          echo "<form method='post' action='".static::getFormURL()."'>\n";
-         echo "<table class='tab_cadre_fixe'>\n";
+         echo "<table class='table table-striped'>\n";
          echo "<tr><th>".__('Associate a VLAN')."</th></tr>";
 
          echo "<tr class='tab_bg_1'><td class='center'>";
          echo "<input type='hidden' name='ipnetworks_id' value='$ID'>";
          Vlan::dropdown(array('used' => $used));
          echo "&nbsp;<input type='submit' name='add' value='"._sx('button','Associate').
-                      "' class='submit'>";
+                      "' class='btn btn-primary'>";
          echo "</td></tr>\n";
 
          echo "</table>\n";

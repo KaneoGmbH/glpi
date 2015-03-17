@@ -338,17 +338,17 @@ class Bookmark extends CommonDBTM {
          echo "<td class='tab_bg_2 top' colspan='2'>";
          echo "<input type='hidden' name='users_id' value='".$this->fields['users_id']."'>";
          echo "<div class='center'>";
-         echo "<input type='submit' name='add' value=\""._sx('button','Add')."\" class='submit'>";
+         echo "<input type='submit' name='add' value=\""._sx('button','Add')."\" class='btn btn-primary'>";
          echo "</div></td></tr>";
 
       } else {
          echo "<tr>";
          echo "<td class='tab_bg_2 top' colspan='2'>";
          echo "<input type='hidden' name='id' value='$ID'>";
-         echo "<input type='submit' name='update' value=\"".__s('Save')."\" class='submit'>";
+         echo "<input type='submit' name='update' value=\"".__s('Save')."\" class='btn btn-primary'>";
          echo "</td></tr><tr><td class='tab_bg_2 right' colspan='2'>";
          echo "<input type='submit' name='purge' value=\""._sx('button', 'Delete permanently')."\"
-                class='submit'>";
+                class='btn btn-primary'>";
          echo "</td></tr>";
       }
       echo "</table></div>";
@@ -714,7 +714,7 @@ class Bookmark extends CommonDBTM {
             echo "</td>";
 
             echo "<td><a href=\"".$CFG_GLPI['root_doc']."/front/bookmark.php?action=load&amp;id=".
-                       $this->fields["id"]."\" class='vsubmit'>".__('Load')."</a>";
+                       $this->fields["id"]."\" class='btn btn-info btn-xs'>".__('Load')."</a>";
             echo "</td>";
             echo "<td class='center'>";
             if ($this->fields['type'] == self::SEARCH) {

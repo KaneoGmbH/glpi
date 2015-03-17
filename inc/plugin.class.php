@@ -341,7 +341,7 @@ class Plugin extends CommonDBTM {
       global $CFG_GLPI, $PLUGIN_HOOKS;
 
       $this->checkStates();
-      echo "<div class='center'><table class='tab_cadrehov'>";
+      echo "<div class='center'><table class='table table-striped table-hover'>";
 
       $pluglist          = $this->find("", "name, directory");
       $i                 = 0;
@@ -589,7 +589,7 @@ class Plugin extends CommonDBTM {
       echo "</table></div>";
       echo "<br>";
       echo "<div class='center'><p>";
-      echo "<a href='http://plugins.glpi-project.org'  class='vsubmit' target='_blank'>".
+      echo "<a href='http://plugins.glpi-project.org'  class='btn btn-info btn-xs' target='_blank'>".
             __('See the catalog of plugins')."</a></p>";
       echo "</div>";
 

@@ -77,7 +77,7 @@ class RuleDictionnarySoftwareCollection extends RuleCollection {
       echo "<form name='testrule_form' id='softdictionnary_confirmation' method='post' action=\"" .
              $target . "\">\n";
       echo "<div class='center'>";
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table table-striped'>";
       echo "<tr><th colspan='2' class='b'>" .
             __('Warning before running rename based on the dictionary rules') . "</th</tr>\n";
       echo "<tr><td class='tab_bg_2 center'>";
@@ -94,7 +94,7 @@ class RuleDictionnarySoftwareCollection extends RuleCollection {
 
       echo "<tr><td class='tab_bg_2 center' colspan='2'>";
       echo "<input type='submit' name='replay_rule' value=\""._sx('button', 'Post')."\"
-             class='submit'>";
+             class='btn btn-primary'>";
       echo "<input type='hidden' name='replay_confirm' value='replay_confirm'";
       echo "</td></tr>";
       echo "</table>\n";

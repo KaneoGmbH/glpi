@@ -205,14 +205,14 @@ class TicketTemplateHiddenField extends CommonDBChild {
             echo "<form name='changeproblem_form$rand' id='changeproblem_form$rand' method='post'
                    action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
-            echo "<table class='tab_cadre_fixe'>";
+            echo "<table class='table table-striped'>";
             echo "<tr class='tab_bg_2'><th colspan='2'>".__('Add a hidden field')."</th></tr>";
             echo "<tr class='tab_bg_2'><td class='right'>";
             echo "<input type='hidden' name='tickettemplates_id' value='$ID'>";
             Dropdown::showFromArray('num', $fields, array('used'=> $used));
             echo "</td><td class='center'>";
             echo "&nbsp;<input type='submit' name='add' value=\""._sx('button', 'Add').
-                         "\" class='submit'>";
+                         "\" class='btn btn-primary'>";
             echo "</td></tr>";
             echo "</table>";
 

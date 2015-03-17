@@ -351,7 +351,7 @@ class RuleCollection extends CommonDBTM {
 
    function showEngineSummary() {
 
-      echo "<table class='tab_cadre_fixe'><tr><th>";
+      echo "<table class='table table-striped'><tr><th>";
 
       //Display information about the how the rules engine process the rules
       if ($this->stop_on_first_match) {
@@ -541,7 +541,7 @@ class RuleCollection extends CommonDBTM {
          $url = $CFG_GLPI["root_doc"];
       }
 
-      echo "<a class='vsubmit' href='#' onClick=\"".
+      echo "<a class='btn btn-info btn-xs' href='#' onClick=\"".
                   Html::jsGetElementbyID('allruletest'.$rand).".dialog('open');\">".
                   __('Test rules engine')."</a>";
       Ajax::createIframeModalWindow('allruletest'.$rand,
@@ -553,7 +553,7 @@ class RuleCollection extends CommonDBTM {
 
       if ($this->can_replay_rules) {
          echo "<div class='spaced center'>";
-         echo "<a class='vsubmit' href='".$rule->getSearchURL()."?replay_rule=replay_rule'>".
+         echo "<a class='btn btn-info btn-xs' href='".$rule->getSearchURL()."?replay_rule=replay_rule'>".
                __s('Replay the dictionary rules')."</a>";
          echo "</div>";
       }
@@ -989,7 +989,7 @@ class RuleCollection extends CommonDBTM {
       echo "<input type='file' name='xml_file'>&nbsp;";
       echo "<input type='hidden' name='action' value='preview_import'>";
       echo "<input type='submit' name='import' value=\""._sx('button','Import').
-             "\" class='submit'>";
+             "\" class='btn btn-primary'>";
 
       // Close for Form
       echo "</div>";
@@ -1275,7 +1275,7 @@ class RuleCollection extends CommonDBTM {
          $class = ($odd?" class='tab_bg_1' ":" class='tab_bg_2' ");
          echo "<tr $class><td colspan='3' class='center'>";
          echo "<input type='submit' name='import' value=\""._sx('button', 'Post').
-                "\" class='submit'>";
+                "\" class='btn btn-primary'>";
          echo "</td></tr>";
 
          // Close for Form
@@ -1510,7 +1510,7 @@ class RuleCollection extends CommonDBTM {
 
          echo "<tr><td class='tab_bg_2 center' colspan='2'>";
          echo "<input type='submit' name='test_all_rules' value='". _sx('button','Test')."'
-                class='submit'>";
+                class='btn btn-primary'>";
          echo "<input type='hidden' name='sub_type' value='" . $this->getRuleClassName() . "'>";
          echo "<input type='hidden' name='condition' value='$condition'>";
          echo "</td></tr>\n";
@@ -1676,7 +1676,7 @@ class RuleCollection extends CommonDBTM {
       echo "<div class='center'>";
 
       if (isset($output["result"])) {
-         echo "<table class='tab_cadrehov'>";
+         echo "<table class='table table-striped table-hover'>";
          echo "<tr><th colspan='2'>" . __('Result details') . "</th></tr>\n";
 
          foreach ($output["result"] as $ID=>$rule_result) {

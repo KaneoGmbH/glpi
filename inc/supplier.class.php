@@ -387,7 +387,7 @@ class Supplier extends CommonDBTM {
       $result = $DB->query($query);
       $number = $DB->numrows($result);
 
-      echo "<div class='spaced'><table class='tab_cadre_fixe'>";
+      echo "<div class='spaced'><table class='table table-striped'>";
       echo "<tr><th colspan='2'>";
       Html::printPagerForm();
       echo "</th><th colspan='3'>";

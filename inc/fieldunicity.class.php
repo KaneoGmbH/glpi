@@ -512,7 +512,7 @@ class FieldUnicity extends CommonDropdown {
 
       if (!empty($fields)) {
          $colspan = count($fields) + 1;
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table table-striped'>";
          echo "<tr class='tab_bg_2'><th colspan='".$colspan."'>".__('Duplicates')."</th></tr>";
 
          $entities = array($unicity->fields['entities_id']);

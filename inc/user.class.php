@@ -2092,7 +2092,7 @@ class User extends CommonDBTM {
       echo "</td>";
       echo "<td colspan='2' class='center'>";
       if ($userid == Session::getLoginUserID()) {
-         echo "<a href='".$CFG_GLPI['root_doc']."/front/preference.php' class='vsubmit'>".
+         echo "<a href='".$CFG_GLPI['root_doc']."/front/preference.php' class='btn btn-info btn-xs'>".
                __('Edit')."</a>";
       } else {
          echo "&nbsp;";
@@ -2133,7 +2133,7 @@ class User extends CommonDBTM {
 
          echo "<div class='center'>";
          echo "<form method='post' name='user_manager' enctype='multipart/form-data' action='".$target."'>";
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table table-striped'>";
          echo "<tr><th colspan='4'>".sprintf(__('%1$s: %2$s'), __('Login'), $this->fields["name"]);
          echo "<input type='hidden' name='name' value='" . $this->fields["name"] . "'>";
          echo "<input type='hidden' name='id' value='" . $this->fields["id"] . "'>";
@@ -2305,7 +2305,7 @@ class User extends CommonDBTM {
          echo "</td></tr>";
 
          echo "<tr><td class='tab_bg_2 center' colspan='4'>";
-         echo "<input type='submit' name='update' value=\""._sx('button','Save')."\" class='submit'>";
+         echo "<input type='submit' name='update' value=\""._sx('button','Save')."\" class='btn btn-primary'>";
          echo "</td></tr>";
 
          echo "</table>";
@@ -3279,13 +3279,13 @@ class User extends CommonDBTM {
       echo "<tr class='tab_bg_1'>";
       echo "<td class='tab_bg_2 center' colspan='2'>\n";
       echo "<input type='submit' name='add_ext_auth_ldap' value=\"".__s('Import from directories')."\"
-             class='submit'>\n";
+             class='btn btn-primary'>\n";
       echo "</td></tr>";
 
       echo "<tr class='tab_bg_1'>";
       echo "<td class='tab_bg_2 center' colspan='2'>\n";
       echo "<input type='submit' name='add_ext_auth_simple' value=\"".__s('Import from other sources')."\"
-             class='submit'>\n";
+             class='btn btn-primary'>\n";
       echo "</td></tr>\n";
 
       echo "</table>";
@@ -3753,7 +3753,7 @@ class User extends CommonDBTM {
 
          echo "<tr class='tab_bg_2 center'><td colspan='2'>";
          echo "<input type='hidden' name='password_forget_token' value='$token'>";
-         echo "<input type='submit' name='update' value=\"".__s('Save')."\" class='submit'>";
+         echo "<input type='submit' name='update' value=\"".__s('Save')."\" class='btn btn-primary'>";
          echo "</td></tr>";
 
         echo "</table>";
@@ -3784,7 +3784,7 @@ class User extends CommonDBTM {
 
       echo "<tr class='tab_bg_2 center'>";
       echo "<td><input type='text' size='60' name='email' value=''></td>";
-      echo "<td><input type='submit' name='update' value=\"".__s('Save')."\" class='submit'>";
+      echo "<td><input type='submit' name='update' value=\"".__s('Save')."\" class='btn btn-primary'>";
       echo "</td></tr>";
 
       echo "</table>";

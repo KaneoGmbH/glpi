@@ -121,7 +121,7 @@ class KnowbaseItemTranslation extends CommonDBChild {
          echo "</script>\n";
 
          echo "<div class='center'>".
-              "<a class='vsubmit' href='javascript:addTranslation".$item->getID()."$rand();'>".
+              "<a class='btn btn-info btn-xs' href='javascript:addTranslation".$item->getID()."$rand();'>".
               __('Add a new translation')."</a></div><br>";
       }
 
@@ -183,7 +183,7 @@ class KnowbaseItemTranslation extends CommonDBChild {
             Html::closeForm();
          }
       } else {
-         echo "<table class='tab_cadre_fixe'><tr class='tab_bg_2'>";
+         echo "<table class='table table-striped'><tr class='tab_bg_2'>";
          echo "<th class='b'>" . __("No translation found")."</th></tr></table>";
       }
 

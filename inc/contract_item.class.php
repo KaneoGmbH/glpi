@@ -385,7 +385,7 @@ class Contract_Item extends CommonDBRelation{
          echo "<input type='hidden' name='items_id' value='$ID'>";
          echo "<input type='hidden' name='itemtype' value='$itemtype'>";
 
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table table-striped'>";
          echo "<tr class='tab_bg_2'><th colspan='2'>".__('Add a contract')."</th></tr>";
 
          echo "<tr class='tab_bg_1'><td>";
@@ -393,7 +393,7 @@ class Contract_Item extends CommonDBRelation{
                                   'used'   => $used));
 
          echo "</td><td class='center'>";
-         echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='submit'>";
+         echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='btn btn-primary'>";
          echo "</td></tr>";
          echo "</table>";
          Html::closeForm();
@@ -599,7 +599,7 @@ class Contract_Item extends CommonDBRelation{
                                                      'checkright'
                                                        => true));
          echo "</td><td class='center'>";
-         echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='submit'>";
+         echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='btn btn-primary'>";
          echo "<input type='hidden' name='contracts_id' value='$instID'>";
          echo "</td></tr>";
          echo "</table>";

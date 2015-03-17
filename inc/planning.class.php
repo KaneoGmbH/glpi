@@ -317,7 +317,7 @@ class Planning extends CommonGLPI {
       }
 
       echo "<div class='center'><form method='get' name='form' action='planning.php'>\n";
-      echo "<table class='tab_cadre_fixe'><tr class='tab_bg_1'>";
+      echo "<table class='table table-striped'><tr class='tab_bg_1'>";
       echo "<td>";
       echo "<a href=\"".$CFG_GLPI["root_doc"]."/front/planning.php?type=".$type."&amp;uID=".$uID.
              "&amp;date=$prev&amp;usertype=$usertype&amp;gID=$gID&amp;limititemtype=$limititemtype\">";
@@ -365,7 +365,7 @@ class Planning extends CommonGLPI {
       echo "</td>\n";
 
       echo "<td rowspan='2' class='center'>";
-      echo "<input type='submit' class='submit' name='submit' value=\""._sx('button', 'Show')."\">";
+      echo "<input type='submit' class='btn btn-primary' name='submit' value=\""._sx('button', 'Show')."\">";
       echo "</td>\n";
 
       if ($uID || $gID) {
@@ -519,7 +519,7 @@ class Planning extends CommonGLPI {
       echo "<td class='center'>";
       echo "<input type='hidden' name='".$item->getForeignKeyField()."' value=\"".$item->getID()."\">";
       echo "<input type='hidden' name='itemtype' value=\"".$item->getType()."\">";
-      echo "<input type='submit' class='submit' name='checkavailability' value=\"".
+      echo "<input type='submit' class='btn btn-primary' name='checkavailability' value=\"".
              _sx('button', 'Search') ."\">";
       echo "</td>\n";
 
@@ -1056,7 +1056,7 @@ class Planning extends CommonGLPI {
 
       ksort($interv);
 
-      echo "<table class='tab_cadrehov'><tr class='noHover'><th>";
+      echo "<table class='table table-striped table-hover'><tr class='noHover'><th>";
       echo "<a href='".$CFG_GLPI["root_doc"]."/front/planning.php?uID=$who'>".__('Your planning').
            "</a>";
       echo "</th></tr>";

@@ -2069,7 +2069,7 @@ class CommonDBTM extends CommonGLPI {
                  "</td>";
          }
          foreach ($params['addbuttons'] as $key => $val) {
-            echo "<td><input class='submit' type='submit' name='$key' value=\"".
+            echo "<td><input class='btn btn-primary' type='submit' name='$key' value=\"".
                         Html::entities_deep($val)."\"></td>";
          }
          echo "</tr>";
@@ -2197,7 +2197,7 @@ class CommonDBTM extends CommonGLPI {
       }
 
       echo "<div class='spaced' id='tabsbody'>";
-      echo "<table class='tab_cadre_fixe' id='mainformtable'>";
+      echo "<table class='table table-striped' id='mainformtable'>";
 
       echo "<tr class='headerRow'><th colspan='".$params['colspan']."'>";
 

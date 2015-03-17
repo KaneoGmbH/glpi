@@ -338,7 +338,7 @@ class CalendarSegment extends CommonDBChild {
          echo "<form name='calendarsegment_form$rand' id='calendarsegment_form$rand' method='post'
                 action='";
          echo Toolbox::getItemTypeFormURL(__CLASS__)."'>";
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table table-striped'>";
          echo "<tr class='tab_bg_1'><th colspan='7'>".__('Add a schedule')."</tr>";
 
          echo "<tr class='tab_bg_2'><td class='center'>".__('Day')."</td><td>";
@@ -349,7 +349,7 @@ class CalendarSegment extends CommonDBChild {
          echo "</td><td class='center'>".__('End').'</td><td>';
          Dropdown::showHours("end",array('value' => (date('H')+1).":00"));
          echo "</td><td class='center'>";
-            echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='submit'>";
+            echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='btn btn-primary'>";
          echo "</td></tr>";
 
          echo "</table>";

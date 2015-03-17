@@ -489,7 +489,7 @@ class NetworkPort extends CommonDBChild {
          echo "\n<form method='get' action='" . $netport->getFormURL() ."'>\n";
          echo "<input type='hidden' name='items_id' value='".$item->getID()."'>\n";
          echo "<input type='hidden' name='itemtype' value='".$item->getType()."'>\n";
-         echo "<div class='firstbloc'><table class='tab_cadre_fixe'>\n";
+         echo "<div class='firstbloc'><table class='table table-striped'>\n";
          echo "<tr class='tab_bg_2'><td class='center'>\n";
          _e('Network port type to be added');
          echo "&nbsp;";
@@ -508,7 +508,7 @@ class NetworkPort extends CommonDBChild {
          _e('Add several ports');
          echo "&nbsp;<input type='checkbox' name='several' value='1'></td>\n";
          echo "<td>\n";
-         echo "<input type='submit' name='create' value=\""._sx('button','Add')."\" class='submit'>\n";
+         echo "<input type='submit' name='create' value=\""._sx('button','Add')."\" class='btn btn-primary'>\n";
          echo "</td></tr></table></div>\n";
          Html::closeForm();
       }
@@ -766,7 +766,7 @@ class NetworkPort extends CommonDBChild {
       unset($table);
 
       if (!$is_active_network_port) {
-         echo "<table class='tab_cadre_fixe'><tr><th>".__('No network port found')."</th></tr>";
+         echo "<table class='table table-striped'><tr><th>".__('No network port found')."</th></tr>";
          echo "</table>";
       }
 

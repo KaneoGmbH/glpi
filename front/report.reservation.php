@@ -51,7 +51,7 @@ User::dropdown(array('name'   => 'id',
                      'right'  => 'reservation'));
 
 echo "</td>";
-echo "<td class='center'><input type='submit' class='submit' name='submit' value='".
+echo "<td class='center'><input type='submit' class='btn btn-primary' name='submit' value='".
       __s('Display report')."'></td></tr>";
 echo "</table>";
 Html::closeForm();

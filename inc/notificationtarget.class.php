@@ -313,7 +313,7 @@ class NotificationTarget extends CommonDBChild {
             echo "<input type='hidden' name='itemtype' value='".$notification->getField('itemtype')."'>";
 
          }
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table table-striped'>";
          echo "<tr><th colspan='4'>" . _n('Recipient', 'Recipients', Session::getPluralNumber()) . "</th></tr>";
          echo "<tr class='tab_bg_2'>";
 
@@ -338,7 +338,7 @@ class NotificationTarget extends CommonDBChild {
          echo "</td>";
          if ($canedit) {
             echo "<td width='20%'>";
-            echo "<input type='submit' class='submit' name='update' value=\""._x('button', 'Update')."\">";
+            echo "<input type='submit' class='btn btn-primary' name='update' value=\""._x('button', 'Update')."\">";
             echo "</td>";
 
          }

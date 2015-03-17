@@ -608,12 +608,12 @@ if (Session::haveRight('backup', CREATE)) {
    echo "<table class='tab_glpi'><tr><td>".
          "<img src='".$CFG_GLPI["root_doc"]."/pics/sauvegardes.png' alt=\"".__s('Deleted')."\">".
          "</td>";
-   echo "<td><a class='vsubmit'
+   echo "<td><a class='btn btn-info btn-xs'
               href=\"#\" ".HTML::addConfirmationOnAction(__('Backup the database?'),
                                                          "window.location='".$CFG_GLPI["root_doc"].
                                                            "/front/backup.php?dump=dump'").
               ">".__('SQL Dump')."</a>&nbsp;</td>";
-   echo "<td><a class='vsubmit'
+   echo "<td><a class='btn btn-info btn-xs'
               href=\"#\" ".HTML::addConfirmationOnAction(__('Backup the database?'),
                                                          "window.location='".$CFG_GLPI["root_doc"].
                                                            "/front/backup.php?xmlnow=xmlnow'").
@@ -663,14 +663,14 @@ if (count($files)) {
                                    $file));
          $string[] = array(__('Warning, your actual database will be totaly overwriten by the database you want to restore !!!'));
 
-         echo "<a class='vsubmit' href=\"#\" ".HTML::addConfirmationOnAction($string,
+         echo "<a class='btn btn-info btn-xs' href=\"#\" ".HTML::addConfirmationOnAction($string,
                                         "window.location='".$CFG_GLPI["root_doc"].
                                         "/front/backup.php?file=$file&amp;donotcheckversion=1'").
               ">".__('Restore')."</a>&nbsp;</td>";
       }
       if (Session::haveRight('backup', CREATE)) {
          echo "<td>&nbsp;".
-              "<a class='vsubmit' href=\"document.send.php?file=_dumps/$file\">".__('Download').
+              "<a class='btn btn-info btn-xs' href=\"document.send.php?file=_dumps/$file\">".__('Download').
               "</a></td>";
       }
       echo "</tr>";
@@ -707,7 +707,7 @@ if (count($files)) {
          echo "</td>";
       }
       if (Session::haveRight('backup', CREATE)) {
-         echo "<td>&nbsp;<a class='vsubmit' href=\"document.send.php?file=_dumps/$file\">".
+         echo "<td>&nbsp;<a class='btn btn-info btn-xs' href=\"document.send.php?file=_dumps/$file\">".
                        __('Download')."</a></td>";
       }
       echo "</tr>";

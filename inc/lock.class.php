@@ -73,7 +73,7 @@ class Lock {
              name='lock_form' action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
       echo "<input type='hidden' name='id' value='$ID'>\n";
       echo "<input type='hidden' name='itemtype' value='$itemtype'>\n";
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table table-striped'>";
       echo "<tr><th colspan='2''>".__('Locked items')."</th></tr>";
 
       //Use a hook to allow external inventory tools to manage per field lock

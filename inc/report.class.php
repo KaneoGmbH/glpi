@@ -112,7 +112,7 @@ class Report extends CommonGLPI{
          $report_list["state"]["file"] = "report.state.php";
       }
       //Affichage du tableau de presentation des stats
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table table-striped'>";
       echo "<tr><th colspan='2'>".__('Select the report you want to generate')."</th></tr>";
       echo "<tr class='tab_bg_1'><td class='center'>";
 
@@ -185,7 +185,7 @@ class Report extends CommonGLPI{
 
       $linkitems = array('Monitor', 'Peripheral', 'Phone', 'Printer');
 
-      echo "<table class='tab_cadrehov'>";
+      echo "<table class='table table-striped table-hover'>";
 
       foreach ($items as $itemtype) {
          $table_item = getTableForItemType($itemtype);

@@ -1031,7 +1031,7 @@ class CronTask extends CommonDBTM{
 
       echo "<br><div class='center'>";
       if ($number < 1) {
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table table-striped'>";
          echo "<tr><th>".__('No item found')."</th></tr>";
          echo "</table>";
          echo "</div>";
@@ -1050,7 +1050,7 @@ class CronTask extends CommonDBTM{
 
       if ($result = $DB->query($query)) {
          if ($data = $DB->fetch_assoc($result)) {
-            echo "<table class='tab_cadrehov'>";
+            echo "<table class='table table-striped table-hover'>";
             $header = "<tr>";
             $header .= "<th>".__('Date')."</th>";
             $header .= "<th>".__('Total duration')."</th>";
