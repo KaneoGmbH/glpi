@@ -898,7 +898,7 @@ class KnowbaseItem extends CommonDBTM {
 
       echo "<div>";
       echo "<form method='get' action='".$this->getSearchURL()."'>";
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table'>";
       echo "<tr class='tab_bg_2'><td class='right' width='50%'>";
       echo "<input type='text' size='50' name='contains' value=\"".
              Html::cleanInputText(stripslashes($params["contains"]))."\"></td>";
@@ -948,7 +948,7 @@ class KnowbaseItem extends CommonDBTM {
           && !$faq) {
          echo "<div>";
          echo "<form method='get' action='".$this->getSearchURL()."'>";
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table'>";
          echo "<tr class='tab_bg_2'><td class='right' width='50%'>".__('Category')."&nbsp;";
          KnowbaseItemCategory::dropdown(array('value' => $params["knowbaseitemcategories_id"]));
          echo "</td><td class='left'>";
@@ -992,7 +992,7 @@ class KnowbaseItem extends CommonDBTM {
 
       echo "<div>";
       echo "<form method='get' action='".$this->getSearchURL()."'>";
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table'>";
       echo "<tr class='tab_bg_2'><td class='right' width='50%'>";
       $values = array('myunpublished' => __('My unpublished articles'),
                       'allmy'         => __('All my articles'));
@@ -1610,7 +1610,7 @@ class KnowbaseItem extends CommonDBTM {
          echo "<form name='knowbaseitemvisibility_form$rand' id='knowbaseitemvisibility_form$rand' ";
          echo " method='post' action='".Toolbox::getItemTypeFormURL('KnowbaseItem')."'>";
          echo "<input type='hidden' name='knowbaseitems_id' value='$ID'>";
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table'>";
          echo "<tr class='tab_bg_1'><th colspan='4'>".__('Add a target')."</th></tr>";
          echo "<tr class='tab_bg_2'><td width='100px'>";
 

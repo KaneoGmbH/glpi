@@ -939,7 +939,7 @@ class ProjectTask extends CommonDBChild {
          echo "<form name='projecttaskteam_form$rand' id='projecttaskteam_form$rand' ";
          echo " method='post' action='".Toolbox::getItemTypeFormURL('ProjectTaskTeam')."'>";
          echo "<input type='hidden' name='projecttasks_id' value='$ID'>";
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table'>";
          echo "<tr class='tab_bg_1'><th colspan='2'>".__('Add a team member')."</tr>";
          echo "<tr class='tab_bg_2'><td>";
 

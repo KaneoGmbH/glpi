@@ -488,7 +488,7 @@ class Planning extends CommonGLPI {
       asort($users);
       // Use get method to check availability
       echo "<div class='center'><form method='GET' name='form' action='planning.php'>\n";
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table'>";
       $colspan = 5;
       if (count($users) > 1) {
          $colspan++;
@@ -547,7 +547,7 @@ class Planning extends CommonGLPI {
             }
 
             // Print Headers
-            echo "<br><div class='center'><table class='tab_cadre_fixe'>";
+            echo "<br><div class='center'><table class='table'>";
             $colnumber  = 1;
             $plan_begin = explode(":",$CFG_GLPI["planning_begin"]);
             $plan_end   = explode(":",$CFG_GLPI["planning_end"]);
@@ -740,7 +740,7 @@ class Planning extends CommonGLPI {
       $end   = date("Y-m-d H:i:s", $end);
 
       // Print Headers
-      echo "<div class='center'><table class='tab_cadre_fixe'>";
+      echo "<div class='center'><table class='table'>";
       // Print Headers
       echo "<tr class='tab_bg_1'>";
       switch ($type) {

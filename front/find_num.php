@@ -86,7 +86,7 @@ Html::closeForm();
 echo "</div>";
 
 if (isset($_POST["send"])) {
-   echo "<table class='tab_cadre_fixe'>";
+   echo "<table class='table'>";
    echo " <tr class='tab_bg3'>";
    echo " <td class='center b' width='30%'>".__('Alternate username')."</td>";
    echo " <td class='center b' width='20%'>".__('Hardware type')."</td>";

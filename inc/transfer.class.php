@@ -3460,7 +3460,7 @@ class Transfer extends CommonDBTM {
          echo "<div class='center b'>".
                 __('You can continue to add elements to be transferred or execute the transfer now');
          echo "<br>".__('Think of making a backup before transferring items.')."</div>";
-         echo "<table class='tab_cadre_fixe' >";
+         echo "<table class='table' >";
          echo '<tr><th>'.__('Items to transfer').'</th><th>'.__('Transfer mode')."&nbsp;";
          $rand = Transfer::dropdown(array('name'     => 'id',
                                           'comments' => false,

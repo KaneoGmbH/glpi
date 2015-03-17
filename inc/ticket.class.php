@@ -3740,7 +3740,7 @@ class Ticket extends CommonITILObject {
       if (!$ID) {
          echo "</table>";
          $this->showActorsPartForm($ID, $values);
-         echo "<table class='tab_cadre_fixe' id='mainformtable3'>";
+         echo "<table class='table' id='mainformtable3'>";
       }
 
       echo "<tr class='tab_bg_1'>";
@@ -3975,7 +3975,7 @@ class Ticket extends CommonITILObject {
 
       $view_linked_tickets = ($ID || $canupdate);
 
-      echo "<table class='tab_cadre_fixe' id='mainformtable4'>";
+      echo "<table class='table' id='mainformtable4'>";
       echo "<tr class='tab_bg_1'>";
       echo "<th width='$colsize1%'>".$tt->getBeginHiddenFieldText('name');
       printf(__('%1$s%2$s'), __('Title'), $tt->getMandatoryMark('name'));
@@ -4738,7 +4738,7 @@ class Ticket extends CommonITILObject {
          $options['criteria'][0]['link']       = 'AND';
          $options['reset']         ='reset';
 
-         echo "<div class='center'><table class='tab_cadre_fixe'>";
+         echo "<div class='center'><table class='table'>";
          //TRANS: %d is the number of new tickets
          echo "<tr><th colspan='12'>".sprintf(_n('%d new ticket','%d new tickets', $number), $number);
          echo "<a href='".$CFG_GLPI["root_doc"]."/front/ticket.php?".
@@ -4755,7 +4755,7 @@ class Ticket extends CommonITILObject {
 
       } else {
          echo "<div class='center'>";
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table'>";
          echo "<tr><th>".__('No ticket found.')."</th></tr>";
          echo "</table>";
          echo "</div><br>";
@@ -4826,7 +4826,7 @@ class Ticket extends CommonITILObject {
             // Mini search engine
             if ($item->haveChildren()) {
                $tree = Session::getSavedOption(__CLASS__, 'tree', 0);
-               echo "<table class='tab_cadre_fixe'>";
+               echo "<table class='table'>";
                echo "<tr class='tab_bg_1'><th>".__('Last tickets')."</th></tr>";
                echo "<tr class='tab_bg_1'><td class='center'>";
                echo __('Child groups')."&nbsp;";
@@ -4976,7 +4976,7 @@ class Ticket extends CommonITILObject {
          $result = $DB->query($query);
          $number = $DB->numrows($result);
 
-         echo "<div class='spaced'><table class='tab_cadre_fixe'>";
+         echo "<div class='spaced'><table class='table'>";
          echo "<tr><th colspan='12'>";
          echo _n('Ticket on linked items', 'Tickets on linked items', $number);
          echo "</th></tr>";

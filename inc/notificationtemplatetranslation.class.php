@@ -331,7 +331,7 @@ class NotificationTemplateTranslation extends CommonDBChild {
       $target->getTags();
 
       echo "<div class='center'>";
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table'>";
       echo "<tr><th>".__('Tag')."</th>
                 <th>".__('Label')."</th>
                 <th>"._n('Event', 'Events', 1)."</th>
@@ -433,7 +433,7 @@ class NotificationTemplateTranslation extends CommonDBChild {
       }
 
       echo "<div class='spaced'>";
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table'>";
       echo "<tr><th colspan='2'>".__('Preview')."</th></tr>";
 
       $oktypes = array('CartridgeItem', 'ConsumableItem', 'Contract', 'Crontask',

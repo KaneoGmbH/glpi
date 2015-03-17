@@ -401,7 +401,7 @@ class Config extends CommonDBTM {
          echo "<form name='form' action=\"".Toolbox::getItemTypeFormURL(__CLASS__)."\" method='post'>";
       }
       echo "<div class='center' id='tabsbody'>";
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table'>";
 
       echo "<tr><th colspan='4'>" . __('Assets') . "</th></tr>";
 
@@ -452,7 +452,7 @@ class Config extends CommonDBTM {
 
       if (Session::haveRightsOr("transfer", array(CREATE, UPDATE))
           && Session::isMultiEntitiesMode()) {
-         echo "<br><table class='tab_cadre_fixe'>";
+         echo "<br><table class='table'>";
          echo "<tr><th colspan='2'>" . __('Automatic transfer of computers') . "</th></tr>";
          echo "<tr class='tab_bg_2'>";
          echo "<td>" . __('Template for the automatic transfer of computers in another entity') .
@@ -464,7 +464,7 @@ class Config extends CommonDBTM {
          echo "</table>";
       }
 
-      echo "<br><table class='tab_cadre_fixe'>";
+      echo "<br><table class='table'>";
       echo "<tr>";
       echo "<th colspan='4'>".__('Automatically update of the elements related to the computers');
       echo "</th><th colspan='2'>".__('Unit management')."</th></tr>";
@@ -538,7 +538,7 @@ class Config extends CommonDBTM {
 
       echo "<form name='form' action=\"".Toolbox::getItemTypeFormURL(__CLASS__)."\" method='post'>";
       echo "<div class='center' id='tabsbody'>";
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table'>";
       echo "<tr><th colspan='4'>" . __('Authentication') . "</th></tr>";
 
       echo "<tr class='tab_bg_2'>";
@@ -583,7 +583,7 @@ class Config extends CommonDBTM {
       echo "<form name='form' action=\"".Toolbox::getItemTypeFormURL(__CLASS__)."\" method='post'>";
       echo "<div class='center' id='tabsbody'>";
       echo "<input type='hidden' name='_dbslave_status' value='1'>";
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table'>";
       $active = DBConnection::isDBSlaveActive();
 
       echo "<tr class='tab_bg_2'><th colspan='4'>" . _n('Mysql replica', 'Mysql replicas', Session::getPluralNumber()) .
@@ -654,7 +654,7 @@ class Config extends CommonDBTM {
          echo "<form name='form' action=\"".Toolbox::getItemTypeFormURL(__CLASS__)."\" method='post'>";
       }
       echo "<div class='center spaced' id='tabsbody'>";
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table'>";
 
       echo "<tr><th colspan='4'>" . __('Assistance') . "</th></tr>";
 
@@ -723,7 +723,7 @@ class Config extends CommonDBTM {
 
       echo "</table>";
 
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table'>";
       echo "<tr><th colspan='7'>" . __('Matrix of calculus for priority');
       echo "<input type='hidden' name='_matrix' value='1'></th></tr>";
 
@@ -831,7 +831,7 @@ class Config extends CommonDBTM {
          echo "<input type='hidden' name='id' value='".$data['id']."'>";
       }
       echo "<div class='center' id='tabsbody'>";
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table'>";
 
       echo "<tr><th colspan='4'>" . __('Personalization') . "</th></tr>";
 
@@ -1253,7 +1253,7 @@ class Config extends CommonDBTM {
 
       echo "<div class='center' id='tabsbody'>";
       echo "<form name='form' action=\"".Toolbox::getItemTypeFormURL(__CLASS__)."\" method='post'>";
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table'>";
       echo "<tr><th colspan='4'>" . __('General setup') . "</th></tr>";
 
       echo "<tr class='tab_bg_2'>";
@@ -1365,7 +1365,7 @@ class Config extends CommonDBTM {
 
       $width = 128;
 
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table'>";
       echo "<tr><th>". __('Information about system installation and configuration')."</th></tr>";
 
        $oldlang = $_SESSION['glpilanguage'];

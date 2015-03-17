@@ -713,7 +713,7 @@ class Computer_SoftwareVersion extends CommonDBRelation {
           && $canedit) {
          echo "<form method='post' action='".
                 $CFG_GLPI["root_doc"]."/front/computer_softwareversion.form.php'>";
-         echo "<div class='spaced'><table class='tab_cadre_fixe'>";
+         echo "<div class='spaced'><table class='table'>";
          echo "<tr class='tab_bg_1'><td class='center'>";
          echo _n('Software', 'Software', Session::getPluralNumber())."&nbsp;&nbsp;";
          echo "<input type='hidden' name='computers_id' value='$computers_id'>";
@@ -742,7 +742,7 @@ class Computer_SoftwareVersion extends CommonDBRelation {
                                              Computer::getTypeName(1), $comp->getName()));
 
       // Mini Search engine
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table'>";
       echo "<tr class='tab_bg_1'><th colspan='2'>".Software::getTypeName(Session::getPluralNumber())."</th></tr>";
       echo "<tr class='tab_bg_1'><td class='center'>";
       echo __('Category')."</td><td>";
@@ -831,7 +831,7 @@ class Computer_SoftwareVersion extends CommonDBRelation {
           && $canedit) {
          echo "<form method='post' action='".$CFG_GLPI["root_doc"].
                 "/front/computer_softwarelicense.form.php'>";
-         echo "<div class='spaced'><table class='tab_cadre_fixe'>";
+         echo "<div class='spaced'><table class='table'>";
          echo "<tr class='tab_bg_1'>";
          echo "<td class='center'>";
          echo _n('License', 'Licenses', Session::getPluralNumber())."&nbsp;&nbsp;";

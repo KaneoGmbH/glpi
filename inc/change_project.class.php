@@ -254,7 +254,7 @@ class Change_Project extends CommonDBRelation{
          echo "<form name='changeproject_form$rand' id='changeproject_form$rand' method='post'
                 action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table'>";
          echo "<tr class='tab_bg_2'><th colspan='2'>".__('Add a project')."</th></tr>";
 
          echo "<tr class='tab_bg_2'><td>";

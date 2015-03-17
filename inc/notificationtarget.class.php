@@ -1204,7 +1204,7 @@ class NotificationTarget extends CommonDBChild {
                     getEntitiesRestrictRequest('AND', 'glpi_notifications', '', '', true);
       $req = $DB->request($sql);
 
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table'>";
 
       if ($req->numrows()) {
          echo "<tr><th>".__('Name')."</th>";

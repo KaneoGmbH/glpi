@@ -608,7 +608,7 @@ class DisplayPreference extends CommonDBTM {
 
          echo Html::hidden('users_id', array('value'                 => $users_id,
                                              'data-glpicore-ma-tags' => 'common'));
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table'>";
          echo "<tr>";
          echo "<th width='10'>";
          Html::checkAllAsCheckbox('mass'.__CLASS__.$rand);
@@ -633,7 +633,7 @@ class DisplayPreference extends CommonDBTM {
          echo "</div>";
 
       } else {
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table'>";
          echo "<tr class='tab_bg_2'><td class='b center'>".__('No item found')."</td></tr>";
          echo "</table>";
       }

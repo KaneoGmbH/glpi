@@ -266,7 +266,7 @@ class Location extends CommonTreeDropdown {
          echo "<div class='spaced'>";
          Html::printAjaxPager('',  $start, $number);
 
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table'>";
          echo "<tr><th>".__('Type')."</th>";
          echo "<th>".__('Entity')."</th>";
          echo "<th>".__('Name')."</th>";

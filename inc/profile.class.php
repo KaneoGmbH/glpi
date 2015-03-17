@@ -965,7 +965,7 @@ class Profile extends CommonDBTM {
          echo "<form method='post' action='".$this->getFormURL()."'>";
       }
 
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table'>";
       // Assistance / Tracking-helpdesk
       echo "<tr class='tab_bg_1'><th colspan='2'>".__('Assistance')."</th></tr>\n";
 
@@ -1022,7 +1022,7 @@ class Profile extends CommonDBTM {
       $this->displayRightsChoiceMatrix($rights, $matrix_options);
 
 
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table'>";
 
       echo "<tr class='tab_bg_5'><th colspan='2'>".__('Association')."</th>";
       echo "</tr>\n";

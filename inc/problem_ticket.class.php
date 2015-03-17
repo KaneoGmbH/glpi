@@ -377,7 +377,7 @@ class Problem_Ticket extends CommonDBRelation{
          echo "<form name='problemticket_form$rand' id='problemticket_form$rand' method='post'
                 action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table'>";
          echo "<tr class='tab_bg_2'><th colspan='3'>".__('Add a problem')."</th></tr>";
          echo "<tr class='tab_bg_2'><td>";
          echo "<input type='hidden' name='tickets_id' value='$ID'>";

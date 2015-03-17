@@ -154,7 +154,7 @@ class Item_Project extends CommonDBRelation{
          $massiveactionparams = array('container' => 'mass'.__CLASS__.$rand);
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table'>";
       $header_begin  = "<tr>";
       $header_top    = '';
       $header_bottom = '';

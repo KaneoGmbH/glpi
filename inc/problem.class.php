@@ -1308,7 +1308,7 @@ class Problem extends CommonITILObject {
             // Mini search engine
             if ($item->haveChildren()) {
                $tree = Session::getSavedOption(__CLASS__, 'tree', 0);
-               echo "<table class='tab_cadre_fixe'>";
+               echo "<table class='table'>";
                echo "<tr class='tab_bg_1'><th>".__('Last problems')."</th></tr>";
                echo "<tr class='tab_bg_1'><td class='center'>";
                _e('Child groups');
@@ -1355,7 +1355,7 @@ class Problem extends CommonITILObject {
       $number = $DB->numrows($result);
 
       // Ticket for the item
-      echo "<div class='firstbloc'><table class='tab_cadre_fixe'>";
+      echo "<div class='firstbloc'><table class='table'>";
 
       $colspan = 11;
       if (count($_SESSION["glpiactiveentities"]) > 1) {
@@ -1419,7 +1419,7 @@ class Problem extends CommonITILObject {
          $result = $DB->query($query);
          $number = $DB->numrows($result);
 
-         echo "<div class='spaced'><table class='tab_cadre_fixe'>";
+         echo "<div class='spaced'><table class='table'>";
          echo "<tr><th colspan='$colspan'>";
          _e('Problems on linked items');
 

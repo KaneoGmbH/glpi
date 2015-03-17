@@ -659,7 +659,7 @@ class Document_Item extends CommonDBRelation{
          echo "<form name='documentitem_form$rand' id='documentitem_form$rand' method='post'
                 action='".Toolbox::getItemTypeFormURL('Document')."' enctype=\"multipart/form-data\">";
 
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table'>";
          echo "<tr class='tab_bg_2'><th colspan='5'>".__('Add a document')."</th></tr>";
          echo "<tr class='tab_bg_1'>";
 
@@ -691,7 +691,7 @@ class Document_Item extends CommonDBRelation{
              && ($nb > count($used))) {
             echo "<form name='document_form$rand' id='document_form$rand' method='post'
                    action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
-            echo "<table class='tab_cadre_fixe'>";
+            echo "<table class='table'>";
             echo "<tr class='tab_bg_1'>";
             echo "<td colspan='4' class='center'>";
             echo "<input type='hidden' name='itemtype' value='".$item->getType()."'>";

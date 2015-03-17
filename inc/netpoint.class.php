@@ -308,7 +308,7 @@ class Netpoint extends CommonDropdown {
       echo "<div class='spaced'>";
 
       if ($number < 1) {
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table'>";
          echo "<tr><th>".self::getTypeName(1)."</th>";
          echo "<th>".__('No item found')."</th></tr>";
          echo "</table>\n";
@@ -329,7 +329,7 @@ class Netpoint extends CommonDropdown {
             Html::showMassiveActions($massiveactionparams);
          }
 
-         echo "<table class='tab_cadre_fixe'><tr>";
+         echo "<table class='table'><tr>";
 
          if ($canedit) {
             echo "<th width='10'>";

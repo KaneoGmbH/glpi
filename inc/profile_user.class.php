@@ -291,7 +291,7 @@ class Profile_User extends CommonDBRelation {
          echo "<div class='firstbloc'>";
          echo "<form name='entityuser_form$rand' id='entityuser_form$rand' method='post' action='";
          echo Toolbox::getItemTypeFormURL(__CLASS__)."'>";
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table'>";
          echo "<tr class='tab_bg_1'><th colspan='6'>".__('Add an authorization to a user')."</tr>";
          echo "<tr class='tab_bg_1'><td class='tab_bg_2 center'>".__('User')."&nbsp;";
          echo "<input type='hidden' name='entities_id' value='$ID'>";
@@ -478,13 +478,13 @@ class Profile_User extends CommonDBRelation {
                            'container'     => 'mass'.__CLASS__.$rand);
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixe'><tr>";
+      echo "<table class='table'><tr>";
       echo "<th>".sprintf(__('%1$s: %2$s'), __('Profile'), $prof->fields["name"])."</th></tr>\n";
 
       echo "<tr><th colspan='2'>".sprintf(__('%1$s (%2$s)'), _n('User', 'Users', Session::getPluralNumber()),
                                           __('D=Dynamic, R=Recursive'))."</th></tr>";
       echo "</table>\n";
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table'>";
 
       $i              = 0;
       $nb_per_line    = 3;
@@ -531,7 +531,7 @@ class Profile_User extends CommonDBRelation {
                echo "<div class='center' id='entity$temp$rand' style='display:none;'>\n";
                echo Html::checkAllAsCheckbox("entity$temp$rand").__('All');
 
-               echo "<table class='tab_cadre_fixe'>\n";
+               echo "<table class='table'>\n";
             }
 
             if (($i%$nb_per_line) == 0) {

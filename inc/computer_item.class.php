@@ -537,7 +537,7 @@ class Computer_Item extends CommonDBRelation{
          echo "<form name='computeritem_form$rand' id='computeritem_form$rand' method='post'
                 action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table'>";
          echo "<tr class='tab_bg_2'><th colspan='2'>".__('Connect a computer')."</th></tr>";
 
          echo "<tr class='tab_bg_1'><td class='right'>";

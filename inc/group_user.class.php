@@ -297,7 +297,7 @@ class Group_User extends CommonDBRelation{
          echo "<input type='hidden' name='groups_id' value='".$group->fields['id']."'>";
 
          echo "<div class='firstbloc'>";
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table'>";
          echo "<tr class='tab_bg_1'><th colspan='6'>".__('Add a user')."</th></tr>";
          echo "<tr class='tab_bg_2'><td class='center'>";
 
@@ -427,7 +427,7 @@ class Group_User extends CommonDBRelation{
       }
 
       // Mini Search engine
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table'>";
       echo "<tr class='tab_bg_1'><th colspan='2'>".User::getTypeName(Session::getPluralNumber())."</th></tr>";
       echo "<tr class='tab_bg_1'><td class='center'>";
       echo _n('Criterion', 'Criteria', 1)."&nbsp;";

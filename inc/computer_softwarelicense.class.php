@@ -396,7 +396,7 @@ class Computer_SoftwareLicense extends CommonDBRelation {
       }
 
       if ($number < 1) {
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table'>";
          echo "<tr><th>".__('No item found')."</th></tr>";
          echo "</table></div>\n";
          return;

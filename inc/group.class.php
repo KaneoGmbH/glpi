@@ -678,7 +678,7 @@ class Group extends CommonTreeDropdown {
       }
       echo "<div class='spaced'>";
       // Mini Search engine
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table'>";
       echo "<tr class='tab_bg_1'><th colspan='3'>$title</tr>";
       echo "<tr class='tab_bg_1'><td class='center'>";
       echo __('Type')."&nbsp;";

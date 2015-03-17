@@ -424,7 +424,7 @@ class RuleCollection extends CommonDBTM {
          }
          $use_conditions = true;
          // Mini Search engine
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table'>";
          echo "<tr class='tab_bg_1'><td class='center' width='50%'>";
          echo __('Rules used for')."</td><td>";
          $rule->dropdownConditions(array('value' => $p['condition'],
@@ -1486,7 +1486,7 @@ class RuleCollection extends CommonDBTM {
          $criterias = $rule->getAllCriteria();
          echo "<form name='testrule_form' id='testrulesengine_form' method='post' action='$target'>";
          echo "\n<div class='center'>";
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table'>";
          echo "<tr><th colspan='2'>" . _n('Criterion', 'Criteria', Session::getPluralNumber()) . "</th></tr>\n";
 
          //Brower all criterias

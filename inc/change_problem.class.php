@@ -261,7 +261,7 @@ class Change_Problem extends CommonDBRelation{
          echo "<form name='changeproblem_form$rand' id='changeproblem_form$rand' method='post'
                 action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table'>";
          echo "<tr class='tab_bg_2'><th colspan='2'>".__('Add a problem')."</th></tr>";
 
          echo "<tr class='tab_bg_2'><td>";

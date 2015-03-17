@@ -3977,7 +3977,7 @@ abstract class CommonITILObject extends CommonDBTM {
    static function showMassiveSolutionForm($entities_id) {
       global $CFG_GLPI;
 
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table'>";
       echo '<tr><th colspan=4>'.__('Solve tickets').'</th></tr>';
 
       $rand_template = mt_rand();
@@ -4216,7 +4216,7 @@ abstract class CommonITILObject extends CommonDBTM {
       }
 
       echo "<div class='center'>";
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table'>";
       echo "<tr><th colspan='2'>"._n('Date', 'Dates', Session::getPluralNumber())."</th></tr>";
 
       echo "<tr class='tab_bg_2'><td>".__('Opening date')."</td>";
