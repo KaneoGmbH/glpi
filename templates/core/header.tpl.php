@@ -32,20 +32,7 @@
                     <a class="navbar-brand" href="<?php echo $this->homePage; ?>"><img src="<?php echo $this->CFG_GLPI["root_doc"]; ?>/pics/login_logo_glpi.png" height="34"></a>
                 </div>
                 <div class="navbar-form navbar-left">
-                    <div class="btn-group">
-                      <a href="#" class="btn btn-default">Current entity</a>
-                      <div class="btn-group">
-                        <a aria-expanded="false" href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                          Profile ( current )
-                          <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                          <li><a href="#">Dropdown link</a></li>
-                          <li><a href="#">Dropdown link</a></li>
-                          <li><a href="#">Dropdown link</a></li>
-                         </ul>
-                      </div>
-                    </div>
+                    <?php echo $this->profileSelect; ?>
                 </div>
                 <form class="navbar-form navbar-right" role="search" action="<?php echo $this->CFG_GLPI["root_doc"]; ?>/front/search.php" methode="GET">
                     <div class="input-group">
@@ -61,31 +48,34 @@
         </div>
         <nav class="navbar navbar-default">
             <div class="container">
-
-                    <ul class="nav navbar-nav">
-                        <?php foreach ($this->mainMenu as $part => $data) : ?>
-                            <?php if (isset($data['content']) && count($data['content'])): ?>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo $data['title'] ?> <span class="caret"></span></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <?php foreach ($data['content'] as $key => $val): ?>
-                                            <?php if (isset($val['page']) && isset($val['title'])): ?>
-                                                <li>
-                                                    <a href="<?php echo $CFG_GLPI["root_doc"] . $val['page']; ?>"><?php echo $val['title']; ?></a>
-                                                </li>
-                                            <?php endif; ?>
-                                        <?php endforeach; ?>
-                                    </ul>
-                                </li>
-                            <?php endif; ?>
-                        <?php endforeach; ?>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <?php foreach ($this->metaMenu as $part => $data) : ?>
-                            <li><a href="<?php echo $data['href']; ?>"><?php echo $data['title']; ?></a></li>
-                        <?php endforeach; ?>
-                    </ul>
-
+                <ul class="nav navbar-nav">
+                    <?php foreach ($this->mainMenu as $part => $data) : ?>
+                        <?php if (isset($data['content']) && count($data['content'])): ?>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo $data['title'] ?> <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <?php foreach ($data['content'] as $key => $val): ?>
+                                        <?php if (isset($val['page']) && isset($val['title'])): ?>
+                                            <li>
+                                                <a href="<?php echo $CFG_GLPI["root_doc"] . $val['page']; ?>"><?php echo $val['title']; ?></a>
+                                            </li>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </li>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="glyphicon glyphicon-user"></i> <?php echo $this->currentUserName; ?> <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <?php foreach ($this->metaMenu as $part => $data) : ?>
+                                <li role="presentation"><a role="menuitem" href="<?php echo $data['href']; ?>"><?php echo $data['title']; ?></a></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </nav>
         <div class="container">

@@ -1340,6 +1340,7 @@ class Html {
          }
 
 
+        $header = new Template();
 
 
       /**
@@ -1353,11 +1354,6 @@ class Html {
       /// logout witout noAuto login for extauth
       if (isset($_SESSION['glpiextauth']) && $_SESSION['glpiextauth']) {
          $addLinks['logout']['href'] .= "?noAUTO=1";
-      }
-
-      // check user id : header used for display messages when session logout
-      if (Session::getLoginUserID()) {
-         $addLinks['logout']['title'] .= ' ('.formatUserName (0, $_SESSION["glpiname"], $_SESSION["glpirealname"], $_SESSION["glpifirstname"], 0, 20).' )';
       }
 
        /**
@@ -1374,8 +1370,13 @@ class Html {
           'title' => __('Help')
       );
 
+        $header->assign('metaMenu',$addLinks);
 
-
+        if (Session::getLoginUserID()) {
+            $header->assign('currentUserName',strtoupper(formatUserName (0, $_SESSION["glpiname"], $_SESSION["glpirealname"], $_SESSION["glpifirstname"], 0, 20)));
+        }else{
+            $header->assign('currentUserName',__('Guest'));
+        }
 
 
 
@@ -1428,17 +1429,13 @@ class Html {
              );
          }
 
-        $header = new Savant3(array(
-          'template_path' => GLPI_ROOT.'/templates/core'
-      ));
-
         $header->mainMenu = $menu;
-        $header->metaMenu = $addLinks;
         $header->homePage = $CFG_GLPI["root_doc"]."/front/central.php";
         $header->pageTitle = $title;
         $header->CFG_GLPI = $CFG_GLPI;
         $header->breadcrumbItems = $breadcrumb;
 
+       //todo: check output
         if ($DB->isSlave() && !$DB->first_connection) {
             $header->isSlave = true;
         }
@@ -1476,7 +1473,7 @@ class Html {
         }
 
 
-       $header->ajaxContainerBookmark = Ajax::createIframeModalWindow('loadbookmark',
+        $header->ajaxContainerBookmark = Ajax::createIframeModalWindow('loadbookmark',
                                    $CFG_GLPI["root_doc"]."/front/bookmark.php?action=load",
                                    array('title' => __('Load a bookmark'),'reloadonclose' => true,'display' => false));
 
@@ -1488,15 +1485,21 @@ class Html {
             'onClick' => Html::jsGetElementbyID('loadbookmark').".dialog('open')"
         );
 
-        $header->actionMenu = $actionMenu;
+        $header->assign('actionMenu',$actionMenu);
 
-        echo $header->display('header.tpl.php');
+        $profiles = new Template();
+        $profiles->assign('profiles',self::getProfiles($CFG_GLPI["root_doc"]."/front/central.php"));
+        $profiles->assign('currentProfile',$_SESSION["glpiactiveprofile"]["name"]);
+        $profiles = $profiles->getOutput('components/profile-select.tpl.php');
+        $header->assign('profileSelect',$profiles);
+
+        $header->display('header.tpl.php');
 
 
         // call static function callcron() every 5min
         CronTask::callCron();
         self::displayMessageAfterRedirect();
-   }
+    }
 
 
    /**
@@ -1523,13 +1526,12 @@ class Html {
          $timedebug = sprintf(__('%1$s - %2$s'), $timedebug, Toolbox::getSize(memory_get_usage()));
       }
 
-      $tmpl = new Savant3(array(
-          'template_path' => GLPI_ROOT.'/templates/core'
-      ));
+      $tmpl = new Template();
       $tmpl->timedebug = $timedebug;
       $tmpl->CFG_GLPI = $CFG_GLPI;
       $tmpl->glpi_use_mode = $_SESSION['glpi_use_mode'];
-      echo $tmpl->display('footer.tpl.php');
+
+       $tmpl->display('footer.tpl.php');
 
       if (!$keepDB) {
          closeDBConnections();
@@ -3168,6 +3170,24 @@ class Html {
       return $val;
    }
 
+    static function getProfiles($target){
+
+        $profiles = array();
+
+        if(count($_SESSION["glpiprofiles"])>1){
+
+            foreach ($_SESSION["glpiprofiles"] as $key => $val) {
+                $profiles[$key] = array(
+                    'title' => $val['name'],
+                    'href' => $target.'?newprofile='.$key,
+                    'class' => $_SESSION["glpiactiveprofile"]["id"] == $key ? 'disabled' : ''
+                );
+            }
+        }
+
+        return $profiles;
+
+    }
 
    /**
     * Print the form used to select profile if several are available
@@ -3177,7 +3197,9 @@ class Html {
     * @return nothing
    **/
    static function showProfileSelecter($target) {
+
       global $CFG_GLPI;
+
 
       if (count($_SESSION["glpiprofiles"])>1) {
          echo '<li><form name="form" method="post" action="'.$target.'">';
@@ -3693,9 +3715,7 @@ echo "asdasasd";
                               $item_type_output_param=0, $additional_info='') {
       global $CFG_GLPI;
 
-       $tmpl = new Savant3(array(
-           'template_path' => GLPI_ROOT.'/templates/core'
-       ));
+       $tmpl = new Template();
 
 
       $list_limit = $_SESSION['glpilist_limit'];

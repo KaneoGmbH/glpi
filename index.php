@@ -61,9 +61,7 @@ if (!file_exists(GLPI_CONFIG_DIR . "/config_db.php")) {
    // Send UTF8 Headers
    header("Content-Type: text/html; charset=UTF-8");
 
-    $login = new Savant3(array(
-        'template_path' => GLPI_ROOT.'/templates/core'
-    ));
+    $login = new Template();
 
     global $CFG_GLPI;
 
