@@ -551,7 +551,7 @@ class Html {
           && !empty($_SESSION["MESSAGE_AFTER_REDIRECT"])) {
 
           echo '<div class="alert alert-info" role="alert">';
-            echo $_SESSION["MESSAGE_AFTER_REDIRECT"];
+            echo htmlentities($_SESSION["MESSAGE_AFTER_REDIRECT"]);
           echo '</div>';
 
       }
@@ -573,7 +573,7 @@ class Html {
    **/
    static function displayTitle($ref_pic_link="", $ref_pic_text="", $ref_title="", $ref_btts="") {
 
-      $ref_pic_text = htmlentities($ref_pic_text, ENT_QUOTES, 'UTF-8');
+      //$ref_pic_text = htmlentities($ref_pic_text, ENT_QUOTES, 'UTF-8');
 
        //todo: dont use img use str insted
       $class = 'alert-info';
@@ -592,11 +592,12 @@ class Html {
       }
 
 
-    echo ' <div class="panel"><div class="panel-body"><div class="alert '.$class.'" role="alert">';
+    echo '<div class="panel-body"><div class="alert '.$class.'" role="alert">';
 
       if ($ref_title != "") {
-         echo '<h3>'.$ref_title.'</h3>';
+         echo '<h4>'.$ref_title.'</h4>';
           if($ref_pic_text){
+              $ref_pic_text = self::clean($ref_pic_text);
               echo '<p>'.$ref_pic_text.'</p>';
           }
       }
@@ -608,7 +609,7 @@ class Html {
          }
          echo '</ul>';
       }
-       echo '</div></div></div>';
+       echo '</div></div>';
    }
 
 
