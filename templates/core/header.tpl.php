@@ -26,13 +26,24 @@
     </head>
     <body>
 
+        <?php echo $this->ajaxContainerEntities; ?>
+        <?php echo $this->ajaxContainerBookmark; ?>
+
         <div class="container-search">
             <div class="container">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="<?php echo $this->homePage; ?>"><img src="<?php echo $this->CFG_GLPI["root_doc"]; ?>/pics/login_logo_glpi.png" height="34"></a>
                 </div>
                 <div class="navbar-form navbar-left">
-                    <?php echo $this->profileSelect; ?>
+                    <div class="btn-group" role="group" aria-label="...">
+                        <?php if($this->ajaxContainerEntities): ?>
+                            <button type="button" class="btn btn-default" onclick="entity_window.dialog('open');"><?php echo $this->currentEntityName; ?></button>
+                        <?php endif; ?>
+                        <div class="btn-group" role="group">
+                            <?php echo $this->profileSelect; ?>
+                        </div>
+
+                    </div>
                 </div>
                 <form class="navbar-form navbar-right" role="search" action="<?php echo $this->CFG_GLPI["root_doc"]; ?>/front/search.php" methode="GET">
                     <div class="input-group">
@@ -106,5 +117,4 @@
                         </div>
                     </div>
                 </div>
-                <?php echo $this->ajaxContainerBookmark; ?>
             </div>

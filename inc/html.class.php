@@ -995,7 +995,7 @@ class Html {
       $cssFiles = array(
           "/css/styles.css",
           "/lib/bootstrap/css/bootstrap.css",
-          //"/lib/jquery/css/smoothness/jquery-ui-1.10.4.custom.min.css",
+          "/lib/jquery/css/smoothness/jquery-ui-1.10.4.custom.min.css",
           "/lib/jqueryplugins/rateit/rateit.css",
           "/lib/jqueryplugins/select2/select2.css",
           "/lib/jqueryplugins/qtip2/jquery.qtip.min.css",
@@ -1346,24 +1346,20 @@ class Html {
       /**
        * Generate logout link
        */
+
       $addLinks['logout'] = array(
           'href' => $CFG_GLPI["root_doc"]."/front/logout.php",
           'title' => __('Logout')
       );
 
-      /// logout witout noAuto login for extauth
       if (isset($_SESSION['glpiextauth']) && $_SESSION['glpiextauth']) {
          $addLinks['logout']['href'] .= "?noAUTO=1";
       }
 
-       /**
-       * Generate help link
-       */
       $addLinks['preference'] = array(
           'href' => $CFG_GLPI["root_doc"]."/front/preference.php",
           'title' => __('My settings')
       );
-
 
       $addLinks['help'] = array(
           'href' => empty($CFG_GLPI["central_doc_url"]) ? "http://glpi-project.org/help-central" : $CFG_GLPI["central_doc_url"],
@@ -1463,13 +1459,29 @@ class Html {
        // Links
         if (count($links) > 0) {
            foreach ($links as $key => $val) {
-
                $actionMenu[] = array(
                    'href' => $CFG_GLPI["root_doc"].$val,
-                   'title' => $key,
+                   'title' => __($key),
                    'class' => $key,
                );
            }
+        }
+        $target = $CFG_GLPI["root_doc"]."/front/central.php";
+
+        if (Session::isMultiEntitiesMode()) {
+
+            $options = array(
+                'title' => __('Select the desired entity'),
+                'extraparams' => array(
+                    'target' => $target
+                ),
+                'display' => false
+            );
+
+            $modal = Ajax::createModalWindow('entity_window', $CFG_GLPI['root_doc']."/ajax/entitytree.php",$options);
+            $header->assign('ajaxContainerEntities',$modal);
+            $header->assign('currentEntityName',$_SESSION["glpiactive_entity_shortname"]);
+
         }
 
 
@@ -1488,9 +1500,10 @@ class Html {
         $header->assign('actionMenu',$actionMenu);
 
         $profiles = new Template();
-        $profiles->assign('profiles',self::getProfiles($CFG_GLPI["root_doc"]."/front/central.php"));
+        $profiles->assign('profiles',self::getProfiles($target));
         $profiles->assign('currentProfile',$_SESSION["glpiactiveprofile"]["name"]);
         $profiles = $profiles->getOutput('components/profile-select.tpl.php');
+
         $header->assign('profileSelect',$profiles);
 
         $header->display('header.tpl.php');
@@ -3563,7 +3576,7 @@ class Html {
    **/
    static function printAjaxPager($title, $start, $numrows, $additional_info='') {
       global $CFG_GLPI;
-echo "asdasasd";
+
       $list_limit = $_SESSION['glpilist_limit'];
       // Forward is the next step forward
       $forward = $start+$list_limit;
