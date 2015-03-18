@@ -3541,7 +3541,7 @@ class Html {
    **/
    static function printAjaxPager($title, $start, $numrows, $additional_info='') {
       global $CFG_GLPI;
-
+echo "asdasasd";
       $list_limit = $_SESSION['glpilist_limit'];
       // Forward is the next step forward
       $forward = $start+$list_limit;
@@ -3693,6 +3693,11 @@ class Html {
                               $item_type_output_param=0, $additional_info='') {
       global $CFG_GLPI;
 
+       $tmpl = new Savant3(array(
+           'template_path' => GLPI_ROOT.'/templates/core'
+       ));
+
+
       $list_limit = $_SESSION['glpilist_limit'];
       // Forward is the next step forward
       $forward = $start+$list_limit;
@@ -3722,35 +3727,38 @@ class Html {
          $back = $start-$list_limit;
       }
 
-      // Print it
-      echo "<div><table class='table'>";
-      echo "<tr>";
+
+       $pagination = array();
+
+
 
       // Back and fast backward button
-      if (!$start == 0) {
-         echo "<th class='left'>";
-         echo "<a href='$target?$parameters&amp;start=0'>";
-         echo "<img src='".$CFG_GLPI["root_doc"]."/pics/first.png' alt=\"".__s('Start').
-               "\" title=\"".__s('Start')."\">";
-         echo "</a></th>";
-         echo "<th class='left'>";
-         echo "<a href='$target?$parameters&amp;start=$back'>";
-         echo "<img src='".$CFG_GLPI["root_doc"]."/pics/left.png' alt=\"".__s('Previous').
-               "\" title=\"".__s('Previous')."\">";
-         echo "</a></th>";
-      }
 
-      // Print the "where am I?"
-      echo "<td width='50%' >";
-      self::printPagerForm("$target?$parameters&amp;start=$start");
-      echo "</td>";
 
-      if (!empty($additional_info)) {
-         echo "<td >";
-         echo $additional_info;
-         echo "</td>";
-      }
+          $pagination[] = array(
+              'href' => "$target?$parameters&amp;start=0",
+              'title' => __s('Previous'),
+              'icon' => 'glyphicon glyphicon-fast-backward',
+              'class' => $start == 0 ? 'disabled': ''
+          );
+          $pagination[] = array(
+              'href' => "$target?$parameters&amp;start=$back",
+              'title' => __s('Previous'),
+              'icon' => 'glyphicon glyphicon-step-backward',
+              'class' => $start == 0 ? 'disabled': ''
+          );
 
+       //todo: no output at this time
+       if (!empty($additional_info)) {
+           $tmpl->assign('additionanInfo',$additional_info);
+       }
+
+       //todo: implement printing etc
+      //self::printPagerForm("$target?$parameters&amp;start=$start");
+
+
+
+       /*
       if (!empty($item_type_output)
           && isset($_SESSION["glpiactiveprofile"])
           && ($_SESSION["glpiactiveprofile"]["interface"] == "central")) {
@@ -3776,28 +3784,35 @@ class Html {
          Html::closeForm();
          echo "</td>" ;
       }
+      */
 
-      echo "<td width='50%' class='tab_bg_2 b'>";
-      //TRANS: %1$d, %2$d, %3$d are page numbers
-      printf(__('From %1$d to %2$d on %3$d'), $current_start, $current_end, $numrows);
-      echo "</td>\n";
 
-      // Forward and fast forward button
-      if ($forward<$numrows) {
-         echo "<th class='right'>";
-         echo "<a href='$target?$parameters&amp;start=$forward'>";
-         echo "<img src='".$CFG_GLPI["root_doc"]."/pics/right.png' alt=\"".__s('Next').
-               "\" title=\"".__s('Next')."\">";
-         echo "</a></th>\n";
+      $tmpl->assign('pagerText',sprintf(__('From %1$d to %2$d on %3$d'), $current_start, $current_end, $numrows));
 
-         echo "<th class='right'>";
-         echo "<a href='$target?$parameters&amp;start=$end'>";
-         echo "<img src='".$CFG_GLPI["root_doc"]."/pics/last.png' alt=\"".__s('End').
-                "\" title=\"".__s('End')."\">";
-         echo "</a></th>\n";
-      }
-      // End pager
-      echo "</tr></table></div>";
+       //todo: add page Numbers... ( now only text
+       $pagination[] = array(
+           'href' => "",
+           'title' => sprintf(__('From %1$d to %2$d on %3$d'), $current_start, $current_end, $numrows),
+           'class' => 'disabled'
+       );
+
+       $pagination[] = array(
+           'href' => "$target?$parameters&amp;start=$forward",
+           'title' => __s('Next'),
+           'icon' => 'glyphicon glyphicon-step-forward',
+           'class' => $current_end<$numrows ? '': 'disabled'
+       );
+       $pagination[] = array(
+           'href' => "$target?$parameters&amp;start=$end",
+           'title' => __s('End'),
+           'icon' => 'glyphicon glyphicon-fast-forward',
+           'class' => $current_end<$numrows ? '': 'disabled'
+       );
+
+       $tmpl->assign('pagination',$pagination);
+       $tmpl->display('components/navigation-header.tpl.php');
+       return;
+
    }
 
 
