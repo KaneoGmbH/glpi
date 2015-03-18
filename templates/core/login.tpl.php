@@ -30,22 +30,51 @@
         <div class="col-md-4"></div>
         <div class="col-md-4">
             <section class="login-form">
-                <form method="post" action="#" role="login">
-                    <img src="/pics/login_logo_glpi.png" class="img-responsive" alt=""/>
-                    <input type="email" name="email" placeholder="Email" required class="form-control input-lg"
-                           value="joestudent@gmail.com"/>
-                    <input type="password" class="form-control input-lg" id="password" placeholder="Password"
-                           required=""/>
 
-                    <div class="pwstrength_viewport_progress"></div>
-                    <button type="submit" name="go" class="btn btn-lg btn-primary btn-block">Sign in</button>
-                    <div>
-                        <a href="#">Create account</a> or <a href="#">reset password</a>
-                    </div>
-                </form>
-                <div class="form-links">
-                    <a href="#">www.website.com</a>
-                </div>
+                <noscript>
+                    <p><?php echo __('You must activate the JavaScript function of your browser'); ?></p>
+                </noscript>
+
+                <form method="post" action="<?php echo $this->formAction; ?>" role="login">
+
+                    <img src="/pics/login_logo_glpi.png" class="img-responsive" alt=""/>
+
+                    <?php if ($this->loginText): ?>
+                        <?php echo $this->loginText; ?>
+                    <?php endif; ?>
+
+                    <input type="text" name="login_name" placeholder="<?php echo __('Username') ?>" required
+                           class="form-control input-lg" value=""/>
+                    <input type="password" class="form-control input-lg" id="password"
+                           placeholder="<?php echo __('Password') ?>" name="login_password" required=""/>
+
+                    <button type="submit" name="submit" value="<?php echo _sx('button', 'Login'); ?>" class="btn btn-lg btn-primary btn-block"><?php echo _sx('button', 'Login'); ?></button>
+                    <?php if ($this->lostPassword): ?>
+                        <div>
+                            <a href="<?php echo $this->lostPasswordLink; ?>"><?php echo __('Forgotten password?'); ?></a>
+                        </div>
+                    <?php endif; ?>
+                    <?php if ($this->publicFAQ): ?>
+                        <div>
+                            <a href="<?php echo $this->publicFAQLink; ?>"><?php echo __('Access to the Frequently Asked Questions'); ?></a>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if ($this->hiddenInputs): ?>
+                        <?php foreach ($this->hiddenInputs as $input): ?>
+                            <?php echo $input; ?>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+
+                <?php Html::closeForm(); ?>
+
+                <small>
+                    <a href='http://glpi-project.org/' title='Powered By Indepnet'>
+                        GLPI <?php echo isset($this->CFG_GLPI["version"]) ? 'version ' . $this->CFG_GLPI["version"] : "" ?>
+                        Copyright (C) 2003-<?php echo date("Y"); ?> INDEPNET Development Team.
+                    </a>
+                </small>
+
             </section>
         </div>
         <div class="col-md-4"></div>
@@ -53,3 +82,4 @@
 </div>
 </body>
 </html>
+
