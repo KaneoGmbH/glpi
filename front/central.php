@@ -37,9 +37,10 @@ include ('../inc/includes.php');
 Session::checkCentralAccess();
 
 // Change profile system
-if (isset($_POST['newprofile'])) {
-   if (isset($_SESSION["glpiprofiles"][$_POST['newprofile']])) {
-      Session::changeProfile($_POST['newprofile']);
+// changed from POST to REQUEST
+if (isset($_REQUEST['newprofile'])) {
+   if (isset($_SESSION["glpiprofiles"][$_REQUEST['newprofile']])) {
+      Session::changeProfile($_REQUEST['newprofile']);
       if ($_SESSION["glpiactiveprofile"]["interface"] == "helpdesk") {
          if ($_SESSION['glpiactiveprofile']['create_ticket_on_login']) {
             Html::redirect($CFG_GLPI['root_doc'] . "/front/helpdesk.public.php?create_ticket=1");
