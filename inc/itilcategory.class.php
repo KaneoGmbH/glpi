@@ -300,7 +300,7 @@ class ITILCategory extends CommonTreeDropdown {
                 ORDER BY `name`";
 
       if ($result=$DB->query($query)) {
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table table-striped'>";
          echo "<tr><th colspan='3'>";
          echo "<a href='".Toolbox::getItemTypeSearchURL($itilcategory->getType())."'>";
          echo self::getTypeName($DB->numrows($result));
@@ -315,7 +315,7 @@ class ITILCategory extends CommonTreeDropdown {
             echo "</tr>";
 
             while ($data = $DB->fetch_assoc($result)) {
-               echo "<tr class='tab_bg_2'>";
+               echo "<tr >";
                $itilcategory->getFromDB($data['id']);
                echo "<td>".$itilcategory->getLink(array('comments' => true))."</td>";
                if ($data['tickettemplates_id_incident'] == $ID) {

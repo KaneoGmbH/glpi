@@ -49,7 +49,7 @@ if (isset($_POST["validatortype"])) {
          echo "<br><br>".__('Comments')." ";
          echo "<textarea name='comment_submission' cols='50' rows='6'></textarea>&nbsp;";
 
-         echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='submit'>";
+         echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='btn btn-primary'>";
          break;
 
       case 'group' :
@@ -96,7 +96,7 @@ if (isset($_POST["validatortype"])) {
 
           // Display all/none buttons to select all or no users in group
          if (!empty($_POST['groups_id'])){
-            echo "<a id='all_users' class='vsubmit'>".__('All')."</a>";
+            echo "<a id='all_users' class='btn btn-info btn-xs'>".__('All')."</a>";
             $param_button['validatortype']      = 'group_user';
             $param_button['users_id_validate']  = '';
             $param_button['all_users']          = 1;
@@ -107,7 +107,7 @@ if (isset($_POST["validatortype"])) {
                                     $CFG_GLPI["root_doc"]."/ajax/dropdownMassiveActionAddValidator.php",
                                     $param_button, array('click'));
 
-            echo "&nbsp;<a id='no_users' class='vsubmit'>".__('None')."</a>";
+            echo "&nbsp;<a id='no_users' class='btn btn-info btn-xs'>".__('None')."</a>";
             $param_button['all_users'] = 0;
             Ajax::updateItemOnEvent('no_users', 'show_groups_users',
                                     $CFG_GLPI["root_doc"]."/ajax/dropdownMassiveActionAddValidator.php",
@@ -117,7 +117,7 @@ if (isset($_POST["validatortype"])) {
          echo "<br><br>".__('Comments')." ";
          echo "<textarea name='comment_submission' cols='50' rows='6'></textarea>&nbsp;";
 
-         echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='submit'>";
+         echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='btn btn-primary'>";
          break;
    }
 

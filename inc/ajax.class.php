@@ -281,78 +281,28 @@ class Ajax {
     *
     * @return nothing
    **/
-   static function createTabs($tabdiv_id='tabspanel', $tabdivcontent_id='tabcontent', $tabs=array(),
-                              $type, $ID=0, $orientation='vertical') {
-      global $CFG_GLPI;
+    static function createTabs($tabdiv_id='tabspanel', $tabdivcontent_id='tabcontent', $tabs=array(), $type, $ID=0, $orientation='vertical') {
+        global $CFG_GLPI;
 
-      /// TODO need to clean params !!
-      $active_tabs = Session::getActiveTab($type);
+        /// TODO need to clean params !!
+        $active_tabs = Session::getActiveTab($type);
 
-      $rand = mt_rand();
-      if (count($tabs) > 0) {
+        $rand = mt_rand();
+        if (count($tabs) > 0) {
 
-         echo "<div id='tabs$rand' class='center'>";
-         echo "<ul>";
-         $current = 0;
-         $selected_tab = 0;
-         foreach ($tabs as $key => $val) {
-            if ($key == $active_tabs) {
-               $selected_tab = $current;
-            }
-            echo "<li><a title=\"".str_replace(array('<sup>', '</sup>'),'',$val['title'])."\" ";
-            echo " href='".$val['url'].(isset($val['params'])?'?'.$val['params']:'')."'>";
-            // extract sup information
-//             $title = '';
-//             $limit = 16;
-            // No title strip for horizontal menu
-//             if ($orientation == 'vertical') {
-//                if (preg_match('/(.*)(<sup>.*<\/sup>)/',$val['title'], $regs)) {
-//                   $title = Html::resume_text(trim($regs[1]),$limit-2).$regs[2];
-//                } else {
-//                   $title = Html::resume_text(trim($val['title']),$limit);
-//                }
-//             } else {
-               $title = $val['title'];
-//             }
-            echo $title."</a></li>";
-            $current ++;
-         }
-         echo "</ul>";
-         echo "</div>";
-         echo "<div id='loadingtabs$rand' class='invisible'>".
-              "<div class='loadingindicator'>".__s('Loading...')."</div></div>";
-         $js = "$('#tabs$rand').tabs({ active: $selected_tab,
-         // Loading indicator
-         beforeLoad: function (event, ui) {
-                  ui.panel.html($('#loadingtabs$rand').html());
-                },
-         ajaxOptions: {type: 'POST'},
+            echo '<div role="tabbable tabs-left">';
+                echo '<ul class="nav nav-tabs" role="tablist">';
 
-         activate : function( event, ui ){
-            //  Get future value
-            var newIndex = ui.newTab.parent().children().index(ui.newTab);
-            $.get('".$CFG_GLPI['root_doc']."/ajax/updatecurrenttab.php',
-            { itemtype: '$type', id: '$ID', tab: newIndex });
-            }});";
-         if ($orientation=='vertical') {
-            $js .=  "$('#tabs$rand').tabs().addClass( 'ui-tabs-vertical ui-helper-clearfix' );";
-         }
-         $js .=  "$('#tabs$rand').removeClass( 'ui-corner-top' ).addClass( 'ui-corner-left' );";
-
-         $js .=  "// force reload
-            function reloadTab(add) {
-
-               var current_index = $('#tabs$rand').tabs('option','active');
-               // Save tab
-               currenthref = $('#tabs$rand ul>li a').eq(current_index).attr('href');
-               $('#tabs$rand ul>li a').eq(current_index).attr('href',currenthref+'&'+add);
-               $('#tabs$rand').tabs( 'load' , current_index);
-               // Restore tab
-               $('#tabs$rand ul>li a').eq(current_index).attr('href',currenthref);
-            };";
-         echo Html::scriptBlock($js);
-      }
-   }
+                foreach ($tabs as $val) {
+                    echo '<li role="presentation">';
+                        echo '<a href="'.$val['url'].(isset($val['params'])?'?'.$val['params']:'').'" aria-controls="home" data-toggle="tabajax" data-target="#tabcontent-'.$rand.'" role="tab" >'.$val['title'].'</a>';
+                    echo '</li>';
+                }
+                echo "</ul>";
+                echo '<div class="tab-content" id="tabcontent-'.$rand.'"></div>';
+            echo "</div>";
+        }
+    }
 
 
    /**

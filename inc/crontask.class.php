@@ -405,7 +405,7 @@ class CronTask extends CommonDBTM{
       $options['candel'] = false;
       $this->showFormHeader($options);
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Name')."</td>";
       echo "<td class ='b'>";
       $name = $this->fields["name"];
@@ -418,16 +418,16 @@ class CronTask extends CommonDBTM{
       echo "<textarea cols='45' rows='8' name='comment' >".$this->fields["comment"]."</textarea>";
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'><td>".__('Description')."</td><td>";
+      echo "<tr ><td>".__('Description')."</td><td>";
       echo $this->getDescription($ID);
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'><td>".__('Run frequency')."</td><td>";
+      echo "<tr ><td>".__('Run frequency')."</td><td>";
       $this->dropdownFrequency('frequency', $this->fields["frequency"]);
       echo "</td></tr>";
 
       $tmpstate = $this->fields["state"];
-      echo "<tr class='tab_bg_1'><td>".__('Status')."</td><td>";
+      echo "<tr ><td>".__('Status')."</td><td>";
       if (is_file(GLPI_CRON_DIR. '/'.$this->fields["name"].'.lock')
           || is_file(GLPI_CRON_DIR. '/all.lock')) {
          echo "<span class='b'>" . __('System lock')."</span><br>";
@@ -449,7 +449,7 @@ class CronTask extends CommonDBTM{
       }
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'><td>".__('Run mode')."</td><td>";
+      echo "<tr ><td>".__('Run mode')."</td><td>";
       $modes = array();
       if ($this->fields['allowmode']&self::MODE_INTERNAL) {
          $modes[self::MODE_INTERNAL] = self::getModeName(self::MODE_INTERNAL);
@@ -460,7 +460,7 @@ class CronTask extends CommonDBTM{
       Dropdown::showFromArray('mode', $modes, array('value' => $this->fields['mode']));
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'><td>".__('Run period')."</td><td>";
+      echo "<tr ><td>".__('Run period')."</td><td>";
       Dropdown::showNumber('hourmin', array('value' => $this->fields['hourmin'],
                                             'min'   => 0,
                                             'max'   => 24,
@@ -472,7 +472,7 @@ class CronTask extends CommonDBTM{
                                             'width' => '35%'));
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'><td>".__('Number of days this action logs are stored')."</td><td>";
+      echo "<tr ><td>".__('Number of days this action logs are stored')."</td><td>";
       Dropdown::showNumber('logs_lifetime', array('value' => $this->fields['logs_lifetime'],
                                                   'min'   => 10,
                                                   'max'   => 360,
@@ -491,7 +491,7 @@ class CronTask extends CommonDBTM{
       echo "</td></tr>";
 
       $label = $this->getParameterDescription();
-      echo "<tr class='tab_bg_1'><td>";
+      echo "<tr ><td>";
       if (empty($label)) {
          echo "&nbsp;</td><td>&nbsp;";
       } else {
@@ -914,7 +914,7 @@ class CronTask extends CommonDBTM{
       global $DB, $CFG_GLPI;
 
       echo "<br><div class='center'>";
-      echo "<table class='tab_cadre'>";
+      echo "<table class='table table-striped table-hover'>";
       echo "<tr><th colspan='2'>&nbsp;".__('Statistics')."</th></tr>\n";
 
       $nbstart = countElementsInTable('glpi_crontasklogs',
@@ -924,7 +924,7 @@ class CronTask extends CommonDBTM{
                                       "`crontasks_id` = '".$this->fields['id']."'
                                           AND `state` = '".CronTaskLog::STATE_STOP."'");
 
-      echo "<tr class='tab_bg_2'><td>".__('Run count')."</td><td class='right'>";
+      echo "<tr ><td>".__('Run count')."</td><td class='right'>";
       if ($nbstart == $nbstop) {
          echo $nbstart;
       } else {
@@ -953,25 +953,25 @@ class CronTask extends CommonDBTM{
          $result = $DB->query($query);
 
          if ($data = $DB->fetch_assoc($result)) {
-            echo "<tr class='tab_bg_1'><td>".__('Start date')."</td>";
+            echo "<tr ><td>".__('Start date')."</td>";
             echo "<td class='right'>".Html::convDateTime($data['datemin'])."</td></tr>";
 
-            echo "<tr class='tab_bg_2'><td>".__('Minimal time')."</td>";
+            echo "<tr ><td>".__('Minimal time')."</td>";
             echo "<td class='right'>".sprintf(_n('%s second', '%s seconds', $data['elapsedmin']),
                                               number_format($data['elapsedmin'], 2));
             echo "</td></tr>";
 
-            echo "<tr class='tab_bg_1'><td>".__('Maximal time')."</td>";
+            echo "<tr ><td>".__('Maximal time')."</td>";
             echo "<td class='right'>".sprintf(_n('%s second', '%s seconds', $data['elapsedmax']),
                                               number_format($data['elapsedmax'], 2));
             echo "</td></tr>";
 
-            echo "<tr class='tab_bg_2'><td>".__('Average time')."</td>";
+            echo "<tr ><td>".__('Average time')."</td>";
             echo "<td class='right b'>".sprintf(_n('%s second', '%s seconds', $data['elapsedavg']),
                                                 number_format($data['elapsedavg'],2));
             echo "</td></tr>";
 
-            echo "<tr class='tab_bg_1'><td>".__('Total duration')."</td>";
+            echo "<tr ><td>".__('Total duration')."</td>";
             echo "<td class='right'>".sprintf(_n('%s second', '%s seconds', $data['elapsedtot']),
                                               number_format($data['elapsedtot'],2));
             echo "</td></tr>";
@@ -979,24 +979,24 @@ class CronTask extends CommonDBTM{
 
          if ($data
              && ($data['voltot'] > 0)) {
-            echo "<tr class='tab_bg_2'><td>".__('Minimal count')."</td>";
+            echo "<tr ><td>".__('Minimal count')."</td>";
             echo "<td class='right'>".sprintf(_n('%s item', '%s items', $data['volmin']),
                                               $data['volmin'])."</td></tr>";
 
-            echo "<tr class='tab_bg_1'><td>".__('Maximal count')."</td>";
+            echo "<tr ><td>".__('Maximal count')."</td>";
             echo "<td class='right'>".sprintf(_n('%s item', '%s items', $data['volmax']),
                                               $data['volmax'])."</td></tr>";
 
-            echo "<tr class='tab_bg_2'><td>".__('Average count')."</td>";
+            echo "<tr ><td>".__('Average count')."</td>";
             echo "<td class='right b'>".sprintf(_n('%s item', '%s items', $data['volavg']),
                                                 number_format($data['volavg'],2)).
                  "</td></tr>";
 
-            echo "<tr class='tab_bg_1'><td>".__('Total count')."</td>";
+            echo "<tr ><td>".__('Total count')."</td>";
             echo "<td class='right'>". sprintf(_n('%s item', '%s items',$data['voltot']),
                                                $data['voltot'])."</td></tr>";
 
-            echo "<tr class='tab_bg_2'><td>".__('Average speed')."</td>";
+            echo "<tr ><td>".__('Average speed')."</td>";
             echo "<td class='left'>".sprintf(__('%s items/sec'),
                                              number_format($data['voltot']/$data['elapsedtot'],2));
             echo "</td></tr>";
@@ -1031,7 +1031,7 @@ class CronTask extends CommonDBTM{
 
       echo "<br><div class='center'>";
       if ($number < 1) {
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table table-striped'>";
          echo "<tr><th>".__('No item found')."</th></tr>";
          echo "</table>";
          echo "</div>";
@@ -1050,7 +1050,7 @@ class CronTask extends CommonDBTM{
 
       if ($result = $DB->query($query)) {
          if ($data = $DB->fetch_assoc($result)) {
-            echo "<table class='tab_cadrehov'>";
+            echo "<table class='table table-striped table-hover'>";
             $header = "<tr>";
             $header .= "<th>".__('Date')."</th>";
             $header .= "<th>".__('Total duration')."</th>";
@@ -1060,7 +1060,7 @@ class CronTask extends CommonDBTM{
             echo $header;
 
             do {
-               echo "<tr class='tab_bg_2'>";
+               echo "<tr >";
                echo "<td><a href='javascript:reloadTab(\"crontasklogs_id=".
                           $data['crontasklogs_id']."\");'>".Html::convDateTime($data['date']).
                     "</a></td>";
@@ -1108,7 +1108,7 @@ class CronTask extends CommonDBTM{
 
       if ($result = $DB->query($query)) {
          if ($data = $DB->fetch_assoc($result)) {
-            echo "<table class='tab_cadrehov'><tr>";
+            echo "<table class='table table-striped table-hover'><tr>";
             echo "<th>".__('Date')."</th>";
             echo "<th>".__('Status')."</th>";
             echo "<th>". __('Duration')."</th>";
@@ -1118,7 +1118,7 @@ class CronTask extends CommonDBTM{
 
             $first = true;
             do {
-               echo "<tr class='tab_bg_2'>";
+               echo "<tr >";
                echo "<td class='center'>".($first ? Html::convDateTime($data['date'])
                                                   : "&nbsp;")."</a></td>";
                $content = $data['content'];

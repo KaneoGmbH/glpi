@@ -127,7 +127,7 @@ if (isset($query) && count($query)) {
       if ($result && $DB->numrows($result)) {
          $item = new $key();
          echo "<div class='center b'>".$item->getTypeName(1)."</div>";
-         echo "<table class='tab_cadre_fixehov'>";
+         echo "<table class='table table-hover'>";
          echo "<tr><th>".__('Name')."</th>";
          echo "<th>".__('Deleted')."</th>";
          if ($display_entity) {
@@ -141,7 +141,7 @@ if (isset($query) && count($query)) {
          echo "<th>".__('End date')."</th></tr>";
 
          while ($data = $DB->fetch_assoc($result)) {
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr >";
             if ($data['itemname']) {
                echo "<td> ".$data['itemname']."</td>";
             } else {

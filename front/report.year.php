@@ -43,12 +43,12 @@ Report::title();
 
 echo "<form name='form' method='post' action='report.year.list.php'>";
 
-echo "<table class='tab_cadre_fixe'>";
+echo "<table class='table table-striped'>";
 echo "<tr><th colspan='4'>".__("Equipment's report by year")."</th></tr>";
 
 # 3. Selection d'affichage pour generer la liste
 
-echo "<tr class='tab_bg_2'>";
+echo "<tr >";
 echo "<td width='20%' class='b center'>".__('Item type')."</td>";
 echo "<td width='30%'>";
 $values = array(0 => __('All'));
@@ -72,8 +72,8 @@ Dropdown::showFromArray('year',$values, array('value'    => $y,
                                               'multiple' => true));
 echo "</td></tr>";
 
-echo "<tr class='tab_bg_2'><td colspan='4' class='center'>";
-echo "<input type='submit' value=\"".__s('Display report')."\" class='submit'></td></tr>";
+echo "<tr ><td colspan='4' class='center'>";
+echo "<input type='submit' value=\"".__s('Display report')."\" class='btn btn-primary'></td></tr>";
 
 echo "</table>";
 

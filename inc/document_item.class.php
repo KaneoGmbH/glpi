@@ -309,10 +309,10 @@ class Document_Item extends CommonDBRelation{
          echo "<form name='documentitem_form$rand' id='documentitem_form$rand' method='post'
                action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
-         echo "<table class='tab_cadre_fixe'>";
-         echo "<tr class='tab_bg_2'><th colspan='2'>".__('Add an item')."</th></tr>";
+         echo "<table class='table table-striped'>";
+         echo "<tr ><th colspan='2'>".__('Add an item')."</th></tr>";
 
-         echo "<tr class='tab_bg_1'><td class='right'>";
+         echo "<tr ><td class='right'>";
          Dropdown::showSelectItemFromItemtypes(array('itemtypes'
                                                        => Document::getItemtypesThatCanHave(),
                                                      'entity_restrict'
@@ -323,7 +323,7 @@ class Document_Item extends CommonDBRelation{
                                                      'checkright'
                                                       => true));
          echo "</td><td class='center'>";
-         echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='submit'>";
+         echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='btn btn-primary'>";
          echo "<input type='hidden' name='documents_id' value='$instID'>";
          echo "</td></tr>";
          echo "</table>";
@@ -337,7 +337,7 @@ class Document_Item extends CommonDBRelation{
          $massiveactionparams = array('container' => 'mass'.__CLASS__.$rand);
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='table table-hover'>";
 
       $header_begin  = "<tr>";
       $header_top    = '';
@@ -455,7 +455,7 @@ class Document_Item extends CommonDBRelation{
                      $link = Toolbox::getItemTypeFormURL($itemtype);
                      $name = "<a href=\"".$link."?id=".$data["id"]."\">".$linkname."</a>";
 
-                     echo "<tr class='tab_bg_1'>";
+                     echo "<tr >";
 
                      if ($canedit) {
                         echo "<td width='10'>";
@@ -659,9 +659,9 @@ class Document_Item extends CommonDBRelation{
          echo "<form name='documentitem_form$rand' id='documentitem_form$rand' method='post'
                 action='".Toolbox::getItemTypeFormURL('Document')."' enctype=\"multipart/form-data\">";
 
-         echo "<table class='tab_cadre_fixe'>";
-         echo "<tr class='tab_bg_2'><th colspan='5'>".__('Add a document')."</th></tr>";
-         echo "<tr class='tab_bg_1'>";
+         echo "<table class='table'>";
+         echo "<tr ><th colspan='5'>".__('Add a document')."</th></tr>";
+         echo "<tr >";
 
          echo "<td class='center'>";
          _e('Heading');
@@ -682,7 +682,7 @@ class Document_Item extends CommonDBRelation{
          echo "</td>";
          echo "<td class='center' width='20%'>";
          echo "<input type='submit' name='add' value=\""._sx('button', 'Add a new file')."\"
-                class='submit'>";
+                class='btn btn-primary'>";
          echo "</td></tr>";
          echo "</table>";
          Html::closeForm();
@@ -691,8 +691,8 @@ class Document_Item extends CommonDBRelation{
              && ($nb > count($used))) {
             echo "<form name='document_form$rand' id='document_form$rand' method='post'
                    action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
-            echo "<table class='tab_cadre_fixe'>";
-            echo "<tr class='tab_bg_1'>";
+            echo "<table class='table'>";
+            echo "<tr >";
             echo "<td colspan='4' class='center'>";
             echo "<input type='hidden' name='itemtype' value='".$item->getType()."'>";
             echo "<input type='hidden' name='items_id' value='$ID'>";
@@ -706,7 +706,7 @@ class Document_Item extends CommonDBRelation{
                                      'used'   => $used));
             echo "</td><td class='center' width='20%'>";
             echo "<input type='submit' name='add' value=\"".
-                     _sx('button', 'Associate an existing document')."\" class='submit'>";
+                     _sx('button', 'Associate an existing document')."\" class='btn btn-primary'>";
             echo "</td>";
             echo "</tr>";
             echo "</table>";
@@ -729,7 +729,7 @@ class Document_Item extends CommonDBRelation{
       $sort_img = "<img src=\"" . $CFG_GLPI["root_doc"] . "/pics/" .
                     (($order == "DESC") ? "puce-down.png" : "puce-up.png") ."\" alt='' title=''>";
 
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='table table-hover'>";
 
       $header_begin  = "<tr>";
       $header_top    = '';

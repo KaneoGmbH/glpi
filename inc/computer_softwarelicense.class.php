@@ -286,7 +286,7 @@ class Computer_SoftwareLicense extends CommonDBRelation {
       }
 
       echo "<div class='center'>";
-      echo "<table class='tab_cadre'><tr>";
+      echo "<table class='table table-striped table-hover'><tr>";
       echo "<th>".__('Entity')."</th>";
       echo "<th>".__('Number of affected computers')."</th>";
       echo "</tr>\n";
@@ -301,17 +301,17 @@ class Computer_SoftwareLicense extends CommonDBRelation {
       foreach ($DB->request($sql) as $ID => $data) {
          $nb = self::countForLicense($softwarelicense_id,$ID);
          if ($nb > 0) {
-            echo "<tr class='tab_bg_2'><td>" . $data["completename"] . "</td>";
+            echo "<tr ><td>" . $data["completename"] . "</td>";
             echo "<td class='numeric'>".$nb."</td></tr>\n";
             $tot += $nb;
          }
       }
 
       if ($tot > 0) {
-         echo "<tr class='tab_bg_1'><td class='center b'>".__('Total')."</td>";
+         echo "<tr ><td class='center b'>".__('Total')."</td>";
          echo "<td class='numeric b '>".$tot."</td></tr>\n";
       } else {
-         echo "<tr class='tab_bg_1'><td colspan='2 b'>" . __('No item found') . "</td></tr>\n";
+         echo "<tr ><td colspan='2 b'>" . __('No item found') . "</td></tr>\n";
       }
       echo "</table></div>";
    }
@@ -381,14 +381,14 @@ class Computer_SoftwareLicense extends CommonDBRelation {
                 $CFG_GLPI["root_doc"]."/front/computer_softwarelicense.form.php'>";
          echo "<input type='hidden' name='softwarelicenses_id' value='$searchID'>";
 
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table table-striped'>";
          echo "<tr class='tab_bg_2 center'>";
          echo "<td>";
          Computer::dropdown(array('entity'      => $license->fields['entities_id'],
                                   'entity_sons' => $license->fields['is_recursive']));
 
          echo "</td>";
-         echo "<td><input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='submit'>";
+         echo "<td><input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='btn btn-primary'>";
          echo "</td></tr>";
 
          echo "</table>";
@@ -396,7 +396,7 @@ class Computer_SoftwareLicense extends CommonDBRelation {
       }
 
       if ($number < 1) {
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table'>";
          echo "<tr><th>".__('No item found')."</th></tr>";
          echo "</table></div>\n";
          return;
@@ -481,7 +481,7 @@ class Computer_SoftwareLicense extends CommonDBRelation {
 
             $sort_img = "<img src='" . $CFG_GLPI["root_doc"] . "/pics/" .
                           ($order == "DESC" ? "puce-down.png" : "puce-up.png") . "' alt='' title=''>";
-            echo "<table class='tab_cadre_fixehov'>";
+            echo "<table class='table table-hover'>";
 
             $columns = array('compname'          => __('Name'),
                              'entity'            => __('Entity'),
@@ -525,7 +525,7 @@ class Computer_SoftwareLicense extends CommonDBRelation {
             do {
                Session::addToNavigateListItems('Computer',$data["cID"]);
 
-               echo "<tr class='tab_bg_2'>";
+               echo "<tr >";
                if ($canedit) {
                   echo "<td>".Html::getMassiveActionCheckBox(__CLASS__, $data["id"])."</td>";
                }

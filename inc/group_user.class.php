@@ -143,9 +143,9 @@ class Group_User extends CommonDBRelation{
          echo "<form name='groupuser_form$rand' id='groupuser_form$rand' method='post'";
          echo " action='".Toolbox::getItemTypeFormURL('User')."'>";
 
-         echo "<table class='tab_cadre_fixe'>";
-         echo "<tr class='tab_bg_1'><th colspan='6'>".__('Associate to a group')."</th></tr>";
-         echo "<tr class='tab_bg_2'><td class='center'>";
+         echo "<table class='table table-striped'>";
+         echo "<tr ><th colspan='6'>".__('Associate to a group')."</th></tr>";
+         echo "<tr ><td class='center'>";
          echo "<input type='hidden' name='users_id' value='$ID'>";
 
          // All entities "edited user" have access
@@ -171,7 +171,7 @@ class Group_User extends CommonDBRelation{
 
             echo "</td><td class='tab_bg_2 center'>";
             echo "<input type='submit' name='addgroup' value=\""._sx('button','Add')."\"
-                   class='submit'>";
+                   class='btn btn-primary'>";
 
          } else {
             _e('None');
@@ -192,7 +192,7 @@ class Group_User extends CommonDBRelation{
                            'container'     => 'mass'.__CLASS__.$rand);
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='table table-hover'>";
       $header_begin  = "<tr>";
       $header_top    = '';
       $header_bottom = '';
@@ -223,7 +223,7 @@ class Group_User extends CommonDBRelation{
                continue;
             }
             Session::addToNavigateListItems('Group', $data["id"]);
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr >";
 
             if ($canedit && count($used)) {
                echo "<td width='10'>";
@@ -260,7 +260,7 @@ class Group_User extends CommonDBRelation{
          echo $header_begin.$header_bottom.$header_end;
 
       } else {
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr >";
          echo "<td colspan='5' class='center'>".__('None')."</td></tr>";
       }
       echo "</table>";
@@ -297,9 +297,9 @@ class Group_User extends CommonDBRelation{
          echo "<input type='hidden' name='groups_id' value='".$group->fields['id']."'>";
 
          echo "<div class='firstbloc'>";
-         echo "<table class='tab_cadre_fixe'>";
-         echo "<tr class='tab_bg_1'><th colspan='6'>".__('Add a user')."</th></tr>";
-         echo "<tr class='tab_bg_2'><td class='center'>";
+         echo "<table class='table'>";
+         echo "<tr ><th colspan='6'>".__('Add a user')."</th></tr>";
+         echo "<tr ><td class='center'>";
 
          User::dropdown(array('right'  => "all",
                               'entity' => $entityrestrict,
@@ -313,7 +313,7 @@ class Group_User extends CommonDBRelation{
 
          echo "</td><td class='tab_bg_2 center'>";
          echo "<input type='hidden' name'is_dynamic' value='0'>";
-         echo "<input type='submit' name='add' value=\""._sx('button','Add')."\" class='submit'>";
+         echo "<input type='submit' name='add' value=\""._sx('button','Add')."\" class='btn btn-primary'>";
          echo "</td></tr>";
          echo "</table></div>";
          Html::closeForm();
@@ -427,9 +427,9 @@ class Group_User extends CommonDBRelation{
       }
 
       // Mini Search engine
-      echo "<table class='tab_cadre_fixe'>";
-      echo "<tr class='tab_bg_1'><th colspan='2'>".User::getTypeName(Session::getPluralNumber())."</th></tr>";
-      echo "<tr class='tab_bg_1'><td class='center'>";
+      echo "<table class='table'>";
+      echo "<tr ><th colspan='2'>".User::getTypeName(Session::getPluralNumber())."</th></tr>";
+      echo "<tr ><td class='center'>";
       echo _n('Criterion', 'Criteria', 1)."&nbsp;";
       $crits = array(''                => Dropdown::EMPTY_VALUE,
                      'is_manager'      => __('Manager'),
@@ -472,7 +472,7 @@ class Group_User extends CommonDBRelation{
             Html::showMassiveActions($massiveactionparams);
          }
 
-         echo "<table class='tab_cadre_fixehov'>";
+         echo "<table class='table table-hover'>";
 
          $header_begin  = "<tr>";
          $header_top    = '';

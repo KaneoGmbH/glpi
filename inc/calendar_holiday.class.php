@@ -100,14 +100,14 @@ class Calendar_Holiday extends CommonDBRelation {
          echo "<form name='calendarsegment_form$rand' id='calendarsegment_form$rand' method='post'
                 action='";
          echo Toolbox::getItemTypeFormURL(__CLASS__)."'>";
-         echo "<table class='tab_cadre_fixe'>";
-         echo "<tr class='tab_bg_1'><th colspan='7'>".__('Add a close time')."</tr>";
-         echo "<tr class='tab_bg_2'><td class='right'  colspan='4'>";
+         echo "<table class='table table-striped'>";
+         echo "<tr ><th colspan='7'>".__('Add a close time')."</tr>";
+         echo "<tr ><td class='right'  colspan='4'>";
          echo "<input type='hidden' name='calendars_id' value='$ID'>";
          Holiday::dropdown(array('used'   => $used,
                                  'entity' => $calendar->fields["entities_id"]));
          echo "</td><td class='center'>";
-         echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='submit'>";
+         echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='btn btn-primary'>";
          echo "</td></tr>";
          echo "</table>";
          Html::closeForm();
@@ -122,7 +122,7 @@ class Calendar_Holiday extends CommonDBRelation {
                            'container'     => 'mass'.__CLASS__.$rand);
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='table table-hover'>";
       echo "<tr>";
       if ($canedit && $numrows) {
          echo "<th width='10'>";
@@ -146,7 +146,7 @@ class Calendar_Holiday extends CommonDBRelation {
 
          foreach ($holidays as $data) {
             Session::addToNavigateListItems('Holiday', $data["id"]);
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr >";
             if ($canedit) {
                echo "<td>";
                Html::showMassiveActionCheckBox(__CLASS__, $data["linkID"]);

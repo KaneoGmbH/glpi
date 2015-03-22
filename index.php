@@ -46,7 +46,6 @@ if (!file_exists(GLPI_CONFIG_DIR . "/config_db.php")) {
    include_once (GLPI_ROOT . "/inc/autoload.function.php");
    Html::redirect("install/install.php");
    die();
-
 } else {
    $TRY_OLD_CONFIG_FIRST = true;
    include (GLPI_ROOT . "/inc/includes.php");
@@ -62,131 +61,60 @@ if (!file_exists(GLPI_CONFIG_DIR . "/config_db.php")) {
    // Send UTF8 Headers
    header("Content-Type: text/html; charset=UTF-8");
 
-   // Start the page
-   echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" '.
-         '"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">'."\n";
-   echo '<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">';
-   echo '<head><title>'.__('GLPI - Authentication').'</title>'."\n";
-   echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>'."\n";
-   echo '<meta http-equiv="Content-Script-Type" content="text/javascript"/>'."\n";
-   echo '<link rel="shortcut icon" type="images/x-icon" href="'.$CFG_GLPI["root_doc"].
-          '/pics/favicon.ico" />';
+    $login = new Template();
 
-   // Appel CSS
-   echo '<link rel="stylesheet" href="'.$CFG_GLPI["root_doc"].'/css/styles.css" type="text/css" '.
-         'media="screen" />';
-   // surcharge CSS hack for IE
-   echo "<!--[if lte IE 6]>" ;
-   echo "<link rel='stylesheet' href='".$CFG_GLPI["root_doc"]."/css/styles_ie.css' type='text/css' ".
-         "media='screen' >\n";
-   echo "<![endif]-->";
-//    echo "<script type='text/javascript'><!--document.getElementById('var_login_name').focus();-->".
-//          "</script>";
+    global $CFG_GLPI;
 
-   echo "</head>";
+    $login->assign('pageTitle',__('GLPI - Authentication'));
+    $login->assign('CFG_GLPI',$CFG_GLPI);
+    $login->assign('loginText',nl2br(Toolbox::unclean_html_cross_side_scripting_deep($CFG_GLPI['text_login'])));
+    $login->assign('formAction',$CFG_GLPI["root_doc"]."/front/login.php");
 
-   echo "<body>";
-   echo "<div id='firstboxlogin'>";
-   echo "<div id='logo_login'></div>";
-   echo "<div id='text-login'>";
-   echo nl2br(Toolbox::unclean_html_cross_side_scripting_deep($CFG_GLPI['text_login']));
-   echo "</div>";
+    if (isset($_GET["noAUTO"])) {
+        $hiddenInputs[] = '<input type="hidden" name="noAUTO" value="1" />';
+    }
 
-   echo "<div id='boxlogin'>";
-   echo "<form action='".$CFG_GLPI["root_doc"]."/front/login.php' method='post'>";
-
-
-   echo "<fieldset>";
-   // Other CAS
-   if (isset($_GET["noAUTO"])) {
-      echo "<input type='hidden' name='noAUTO' value='1' />";
-   }
-   // redirect to ticket
    if (isset($_GET["redirect"])) {
-      Toolbox::manageRedirect($_GET["redirect"]);
-      echo '<input type="hidden" name="redirect" value="'.$_GET['redirect'].'"/>';
-   }
-   echo '<legend>'.__('Authentication').'</legend>';
-   echo '<div class="loginrow"><span class="loginlabel"><label>'.__('Login').'</label></span>';
-   echo '<span class="loginformw">';
-   echo '<input type="text" name="login_name" id="login_name" required="required" />';
-   echo '</span></div>';
-
-   echo '<div class="loginrow"><span class="loginlabel"><label>'.__('Password').'</label></span>';
-   echo '<span class="loginformw">';
-   echo '<input type="password" name="login_password" id="login_password" required="required" />';
-   echo '</span></div>';
-
-   echo "</fieldset>";
-   echo '<p><span>';
-   echo '<input type="submit" name="submit" value="'._sx('button','Post').'" class="submit" />';
-   echo '</span></p>';
-    if ($CFG_GLPI["use_mailing"]
-       && countElementsInTable('glpi_notifications',
-                               "`itemtype`='User'
-                                AND `event`='passwordforget'
-                                AND `is_active`=1")) {
-      echo '<div id="forget"><a href="front/lostpassword.php?lostpassword=1">'.
-             __('Forgotten password?').'</a></div>';
-   }
-   Html::closeForm();
-
-   echo "<script type='text/javascript' >\n";
-   echo "document.getElementById('login_name').focus();";
-   echo "</script>";
-
-   echo "</div>";  // end login box
-
-
-   echo "<div class='error'>";
-   echo "<noscript><p>";
-   _e('You must activate the JavaScript function of your browser');
-   echo "</p></noscript>";
-
-   if (isset($_GET['error'])) {
-      switch ($_GET['error']) {
-         case 1 : // cookie error
-            _e('You must accept cookies to reach this application');
-            break;
-
-         case 2 : // GLPI_SESSION_DIR not writable
-            _e('Checking write permissions for session files');
-            echo "<br>".GLPI_SESSION_DIR;
-            break;
-
-         case 3 :
-            _e('Invalid use of session ID');
-            break;
-      }
-   }
-   echo "</div>";
-
-
-   echo "</div>"; // end contenu login
-
-      // Display FAQ is enable
-   if ($CFG_GLPI["use_public_faq"]) {
-      echo '<div id="box-faq">'.
-            '<a href="front/helpdesk.faq.php">[ '.__('Access to the Frequently Asked Questions').' ]';
-      echo '</a></div>';
+       Toolbox::manageRedirect($_GET["redirect"]);
+       $hiddenInputs[] = '<input type="hidden" name="redirect" value="'.$_GET['redirect'].'"/>';
    }
 
-   if (GLPI_DEMO_MODE) {
-      echo "<div class='center'>";
-      Event::getCountLogin();
-      echo "</div>";
-   }
-   echo "<div id='footer-login'>";
-   echo "<a href='http://glpi-project.org/' title='Powered By Indepnet'>";
-   echo 'GLPI version '.(isset($CFG_GLPI["version"])?$CFG_GLPI["version"]:"").
-        ' Copyright (C) 2003-'.date("Y").' INDEPNET Development Team.';
-   echo "</a></div>";
+    $login->assign('hiddenInputs',$hiddenInputs);
+
+    if ($CFG_GLPI["use_mailing"] && countElementsInTable('glpi_notifications', "`itemtype`='User' AND `event`='passwordforget' AND `is_active`=1")) {
+        $login->assign('lostPassword',true);
+        $login->assign('lostPasswordLink', $CFG_GLPI['root_doc']."/front/lostpassword.php?lostpassword=1");
+    }
+
+    if ($CFG_GLPI["use_public_faq"]) {
+        $login->assign('publicFAQ',true);
+        $login->assign('publicFAQLink', $CFG_GLPI['root_doc']."/front/helpdesk.faq.php");
+    }
+
+    if (isset($_GET['error'])) {
+
+        $login->assign('error',true);
+
+        switch ($_GET['error']) {
+            case 1 : // cookie error
+                $login->assign('errorMsg',__('You must accept cookies to reach this application'));
+                break;
+
+            case 2 : // GLPI_SESSION_DIR not writable
+                $login->assign('errorMsg',__('Checking write permissions for session files'));
+                break;
+
+            case 3 :
+                $login->assign('errorMsg',__('Invalid use of session ID'));
+                break;
+        }
+    }
+
+    $login->display('login.tpl.php');
+
 
 }
 // call cron
 if (!GLPI_DEMO_MODE) {
    CronTask::callCronForce();
 }
-
-echo "</body></html>";
-?>

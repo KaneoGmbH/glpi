@@ -596,7 +596,7 @@ if (isset($_POST["delfile"])) {
 
 if (Session::haveRight('backup', Backup::CHECKUPDATE)) {
    echo "<div class='center spaced'><table class='tab_glpi'>";
-   echo "<tr class='tab_bg_1'><td colspan='4' class='center b'>";
+   echo "<tr ><td colspan='4' class='center b'>";
    Html::showSimpleForm($_SERVER['PHP_SELF'], 'check_version',
                         __('Check if a new version is available'));
    echo "</td></tr></table></div>";
@@ -608,19 +608,19 @@ if (Session::haveRight('backup', CREATE)) {
    echo "<table class='tab_glpi'><tr><td>".
          "<img src='".$CFG_GLPI["root_doc"]."/pics/sauvegardes.png' alt=\"".__s('Deleted')."\">".
          "</td>";
-   echo "<td><a class='vsubmit'
+   echo "<td><a class='btn btn-info btn-xs'
               href=\"#\" ".HTML::addConfirmationOnAction(__('Backup the database?'),
                                                          "window.location='".$CFG_GLPI["root_doc"].
                                                            "/front/backup.php?dump=dump'").
               ">".__('SQL Dump')."</a>&nbsp;</td>";
-   echo "<td><a class='vsubmit'
+   echo "<td><a class='btn btn-info btn-xs'
               href=\"#\" ".HTML::addConfirmationOnAction(__('Backup the database?'),
                                                          "window.location='".$CFG_GLPI["root_doc"].
                                                            "/front/backup.php?xmlnow=xmlnow'").
               ">".__('XML Dump')."</a>&nbsp;</td>";
    echo "</tr></table>";
 }
-echo "<br><table class='tab_cadre' cellpadding='5'>".
+echo "<br><table class='table table-striped table-hover' cellpadding='5'>".
      "<tr class='center'>".
      "<th><u><i>".__('File')."</i></u></th>".
      "<th><u><i>".__('Size')."</i></u></th>".
@@ -643,7 +643,7 @@ arsort($files);
 if (count($files)) {
    foreach ($files as $file => $date) {
       $taille_fic = filesize($path."/".$file);
-      echo "<tr class='tab_bg_2'><td>$file&nbsp;</td>".
+      echo "<tr ><td>$file&nbsp;</td>".
            "<td class='right'>".Toolbox::getSize($taille_fic)."</td>".
            "<td>&nbsp;" . Html::convDateTime(date("Y-m-d H:i",$date)) . "</td>";
       if (Session::haveRight('backup', PURGE)) {
@@ -663,14 +663,14 @@ if (count($files)) {
                                    $file));
          $string[] = array(__('Warning, your actual database will be totaly overwriten by the database you want to restore !!!'));
 
-         echo "<a class='vsubmit' href=\"#\" ".HTML::addConfirmationOnAction($string,
+         echo "<a class='btn btn-info btn-xs' href=\"#\" ".HTML::addConfirmationOnAction($string,
                                         "window.location='".$CFG_GLPI["root_doc"].
                                         "/front/backup.php?file=$file&amp;donotcheckversion=1'").
               ">".__('Restore')."</a>&nbsp;</td>";
       }
       if (Session::haveRight('backup', CREATE)) {
          echo "<td>&nbsp;".
-              "<a class='vsubmit' href=\"document.send.php?file=_dumps/$file\">".__('Download').
+              "<a class='btn btn-info btn-xs' href=\"document.send.php?file=_dumps/$file\">".__('Download').
               "</a></td>";
       }
       echo "</tr>";
@@ -694,8 +694,8 @@ arsort($files);
 if (count($files)) {
    foreach ($files as $file => $date) {
       $taille_fic = filesize($path."/".$file);
-      echo "<tr class='tab_bg_1'><td colspan='6'><hr noshade></td></tr>".
-           "<tr class='tab_bg_2'><td>$file&nbsp;</td>".
+      echo "<tr ><td colspan='6'><hr noshade></td></tr>".
+           "<tr ><td>$file&nbsp;</td>".
             "<td class='right'>".Toolbox::getSize($taille_fic)."</td>".
             "<td>&nbsp;" . Html::convDateTime(date("Y-m-d H:i",$date)) . "</td>";
       if (Session::haveRight('backup', PURGE)) {
@@ -707,7 +707,7 @@ if (count($files)) {
          echo "</td>";
       }
       if (Session::haveRight('backup', CREATE)) {
-         echo "<td>&nbsp;<a class='vsubmit' href=\"document.send.php?file=_dumps/$file\">".
+         echo "<td>&nbsp;<a class='btn btn-info btn-xs' href=\"document.send.php?file=_dumps/$file\">".
                        __('Download')."</a></td>";
       }
       echo "</tr>";

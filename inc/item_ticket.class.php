@@ -192,10 +192,10 @@ class Item_Ticket extends CommonDBRelation{
          echo "<form name='ticketitem_form$rand' id='ticketitem_form$rand' method='post'
                 action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
-         echo "<table class='tab_cadre_fixe'>";
-         echo "<tr class='tab_bg_2'><th colspan='2'>".__('Add an item')."</th></tr>";
+         echo "<table class='table table-striped'>";
+         echo "<tr ><th colspan='2'>".__('Add an item')."</th></tr>";
 
-         echo "<tr class='tab_bg_1'><td>";
+         echo "<tr ><td>";
          // Select hardware on creation or if have update right
          $class        = new $ticket->userlinkclass();
          $tickets_user = $class->getActors($instID);
@@ -222,7 +222,7 @@ class Item_Ticket extends CommonDBRelation{
          self::dropdownAllDevices("itemtype", null, 0, 1, $dev_user_id, $ticket->fields["entities_id"], $instID);
          echo "<span id='item_ticket_selection_information'></span>";
          echo "</td><td class='center' width='30%'>";
-         echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='submit'>";
+         echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='btn btn-primary'>";
          echo "<input type='hidden' name='tickets_id' value='$instID'>";
          echo "</td></tr>";
          echo "</table>";
@@ -236,7 +236,7 @@ class Item_Ticket extends CommonDBRelation{
          $massiveactionparams = array('container' => 'mass'.__CLASS__.$rand);
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='table table-hover'>";
       $header_begin  = "<tr>";
       $header_top    = '';
       $header_bottom = '';
@@ -302,7 +302,7 @@ class Item_Ticket extends CommonDBRelation{
                   $namelink = $name;
                }
 
-               echo "<tr class='tab_bg_1'>";
+               echo "<tr >";
                if ($canedit) {
                   echo "<td width='10'>";
                   Html::showMassiveActionCheckBox(__CLASS__, $data["IDD"]);
@@ -838,13 +838,13 @@ class Item_Ticket extends CommonDBRelation{
          case 'add_item' :
             Dropdown::showAllItems("items_id", 0, 0, $_SESSION['glpiactive_entity'],
                                        $CFG_GLPI["ticket_types"], false, true, 'item_itemtype');
-            echo "<br><input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='submit'>";
+            echo "<br><input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='btn btn-primary'>";
             break;
          
          case 'delete_item' :
             Dropdown::showAllItems("items_id", 0, 0, $_SESSION['glpiactive_entity'],
                                        $CFG_GLPI["ticket_types"], false, true, 'item_itemtype');
-            echo "<br><input type='submit' name='delete' value=\"".__('Delete permanently')."\" class='submit'>";
+            echo "<br><input type='submit' name='delete' value=\"".__('Delete permanently')."\" class='btn btn-primary'>";
             break;
       }
 

@@ -39,7 +39,7 @@ Html::header(Rule::getTypeName(Session::getPluralNumber()), $_SERVER['PHP_SELF']
 
 RuleCollection::titleBackup();
 
-echo "<table class='tab_cadre'>";
+echo "<table class='table table-striped table-hover'>";
 echo "<tr><th>" . __('Rule type') . "</th></tr>";
 
 foreach ($CFG_GLPI["rulecollections_types"] as $rulecollectionclass) {
@@ -51,7 +51,7 @@ foreach ($CFG_GLPI["rulecollections_types"] as $rulecollectionclass) {
       } else {
          $title = $rulecollection->getTitle();
       }
-      echo "<tr class='tab_bg_1'><td class='center b'>";
+      echo "<tr ><td class='center b'>";
       echo "<a href='".Toolbox::getItemTypeSearchURL($rulecollection->getRuleClassName())."'>";
       echo $title."</a></td></tr>";
    }
@@ -59,13 +59,13 @@ foreach ($CFG_GLPI["rulecollections_types"] as $rulecollectionclass) {
 
 if (Session::haveRight("transfer", READ)
     && Session::isMultiEntitiesMode()) {
-   echo "<tr class='tab_bg_1'><td class='center b'>";
+   echo "<tr ><td class='center b'>";
    echo "<a href='".$CFG_GLPI['root_doc']."/front/transfer.php'>".__('Transfer')."</a>";
    echo "</td></tr>";
 }
 
 if (Session::haveRight("config", READ)) {
-   echo "<tr class='tab_bg_1'><td class='center b'>";
+   echo "<tr ><td class='center b'>";
    echo "<a href='".$CFG_GLPI['root_doc']."/front/blacklist.php'>".
         _n('Blacklist','Blacklists',2)."</a>";
    echo "</td></tr>";

@@ -77,12 +77,12 @@ class RuleRightCollection extends RuleCollection {
 
       $actions = $rule->getActions();
       echo "<tr><th colspan='4'>" . __('Rule results') . "</th></tr>";
-      echo "<tr class='tab_bg_2'>";
+      echo "<tr >";
       echo "<td class='center' colspan='2'>".__('Validation')."</td><td colspan='2'>".
            "<span class='b'>".Dropdown::getYesNo($global_result)."</span></td>";
 
       if (isset($output["_ldap_rules"]["rules_entities"])) {
-         echo "<tr class='tab_bg_2'>";
+         echo "<tr >";
          echo "<td class='center' colspan='4'>".__('Entities assignment')."</td>";
          foreach ($output["_ldap_rules"]["rules_entities"] as $entities) {
             foreach ($entities as $entity) {
@@ -95,7 +95,7 @@ class RuleRightCollection extends RuleCollection {
       }
 
       if (isset($output["_ldap_rules"]["rules_rights"])) {
-         echo "<tr class='tab_bg_2'>";
+         echo "<tr >";
          echo "<td colspan='4' class='center'>".__('Rights assignment')."</td>";
          foreach ($output["_ldap_rules"]["rules_rights"] as $val) {
             $this->displayActionByName("profile", $val[0]);
@@ -103,7 +103,7 @@ class RuleRightCollection extends RuleCollection {
       }
 
       if (isset($output["_ldap_rules"]["rules_entities_rights"])) {
-         echo "<tr class='tab_bg_2'>";
+         echo "<tr >";
          echo "<td colspan='4' class='center'>".__('Rights and entities assignment')."</td>";
          foreach ($output["_ldap_rules"]["rules_entities_rights"] as $val) {
             if (is_array($val[0])) {
@@ -127,7 +127,7 @@ class RuleRightCollection extends RuleCollection {
       }
       foreach ($output as $criteria => $value) {
          if (isset($actions[$criteria])) { // ignore _* fields
-            echo "<tr class='tab_bg_2'>";
+            echo "<tr >";
             echo "<td class='center'>".$actions[$criteria]["name"]."</td>";
             echo "<td class='center'>".$rule->getActionValue($criteria,
                                                              $actions[$criteria]['action_type'],
@@ -147,7 +147,7 @@ class RuleRightCollection extends RuleCollection {
    **/
    function displayActionByName($name, $value) {
 
-      echo "<tr class='tab_bg_2'>";
+      echo "<tr >";
       switch ($name) {
          case "entity" :
             echo "<td class='center'>".__('Entity')." </td>\n";

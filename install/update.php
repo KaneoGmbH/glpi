@@ -187,7 +187,7 @@ function showContentUpdateForm() {
    echo "<h3>".__('Update successful, your database is up to date')."</h3>";
    echo "<p>".__('You must now proceed to updating your database content')."</p></div>";
    echo "<p>";
-   echo "<a class='vsubmit' href='update_content.php'>".__('Continue?')."</a>";
+   echo "<a class='btn btn-info btn-xs' href='update_content.php'>".__('Continue?')."</a>";
 }
 
 
@@ -410,7 +410,7 @@ function showLocationUpdateForm() {
             "<input type='text' name='car_sep' value='".$_POST['car_sep']."'></p>";
       echo "<p>".__('Root location').'&nbsp;'.
             "<input type='text' name='root' value='".$_POST['root']."'></p>";
-      echo "<input type='submit' class='submit' name='new_location' value=\""._sx('button','Post')."\">";
+      echo "<input type='submit' class='btn btn-primary' name='new_location' value=\""._sx('button','Post')."\">";
       echo "<input type='hidden' name='from_update' value='from_update'>";
       Html::closeForm();
       echo "</div>";
@@ -425,7 +425,7 @@ function showLocationUpdateForm() {
       echo "<p>".__("This is the new hierarchy. If it's complete approve it.")."</p>";
       echo "<div class='center'>";
       echo "<form action='".$CFG_GLPI["root_doc"]."/install/update.php' method='post'>";
-      echo "<input type='submit' class='submit' name='validate_location' value=\"".
+      echo "<input type='submit' class='btn btn-primary' name='validate_location' value=\"".
              _sx('button','Post')."\">";
       echo "<input type='hidden' name='from_update' value='from_update'>";
       echo "</div>";
@@ -886,7 +886,7 @@ if (empty($_POST["continuer"]) && empty($_POST["from_update"])) {
       echo "<div class='center'>";
       echo "<h3><span class='red'>".__('Impossible to accomplish an update by this way!')."</span>";
       echo "<p>";
-      echo "<a class='vsubmit' href='../index.php'>".__('Go back to GLPI')."</a></p>";
+      echo "<a class='btn btn-info btn-xs' href='../index.php'>".__('Go back to GLPI')."</a></p>";
       echo "</div>";
 
    } else {
@@ -894,7 +894,7 @@ if (empty($_POST["continuer"]) && empty($_POST["from_update"])) {
       echo "<h3><span class='red'>".sprintf(__('Caution! You will update the GLPI database named: %s'),$DB->dbdefault) ."</h3>";
 
       echo "<form action='update.php' method='post'>";
-      echo "<input type='submit' class='submit' name='continuer' value=\"".__('Continue')."\">";
+      echo "<input type='submit' class='btn btn-primary' name='continuer' value=\"".__('Continue')."\">";
       Html::closeForm();
       echo "</div>";
    }
@@ -946,7 +946,7 @@ if (empty($_POST["continuer"]) && empty($_POST["from_update"])) {
                   break;
 
                default :
-                  echo "<a class='vsubmit' href='../index.php'>".__('Use GLPI')."</a>";
+                  echo "<a class='btn btn-info btn-xs' href='../index.php'>".__('Use GLPI')."</a>";
             }
          }
          echo "</div>";

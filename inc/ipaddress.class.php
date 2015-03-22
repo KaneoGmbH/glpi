@@ -277,7 +277,7 @@ class IPAddress extends CommonDBChild {
 
             Html::printAjaxPager(self::getTypeName(Session::getPluralNumber()), $start, self::countForItem($item));
          } else {
-            echo "<table class='tab_cadre_fixe'>";
+            echo "<table class='table table-striped'>";
             echo "<tr><th>".__('No IP address found')."</th></tr>";
             echo "</table>";
          }

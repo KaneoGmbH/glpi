@@ -177,17 +177,17 @@ class Contract_Supplier extends CommonDBRelation {
                 action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
          echo "<input type='hidden' name='suppliers_id' value='$ID'>";
 
-         echo "<table class='tab_cadre_fixe'>";
-         echo "<tr class='tab_bg_2'><th colspan='2'>".__('Add a contract')."</th></tr>";
+         echo "<table class='table table-striped'>";
+         echo "<tr ><th colspan='2'>".__('Add a contract')."</th></tr>";
 
-         echo "<tr class='tab_bg_1'><td class='right'>";
+         echo "<tr ><td class='right'>";
          Contract::dropdown(array('used'         => $used,
                                   'entity'       => $supplier->fields["entities_id"],
                                   'entity_sons'  => $supplier->fields["is_recursive"],
                                   'nochecklimit' => true));
 
          echo "</td><td class='center'>";
-         echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='submit'>";
+         echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='btn btn-primary'>";
          echo "</td></tr>";
          echo "</table>";
          Html::closeForm();
@@ -201,7 +201,7 @@ class Contract_Supplier extends CommonDBRelation {
                                       'num_displayed' => $number);
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table'>";
 
       $header_begin  = "<tr>";
       $header_top    = '';
@@ -321,16 +321,16 @@ class Contract_Supplier extends CommonDBRelation {
                 action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
          echo "<input type='hidden' name='contracts_id' value='$instID'>";
 
-         echo "<table class='tab_cadre_fixe'>";
-         echo "<tr class='tab_bg_2'><th colspan='2'>".__('Add a supplier')."</th></tr>";
+         echo "<table class='table'>";
+         echo "<tr ><th colspan='2'>".__('Add a supplier')."</th></tr>";
 
-         echo "<tr class='tab_bg_1'><td class='right'>";
+         echo "<tr ><td class='right'>";
 
          Supplier::dropdown(array('used'         => $used,
                                   'entity'       => $contract->fields["entities_id"],
                                   'entity_sons'  => $contract->fields["is_recursive"]));
          echo "</td><td class='center'>";
-         echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='submit'>";
+         echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='btn btn-primary'>";
          echo "</td></tr>";
          echo "</table>";
          Html::closeForm();
@@ -344,7 +344,7 @@ class Contract_Supplier extends CommonDBRelation {
                                       'container'     => 'mass'.__CLASS__.$rand);
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table'>";
       $header_begin  = "<tr>";
       $header_top    = '';
       $header_bottom = '';
@@ -377,7 +377,7 @@ class Contract_Supplier extends CommonDBRelation {
          $entity        = $data['entity'];
          $used[$entID]  = $entID;
          $entname       = Dropdown::getDropdownName("glpi_suppliers", $entID);
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr >";
          if ($canedit) {
             echo "<td>";
             Html::showMassiveActionCheckBox(__CLASS__, $data["id"]);

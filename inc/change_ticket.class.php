@@ -225,16 +225,16 @@ class Change_Ticket extends CommonDBRelation{
          echo "<form name='changeticket_form$rand' id='changeticket_form$rand' method='post'
                 action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
-         echo "<table class='tab_cadre_fixe'>";
-         echo "<tr class='tab_bg_2'><th colspan='2'>".__('Add a ticket')."</th></tr>";
+         echo "<table class='table table-striped'>";
+         echo "<tr ><th colspan='2'>".__('Add a ticket')."</th></tr>";
 
-         echo "<tr class='tab_bg_2'><td class='right'>";
+         echo "<tr ><td class='right'>";
          echo "<input type='hidden' name='changes_id' value='$ID'>";
          Ticket::dropdown(array('used'        => $used,
                                 'entity'      => $change->getEntityID(),
                                 'entity_sons' => $change->isRecursive()));
          echo "</td><td class='center'>";
-         echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='submit'>";
+         echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='btn btn-primary'>";
          echo "</td></tr>";
 
          echo "</table>";
@@ -257,7 +257,7 @@ class Change_Ticket extends CommonDBRelation{
          Html::showMassiveActions($massiveactionparams);
       }
 
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='table table-hover'>";
       echo "<tr class='noHover'><th colspan='12'>".Ticket::getTypeName($numrows)."</th>";
       echo "</tr>";
       if ($numrows) {
@@ -327,14 +327,14 @@ class Change_Ticket extends CommonDBRelation{
          echo "<form name='changeticket_form$rand' id='changeticket_form$rand' method='post'
                action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
-         echo "<table class='tab_cadre_fixe'>";
-         echo "<tr class='tab_bg_2'><th colspan='3'>".__('Add a change')."</th></tr>";
-         echo "<tr class='tab_bg_2'><td>";
+         echo "<table class='table'>";
+         echo "<tr ><th colspan='3'>".__('Add a change')."</th></tr>";
+         echo "<tr ><td>";
          echo "<input type='hidden' name='tickets_id' value='$ID'>";
          Change::dropdown(array('used'        => $used,
                                 'entity'      => $ticket->getEntityID()));
          echo "</td><td class='center'>";
-         echo "<input type='submit' name='add' value=\""._sx('button','Add')."\" class='submit'>";
+         echo "<input type='submit' name='add' value=\""._sx('button','Add')."\" class='btn btn-primary'>";
          echo "</td><td>";
          if (Session::haveRight('change', CREATE)) {
             echo "<a href='".Toolbox::getItemTypeFormURL('Change')."?tickets_id=$ID'>";
@@ -355,7 +355,7 @@ class Change_Ticket extends CommonDBRelation{
          Html::showMassiveActions($massiveactionparams);
       }
 
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='table table-hover'>";
       echo "<tr class='noHover'><th colspan='12'>".Change::getTypeName($numrows)."</th>";
       echo "</tr>";
       if ($numrows) {

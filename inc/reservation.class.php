@@ -414,10 +414,10 @@ class Reservation extends CommonDBChild {
 
          if ((!isset($m->fields['is_active'])) || !$m->fields['is_active']) {
             echo "<div class='center'>";
-            echo "<table class='tab_cadre_fixe'>";
-            echo "<tr class='tab_bg_2'>";
+            echo "<table class='table table-striped'>";
+            echo "<tr >";
             echo "<td class='center b'>".__('Device temporarily unavailable')."</td></tr>";
-            echo "<tr class='tab_bg_1'><td class='center b'>";
+            echo "<tr ><td class='center b'>";
             Html::displayBackLink();
             echo "</td></tr>";
             echo "</table>";
@@ -435,7 +435,7 @@ class Reservation extends CommonDBChild {
             $name = sprintf(__('%1$s - %2$s'), $type, $name);
          }
 
-         $all = "<a class='vsubmit' href='reservation.php?reservationitems_id=&amp;mois_courant=".
+         $all = "<a class='btn btn-info btn-xs' href='reservation.php?reservationitems_id=&amp;mois_courant=".
                   "$mois_courant&amp;annee_courante=$annee_courante'>".__('Show all')."</a>";
 
       } else {
@@ -520,7 +520,7 @@ class Reservation extends CommonDBChild {
       echo "</td><td class='top' width='100%'>";
 
       // test
-      echo "<table width='100%' class='tab_cadre'><tr>";
+      echo "<table width='100%' class='table table-striped table-hover'><tr>";
       echo "<th width='14%'>".__('Monday')."</th>";
       echo "<th width='14%'>".__('Tuesday')."</th>";
       echo "<th width='14%'>".__('Wednesday')."</th>";
@@ -529,7 +529,7 @@ class Reservation extends CommonDBChild {
       echo "<th width='14%'>".__('Saturday')."</th>";
       echo "<th width='14%'>".__('Sunday')."</th>";
       echo "</tr>\n";
-      echo "<tr class='tab_bg_3' >";
+      echo "<tr  >";
 
       // Insert blank cell before the first day of the month
       for ($i=1 ; $i<$jour_debut_mois ; $i++) {
@@ -569,7 +569,7 @@ class Reservation extends CommonDBChild {
          if ((($i+$jour_debut_mois)%7) == 1) {
             echo "</tr>\n";
             if ($i != $nb_jour[$mois_courant-1]) {
-               echo "<tr class='tab_bg_3'>";
+               echo "<tr >";
             }
          }
       }
@@ -639,13 +639,13 @@ class Reservation extends CommonDBChild {
          echo "<input type='hidden' name='id' value='$ID'>";
       }
 
-      echo "<table class='tab_cadre' width='700px'>";
+      echo "<table class='table table-striped table-hover' width='700px'>";
       echo "<tr><th colspan='2'>".__('Reserve an item')."</th></tr>\n";
 
       // Add Hardware name
       $r = new ReservationItem();
 
-      echo "<tr class='tab_bg_1'><td>".__('Item')."</td>";
+      echo "<tr ><td>".__('Item')."</td>";
       echo "<td>";
       foreach ($options['item'] as $itemID) {
          $r->getFromDB($itemID);
@@ -675,7 +675,7 @@ class Reservation extends CommonDBChild {
          echo "<input type='hidden' name='users_id' value='".Session::getLoginUserID()."'>";
 
       } else {
-         echo "<tr class='tab_bg_2'><td>".__('By')."</td>";
+         echo "<tr ><td>".__('By')."</td>";
          echo "<td>";
          if (empty($ID)) {
             User::dropdown(array('value'  => Session::getLoginUserID(),
@@ -688,7 +688,7 @@ class Reservation extends CommonDBChild {
          }
          echo "</td></tr>\n";
       }
-      echo "<tr class='tab_bg_2'><td>".__('Start date')."</td><td>";
+      echo "<tr ><td>".__('Start date')."</td><td>";
       $rand_begin = Html::showDateTimeField("resa[begin]",
                                             array('value'      => $resa->fields["begin"],
                                                   'timestep'   => -1,
@@ -697,7 +697,7 @@ class Reservation extends CommonDBChild {
       $default_delay = floor((strtotime($resa->fields["end"])-strtotime($resa->fields["begin"]))
                              /$CFG_GLPI['time_step']/MINUTE_TIMESTAMP)
                        *$CFG_GLPI['time_step']*MINUTE_TIMESTAMP;
-      echo "<tr class='tab_bg_2'><td>".__('Duration')."</td><td>";
+      echo "<tr ><td>".__('Duration')."</td><td>";
       $rand = Dropdown::showTimeStamp("resa[_duration]",
                                       array('min'        => 0,
                                             'max'        => 24*HOUR_TIMESTAMP,
@@ -719,7 +719,7 @@ class Reservation extends CommonDBChild {
       echo "</td></tr>\n";
 
       if (empty($ID)) {
-         echo "<tr class='tab_bg_2'><td>".__('Rehearsal')."</td>";
+         echo "<tr ><td>".__('Rehearsal')."</td>";
          echo "<td>";
          $values   = array(''      => _x('periodicity', 'None'),
                            'day'   => _x('periodicity', 'Daily'),
@@ -738,28 +738,28 @@ class Reservation extends CommonDBChild {
          echo "</td></tr>\n";
       }
 
-      echo "<tr class='tab_bg_2'><td>".__('Comments')."</td>";
+      echo "<tr ><td>".__('Comments')."</td>";
       echo "<td><textarea name='comment' rows='8' cols='60'>".$resa->fields["comment"]."</textarea>";
       echo "</td></tr>\n";
 
       if (empty($ID)) {
-         echo "<tr class='tab_bg_2'>";
+         echo "<tr >";
          echo "<td colspan='2' class='top center'>";
-         echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='submit'>";
+         echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='btn btn-primary'>";
          echo "</td></tr>\n";
 
       } else {
-         echo "<tr class='tab_bg_2'>";
+         echo "<tr >";
          echo "<td class='top center'>";
          echo "<input type='submit' name='purge' value=\""._sx('button', 'Delete permanently')."\"
-                class='submit'>";
+                class='btn btn-primary'>";
          if ($resa->fields["group"] > 0) {
             echo "<br><input type='checkbox' name='_delete_group'>&nbsp;".
                   __s('Delete all rehearsals');
          }
          echo "</td><td class='top center'>";
          echo "<input type='submit' name='update' value=\""._sx('button', 'Save')."\"
-                class='submit'>";
+                class='btn btn-primary'>";
          echo "</td></tr>\n";
       }
       echo "</table>";
@@ -930,7 +930,7 @@ class Reservation extends CommonDBChild {
                   }
 
                   list($annee,$mois,$jour) = explode("-",$date);
-                  echo "<tr class='tab_bg_1'><td>";
+                  echo "<tr ><td>";
                   echo "<a href='reservation.php?reservationitems_id=".$data['id'].
                         "&amp;mois_courant=$mois&amp;annee_courante=$annee'>".
                         sprintf(__('%1$s - %2$s'), $typename, $item->getName())."</a></td></tr>\n";
@@ -1012,7 +1012,7 @@ class Reservation extends CommonDBChild {
                                                         'display' => false));
                }
 
-               echo "<td class='tab_resa center'>". $modif."<span>".$display."<br><span class='b'>".
+               echo "<td class='table'>". $modif."<span>".$display."<br><span class='b'>".
                formatUserName($user->fields["id"], $user->fields["name"], $user->fields["realname"],
                               $user->fields["firstname"]);
                echo "</span></span>";
@@ -1054,7 +1054,7 @@ class Reservation extends CommonDBChild {
                    ORDER BY `begin`";
          $result = $DB->query($query);
 
-         echo "<table class='tab_cadre_fixehov'><tr><th colspan='5'>";
+         echo "<table class='table table-hover'><tr><th colspan='5'>";
 
          if ($ri->fields["is_active"]) {
             echo "<a href='".$CFG_GLPI["root_doc"]."/front/reservation.php?reservationitems_id=".
@@ -1065,7 +1065,7 @@ class Reservation extends CommonDBChild {
          echo "</th></tr>\n";
 
          if ($DB->numrows($result) == 0) {
-            echo "<tr class='tab_bg_2'>";
+            echo "<tr >";
             echo "<td class='center' colspan='5'>".__('No reservation')."</td></tr>\n";
 
          } else {
@@ -1075,7 +1075,7 @@ class Reservation extends CommonDBChild {
             echo "<th>".__('Comments')."</th><th>&nbsp;</th></tr>\n";
 
             while ($data  =$DB->fetch_assoc($result)) {
-               echo "<tr class='tab_bg_2'>";
+               echo "<tr >";
                echo "<td class='center'>".Html::convDateTime($data["begin"])."</td>";
                echo "<td class='center'>".Html::convDateTime($data["end"])."</td>";
                echo "<td class='center'>";
@@ -1102,7 +1102,7 @@ class Reservation extends CommonDBChild {
                    ORDER BY `begin` DESC";
          $result = $DB->query($query);
 
-         echo "<div class='spaced'><table class='tab_cadre_fixehov'><tr><th colspan='5'>";
+         echo "<div class='spaced'><table class='table table-hover'><tr><th colspan='5'>";
 
          if ($ri->fields["is_active"]) {
             echo "<a href='".$CFG_GLPI["root_doc"]."/front/reservation.php?reservationitems_id=".
@@ -1113,7 +1113,7 @@ class Reservation extends CommonDBChild {
          echo "</th></tr>\n";
 
          if ($DB->numrows($result) == 0) {
-            echo "<tr class='tab_bg_2'>";
+            echo "<tr >";
             echo "<td class='center' colspan='5'>".__('No reservation')."</td></tr>\n";
 
          } else {
@@ -1123,7 +1123,7 @@ class Reservation extends CommonDBChild {
             echo "<th>".__('Comments')."</th><th>&nbsp;</th></tr>\n";
 
             while ($data = $DB->fetch_assoc($result)) {
-               echo "<tr class='tab_bg_2'>";
+               echo "<tr >";
                echo "<td class='center'>".Html::convDateTime($data["begin"])."</td>";
                echo "<td class='center'>".Html::convDateTime($data["end"])."</td>";
                echo "<td class='center'>";
@@ -1175,11 +1175,11 @@ class Reservation extends CommonDBChild {
       $result = $DB->query($query);
 
       $ri = new ReservationItem();
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='table table-hover'>";
       echo "<tr><th colspan='6'>".__('Current and future reservations')."</th></tr>\n";
 
       if ($DB->numrows($result) == 0) {
-         echo "<tr class='tab_bg_2'>";
+         echo "<tr >";
          echo "<td class='center' colspan='6'>".__('No reservation')."</td></tr\n>";
 
       } else {
@@ -1191,7 +1191,7 @@ class Reservation extends CommonDBChild {
          echo "<th>".__('Comments')."</th><th>&nbsp;</th></tr>\n";
 
          while ($data = $DB->fetch_assoc($result)) {
-            echo "<tr class='tab_bg_2'>";
+            echo "<tr >";
             echo "<td class='center'>".Html::convDateTime($data["begin"])."</td>";
             echo "<td class='center'>".Html::convDateTime($data["end"])."</td>";
 
@@ -1236,11 +1236,11 @@ class Reservation extends CommonDBChild {
       $result = $DB->query($query);
 
       echo "<div class='spaced'>";
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='table table-hover'>";
       echo "<tr><th colspan='6'>".__('Past reservations')."</th></tr>\n";
 
       if ($DB->numrows($result) == 0) {
-         echo "<tr class='tab_bg_2'>";
+         echo "<tr >";
          echo "<td class='center' colspan='6'>".__('No reservation')."</td></tr>\n";
 
       } else {
@@ -1252,7 +1252,7 @@ class Reservation extends CommonDBChild {
          echo "<th>".__('Comments')."</th><th>&nbsp;</th></tr>\n";
 
          while ($data = $DB->fetch_assoc($result)) {
-            echo "<tr class='tab_bg_2'>";
+            echo "<tr >";
             echo "<td class='center'>".Html::convDateTime($data["begin"])."</td>";
             echo "<td class='center'>".Html::convDateTime($data["end"])."</td>";
 

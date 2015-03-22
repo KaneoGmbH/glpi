@@ -93,19 +93,19 @@ class AuthLdapReplicate extends CommonDBTM {
 
       echo "<form action='$target' method='post' name='add_replicate_form' id='add_replicate_form'>";
       echo "<div class='center'>";
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table table-striped'>";
 
       echo "<tr><th colspan='4'>".__('Add a LDAP directory replica'). "</th></tr>";
-      echo "<tr class='tab_bg_1'><td class='center'>".__('Name')."</td>";
+      echo "<tr ><td class='center'>".__('Name')."</td>";
       echo "<td class='center'>".__('Server')."</td>";
       echo "<td class='center'>".__('Port')."</td><td></td></tr>";
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td class='center'><input type='text' name='name'></td>";
       echo "<td class='center'><input type='text' name='host'></td>";
       echo "<td class='center'><input type='text' name='port'></td>";
       echo "<td class='center'><input type='hidden' name='next' value='extauth_ldap'>";
       echo "<input type='hidden' name='authldaps_id' value='$master_id'>";
-      echo "<input type='submit' name='add_replicate' value='"._sx('button','Add') ."' class='submit'></td>";
+      echo "<input type='submit' name='add_replicate' value='"._sx('button','Add') ."' class='btn btn-primary'></td>";
       echo "</tr></table></div>";
       Html::closeForm();
    }

@@ -1,4 +1,3 @@
-See the Installation Guide found on GLPI-PROJECT.ORG for installation steps of GLPI.
- 
-http://www.glpi-project.org/README
+# Information
 
+Do not use this Version - its just for development!

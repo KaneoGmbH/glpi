@@ -659,7 +659,7 @@ class Reminder extends CommonDBTM {
 
       $this->showFormHeader($options);
 
-      echo "<tr class='tab_bg_2'><td>".__('Title')."</td>";
+      echo "<tr ><td>".__('Title')."</td>";
       echo "<td>";
       if ($canedit) {
          Html::autocompletionTextField($this, "name",
@@ -679,7 +679,7 @@ class Reminder extends CommonDBTM {
       }
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_2'>";
+      echo "<tr >";
       echo "<td>".__('Visibility')."</td>";
       echo "<td>";
       echo '<table><tr><td>';
@@ -707,7 +707,7 @@ class Reminder extends CommonDBTM {
       echo "</td>\n";
       echo "</tr>\n";
 
-      echo "<tr class='tab_bg_2'><td >".__('Calendar')."</td>";
+      echo "<tr ><td >".__('Calendar')."</td>";
       echo "<td class='center'>";
 
       if ($canedit) {
@@ -737,7 +737,7 @@ class Reminder extends CommonDBTM {
                                                      Planning::READALL))) {
 
             echo "<div id='plan' onClick='showPlan()'>\n";
-            echo "<a href='#' class='vsubmit'>".__('Add to schedule')."</a>";
+            echo "<a href='#' class='btn btn-info btn-xs'>".__('Add to schedule')."</a>";
          }
 
       } else {
@@ -779,7 +779,7 @@ class Reminder extends CommonDBTM {
       }
       echo "</tr>\n";
 
-      echo "<tr class='tab_bg_2'><td>".__('Description')."</td>".
+      echo "<tr ><td>".__('Description')."</td>".
            "<td colspan='3'>";
 
       if ($canedit) {
@@ -1071,7 +1071,7 @@ class Reminder extends CommonDBTM {
       $result = $DB->query($query);
       $nb     = $DB->numrows($result);
 
-      echo "<br><table class='tab_cadrehov'>";
+      echo "<br><table class='table table-striped table-hover'>";
       echo "<tr class='noHover'><th><div class='relative'><span>$titre</span>";
 
       if (($personal && self::canCreate()) 
@@ -1088,7 +1088,7 @@ class Reminder extends CommonDBTM {
          $rand = mt_rand();
 
          while ($data = $DB->fetch_assoc($result)) {
-            echo "<tr class='tab_bg_2'><td>";
+            echo "<tr ><td>";
             $link = "<a id='content_reminder_".$data["id"].$rand."'
                       href='".$CFG_GLPI["root_doc"]."/front/reminder.form.php?id=".$data["id"]."'>".
                       $data["name"]."</a>";
@@ -1139,9 +1139,9 @@ class Reminder extends CommonDBTM {
          echo "<form name='remindervisibility_form$rand' id='remindervisibility_form$rand' ";
          echo " method='post' action='".Toolbox::getItemTypeFormURL('Reminder')."'>";
          echo "<input type='hidden' name='reminders_id' value='$ID'>";
-         echo "<table class='tab_cadre_fixe'>";
-         echo "<tr class='tab_bg_1'><th colspan='4'>".__('Add a target')."</tr>";
-         echo "<tr class='tab_bg_2'><td width='100px'>";
+         echo "<table class='table table-striped'>";
+         echo "<tr ><th colspan='4'>".__('Add a target')."</tr>";
+         echo "<tr ><td width='100px'>";
 
          $types = array('Entity', 'Group', 'Profile', 'User');
 
@@ -1176,7 +1176,7 @@ class Reminder extends CommonDBTM {
          }
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='table table-hover'>";
       $header_begin  = "<tr>";
       $header_top    = '';
       $header_bottom = '';
@@ -1196,7 +1196,7 @@ class Reminder extends CommonDBTM {
       if (count($this->users)) {
          foreach ($this->users as $key => $val) {
             foreach ($val as $data) {
-               echo "<tr class='tab_bg_2'>";
+               echo "<tr >";
                if ($canedit) {
                   echo "<td>";
                   Html::showMassiveActionCheckBox('Reminder_User',$data["id"]);
@@ -1212,7 +1212,7 @@ class Reminder extends CommonDBTM {
       if (count($this->groups)) {
          foreach ($this->groups as $key => $val) {
             foreach ($val as $data) {
-               echo "<tr class='tab_bg_2'>";
+               echo "<tr >";
                if ($canedit) {
                   echo "<td>";
                   Html::showMassiveActionCheckBox('Group_Reminder',$data["id"]);
@@ -1243,7 +1243,7 @@ class Reminder extends CommonDBTM {
       if (count($this->entities)) {
          foreach ($this->entities as $key => $val) {
             foreach ($val as $data) {
-               echo "<tr class='tab_bg_2'>";
+               echo "<tr >";
                if ($canedit) {
                   echo "<td>";
                   Html::showMassiveActionCheckBox('Entity_Reminder',$data["id"]);
@@ -1267,7 +1267,7 @@ class Reminder extends CommonDBTM {
       if (count($this->profiles)) {
          foreach ($this->profiles as $key => $val) {
             foreach ($val as $data) {
-               echo "<tr class='tab_bg_2'>";
+               echo "<tr >";
                if ($canedit) {
                   echo "<td>";
                   Html::showMassiveActionCheckBox('Profile_Reminder',$data["id"]);

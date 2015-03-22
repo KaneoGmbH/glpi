@@ -45,20 +45,20 @@ if (!TableExists('glpi_networkportmigrations')) {
 Html::header(__('Migration cleaner'), $_SERVER['PHP_SELF'], "tools","migration");
 
 echo "<div class='spaced' id='tabsbody'>";
-echo "<table class='tab_cadre_fixe'>";
+echo "<table class='table table-striped'>";
 
 echo "<tr><th>" . __('"Migration cleaner" tool') . "</td></tr>";
 
 if (Session::haveRight('internet', UPDATE)
     // Check access to all entities
     && Session::isViewAllEntities()) {
-   echo "<tr class='tab_bg_1'><td class='center'>";
+   echo "<tr ><td class='center'>";
    Html::showSimpleForm(IPNetwork::getFormURL(), 'reinit_network',
                         __('Reinit the network topology'));
    echo "</td></tr>";
 }
 if (Session::haveRight('networking', UPDATE)) {
-   echo "<tr class='tab_bg_1'><td class='center'>";
+   echo "<tr ><td class='center'>";
    echo "<a href='".$CFG_GLPI['root_doc']."/front/networkportmigration.php'>".
          __('Clean the network port migration errors') . "</a>";
    echo "</td></tr>";

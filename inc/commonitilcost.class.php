@@ -334,7 +334,7 @@ abstract class CommonITILCost extends CommonDBChild {
       }
 
       $this->showFormHeader($options);
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Name')."</td>";
       echo "<td>";
       echo "<input type='hidden' name='".static::$items_id."' value='".$item->fields['id']."'>";
@@ -347,7 +347,7 @@ abstract class CommonITILCost extends CommonDBChild {
       echo "</td>";
       echo "</tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Duration')."</td>";
       echo "<td>";
       Dropdown::showTimeStamp('actiontime', array('value'           => $this->fields['actiontime'],
@@ -359,7 +359,7 @@ abstract class CommonITILCost extends CommonDBChild {
       echo "</td>";
       echo "</tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Time cost')."</td><td>";
       echo "<input type='text' size='15' name='cost_time' value='".
              Html::formatNumber($this->fields["cost_time"], true)."'>";
@@ -371,21 +371,21 @@ abstract class CommonITILCost extends CommonDBChild {
            "</textarea>";
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Fixed cost')."</td><td>";
       echo "<input type='text' size='15' name='cost_fixed' value='".
              Html::formatNumber($this->fields["cost_fixed"], true)."'>";
       echo "</td>";
       echo "</tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Material cost')."</td><td>";
       echo "<input type='text' size='15' name='cost_material' value='".
              Html::formatNumber($this->fields["cost_material"], true)."'>";
       echo "</td>";
       echo "</tr>";
 
-      echo "<tr class='tab_bg_1'><td>".__('Budget')."</td>";
+      echo "<tr ><td>".__('Budget')."</td>";
       echo "<td>";
       Budget::dropdown(array('value'  => $this->fields["budgets_id"],
                              'entity' => $this->fields["entities_id"]));
@@ -454,7 +454,7 @@ abstract class CommonITILCost extends CommonDBChild {
          echo "</script>\n";
          if (static::canCreate()) {
             echo "<div class='center firstbloc'>".
-                   "<a class='vsubmit' href='javascript:viewAddCost".$ID."_$rand();'>";
+                   "<a class='btn btn-info btn-xs' href='javascript:viewAddCost".$ID."_$rand();'>";
             echo __('Add a new cost')."</a></div>\n";
          }
       }
@@ -466,7 +466,7 @@ abstract class CommonITILCost extends CommonDBChild {
       $total_material = 0;
 
       if ($result = $DB->query($query)) {
-         echo "<table class='tab_cadre_fixehov'>";
+         echo "<table class='table table-hover'>";
          echo "<tr class='noHover'>";
          if ($forproject) {
             echo "<th colspan='10'>"._n('Ticket cost', 'Ticket costs', $DB->numrows($result))."</th>";
@@ -501,7 +501,7 @@ abstract class CommonITILCost extends CommonDBChild {
                                                    $item->getTypeName(1), $item->getName()));
 
             while ($data = $DB->fetch_assoc($result)) {
-               echo "<tr class='tab_bg_2' ".
+               echo "<tr  ".
                       ($canedit
                        ? "style='cursor:pointer' onClick=\"viewEditCost".$data[static::$items_id]."_".
                          $data['id']."_$rand();\"": '') .">";

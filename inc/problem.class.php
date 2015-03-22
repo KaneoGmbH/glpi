@@ -646,7 +646,7 @@ class Problem extends CommonITILObject {
       }
 
       if ($numrows > 0) {
-         echo "<table class='tab_cadrehov'>";
+         echo "<table class='table table-striped table-hover'>";
          echo "<tr class='noHover'><th colspan='3'>";
 
          $options['reset'] = 'reset';
@@ -849,7 +849,7 @@ class Problem extends CommonITILObject {
       $options['criteria'][0]['link']       = 'AND';
       $options['reset']                     ='reset';
 
-      echo "<table class='tab_cadrehov' >";
+      echo "<table class='table table-striped table-hover' >";
       echo "<tr class='noHover'><th colspan='2'>";
 
       echo "<a href=\"".$CFG_GLPI["root_doc"]."/front/problem.php?".
@@ -860,7 +860,7 @@ class Problem extends CommonITILObject {
 
       foreach ($status as $key => $val) {
          $options['criteria'][0]['value'] = $key;
-         echo "<tr class='tab_bg_2'>";
+         echo "<tr >";
          echo "<td><a href=\"".$CFG_GLPI["root_doc"]."/front/problem.php?".
                     Toolbox::append_params($options,'&amp;')."\">".self::getStatus($key)."</a></td>";
          echo "<td class='numeric'>$val</td></tr>";
@@ -868,7 +868,7 @@ class Problem extends CommonITILObject {
 
       $options['criteria'][0]['value'] = 'all';
       $options['is_deleted']  = 1;
-      echo "<tr class='tab_bg_2'>";
+      echo "<tr >";
       echo "<td><a href=\"".$CFG_GLPI["root_doc"]."/front/problem.php?".
                  Toolbox::append_params($options,'&amp;')."\">".__('Deleted')."</a></td>";
       echo "<td class='numeric'>".$number_deleted."</td></tr>";
@@ -897,7 +897,7 @@ class Problem extends CommonITILObject {
       if ($problem->getFromDBwithData($ID, 0)) {
          $bgcolor = $_SESSION["glpipriority_".$problem->fields["priority"]];
    //      $rand    = mt_rand();
-         echo "<tr class='tab_bg_2'>";
+         echo "<tr >";
          echo "<td class='center' bgcolor='$bgcolor'>".sprintf(__('%1$s: %2$s'), __('ID'),
                                                                $problem->fields["id"])."</td>";
          echo "<td class='center'>";
@@ -950,7 +950,7 @@ class Problem extends CommonITILObject {
          // Finish Line
          echo "</tr>";
       } else {
-         echo "<tr class='tab_bg_2'>";
+         echo "<tr >";
          echo "<td colspan='6' ><i>".__('No problem in progress.')."</i></td></tr>";
       }
    }
@@ -1022,7 +1022,7 @@ class Problem extends CommonITILObject {
 
       $this->showFormHeader($options);
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<th class='left' width='$colsize1%'>".__('Opening date')."</th>";
       echo "<td class='left' width='$colsize2%'>";
 
@@ -1050,7 +1050,7 @@ class Problem extends CommonITILObject {
       echo "</td></tr>";
 
       if ($ID) {
-         echo "<tr class='tab_bg_1'><th>".__('By')."</th><td>";
+         echo "<tr ><th>".__('By')."</th><td>";
          User::dropdown(array('name'   => 'users_id_recipient',
                               'value'  => $this->fields["users_id_recipient"],
                               'entity' => $this->fields["entities_id"],
@@ -1068,7 +1068,7 @@ class Problem extends CommonITILObject {
       if ($ID
           && (in_array($this->fields["status"], $this->getSolvedStatusArray())
               || in_array($this->fields["status"], $this->getClosedStatusArray()))) {
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr >";
          echo "<th>".__('Date of solving')."</th>";
          echo "<td>";
          Html::showDateTimeField("solvedate", array('value'      => $this->fields["solvedate"],
@@ -1089,9 +1089,9 @@ class Problem extends CommonITILObject {
       }
       echo "</table>";
 
-      echo "<table class='tab_cadre_fixe' id='mainformtable2'>";
+      echo "<table class='table table-striped' id='mainformtable2'>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<th width='$colsize1%'>".__('Status')."</th>";
       echo "<td width='$colsize2%'>";
       self::dropdownStatus(array('value'    => $this->fields["status"],
@@ -1103,7 +1103,7 @@ class Problem extends CommonITILObject {
       $idurgency = self::dropdownUrgency(array('value' => $this->fields["urgency"]));
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<th>".__('Category')."</th>";
       echo "<td >";
       $opt = array('value'     => $this->fields["itilcategories_id"],
@@ -1116,7 +1116,7 @@ class Problem extends CommonITILObject {
       $idimpact = self::dropdownImpact(array('value' => $this->fields["impact"]));
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<th>".__('Total duration')."</th>";
       echo "<td>".parent::getActionTime($this->fields["actiontime"])."</td>";
       echo "<th class='left'>".__('Priority')."</th>";
@@ -1138,15 +1138,15 @@ class Problem extends CommonITILObject {
 
       $this->showActorsPartForm($ID, $options);
 
-      echo "<table class='tab_cadre_fixe' id='mainformtable3'>";
-      echo "<tr class='tab_bg_1'>";
+      echo "<table class='table table-striped' id='mainformtable3'>";
+      echo "<tr >";
       echo "<th width='$colsize1%'>".__('Title')."</th>";
       echo "<td colspan='3'>";
       echo "<input type='text' size='90' maxlength=250 name='name' ".
              " value=\"".Html::cleanInputText($this->fields["name"])."\">";
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<th>".__('Description')."</th>";
       echo "<td colspan='3'>";
       $rand = mt_rand();
@@ -1155,7 +1155,7 @@ class Problem extends CommonITILObject {
       echo "</td></tr>";
 
       if ($ID) {
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr >";
          echo "<th colspan='2'  width='".($colsize1+$colsize2)."%'>";
          $docnb = Document_Item::countForItem($this);
          echo "<a href=\"".$this->getLinkURL()."&amp;forcetab=Document_Item$1\">";
@@ -1186,7 +1186,7 @@ class Problem extends CommonITILObject {
       $options['canedit'] = false;
       $this->showFormHeader($options);
 
-      echo "<tr class='tab_bg_2'>";
+      echo "<tr >";
       echo "<td>".__('Impacts')."</td><td colspan='3'>";
       if ($canedit) {
          echo "<textarea id='impactcontent' name='impactcontent' rows='6' cols='80'>";
@@ -1197,7 +1197,7 @@ class Problem extends CommonITILObject {
       }
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_2'>";
+      echo "<tr >";
       echo "<td>".__('Causes')."</td><td colspan='3'>";
       if ($canedit) {
          echo "<textarea id='causecontent' name='causecontent' rows='6' cols='80'>";
@@ -1208,7 +1208,7 @@ class Problem extends CommonITILObject {
       }
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_2'>";
+      echo "<tr >";
       echo "<td>".__('Symptoms')."</td><td colspan='3'>";
       if ($canedit) {
          echo "<textarea id='symptomcontent' name='symptomcontent' rows='6' cols='80'>";
@@ -1308,9 +1308,9 @@ class Problem extends CommonITILObject {
             // Mini search engine
             if ($item->haveChildren()) {
                $tree = Session::getSavedOption(__CLASS__, 'tree', 0);
-               echo "<table class='tab_cadre_fixe'>";
-               echo "<tr class='tab_bg_1'><th>".__('Last problems')."</th></tr>";
-               echo "<tr class='tab_bg_1'><td class='center'>";
+               echo "<table class='table'>";
+               echo "<tr ><th>".__('Last problems')."</th></tr>";
+               echo "<tr ><td class='center'>";
                _e('Child groups');
                Dropdown::showYesNo('tree', $tree, -1,
                                    array('on_change' => 'reloadTab("start=0&tree="+this.value)'));
@@ -1355,7 +1355,7 @@ class Problem extends CommonITILObject {
       $number = $DB->numrows($result);
 
       // Ticket for the item
-      echo "<div class='firstbloc'><table class='tab_cadre_fixe'>";
+      echo "<div class='firstbloc'><table class='table'>";
 
       $colspan = 11;
       if (count($_SESSION["glpiactiveentities"]) > 1) {
@@ -1419,7 +1419,7 @@ class Problem extends CommonITILObject {
          $result = $DB->query($query);
          $number = $DB->numrows($result);
 
-         echo "<div class='spaced'><table class='tab_cadre_fixe'>";
+         echo "<div class='spaced'><table class='table'>";
          echo "<tr><th colspan='$colspan'>";
          _e('Problems on linked items');
 

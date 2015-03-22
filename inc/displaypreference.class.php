@@ -287,13 +287,13 @@ class DisplayPreference extends CommonDBTM {
 
       if ($numrows == 0) {
          Session::checkRight(self::$rightname, self::PERSONAL);
-         echo "<table class='tab_cadre_fixe'><tr><th colspan='4'>";
+         echo "<table class='table table-striped'><tr><th colspan='4'>";
          echo "<form method='post' action='$target'>";
          echo "<input type='hidden' name='itemtype' value='$itemtype'>";
          echo "<input type='hidden' name='users_id' value='$IDuser'>";
          echo __('No personal criteria. Create personal parameters?')."<span class='small_space'>";
          echo "<input type='submit' name='activate' value=\"".__('Create')."\"
-                class='submit'>";
+                class='btn btn-primary'>";
          echo "</span>";
          Html::closeForm();
          echo "</th></tr></table>\n";
@@ -301,18 +301,18 @@ class DisplayPreference extends CommonDBTM {
       } else {
          $already_added = self::getForTypeUser($itemtype, $IDuser);
 
-         echo "<table class='tab_cadre_fixe'><tr><th colspan='4'>";
+         echo "<table class='table table-striped'><tr><th colspan='4'>";
          echo "<form method='post' action='$target'>";
          echo "<input type='hidden' name='itemtype' value='$itemtype'>";
          echo "<input type='hidden' name='users_id' value='$IDuser'>";
          echo __('Select default items to show')."<span class='small_space'>";
          echo "<input type='submit' name='disable' value=\"".__('Delete')."\"
-                class='submit'>";
+                class='btn btn-primary'>";
          echo "</span>";
          Html::closeForm();
          
          echo "</th></tr>";
-         echo "<tr class='tab_bg_1'><td colspan='4' class='center'>";
+         echo "<tr ><td colspan='4' class='center'>";
          echo "<form method='post' action=\"$target\">";
          echo "<input type='hidden' name='itemtype' value='$itemtype'>";
          echo "<input type='hidden' name='users_id' value='$IDuser'>";
@@ -331,14 +331,14 @@ class DisplayPreference extends CommonDBTM {
          if ($values) {
             Dropdown::showFromArray('num', $values);
             echo "<span class='small_space'>";
-            echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='submit'>";
+            echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='btn btn-primary'>";
             echo "</span>";
          }
          Html::closeForm();
          echo "</td></tr>\n";
 
          // print first element
-         echo "<tr class='tab_bg_2'>";
+         echo "<tr >";
          echo "<td class='center' width='50%'>".$searchopt[1]["name"]."</td>";
          echo "<td colspan='3'>&nbsp;</td>";
          echo "</tr>";
@@ -351,7 +351,7 @@ class DisplayPreference extends CommonDBTM {
                  || (count($_SESSION["glpiactiveentities"]) > 1))
              && isset($searchopt[80])) {
 
-            echo "<tr class='tab_bg_2'>";
+            echo "<tr >";
             echo "<td class='center' width='50%'>".$searchopt[80]["name"]."</td>";
             echo "<td colspan='3'>&nbsp;</td>";
             echo "</tr>";
@@ -361,7 +361,7 @@ class DisplayPreference extends CommonDBTM {
          if ($numrows) {
             while ($data = $DB->fetch_assoc($result)) {
                if (($data["num"] !=1) && isset($searchopt[$data["num"]])) {
-                  echo "<tr class='tab_bg_2'>";
+                  echo "<tr >";
                   echo "<td class='center' width='50%' >";
                   echo $searchopt[$data["num"]]["name"]."</td>";
 
@@ -455,12 +455,12 @@ class DisplayPreference extends CommonDBTM {
       $result  = $DB->query($query);
       $numrows = $DB->numrows($result);
 
-      echo "<table class='tab_cadre_fixe'><tr><th colspan='4'>";
+      echo "<table class='table table-striped'><tr><th colspan='4'>";
       echo __('Select default items to show')."</th></tr>\n";
 
       if ($global_write) {
          $already_added = self::getForTypeUser($itemtype, $IDuser);
-         echo "<tr class='tab_bg_1'><td colspan='4' class='center'>";
+         echo "<tr ><td colspan='4' class='center'>";
          echo "<form method='post' action='$target'>";
          echo "<input type='hidden' name='itemtype' value='$itemtype'>";
          echo "<input type='hidden' name='users_id' value='$IDuser'>";
@@ -479,7 +479,7 @@ class DisplayPreference extends CommonDBTM {
          if ($values) {
             Dropdown::showFromArray('num', $values);
             echo "<span class='small_space'>";
-            echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='submit'>";
+            echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='btn btn-primary'>";
             echo "</span>";
          }
          Html::closeForm();
@@ -487,7 +487,7 @@ class DisplayPreference extends CommonDBTM {
       }
 
       // print first element
-      echo "<tr class='tab_bg_2'>";
+      echo "<tr >";
       echo "<td class='center' width='50%'>".$searchopt[1]["name"];
 
       if ($global_write) {
@@ -502,7 +502,7 @@ class DisplayPreference extends CommonDBTM {
               || (count($_SESSION["glpiactiveentities"]) > 1))
           && isset($searchopt[80])) {
 
-         echo "<tr class='tab_bg_2'>";
+         echo "<tr >";
          echo "<td class='center' width='50%'>".$searchopt[80]["name"]."</td>";
          echo "<td colspan='3'>&nbsp;</td>";
          echo "</tr>";
@@ -516,7 +516,7 @@ class DisplayPreference extends CommonDBTM {
             if (($data["num"] != 1)
                 && isset($searchopt[$data["num"]])) {
 
-               echo "<tr class='tab_bg_2'><td class='center' width='50%'>";
+               echo "<tr ><td class='center' width='50%'>";
                echo $searchopt[$data["num"]]["name"];
                echo "</td>";
 
@@ -608,14 +608,14 @@ class DisplayPreference extends CommonDBTM {
 
          echo Html::hidden('users_id', array('value'                 => $users_id,
                                              'data-glpicore-ma-tags' => 'common'));
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table'>";
          echo "<tr>";
          echo "<th width='10'>";
          Html::checkAllAsCheckbox('mass'.__CLASS__.$rand);
          echo "</th>";
          echo "<th colspan='2'>".__('Type')."</th></tr>";
          foreach ($req as $data) {
-            echo "<tr class='tab_bg_1'><td width='10'>";
+            echo "<tr ><td width='10'>";
             Html::showMassiveActionCheckBox(__CLASS__, $data["itemtype"]);
             echo "</td>";
             if ($item = getItemForItemtype($data["itemtype"])) {
@@ -633,8 +633,8 @@ class DisplayPreference extends CommonDBTM {
          echo "</div>";
 
       } else {
-         echo "<table class='tab_cadre_fixe'>";
-         echo "<tr class='tab_bg_2'><td class='b center'>".__('No item found')."</td></tr>";
+         echo "<table class='table'>";
+         echo "<tr ><td class='b center'>".__('No item found')."</td></tr>";
          echo "</table>";
       }
    }

@@ -103,7 +103,7 @@ class NetworkName extends FQDNLabel {
 
      $this->showFormHeader($options);
 
-      echo "<tr class='tab_bg_1'><td>";
+      echo "<tr ><td>";
       if (count($recursiveItems) > 0) {
          $this->displayRecursiveItems($recursiveItems, 'Type');
       }
@@ -121,7 +121,7 @@ class NetworkName extends FQDNLabel {
 
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>" . __('Name') . "</td><td>\n";
       Html::autocompletionTextField($this, "name");
       echo "</td>\n";
@@ -134,7 +134,7 @@ class NetworkName extends FQDNLabel {
                            'displaywith' => array('view')));
       echo "</td>\n</tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".IPAddress::getTypeName(Session::getPluralNumber());
       IPAddress::showAddChildButtonForItemForm($this, '_ipaddresses');
       echo "</td>";
@@ -147,11 +147,11 @@ class NetworkName extends FQDNLabel {
       echo "</textarea></td>\n";
       echo "</tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".IPNetwork::getTypeName(Session::getPluralNumber())."</td><td>";
       _e('IP network is not included in the database. However, you can see current available networks.');
       echo "</td></tr>";
-      echo "<tr class='tab_bg_1'><td>&nbsp;</td><td>";
+      echo "<tr ><td>&nbsp;</td><td>";
       IPNetwork::showIPNetworkProperties($this->getEntityID());
       echo "</td></tr>\n";
 
@@ -387,7 +387,7 @@ class NetworkName extends FQDNLabel {
          $result = $DB->query($query);
 
          if ($DB->numrows($result) > 1) {
-            echo "<tr class='tab_bg_1'><th colspan='4'>" .
+            echo "<tr ><th colspan='4'>" .
                    __("Several network names available! Go to the tab 'Network Name' to manage them.") .
                  "</th></tr>\n";
             return;
@@ -408,7 +408,7 @@ class NetworkName extends FQDNLabel {
          $name->getEmpty();
       }
 
-      echo "<tr class='tab_bg_1'><th colspan='4'>";
+      echo "<tr ><th colspan='4'>";
        // If the networkname is defined, we must be able to edit it. So we make a link
       if ($name->getID() > 0) {
          echo "<a href='".$name->getLinkURL()."'>".self::getTypeName(1)."</a>";
@@ -421,7 +421,7 @@ class NetworkName extends FQDNLabel {
       }
       echo "</th>\n";
 
-      echo "</tr><tr class='tab_bg_1'>";
+      echo "</tr><tr >";
 
       echo "<td>" . self::getTypeName(1) . "</td><td>\n";
       Html::autocompletionTextField($name, "name", array('name' => 'NetworkName_name'));
@@ -435,7 +435,7 @@ class NetworkName extends FQDNLabel {
                            'displaywith' => array('view')));
       echo "</td>\n";
 
-      echo "</tr><tr class='tab_bg_1'>\n";
+      echo "</tr><tr >\n";
 
       echo "<td>".IPAddress::getTypeName(Session::getPluralNumber());
       IPAddress::showAddChildButtonForItemForm($name, 'NetworkName__ipaddresses');
@@ -663,10 +663,10 @@ class NetworkName extends FQDNLabel {
 
          echo "<div class='firstbloc'>\n";
          echo "<form method='post' action='".static::getFormURL()."'>\n";
-         echo "<table class='tab_cadre_fixe'>\n";
+         echo "<table class='table table-striped'>\n";
          echo "<tr><th colspan='4'>".__('Add a network name')."</th></tr>";
 
-         echo "<tr class='tab_bg_1'><td class='right'>";
+         echo "<tr ><td class='right'>";
          echo "<input type='hidden' name='items_id' value='$items_id'>\n";
          echo "<input type='hidden' name='itemtype' value='$itemtype'>\n";
          _e('Not associated');
@@ -675,7 +675,7 @@ class NetworkName extends FQDNLabel {
                               'condition' => '`items_id`=0'));
          echo "</td><td class='left'>";
          echo "<input type='submit' name='assign_address' value='"._sx('button','Associate').
-                "' class='submit'>";
+                "' class='btn btn-primary'>";
          echo "</td>";
          if (static::canCreate()) {
             echo "<td class='right' width='30%'>";
@@ -771,7 +771,7 @@ class NetworkName extends FQDNLabel {
             Html::printAjaxPager(self::getTypeName(Session::getPluralNumber()), $start, self::countForItem($item));
          }
       } else {
-         echo "<table class='tab_cadre_fixe'><tr><th>".__('No network name found')."</th></tr>";
+         echo "<table class='table table-striped'><tr><th>".__('No network name found')."</th></tr>";
          echo "</table>";
       }
    }

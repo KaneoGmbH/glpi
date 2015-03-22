@@ -91,14 +91,14 @@ class Link_Itemtype extends CommonDBChild {
          echo "<form name='changeticket_form$rand' id='changeticket_form$rand' method='post'
                 action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
-         echo "<table class='tab_cadre_fixe'>";
-         echo "<tr class='tab_bg_2'><th colspan='2'>".__('Add an item type')."</th></tr>";
+         echo "<table class='table table-striped'>";
+         echo "<tr ><th colspan='2'>".__('Add an item type')."</th></tr>";
 
-         echo "<tr class='tab_bg_2'><td class='right'>";
+         echo "<tr ><td class='right'>";
          echo "<input type='hidden' name='links_id' value='$links_id'>";
          Dropdown::showItemTypes('itemtype', $CFG_GLPI["link_types"], array('used' => $used));
          echo "</td><td class='center'>";
-         echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='submit'>";
+         echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='btn btn-primary'>";
          echo "</td></tr>";
 
          echo "</table>";
@@ -113,7 +113,7 @@ class Link_Itemtype extends CommonDBChild {
                                       'container'      => 'mass'.__CLASS__.$rand);
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table'>";
       $header_begin  = "<tr>";
       $header_top    = '';
       $header_bottom = '';
@@ -132,7 +132,7 @@ class Link_Itemtype extends CommonDBChild {
          $typename = NOT_AVAILABLE;
          if ($item = getItemForItemtype($data['itemtype'])) {
             $typename = $item->getTypeName(1);
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr >";
             if ($canedit) {
                echo "<td>";
                Html::showMassiveActionCheckBox(__CLASS__, $data["id"]);

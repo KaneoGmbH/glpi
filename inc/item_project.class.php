@@ -128,10 +128,10 @@ class Item_Project extends CommonDBRelation{
          echo "<form name='projectitem_form$rand' id='projectitem_form$rand' method='post'
                 action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
-         echo "<table class='tab_cadre_fixe'>";
-         echo "<tr class='tab_bg_2'><th colspan='2'>".__('Add an item')."</th></tr>";
+         echo "<table class='table table-striped'>";
+         echo "<tr ><th colspan='2'>".__('Add an item')."</th></tr>";
 
-         echo "<tr class='tab_bg_1'><td>";
+         echo "<tr ><td>";
          Dropdown::showSelectItemFromItemtypes(array('itemtypes'
                                                       => $CFG_GLPI["project_asset_types"],
                                                      'entity_restrict'
@@ -140,7 +140,7 @@ class Item_Project extends CommonDBRelation{
                                                                      $project->fields['entities_id'])
                                                           :$project->fields['entities_id'])));
          echo "</td><td class='center' width='30%'>";
-         echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='submit'>";
+         echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='btn btn-primary'>";
          echo "<input type='hidden' name='projects_id' value='$instID'>";
          echo "</td></tr>";
          echo "</table>";
@@ -154,7 +154,7 @@ class Item_Project extends CommonDBRelation{
          $massiveactionparams = array('container' => 'mass'.__CLASS__.$rand);
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table'>";
       $header_begin  = "<tr>";
       $header_top    = '';
       $header_bottom = '';
@@ -216,7 +216,7 @@ class Item_Project extends CommonDBRelation{
                $link     = Toolbox::getItemTypeFormURL($itemtype);
                $namelink = "<a href=\"".$link."?id=".$data["id"]."\">".$name."</a>";
 
-               echo "<tr class='tab_bg_1'>";
+               echo "<tr >";
                if ($canedit) {
                   echo "<td width='10'>";
                   Html::showMassiveActionCheckBox(__CLASS__, $data["IDD"]);
@@ -242,7 +242,7 @@ class Item_Project extends CommonDBRelation{
          }
       }
       if ($totalnb > 0) {
-         echo "<tr class='tab_bg_2'>";
+         echo "<tr >";
          echo "<td class='center' colspan='2'>".
                (($totalnb > 0) ? sprintf(__('%1$s = %2$s'), __('Total'), $totalnb) :"&nbsp;");
          echo "</td><td colspan='4'>&nbsp;</td></tr> ";

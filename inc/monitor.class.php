@@ -173,7 +173,7 @@ class Monitor extends CommonDBTM {
       $withtemplate = $this->initForm($ID, $options);
       $this->showFormHeader($options);
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       //TRANS: %1$s is a string, %2$s a second one without spaces between them : to change for RTL
       echo "<td>".sprintf(__('%1$s%2$s'), __('Name'),
                           (isset($options['withtemplate']) && $options['withtemplate']?"*":""));
@@ -191,7 +191,7 @@ class Monitor extends CommonDBTM {
                             'condition' => "`is_visible_monitor`"));
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Location')."</td>";
       echo "<td>";
       Location::dropdown(array('value'  => $this->fields["locations_id"],
@@ -202,7 +202,7 @@ class Monitor extends CommonDBTM {
       MonitorType::dropdown(array('value' => $this->fields["monitortypes_id"]));
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Technician in charge of the hardware')."</td>";
       echo "<td>";
       User::dropdown(array('name'   => 'users_id_tech',
@@ -215,7 +215,7 @@ class Monitor extends CommonDBTM {
       Manufacturer::dropdown(array('value' => $this->fields["manufacturers_id"]));
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Group in charge of the hardware')."</td>";
       echo "<td>";
       Group::dropdown(array('name'      => 'groups_id_tech',
@@ -228,7 +228,7 @@ class Monitor extends CommonDBTM {
       MonitorModel::dropdown(array('value' => $this->fields["monitormodels_id"]));
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Alternate username number')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "contact_num");
@@ -238,7 +238,7 @@ class Monitor extends CommonDBTM {
       Html::autocompletionTextField($this, "serial");
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Alternate username')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "contact");
@@ -253,7 +253,7 @@ class Monitor extends CommonDBTM {
       Html::autocompletionTextField($this, "otherserial", array('value' => $objectName));
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('User')."</td>";
       echo "<td>";
       User::dropdown(array('value'  => $this->fields["users_id"],
@@ -270,7 +270,7 @@ class Monitor extends CommonDBTM {
                                        'target'       => $target));
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Group')."</td>";
       echo "<td>";
       Group::dropdown(array('value'     => $this->fields["groups_id"],
@@ -282,14 +282,14 @@ class Monitor extends CommonDBTM {
             <textarea cols='45' rows='10' name='comment' >".$this->fields["comment"]."</textarea>";
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Size')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "size");
       echo "\"</td>";
       echo "</tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".('Flags')."</td>";
       echo "<td><table>";
       // micro?
@@ -324,7 +324,7 @@ class Monitor extends CommonDBTM {
       echo "</td></tr>";
       echo "</table></td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>";
       if ((!isset($options['withtemplate']) || ($options['withtemplate'] == 0))
           && !empty($this->fields['template_name'])) {

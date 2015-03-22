@@ -118,7 +118,7 @@ class Budget extends CommonDropdown{
       $this->initForm($ID, $options);
       $this->showFormHeader($options);
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Name')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "name");
@@ -129,25 +129,25 @@ class Budget extends CommonDropdown{
            "<textarea cols='45' rows='4' name='comment' >".$this->fields["comment"]."</textarea>".
            "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>"._x('price', 'Value')."</td>";
       echo "<td><input type='text' name='value' size='14'
                  value='".Html::formatNumber($this->fields["value"], true)."'></td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Start date')."</td>";
       echo "<td>";
       Html::showDateField("begin_date", array('value' => $this->fields["begin_date"]));
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('End date')."</td>";
       echo "<td>";
       Html::showDateField("end_date", array('value' => $this->fields["end_date"]));
       echo "</td></tr>";
 
       if ($ID > 0) {
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr >";
          echo "<td>".__('Last update')."</td>";
          echo "<td>";
          echo ($this->fields["date_mod"]? Html::convDateTime($this->fields["date_mod"])
@@ -264,7 +264,7 @@ class Budget extends CommonDropdown{
       $result = $DB->query($query);
       $number = $DB->numrows($result);
 
-      echo "<div class='spaced'><table class='tab_cadre_fixe'>";
+      echo "<div class='spaced'><table class='table table-striped'>";
       echo "<tr><th colspan='2'>";
       Html::printPagerForm();
       echo "</th><th colspan='4'>";
@@ -402,7 +402,7 @@ class Budget extends CommonDropdown{
             if ($result_linked = $DB->query($query)) {
                $nb = $DB->numrows($result_linked);
                if ($nb > $_SESSION['glpilist_limit']) {
-                  echo "<tr class='tab_bg_1'>";
+                  echo "<tr >";
                   $name = $item->getTypeName($nb);
                   //TRANS: %1$s is a name, %2$s is a number
                   echo "<td class='center'>".sprintf(__('%1$s: %2$s'), $name, $nb)."</td>";
@@ -428,7 +428,7 @@ class Budget extends CommonDropdown{
                      if ($item->getFromDB($data["id"])) {
                         $name = $item->getLink(array('additional' => true));
                      }
-                     echo "<tr class='tab_bg_1'>";
+                     echo "<tr >";
                      if ($prem) {
                         $typename = $item->getTypeName($nb);
                         echo "<td class='center top' rowspan='$nb'>".
@@ -456,7 +456,7 @@ class Budget extends CommonDropdown{
       }
 
       if ($num>0) {
-         echo "<tr class='tab_bg_2'>";
+         echo "<tr >";
          echo "<td class='center b'>".sprintf(__('%1$s = %2$s'), __('Total'), $num)."</td>";
          echo "<td colspan='5'>&nbsp;</td></tr> ";
       }
@@ -589,7 +589,7 @@ class Budget extends CommonDropdown{
       $budget->getFromDB($budgets_id);
 
       $colspan = count($found_types)+2;
-      echo "<div class='spaced'><table class='tab_cadre_fixehov'>";
+      echo "<div class='spaced'><table class='table table-hover'>";
       echo "<tr class='noHover'><th colspan='$colspan'>".__('Total spent on the budget')."</th></tr>";
       echo "<tr><th>".__('Entity')."</th>";
       if (count($found_types)) {
@@ -605,7 +605,7 @@ class Budget extends CommonDropdown{
 
       foreach ($allentities as $entity => $data) {
          if (isset($entities_values[$entity])) {
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr >";
             echo "<td class='b'>".Dropdown::getDropdownName('glpi_entities', $entity)."</td>";
             if (count($found_types)) {
                foreach ($found_types as $type => $typename) {
@@ -624,7 +624,7 @@ class Budget extends CommonDropdown{
          }
       }
       if (count($found_types)) {
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr >";
          echo "<td class='right b'>".__('Total')."</td>";
          foreach ($found_types as $type => $typename) {
             echo "<td class='numeric b'>";

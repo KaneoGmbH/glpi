@@ -131,17 +131,17 @@ class NetworkPort_Vlan extends CommonDBRelation {
       if ($canedit) {
          echo "<div class='firstbloc'>\n";
          echo "<form method='post' action='".static::getFormURL()."'>\n";
-         echo "<table class='tab_cadre_fixe'>\n";
+         echo "<table class='table table-striped'>\n";
          echo "<tr><th colspan='4'>".__('Associate a VLAN')."</th></tr>";
 
-         echo "<tr class='tab_bg_1'><td class='right'>";
+         echo "<tr ><td class='right'>";
          echo "<input type='hidden' name='networkports_id' value='$ID'>";
          Vlan::dropdown(array('used' => $used));
          echo "</td>";
          echo "<td class='right'>".__('Tagged')."</td>";
          echo "<td class='left'><input type='checkbox' name='tagged' value='1'></td>";
          echo "<td><input type='submit' name='add' value='"._sx('button','Associate').
-                    "' class='submit'>";
+                    "' class='btn btn-primary'>";
          echo "</td></tr>\n";
 
          echo "</table>\n";
@@ -156,7 +156,7 @@ class NetworkPort_Vlan extends CommonDBRelation {
                                       'container'     => 'mass'.__CLASS__.$rand);
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='table table-hover'>";
 
       $header_begin  = "<tr>";
       $header_top    = '';
@@ -177,7 +177,7 @@ class NetworkPort_Vlan extends CommonDBRelation {
 
       $used = array();
       foreach ($vlans as $data) {
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr >";
          if ($canedit) {
             echo "<td>";
             Html::showMassiveActionCheckBox(__CLASS__, $data["assocID"]);

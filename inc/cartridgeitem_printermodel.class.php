@@ -143,15 +143,15 @@ class CartridgeItem_PrinterModel extends CommonDBRelation {
          echo "<form name='printermodel_form$rand' id='printermodel_form$rand' method='post'";
          echo " action='".static::getFormURL()."'>";
 
-         echo "<table class='tab_cadre_fixe'>";
-         echo "<tr class='tab_bg_1'>";
+         echo "<table class='table table-striped'>";
+         echo "<tr >";
          echo "<th colspan='6'>".__('Add a compatible printer model')."</th></tr>";
 
          echo "<tr><td class='tab_bg_2 center'>";
          echo "<input type='hidden' name='cartridgeitems_id' value='$instID'>";
          PrinterModel::dropdown(array('used' => $used));
          echo "</td><td class='tab_bg_2 center'>";
-         echo "<input type='submit' name='add' value=\""._sx('button','Add')."\" class='submit'>";
+         echo "<input type='submit' name='add' value=\""._sx('button','Add')."\" class='btn btn-primary'>";
          echo "</td></tr>";
          echo "</table>";
          Html::closeForm();
@@ -168,7 +168,7 @@ class CartridgeItem_PrinterModel extends CommonDBRelation {
             Html::showMassiveActions($massiveactionparams);
          }
 
-         echo "<table class='tab_cadre_fixehov'>";
+         echo "<table class='table table-hover'>";
          $header_begin  = "<tr>";
          $header_top    = '';
          $header_bottom = '';
@@ -183,7 +183,7 @@ class CartridgeItem_PrinterModel extends CommonDBRelation {
          echo $header_begin.$header_top.$header_end;
 
          foreach ($datas as $data) {
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr >";
             if ($canedit) {
                echo "<td width='10'>";
                Html::showMassiveActionCheckBox(__CLASS__, $data["id"]);
