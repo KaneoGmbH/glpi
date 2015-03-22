@@ -2,4 +2,4 @@
 
 Do not use this Version - its just for development!
 
-for more informations visit (kaneo GmbH)[https://www.kaneo-gmbh.de/]
+for more informations visit https://www.kaneo-gmbh.de/
