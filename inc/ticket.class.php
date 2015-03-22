@@ -2402,7 +2402,7 @@ class Ticket extends CommonITILObject {
       $options['display'] = false;
       switch ($field) {
          case 'content' :
-            return "<textarea cols='90' rows='6' name='$name'>".$values['content']."</textarea>";
+            return "<textarea class='form-control'  cols='90' rows='6' name='$name'>".$values['content']."</textarea>";
 
          case 'type':
             $options['value'] = $values[$field];
@@ -2970,7 +2970,7 @@ class Ticket extends CommonITILObject {
          }
 
          echo "<div id='content$rand_text'>";
-         echo "<textarea id='$content_id' name='content' cols='$cols' rows='$rows'>".
+         echo "<textarea class='form-control'  id='$content_id' name='content' cols='$cols' rows='$rows'>".
                 $values['content']."</textarea></div>";
          echo "</td></tr>";
       }
@@ -4026,7 +4026,7 @@ class Ticket extends CommonITILObject {
          }
 
          echo "<div id='content$rand_text'>";
-         echo "<textarea id='$content_id' name='content' cols='$cols' rows='$rows'>".
+         echo "<textarea class='form-control'  id='$content_id' name='content' cols='$cols' rows='$rows'>".
                 $this->fields["content"]."</textarea></div>";
          echo $tt->getEndHiddenFieldValue('content', $this);
 

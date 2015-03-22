@@ -238,7 +238,7 @@ class Group extends CommonTreeDropdown {
       echo "</td>";
       echo "<td rowspan='9' class='middle'>".__('Comments')."</td>";
       echo "<td class='middle' rowspan='9'>";
-      echo "<textarea cols='45' rows='8' name='comment' >".$this->fields["comment"]."</textarea>";
+      echo "<textarea class='form-control'  cols='45' rows='8' name='comment' >".$this->fields["comment"]."</textarea>";
       echo "</td></tr>";
 
       echo "<tr >";

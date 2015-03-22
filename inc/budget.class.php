@@ -126,7 +126,7 @@ class Budget extends CommonDropdown{
 
       echo "<td rowspan='$rowspan' class='middle right'>".__('Comments')."</td>";
       echo "<td class='center middle' rowspan='$rowspan'>".
-           "<textarea cols='45' rows='4' name='comment' >".$this->fields["comment"]."</textarea>".
+           "<textarea class='form-control'  cols='45' rows='4' name='comment' >".$this->fields["comment"]."</textarea>".
            "</td></tr>";
 
       echo "<tr >";

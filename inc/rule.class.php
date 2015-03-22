@@ -856,7 +856,7 @@ class Rule extends CommonDBTM {
       echo "<tr >";
       echo "<td>".__('Comments')."</td>";
       echo "<td class='middle' colspan='3'>";
-      echo "<textarea cols='110' rows='3' name='comment' >".$this->fields["comment"]."</textarea>";
+      echo "<textarea class='form-control'  cols='110' rows='3' name='comment' >".$this->fields["comment"]."</textarea>";
 
       if (!$this->isNewID($ID)) {
          if ($this->fields["date_mod"]) {

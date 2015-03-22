@@ -1020,7 +1020,7 @@ class Entity extends CommonTreeDropdown {
       echo "</td>";
       echo "<td rowspan='7'>".__('Address')."</td>";
       echo "<td rowspan='7'>";
-      echo "<textarea cols='45' rows='8' name='address'>". $entity->fields["address"]."</textarea>";
+      echo "<textarea class='form-control'  cols='45' rows='8' name='address'>". $entity->fields["address"]."</textarea>";
       echo "</td></tr>";
 
       echo "<tr >";
@@ -1369,7 +1369,7 @@ class Entity extends CommonTreeDropdown {
       echo "<tr >";
       echo "<td class='middle right'>" . __('Email signature') . "</td>";
       echo "<td colspan='3'>";
-      echo "<textarea cols='60' rows='5' name='mailing_signature'>".
+      echo "<textarea class='form-control'  cols='60' rows='5' name='mailing_signature'>".
              $entity->fields["mailing_signature"]."</textarea>";
       echo "</td></tr>";
       echo "</table>";

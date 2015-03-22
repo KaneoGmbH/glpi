@@ -95,7 +95,7 @@ if (isset($_GET['create_ticket'])) {
 
 } else {
    Html::helpHeader(__('Home'), $_SERVER['PHP_SELF'], $_SESSION["glpiname"]);
-   echo "<table class='tab_cadre_postonly'><tr class='noHover'>";
+   echo "<table class='table'><tr class='noHover'>";
    echo "<td class='top' width='50%'><br>";
    echo "<table class='central'>";
    if (Session::haveRight('ticket', CREATE)) {

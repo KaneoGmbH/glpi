@@ -175,7 +175,7 @@ class NotificationMailSetting extends CommonDBTM {
 
          echo "<tr >";
          echo "<td>" . __('Email signature') . "</td>";
-         echo "<td colspan='3'><textarea cols='60' rows='3' name='mailing_signature'>".
+         echo "<td colspan='3'><textarea class='form-control'  cols='60' rows='3' name='mailing_signature'>".
                                 $CFG_GLPI["mailing_signature"]."</textarea></td></tr>";
 
          echo "<tr ><th colspan='4'>".__('Mail server')."</th></tr>";

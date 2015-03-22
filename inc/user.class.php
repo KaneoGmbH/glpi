@@ -1956,7 +1956,7 @@ class User extends CommonDBTM {
       echo "</td>";
       echo "<td rowspan='4' class='middle'>" . __('Comments') . "</td>";
       echo "<td class='center middle' rowspan='4'>";
-      echo "<textarea cols='45' rows='6' name='comment' >".$this->fields["comment"]."</textarea>";
+      echo "<textarea class='form-control'  cols='45' rows='6' name='comment' >".$this->fields["comment"]."</textarea>";
       echo "</td></tr>";
 
       echo "<tr ><td>" . __('Administrative number') . "</td><td>";

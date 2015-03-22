@@ -1003,6 +1003,7 @@ class Html {
           "/lib/jqueryplugins/spectrum-colorpicker/spectrum.css",
           "/lib/jqueryplugins/jquery-gantt/css/style.css",
           "/css/jstree/style.css",
+          "/css/select2-bootstrap.css",
           "/css/glpi.css",
           "/templates/custom/res/css/styles.css"
       );
@@ -3700,7 +3701,6 @@ class Html {
 
        $tmpl->assign('pagination',$pagination);
        $tmpl->display('components/navigation-header.tpl.php');
-       return;
 
    }
 

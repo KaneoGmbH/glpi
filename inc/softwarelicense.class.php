@@ -293,7 +293,7 @@ class SoftwareLicense extends CommonDBTM {
       echo "</td>";
       echo "<td rowspan='".(($ID > 0) ?'4':'3')."' class='middle'>".__('Comments')."</td>";
       echo "<td class='center middle' rowspan='".(($ID > 0) ?'4':'3')."'>";
-      echo "<textarea cols='45' rows='5' name='comment' >".$this->fields["comment"]."</textarea>";
+      echo "<textarea class='form-control'  cols='45' rows='5' name='comment' >".$this->fields["comment"]."</textarea>";
       echo "</td></tr>\n";
 
       echo "<tr >";

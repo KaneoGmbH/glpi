@@ -745,7 +745,7 @@ class Change extends CommonITILObject {
       echo "<th>".__('Description')."</th>";
       echo "<td colspan='3'>";
       $rand = mt_rand();
-      echo "<textarea id='content$rand' name='content' cols='90' rows='6'>".
+      echo "<textarea class='form-control'  id='content$rand' name='content' cols='90' rows='6'>".
             Html::clean(Html::entity_decode_deep($this->fields["content"]))."</textarea>";
       echo "</td>";
       echo "</tr>";
@@ -772,7 +772,7 @@ class Change extends CommonITILObject {
       echo "<tr >";
       echo "<td>".__('Impacts')."</td><td colspan='3'>";
       if ($canedit) {
-         echo "<textarea id='impactcontent' name='impactcontent' rows='6' cols='110'>";
+         echo "<textarea class='form-control'  id='impactcontent' name='impactcontent' rows='6' cols='110'>";
          echo $this->getField('impactcontent');
          echo "</textarea>";
       } else {
@@ -783,7 +783,7 @@ class Change extends CommonITILObject {
       echo "<tr >";
       echo "<td>".__('Control list')."</td><td colspan='3'>";
       if ($canedit) {
-         echo "<textarea id='controlistcontent' name='controlistcontent' rows='6' cols='110'>";
+         echo "<textarea class='form-control'  id='controlistcontent' name='controlistcontent' rows='6' cols='110'>";
          echo $this->getField('controlistcontent');
          echo "</textarea>";
       } else {
@@ -812,7 +812,7 @@ class Change extends CommonITILObject {
       echo "<tr >";
       echo "<td>".__('Deployment plan')."</td><td colspan='3'>";
       if ($canedit) {
-         echo "<textarea id='rolloutplancontent' name='rolloutplancontent' rows='6' cols='110'>";
+         echo "<textarea class='form-control'  id='rolloutplancontent' name='rolloutplancontent' rows='6' cols='110'>";
          echo $this->getField('rolloutplancontent');
          echo "</textarea>";
       } else {
@@ -823,7 +823,7 @@ class Change extends CommonITILObject {
       echo "<tr >";
       echo "<td>".__('Backup plan')."</td><td colspan='3'>";
       if ($canedit) {
-         echo "<textarea id='backoutplancontent' name='backoutplancontent' rows='6' cols='110'>";
+         echo "<textarea class='form-control'  id='backoutplancontent' name='backoutplancontent' rows='6' cols='110'>";
          echo $this->getField('backoutplancontent');
          echo "</textarea>";
       } else {
@@ -834,7 +834,7 @@ class Change extends CommonITILObject {
       echo "<tr >";
       echo "<td>".__('Checklist')."</td><td colspan='3'>";
       if ($canedit) {
-         echo "<textarea id='checklistcontent' name='checklistcontent' rows='6' cols='110'>";
+         echo "<textarea class='form-control'  id='checklistcontent' name='checklistcontent' rows='6' cols='110'>";
          echo $this->getField('checklistcontent');
          echo "</textarea>";
       } else {

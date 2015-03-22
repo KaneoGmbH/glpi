@@ -135,7 +135,7 @@ class NetworkAlias extends FQDNLabel {
                            'displaywith'  => array('view')));
       echo "</td>";
       echo "<td>".__('Comments')."</td>";
-      echo "<td><textarea cols='45' rows='4' name='comment' >".$this->fields["comment"];
+      echo "<td><textarea class='form-control'  cols='45' rows='4' name='comment' >".$this->fields["comment"];
       echo "</textarea></td>\n";
       echo "</tr>\n";
 

@@ -696,7 +696,7 @@ class KnowbaseItem extends CommonDBTM {
       echo "<tr >";
       echo "<td>".__('Subject')."</td>";
       echo "<td colspan='3'>";
-      echo "<textarea cols='100' rows='1' name='name'>".$this->fields["name"]."</textarea>";
+      echo "<textarea class='form-control'  cols='100' rows='1' name='name'>".$this->fields["name"]."</textarea>";
       echo "</td>";
       echo "</tr>\n";
 
@@ -711,7 +711,7 @@ class KnowbaseItem extends CommonDBTM {
          echo Html::hidden('_in_modal', array('value' => 1));
       }
 
-      echo "<textarea cols='$cols' rows='$rows' id='answer' name='answer'>".$this->fields["answer"];
+      echo "<textarea class='form-control'  cols='$cols' rows='$rows' id='answer' name='answer'>".$this->fields["answer"];
       echo "</textarea>";
       echo "</td>";
       echo "</tr>\n";

@@ -326,7 +326,7 @@ class ReservationItem extends CommonDBChild {
          echo "<td class='b'>".sprintf(__('%1$s - %2$s'), $type, $name)."</td></tr>\n";
 
          echo "<tr ><td>".__('Comments')."</td>";
-         echo "<td><textarea name='comment' cols='30' rows='10' >".$r->fields["comment"];
+         echo "<td><textarea class='form-control'  name='comment' cols='30' rows='10' >".$r->fields["comment"];
          echo "</textarea></td></tr>\n";
 
          echo "<tr ><td colspan='2' class='top center'>";
