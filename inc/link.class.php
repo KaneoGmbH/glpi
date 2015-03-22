@@ -115,26 +115,26 @@ class Link extends CommonDBTM {
       $this->initForm($ID, $options);
       $this->showFormHeader($options);
 
-      echo "<tr class='tab_bg_1'><td height='23'>".__('Valid tags')."</td>";
+      echo "<tr ><td height='23'>".__('Valid tags')."</td>";
       echo "<td colspan='3'>[LOGIN], [ID], [NAME], [LOCATION], [LOCATIONID], [IP], [MAC], [NETWORK],
                             [DOMAIN], [SERIAL], [OTHERSERIAL], [USER], [GROUP], [REALNAME],
                             [FIRSTNAME]</td></tr>";
 
-      echo "<tr class='tab_bg_1'><td>".__('Name')."</td>";
+      echo "<tr ><td>".__('Name')."</td>";
       echo "<td colspan='3'>";
       Html::autocompletionTextField($this, "name");
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'><td>".__('Link or filename')."</td>";
+      echo "<tr ><td>".__('Link or filename')."</td>";
       echo "<td colspan='3'>";
       Html::autocompletionTextField($this, "link", array('size' => 84));
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'><td>".__('Open in a new window')."</td><td>";
+      echo "<tr ><td>".__('Open in a new window')."</td><td>";
       Dropdown::showYesNo('open_window', $this->fields['open_window']);
       echo "</td><td colspan='2'>&nbsp;</td></tr>";
 
-      echo "<tr class='tab_bg_1'><td>".__('File content')."</td>";
+      echo "<tr ><td>".__('File content')."</td>";
       echo "<td colspan='3'>";
       echo "<textarea name='data' rows='10' cols='96'>".$this->fields["data"]."</textarea>";
       echo "</td></tr>";
@@ -412,7 +412,7 @@ class Link extends CommonDBTM {
 
       $result = $DB->query($query);
 
-      echo "<div class='spaced'><table class='tab_cadre_fixe'>";
+      echo "<div class='spaced'><table class='table table-striped'>";
 
       if ($DB->numrows($result) > 0) {
          echo "<tr><th>".self::getTypeName(Session::getPluralNumber())."</th></tr>";
@@ -420,15 +420,15 @@ class Link extends CommonDBTM {
             $links = self::getAllLinksFor($item, $data);
 
             foreach ($links as $link) {
-               echo "<tr class='tab_bg_2'>";
+               echo "<tr >";
                echo "<td class='center'>$link</td></tr>";
             }
          }
          echo "</table></div>";
 
       } else {
-         echo "<tr class='tab_bg_2'><th>".self::getTypeName(Session::getPluralNumber())."</th></tr>";
-         echo "<tr class='tab_bg_2'><td class='center b'>".__('No link defined')."</td></tr>";
+         echo "<tr ><th>".self::getTypeName(Session::getPluralNumber())."</th></tr>";
+         echo "<tr ><td class='center b'>".__('No link defined')."</td></tr>";
          echo "</table></div>";
       }
    }

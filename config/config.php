@@ -207,13 +207,13 @@ if (!file_exists(GLPI_CONFIG_DIR . "/config_db.php")) {
       } else {
          Html::nullHeader("UPDATE NEEDED",$CFG_GLPI["root_doc"]);
          echo "<div class='center'>";
-         echo "<table class='tab_cadre'>";
+         echo "<table class='table table-striped table-hover'>";
          $error = Toolbox::commonCheckForUseGLPI();
          echo "</table><br>";
 
          if ($error) {
             echo "<form action='".$CFG_GLPI["root_doc"]."/index.php' method='post'>";
-            echo "<input type='submit' name='submit' class='submit' value=\"".__s('Try again')."\">";
+            echo "<input type='submit' name='submit' class='btn btn-primary' value=\"".__s('Try again')."\">";
             Html::closeForm();
          }
          if ($error < 2) {
@@ -222,7 +222,7 @@ if (!file_exists(GLPI_CONFIG_DIR . "/config_db.php")) {
                echo "<p class='red'>".
                      __('The version of the database is not compatible with the version of the installed files. An update is necessary.')."</p>";
                echo "<input type='submit' name='from_update' value=\""._sx('button', 'Upgrade')."\"
-                      class='submit'>";
+                      class='btn btn-primary'>";
                Html::closeForm();
 
             } else if (trim($CFG_GLPI["version"])>GLPI_VERSION) {

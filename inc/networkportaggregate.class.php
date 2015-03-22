@@ -77,7 +77,7 @@ class NetworkPortAggregate extends NetworkPortInstantiation {
                         = importArrayFromDB($this->fields['networkports_id_list']);
       }
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       $this->showMacField($netport, $options);
       $this->showNetworkPortSelector($recursiveItems, $this->getType());
       echo "</tr>";

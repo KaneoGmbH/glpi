@@ -3468,8 +3468,8 @@ abstract class CommonITILObject extends CommonDBTM {
       }
 
       // Manage actors : requester and assign
-      echo "<table class='tab_cadre_fixe' id='mainformtable5'>";
-      echo "<tr class='tab_bg_1'>";
+      echo "<table class='table table-striped' id='mainformtable5'>";
+      echo "<tr >";
       echo "<th rowspan='2' width='13%'>".__('Actor')."</th>";
       echo "<th width='29%'>";
       if (!$is_hidden['_users_id_requester'] || !$is_hidden['_groups_id_requester']) {
@@ -3898,7 +3898,7 @@ abstract class CommonITILObject extends CommonDBTM {
          $rand_type = mt_rand();
       }
       if ($show_template) {
-         echo "<tr class='tab_bg_2'>";
+         echo "<tr >";
          echo "<td>"._n('Solution template', 'Solution templates', 1)."</td><td>";
 
          SolutionTemplate::dropdown(array('value'    => 0,
@@ -3918,7 +3918,7 @@ abstract class CommonITILObject extends CommonDBTM {
 
          echo "</td><td colspan='2'>";
          if (Session::haveRightsOr('knowbase', array(READ, KnowbaseItem::READFAQ))) {
-            echo "<a class='vsubmit' title=\"".__s('Search a solution')."\"
+            echo "<a class='btn btn-info btn-xs' title=\"".__s('Search a solution')."\"
                    href='".$CFG_GLPI['root_doc']."/front/knowbaseitem.php?item_itemtype=".
                    $this->getType()."&amp;item_items_id=".$this->getField('id').
                    "&amp;forcetab=Knowbase$1'>".__('Search a solution')."</a>";
@@ -3926,7 +3926,7 @@ abstract class CommonITILObject extends CommonDBTM {
          echo "</td></tr>";
       }
 
-      echo "<tr class='tab_bg_2'>";
+      echo "<tr >";
       echo "<td>".__('Solution type')."</td><td>";
 
       $current = $this->fields['status'];
@@ -3941,11 +3941,11 @@ abstract class CommonITILObject extends CommonDBTM {
       }
       echo "</td><td colspan='2'>&nbsp;</td></tr>";
       if ($canedit && Session::haveRight('knowbase', UPDATE)) {
-         echo "<tr class='tab_bg_2'><td>".__('Save and add to the knowledge base')."</td><td>";
+         echo "<tr ><td>".__('Save and add to the knowledge base')."</td><td>";
          Dropdown::showYesNo('_sol_to_kb', false);
          echo "</td><td colspan='2'>&nbsp;</td></tr>";
       }
-      echo "<tr class='tab_bg_2'>";
+      echo "<tr >";
       echo "<td>".__('Description')."</td><td colspan='3'>";
 
       if ($canedit) {
@@ -3977,13 +3977,13 @@ abstract class CommonITILObject extends CommonDBTM {
    static function showMassiveSolutionForm($entities_id) {
       global $CFG_GLPI;
 
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table'>";
       echo '<tr><th colspan=4>'.__('Solve tickets').'</th></tr>';
 
       $rand_template = mt_rand();
       $rand_text     = mt_rand();
       $rand_type     = mt_rand();
-      echo "<tr class='tab_bg_2'>";
+      echo "<tr >";
       echo "<td>"._n('Solution template', 'Solution templates', 1)."</td><td>";
 
       SolutionTemplate::dropdown(array('value'    => 0,
@@ -4002,13 +4002,13 @@ abstract class CommonITILObject extends CommonDBTM {
 
       echo "</td><td colspan='2'>&nbsp;</td></tr>";
 
-      echo "<tr class='tab_bg_2'>";
+      echo "<tr >";
       echo "<td>".__('Solution type')."</td><td>";
       SolutionType::dropdown(array('value'  => 0,
                                    'rand'   => $rand_type,
                                    'entity' => $entities_id));
       echo "</td><td colspan='2'>&nbsp;</td></tr>";
-      echo "<tr class='tab_bg_2'>";
+      echo "<tr >";
       echo "<td>".__('Description')."</td><td colspan='3'>";
       $rand = mt_rand();
       Html::initEditorSystem("solution$rand");
@@ -4216,30 +4216,30 @@ abstract class CommonITILObject extends CommonDBTM {
       }
 
       echo "<div class='center'>";
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table'>";
       echo "<tr><th colspan='2'>"._n('Date', 'Dates', Session::getPluralNumber())."</th></tr>";
 
-      echo "<tr class='tab_bg_2'><td>".__('Opening date')."</td>";
+      echo "<tr ><td>".__('Opening date')."</td>";
       echo "<td>".Html::convDateTime($this->fields['date'])."</td></tr>";
 
-      echo "<tr class='tab_bg_2'><td>".__('Due date')."</td>";
+      echo "<tr ><td>".__('Due date')."</td>";
       echo "<td>".Html::convDateTime($this->fields['due_date'])."</td></tr>";
 
       if (in_array($this->fields['status'], array_merge($this->getSolvedStatusArray(),
                                                         $this->getClosedStatusArray()))) {
-         echo "<tr class='tab_bg_2'><td>".__('Resolution date')."</td>";
+         echo "<tr ><td>".__('Resolution date')."</td>";
          echo "<td>".Html::convDateTime($this->fields['solvedate'])."</td></tr>";
       }
 
       if (in_array($this->fields['status'], $this->getClosedStatusArray())) {
-         echo "<tr class='tab_bg_2'><td>".__('Closing date')."</td>";
+         echo "<tr ><td>".__('Closing date')."</td>";
          echo "<td>".Html::convDateTime($this->fields['closedate'])."</td></tr>";
       }
 
       echo "<tr><th colspan='2'>"._n('Time', 'Times', Session::getPluralNumber())."</th></tr>";
 
       if (isset($this->fields['takeintoaccount_delay_stat'])) {
-         echo "<tr class='tab_bg_2'><td>".__('Take into account')."</td><td>";
+         echo "<tr ><td>".__('Take into account')."</td><td>";
          if ($this->fields['takeintoaccount_delay_stat'] > 0) {
             echo Html::timestampToString($this->fields['takeintoaccount_delay_stat'],0);
          } else {
@@ -4250,7 +4250,7 @@ abstract class CommonITILObject extends CommonDBTM {
 
       if (in_array($this->fields['status'], array_merge($this->getSolvedStatusArray(),
                                                         $this->getClosedStatusArray()))) {
-         echo "<tr class='tab_bg_2'><td>".__('Resolution')."</td><td>";
+         echo "<tr ><td>".__('Resolution')."</td><td>";
 
          if ($this->fields['solve_delay_stat'] > 0) {
             echo Html::timestampToString($this->fields['solve_delay_stat'],0);
@@ -4261,7 +4261,7 @@ abstract class CommonITILObject extends CommonDBTM {
       }
 
       if (in_array($this->fields['status'], $this->getClosedStatusArray())) {
-         echo "<tr class='tab_bg_2'><td>".__('Closure')."</td><td>";
+         echo "<tr ><td>".__('Closure')."</td><td>";
          if ($this->fields['close_delay_stat'] > 0) {
             echo Html::timestampToString($this->fields['close_delay_stat']);
          } else {
@@ -4270,7 +4270,7 @@ abstract class CommonITILObject extends CommonDBTM {
          echo "</td></tr>";
       }
 
-      echo "<tr class='tab_bg_2'><td>".__('Pending')."</td><td>";
+      echo "<tr ><td>".__('Pending')."</td><td>";
       if ($this->fields['waiting_duration'] > 0) {
          echo Html::timestampToString($this->fields['waiting_duration'],0);
       } else {
@@ -5144,7 +5144,7 @@ abstract class CommonITILObject extends CommonDBTM {
          // Finish Line
          echo Search::showEndLine($p['output_type']);
       } else {
-         echo "<tr class='tab_bg_2'>";
+         echo "<tr >";
          echo "<td colspan='6' ><i>".__('No item in progress.')."</i></td></tr>";
       }
    }

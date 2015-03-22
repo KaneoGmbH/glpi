@@ -104,7 +104,7 @@ class Central extends CommonGLPI {
       $showticket  = Session::haveRight("ticket", Ticket::READALL);
       $showproblem = Session::haveRight("problem", Problem::READALL);
 
-      echo "<table class='tab_cadre_central'><tr class='noHover'>";
+      echo "<table class='table'><tr class='noHover'>";
       echo "<td class='top' width='50%'>";
       echo "<table class='central'>";
       echo "<tr class='noHover'><td>";
@@ -147,8 +147,6 @@ class Central extends CommonGLPI {
 
       $showproblem = Session::haveRightsOr('problem', array(Problem::READALL, Problem::READMY));
 
-      echo "<table class='tab_cadre_central'>";
-
       if (Session::haveRight("config", UPDATE)) {
          $logins = User::checkDefaultPasswords();
          $user   = new User();
@@ -161,26 +159,26 @@ class Central extends CommonGLPI {
             $message = sprintf(__('For security reasons, please change the password for the default users: %s'),
                                implode(" ", $accounts));
 
-            echo "<tr><th colspan='2'>";
             Html::displayTitle($CFG_GLPI['root_doc']."/pics/warning.png", $message, $message);
-            echo "</th></tr>";
+
          }
          if (file_exists(GLPI_ROOT . "/install/install.php")) {
-            echo "<tr><th colspan='2'>";
+
             $message = sprintf(__('For security reasons, please remove file: %s'),
                                "install/install.php");
             Html::displayTitle($CFG_GLPI['root_doc']."/pics/warning.png", $message, $message);
-            echo "</th></tr>";
          }
       }
 
       if ($DB->isSlave()
           && !$DB->first_connection) {
-         echo "<tr><th colspan='2'>";
+
          Html::displayTitle($CFG_GLPI['root_doc']."/pics/warning.png", __('MySQL replica: read only'),
                             __('MySQL replica: read only'));
-         echo "</th></tr>";
       }
+
+      echo "<table class='table'>";
+
       echo "<tr class='noHover'><td class='top' width='50%'><table class='central'>";
       echo "<tr class='noHover'><td>";
       if (Session::haveRightsOr('ticketvalidation', TicketValidation::getValidateRights())) {
@@ -221,7 +219,7 @@ class Central extends CommonGLPI {
    **/
    static function showRSSView() {
 
-      echo "<table class='tab_cadre_central'>";
+      echo "<table class='table'>";
 
       echo "<tr class='noHover'><td class='top' width='50%'>";
       RSSFeed::showListForCentral();
@@ -245,7 +243,7 @@ class Central extends CommonGLPI {
 
       $showproblem = Session::haveRightsOr('problem', array(Problem::READALL, Problem::READMY));
 
-      echo "<table class='tab_cadre_central'>";
+      echo "<table class='table'>";
       echo "<tr class='noHover'><td class='top' width='50%'><table class='central'>";
       echo "<tr class='noHover'><td>";
       if ($showticket) {

@@ -69,10 +69,10 @@ class RuleRight extends Rule {
    function showNewRuleForm($ID) {
 
       echo "<form method='post' action='".Toolbox::getItemTypeFormURL('Entity')."'>";
-      echo "<table  class='tab_cadre_fixe'>";
+      echo "<table  class='table table-striped'>";
       echo "<tr><th colspan='7'>" .__('Authorizations assignment rules') . "</th></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Name') . "</td><td>";
       Html::autocompletionTextField($this, "name", array('value' => '',
                                                          'size'  => 33));
@@ -86,10 +86,10 @@ class RuleRight extends Rule {
       echo "<input type=hidden name='entities_id' value='-1'>";
       echo "<input type=hidden name='affectentity' value='$ID'>";
       echo "<input type=hidden name='_method' value='AddRule'>";
-      echo "<input type='submit' name='execute' value=\""._sx('button','Add')."\" class='submit'>";
+      echo "<input type='submit' name='execute' value=\""._sx('button','Add')."\" class='btn btn-primary'>";
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td class='center'>"._n('Profile', 'Profiles', 1) . "</td><td>";
       Profile::dropdown();
       echo "</td><td><span class='small_space'>".__('Recursive') . "</span></td><td colspan='3'>";

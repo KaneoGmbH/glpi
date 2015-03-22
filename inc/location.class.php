@@ -253,9 +253,9 @@ class Location extends CommonTreeDropdown {
          $start = 0;
       }
       // Mini Search engine
-      echo "<table class='tab_cadre_fixe'>";
-      echo "<tr class='tab_bg_1'><th colspan='2'>".__('Type')."</th></tr>";
-      echo "<tr class='tab_bg_1'><td class='center'>";
+      echo "<table class='table table-striped'>";
+      echo "<tr ><th colspan='2'>".__('Type')."</th></tr>";
+      echo "<tr ><td class='center'>";
       echo __('Type')."&nbsp;";
       Dropdown::showItemType($CFG_GLPI['location_types'],
                              array('value'      => $crit,
@@ -266,7 +266,7 @@ class Location extends CommonTreeDropdown {
          echo "<div class='spaced'>";
          Html::printAjaxPager('',  $start, $number);
 
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table'>";
          echo "<tr><th>".__('Type')."</th>";
          echo "<th>".__('Entity')."</th>";
          echo "<th>".__('Name')."</th>";
@@ -278,7 +278,7 @@ class Location extends CommonTreeDropdown {
          for ($row=0 ; ($data=$DB->fetch_assoc($result)) && ($row<$_SESSION['glpilist_limit']) ; $row++) {
             $item = getItemForItemtype($data['type']);
             $item->getFromDB($data['id']);
-            echo "<tr class='tab_bg_1'><td class='center top'>".$item->getTypeName()."</td>";
+            echo "<tr ><td class='center top'>".$item->getTypeName()."</td>";
             echo "<td class='center'>".Dropdown::getDropdownName("glpi_entities",
                                                                  $item->getEntityID());
             echo "</td><td class='center'>".$item->getLink()."</td>";

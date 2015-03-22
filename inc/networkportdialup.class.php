@@ -76,7 +76,7 @@ class NetworkPortDialup extends NetworkPortInstantiation {
    **/
    function showInstantiationForm(NetworkPort $netport, $options=array(), $recursiveItems) {
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       $this->showMacField($netport, $options);
 
       echo "<td>".__('Connected to').'</td><td>';

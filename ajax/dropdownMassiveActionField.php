@@ -108,12 +108,12 @@ if (isset($_POST["itemtype"])
    }
    echo "</td>";
    if ($inline) {
-      echo "<td><input type='submit' name='massiveaction' class='submit' value='$submitname'></td>";
+      echo "<td><input type='submit' name='massiveaction' class='btn btn-primary' value='$submitname'></td>";
    }
    echo "</tr></table>";
 
    if (!$inline) {
-      echo "<br><input type='submit' name='massiveaction' class='submit' value='$submitname'>";
+      echo "<br><input type='submit' name='massiveaction' class='btn btn-primary' value='$submitname'>";
    }
 
 }

@@ -214,7 +214,7 @@ class HTMLTableMain extends HTMLTableBase {
          Session::initNavigateListItems($itemtype, $title);
       }
 
-      echo "\n<table class='tab_cadre_fixehov'";
+      echo "\n<table class='table table-hover'";
       if (!empty($p['html_id'])) {
          echo " id='".$p['html_id']."'";
       }
@@ -236,7 +236,7 @@ class HTMLTableMain extends HTMLTableBase {
             echo "\t</thead>\n";
          }
 
-         echo "\t\t<tr class='tab_bg_1'>".
+         echo "\t\t<tr >".
               "<td class='center' colspan='$totalNumberOfColumn'>" . __('None') ."</td></tr>\n";
 
       } else {

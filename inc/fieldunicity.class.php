@@ -512,8 +512,8 @@ class FieldUnicity extends CommonDropdown {
 
       if (!empty($fields)) {
          $colspan = count($fields) + 1;
-         echo "<table class='tab_cadre_fixe'>";
-         echo "<tr class='tab_bg_2'><th colspan='".$colspan."'>".__('Duplicates')."</th></tr>";
+         echo "<table class='table table-striped'>";
+         echo "<tr ><th colspan='".$colspan."'>".__('Duplicates')."</th></tr>";
 
          $entities = array($unicity->fields['entities_id']);
          if ($unicity->fields['is_recursive']) {
@@ -552,10 +552,10 @@ class FieldUnicity extends CommonDropdown {
          }
 
          if (empty($results)) {
-            echo "<tr class='tab_bg_2'>";
+            echo "<tr >";
             echo "<td class='center' colspan='$colspan'>".__('No item to display')."</td></tr>";
          } else {
-            echo "<tr class='tab_bg_2'>";
+            echo "<tr >";
             foreach ($fields as $field) {
                $searchOption = $item->getSearchOptionByField('field',$field);
                echo "<th>".$searchOption["name"]."</th>";
@@ -563,7 +563,7 @@ class FieldUnicity extends CommonDropdown {
             echo "<th>"._x('quantity', 'Number')."</th></tr>";
 
             foreach ($results as $result) {
-               echo "<tr class='tab_bg_2'>";
+               echo "<tr >";
                foreach ($fields as $field) {
                   $table = getTableNameForForeignKeyField($field);
                   if ($table != '') {
@@ -577,7 +577,7 @@ class FieldUnicity extends CommonDropdown {
          }
 
       } else {
-         echo "<tr class='tab_bg_2'>";
+         echo "<tr >";
          echo "<td class='center' colspan='$colspan'>".__('No item to display')."</td></tr>";
       }
       echo "</table>";

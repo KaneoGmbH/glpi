@@ -733,7 +733,7 @@ class MassiveAction {
                }
                $choose_field = (count($options) > 1);
 
-               // Beware: "class='tab_cadre_fixe'" induce side effects ...
+               // Beware: "class='table'" induce side effects ...
                echo "<table width='100%'><tr>";
 
                $colspan = 0;

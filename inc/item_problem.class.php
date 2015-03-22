@@ -128,10 +128,10 @@ class Item_Problem extends CommonDBRelation{
          echo "<form name='problemitem_form$rand' id='problemitem_form$rand' method='post'
                 action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
-         echo "<table class='tab_cadre_fixe'>";
-         echo "<tr class='tab_bg_2'><th colspan='2'>".__('Add an item')."</th></tr>";
+         echo "<table class='table table-striped'>";
+         echo "<tr ><th colspan='2'>".__('Add an item')."</th></tr>";
 
-         echo "<tr class='tab_bg_1'><td>";
+         echo "<tr ><td>";
          $types = array();
          foreach ($problem->getAllTypesForHelpdesk() as $key => $val) {
             $types[] = $key;
@@ -144,7 +144,7 @@ class Item_Problem extends CommonDBRelation{
                                                                      $problem->fields['entities_id'])
                                                           :$problem->fields['entities_id'])));
          echo "</td><td class='center' width='30%'>";
-         echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='submit'>";
+         echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='btn btn-primary'>";
          echo "<input type='hidden' name='problems_id' value='$instID'>";
          echo "</td></tr>";
          echo "</table>";
@@ -158,7 +158,7 @@ class Item_Problem extends CommonDBRelation{
          $massiveactionparams = array('container' => 'mass'.__CLASS__.$rand);
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='table table-hover'>";
       $header_begin  = "<tr>";
       $header_top    = '';
       $header_bottom = '';
@@ -220,7 +220,7 @@ class Item_Problem extends CommonDBRelation{
                $link     = Toolbox::getItemTypeFormURL($itemtype);
                $namelink = "<a href=\"".$link."?id=".$data["id"]."\">".$name."</a>";
 
-               echo "<tr class='tab_bg_1'>";
+               echo "<tr >";
                if ($canedit) {
                   echo "<td width='10'>";
                   Html::showMassiveActionCheckBox(__CLASS__, $data["IDD"]);

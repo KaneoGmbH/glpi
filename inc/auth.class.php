@@ -1128,7 +1128,7 @@ class Auth extends CommonGLPI {
                              AND `is_active` = 1";
                $result = $DB->query($sql);
                if ($DB->numrows($result) > 0) {
-                  echo "<table class='tab_cadre'><tr class='tab_bg_2'><td>";
+                  echo "<table class='table table-striped table-hover'><tr ><td>";
                   echo "<input type='hidden' name='id' value='".$user->getID()."'>";
                   echo "<input class=submit type='submit' name='force_ldap_resynch' value='" .
                          __s('Force synchronization') . "'>";
@@ -1143,9 +1143,9 @@ class Auth extends CommonGLPI {
          echo "</div>";
 
          echo "<div class='spaced'>";
-         echo "<table class='tab_cadre'>";
+         echo "<table class='table table-striped table-hover'>";
          echo "<tr><th>".__('Change of the authentication method')."</th></tr>";
-         echo "<tr class='tab_bg_2'><td class='center'>";
+         echo "<tr ><td class='center'>";
          $rand             = self::dropdown(array('name' => 'authtype'));
          $paramsmassaction = array('authtype' => '__VALUE__',
                                    'name'     => 'change_auth_method');
@@ -1208,7 +1208,7 @@ class Auth extends CommonGLPI {
       }
       echo "<form name=cas action='".$CFG_GLPI['root_doc']."/front/auth.others.php' method='post'>";
       echo "<div class='center'>";
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table table-striped'>";
 
       // CAS config
       echo "<tr><th>" . __('CAS authentication').'</th><th>';
@@ -1220,20 +1220,20 @@ class Auth extends CommonGLPI {
       if (function_exists('curl_init')) {
 
          //TRANS: for CAS SSO system
-         echo "<tr class='tab_bg_2'><td class='center'>" . __('CAS Host') . "</td>";
+         echo "<tr ><td class='center'>" . __('CAS Host') . "</td>";
          echo "<td><input type='text' name='cas_host' value=\"".$CFG_GLPI["cas_host"]."\"></td></tr>\n";
          //TRANS: for CAS SSO system
-         echo "<tr class='tab_bg_2'><td class='center'>" . __('Port') . "</td>";
+         echo "<tr ><td class='center'>" . __('Port') . "</td>";
          echo "<td><input type='text' name='cas_port' value=\"".$CFG_GLPI["cas_port"]."\"></td></tr>\n";
          //TRANS: for CAS SSO system
-         echo "<tr class='tab_bg_2'><td class='center'>" . __('Root directory (optional)')."</td>";
+         echo "<tr ><td class='center'>" . __('Root directory (optional)')."</td>";
          echo "<td><input type='text' name='cas_uri' value=\"".$CFG_GLPI["cas_uri"]."\"></td></tr>\n";
          //TRANS: for CAS SSO system
-         echo "<tr class='tab_bg_2'><td class='center'>" . __('Log out fallback URL') . "</td>";
+         echo "<tr ><td class='center'>" . __('Log out fallback URL') . "</td>";
          echo "<td><input type='text' name='cas_logout' value=\"".$CFG_GLPI["cas_logout"]."\"></td>".
               "</tr>\n";
       } else {
-         echo "<tr class='tab_bg_2'><td class='center' colspan='2'>";
+         echo "<tr ><td class='center' colspan='2'>";
          echo "<p class='red'>".__("The CURL extension for your PHP parser isn't installed");
          echo "</p>";
          echo "<p>" .__('Impossible to use CAS as external source of connection')."</p></td></tr>\n";
@@ -1244,19 +1244,19 @@ class Auth extends CommonGLPI {
          echo _x('authentication','Enabled');
       }
       echo "</th></tr>\n";
-      echo "<tr class='tab_bg_2'>";
+      echo "<tr >";
       echo "<td class='center'>". __('Email attribute for x509 authentication') ."</td>";
       echo "<td><input type='text' name='x509_email_field' value=\"".$CFG_GLPI["x509_email_field"]."\">";
       echo "</td></tr>\n";
-      echo "<tr class='tab_bg_2'>";
+      echo "<tr >";
       echo "<td class='center'>". sprintf(__('Restrict %s field for x509 authentication (separator $)'),'OU') ."</td>";
       echo "<td><input type='text' name='x509_ou_restrict' value=\"".$CFG_GLPI["x509_ou_restrict"]."\">";
       echo "</td></tr>\n";
-      echo "<tr class='tab_bg_2'>";
+      echo "<tr >";
       echo "<td class='center'>". sprintf(__('Restrict %s field for x509 authentication (separator $)'),'CN') ."</td>";
       echo "<td><input type='text' name='x509_cn_restrict' value=\"".$CFG_GLPI["x509_cn_restrict"]."\">";
       echo "</td></tr>\n";
-      echo "<tr class='tab_bg_2'>";
+      echo "<tr >";
       echo "<td class='center'>". sprintf(__('Restrict %s field for x509 authentication (separator $)'),'O') ."</td>";
       echo "<td><input type='text' name='x509_o_restrict' value=\"".$CFG_GLPI["x509_o_restrict"]."\">";
       echo "</td></tr>\n";
@@ -1268,7 +1268,7 @@ class Auth extends CommonGLPI {
          echo _x('authentication', 'Enabled');
       }
       echo "</th></tr>\n";
-      echo "<tr class='tab_bg_2'>";
+      echo "<tr >";
       echo "<td class='center'>". __('Field storage of the login in the HTTP request')."</td>";
       echo "<td>";
       SsoVariable::dropdown(array('name'  => 'ssovariables_id',
@@ -1276,99 +1276,99 @@ class Auth extends CommonGLPI {
       echo "</td>";
       echo "</tr>\n";
 
-      echo "<tr class='tab_bg_2'>";
+      echo "<tr >";
       echo "<td class='center'>" . __('Remove the domain of logins like login@domain')."</td><td>";
       Dropdown::showYesNo('existing_auth_server_field_clean_domain',
                           $CFG_GLPI['existing_auth_server_field_clean_domain']);
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_2'>";
+      echo "<tr >";
       echo "<td class='center'>" . __('Surname') . "</td>";
       echo "<td><input type='text' name='realname_ssofield' value='".
                  $CFG_GLPI['realname_ssofield']."'></td>";
       echo "</tr>\n";
 
-      echo "<tr class='tab_bg_2'>";
+      echo "<tr >";
       echo "<td class='center'>" . __('First name') . "</td>";
       echo "<td><input type='text' name='firstname_ssofield' value='".
                  $CFG_GLPI['firstname_ssofield']."'></td>";
       echo "</tr>\n";
 
-      echo "<tr class='tab_bg_2'>";
+      echo "<tr >";
       echo "<td class='center'>" . __('Comments') . "</td>";
       echo "<td><input type='text' name='comment_ssofield' value='".
                  $CFG_GLPI['comment_ssofield']."'>";
       echo "</td>";
       echo "</tr>\n";
 
-      echo "<tr class='tab_bg_2'>";
+      echo "<tr >";
       echo "<td class='center'>" . __('Administrative number') . "</td>";
       echo "<td><input type='text' name='registration_number_ssofield' value='".
                   $CFG_GLPI['registration_number_ssofield']."'>";
       echo "</td>";
       echo "</tr>\n";
 
-      echo "<tr class='tab_bg_2'>";
+      echo "<tr >";
       echo "<td class='center'>" . __('Email') . "</td>";
       echo "<td><input type='text' name='email1_ssofield' value='".$CFG_GLPI['email1_ssofield']."'>";
       echo "</td>";
        echo "</tr>\n";
 
-      echo "<tr class='tab_bg_2'>";
+      echo "<tr >";
       echo "<td class='center'>" . sprintf(__('%1$s %2$s'),_n('Email','Emails',1), '2') . "</td>";
       echo "<td><input type='text' name='email2_ssofield' value='".$CFG_GLPI['email2_ssofield']."'>";
       echo "</td>";
       echo "</tr>\n";
 
-      echo "<tr class='tab_bg_2'>";
+      echo "<tr >";
       echo "<td class='center'>" . sprintf(__('%1$s %2$s'),_n('Email','Emails',1),  '3') . "</td>";
       echo "<td><input type='text' name='email3_ssofield' value='".$CFG_GLPI['email3_ssofield']."'>";
       echo "</td>";
       echo "</tr>\n";
 
-      echo "<tr class='tab_bg_2'>";
+      echo "<tr >";
       echo "<td class='center'>" . sprintf(__('%1$s %2$s'),_n('Email','Emails',1),  '4') . "</td>";
       echo "<td><input type='text' name='email4_ssofield' value='".$CFG_GLPI['email4_ssofield']."'>";
       echo "</td>";
       echo "</tr>\n";
 
-      echo "<tr class='tab_bg_2'>";
+      echo "<tr >";
       echo "<td class='center'>" . __('Phone') . "</td>";
       echo "<td><input type='text' name='phone_ssofield' value='".$CFG_GLPI['phone_ssofield']."'>";
       echo "</td>";
       echo "</tr>\n";
 
-      echo "<tr class='tab_bg_2'>";
+      echo "<tr >";
       echo "<td class='center'>" .  __('Phone 2') . "</td>";
       echo "<td><input type='text' name='phone2_ssofield' value='".$CFG_GLPI['phone2_ssofield']."'>";
       echo "</td>";
       echo "</tr>\n";
 
-      echo "<tr class='tab_bg_2'>";
+      echo "<tr >";
       echo "<td class='center'>" . __('Mobile phone') . "</td>";
       echo "<td><input type='text' name='mobile_ssofield' value='".$CFG_GLPI['mobile_ssofield']."'>";
       echo "</td>";
       echo "</tr>\n";
 
-      echo "<tr class='tab_bg_2'>";
+      echo "<tr >";
       echo "<td class='center'>" . _x('person','Title') . "</td>";
       echo "<td><input type='text' name='title_ssofield' value='".$CFG_GLPI['title_ssofield']."'>";
       echo "</td>";
       echo "</tr>\n";
 
-      echo "<tr class='tab_bg_2'>";
+      echo "<tr >";
       echo "<td class='center'>" . __('Category') . "</td>";
       echo "<td><input type='text' name='category_ssofield' value='".
                  $CFG_GLPI['category_ssofield']."'></td>";
       echo "</tr>\n";
 
-      echo "<tr class='tab_bg_2'>";
+      echo "<tr >";
       echo "<td class='center'>" . __('Language') . "</td>";
       echo "<td><input type='text' name='language_ssofield' value='".
                  $CFG_GLPI['language_ssofield']."'></td></tr>";
 
-      echo "<tr class='tab_bg_1'><td class='center' colspan='2'>";
-      echo "<input type='submit' name='update' class='submit' value=\"".__s('Save')."\" >";
+      echo "<tr ><td class='center' colspan='2'>";
+      echo "<input type='submit' name='update' class='btn btn-primary' value=\"".__s('Save')."\" >";
       echo "</td></tr>\n";
 
       echo "</table></div>\n";

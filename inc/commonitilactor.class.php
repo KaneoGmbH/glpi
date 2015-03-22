@@ -158,8 +158,8 @@ abstract class CommonITILActor extends CommonDBRelation {
 
       echo "<br><form method='post' action='".$_SERVER['PHP_SELF']."'>";
       echo "<div class='center'>";
-      echo "<table class='tab_cadre' width='80%'>";
-      echo "<tr class='tab_bg_2'><td>".$item->getTypeName(1)."</td>";
+      echo "<table class='table table-striped table-hover' width='80%'>";
+      echo "<tr ><td>".$item->getTypeName(1)."</td>";
       echo "<td>";
       if ($item->getFromDB($this->fields[static::getItilObjectForeignKey()])) {
          echo $item->getField('name');
@@ -174,15 +174,15 @@ abstract class CommonITILActor extends CommonDBRelation {
          $emails        = $user->getAllEmails();
       }
 
-      echo "<tr class='tab_bg_2'><td>".__('User')."</td>";
+      echo "<tr ><td>".__('User')."</td>";
       echo "<td>".$user->getName()."</td></tr>";
 
-      echo "<tr class='tab_bg_1'><td>".__('Email Followup')."</td>";
+      echo "<tr ><td>".__('Email Followup')."</td>";
       echo "<td>";
       Dropdown::showYesNo('use_notification', $this->fields['use_notification']);
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'><td>".__('Email')."</td>";
+      echo "<tr ><td>".__('Email')."</td>";
       echo "<td>";
       if ((count($emails) ==  1)
           && !empty($default_email)
@@ -207,9 +207,9 @@ abstract class CommonITILActor extends CommonDBRelation {
       }
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_2'>";
+      echo "<tr >";
       echo "<td class='center' colspan='2'>";
-      echo "<input type='submit' name='update' value=\""._sx('button','Save')."\" class='submit'>";
+      echo "<input type='submit' name='update' value=\""._sx('button','Save')."\" class='btn btn-primary'>";
       echo "<input type='hidden' name='id' value='$ID'>";
       echo "</td></tr>";
 
@@ -240,8 +240,8 @@ abstract class CommonITILActor extends CommonDBRelation {
 
       echo "<br><form method='post' action='".$_SERVER['PHP_SELF']."'>";
       echo "<div class='center'>";
-      echo "<table class='tab_cadre' width='80%'>";
-      echo "<tr class='tab_bg_2'><td>".$item->getTypeName(1)."</td>";
+      echo "<table class='table table-striped table-hover' width='80%'>";
+      echo "<tr ><td>".$item->getTypeName(1)."</td>";
       echo "<td>";
       if ($item->getFromDB($this->fields[static::getItilObjectForeignKey()])) {
          echo $item->getField('name');
@@ -254,15 +254,15 @@ abstract class CommonITILActor extends CommonDBRelation {
          $default_email = $supplier->fields['email'];
       }
 
-      echo "<tr class='tab_bg_2'><td>".__('User')."</td>";
+      echo "<tr ><td>".__('User')."</td>";
       echo "<td>".$supplier->getName()."</td></tr>";
 
-      echo "<tr class='tab_bg_1'><td>".__('Email Followup')."</td>";
+      echo "<tr ><td>".__('Email Followup')."</td>";
       echo "<td>";
       Dropdown::showYesNo('use_notification', $this->fields['use_notification']);
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'><td>".__('Email')."</td>";
+      echo "<tr ><td>".__('Email')."</td>";
       echo "<td>";
       if (empty($this->fields['alternative_email'])) {
          $this->fields['alternative_email'] = $default_email;
@@ -271,9 +271,9 @@ abstract class CommonITILActor extends CommonDBRelation {
              $this->fields['alternative_email']."'>";
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_2'>";
+      echo "<tr >";
       echo "<td class='center' colspan='2'>";
-      echo "<input type='submit' name='update' value=\""._sx('button','Save')."\" class='submit'>";
+      echo "<input type='submit' name='update' value=\""._sx('button','Save')."\" class='btn btn-primary'>";
       echo "<input type='hidden' name='id' value='$ID'>";
       echo "</td></tr>";
 

@@ -112,23 +112,23 @@ class NotificationTemplate extends CommonDBTM {
 
       $this->showFormHeader($options);
 
-      echo "<tr class='tab_bg_1'><td>" . __('Name') . "</td>";
+      echo "<tr ><td>" . __('Name') . "</td>";
       echo "<td colspan='3'>";
       Html::autocompletionTextField($this, "name");
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'><td>" . __('Type') . "</td><td colspan='3'>";
+      echo "<tr ><td>" . __('Type') . "</td><td colspan='3'>";
       Dropdown::showItemTypes('itemtype', $CFG_GLPI["notificationtemplates_types"],
                               array('value' => ($this->fields['itemtype']
                                                 ?$this->fields['itemtype'] :'Ticket')));
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'><td>".__('Comments')."</td>";
+      echo "<tr ><td>".__('Comments')."</td>";
       echo "<td colspan='3'>";
       echo "<textarea cols='60' rows='5' name='comment' >".$this->fields["comment"]."</textarea>";
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'><td>".__('CSS')."</td>";
+      echo "<tr ><td>".__('CSS')."</td>";
       echo "<td colspan='3'>";
       echo "<textarea cols='60' rows='5' name='css' >".$this->fields["css"]."</textarea></td></tr>";
 

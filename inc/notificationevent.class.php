@@ -176,7 +176,7 @@ class NotificationEvent extends CommonDBTM {
                               Notification::send($datas);
                            } else {
                               $notificationtarget->getFromDB($target['id']);
-                              echo "<tr class='tab_bg_2'><td>".$label."</td>";
+                              echo "<tr ><td>".$label."</td>";
                               echo "<td>".$notificationtarget->getNameID()."</td>";
                               echo "<td>".sprintf(__('%1$s (%2$s)'), $template->getName(),
                                                   $users_infos['language'])."</td>";
@@ -212,7 +212,7 @@ class NotificationEvent extends CommonDBTM {
    static function debugEvent($item, $options=array()) {
 
       echo "<div class='spaced'>";
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table table-striped'>";
       echo "<tr><th colspan='2'>"._n('Notification', 'Notifications', Session::getPluralNumber()).
             "</th><th colspan='2'><font color='blue'> (".$item->getTypeName(1).")</font></th></tr>";
 

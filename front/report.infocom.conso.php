@@ -55,13 +55,13 @@ if (!empty($_POST["date1"])
 Report::title();
 
 echo "\n<form method='post' name='form' action='".$_SERVER['PHP_SELF']."'>";
-echo "<table class='tab_cadre'><tr class='tab_bg_2'>";
+echo "<table class='table table-striped table-hover'><tr >";
 echo "<td class='right'>".__('Start date')."</td><td>";
 Html::showDateField("date1", array('value' => $_POST["date1"]));
 echo "</td><td rowspan='2' class='center'>";
-echo "<input type='submit' class='submit' name='submit' value=\"".__s('Display report')."\"></td>".
+echo "<input type='submit' class='btn btn-primary' name='submit' value=\"".__s('Display report')."\"></td>".
      "</tr>\n";
-echo "<tr class='tab_bg_2'><td class='right'>".__('End date')."</td><td>";
+echo "<tr ><td class='right'>".__('End date')."</td><td>";
 Html::showDateField("date2", array('value' => $_POST["date2"]));
 echo "</td></tr>";
 echo "</table>\n";
@@ -123,7 +123,7 @@ function display_infocoms_report($itemtype, $begin, $end) {
           && ($item = getItemForItemtype($itemtype))) {
 
          echo "<h2>".$item->getTypeName(1)."</h2>";
-         echo "<table class='tab_cadre'>";
+         echo "<table class='table table-striped table-hover'>";
 
          $valeursoustot      = 0;
          $valeurnettesoustot = 0;

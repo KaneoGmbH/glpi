@@ -214,7 +214,7 @@ abstract class CommonDropdown extends CommonDBTM {
       $fields = $this->getAdditionalFields();
       $nb     = count($fields);
 
-      echo "<tr class='tab_bg_1'><td>".__('Name')."</td>";
+      echo "<tr ><td>".__('Name')."</td>";
       echo "<td>";
       if ($this instanceof CommonDevice) {
          // Awfull hack for CommonDevice where name is designation
@@ -233,7 +233,7 @@ abstract class CommonDropdown extends CommonDBTM {
          if (($field['name'] == 'entities_id')
              && ($ID == 0)) {
             // No display for root entity
-            echo "<tr class='tab_bg_1'><td colspan='2'>&nbsp;</td></tr>";
+            echo "<tr ><td colspan='2'>&nbsp;</td></tr>";
             break;
          }
 
@@ -242,11 +242,11 @@ abstract class CommonDropdown extends CommonDBTM {
          }
 
          if ($field['name'] == 'header') {
-            echo "<tr class='tab_bg_1'><th colspan='2'>".$field['label']."</th></tr>";
+            echo "<tr ><th colspan='2'>".$field['label']."</th></tr>";
             continue;
          }
 
-         echo "<tr class='tab_bg_1'><td>".$field['label'];
+         echo "<tr ><td>".$field['label'];
          if (isset($field['comment']) && !empty($field['comment'])) {
             echo "&nbsp;";
             Html::showToolTip($field['comment']);
@@ -518,13 +518,13 @@ abstract class CommonDropdown extends CommonDBTM {
          echo "<p>".__('If you confirm the deletion, all uses of this dropdown will be blanked.') .
               "</p>";
          echo "<form action='$target' method='post'>";
-         echo "<table class='tab_cadre'><tr>";
+         echo "<table class='table table-striped table-hover'><tr>";
          echo "<td><input type='hidden' name='id' value='$ID'>";
          echo "<input type='hidden' name='forcepurge' value='1'>";
-         echo "<input class='submit' type='submit' name='purge'
+         echo "<input class='btn btn-primary' type='submit' name='purge'
                 value=\""._sx('button','Confirm')."\">";
          echo "</td>";
-         echo "<td><input class='submit' type='submit' name='annuler'
+         echo "<td><input class='btn btn-primary' type='submit' name='annuler'
                     value=\""._sx('button','Cancel')."\">";
          echo "</td></tr></table>\n";
          Html::closeForm();
@@ -533,7 +533,7 @@ abstract class CommonDropdown extends CommonDBTM {
       // Replace form (set to new value)
       echo "<p>". __('You can also replace all uses of this dropdown by another.') ."</p>";
       echo "<form action='$target' method='post'>";
-      echo "<table class='tab_cadre'><tr><td>";
+      echo "<table class='table table-striped table-hover'><tr><td>";
 
       if ($this instanceof CommonTreeDropdown) {
          // TreeDropdown => default replacement is parent
@@ -553,9 +553,9 @@ abstract class CommonDropdown extends CommonDBTM {
       }
       echo "<input type='hidden' name='id' value='$ID' />";
       echo "</td><td>";
-      echo "<input class='submit' type='submit' name='replace' value=\""._sx('button','Replace')."\">";
+      echo "<input class='btn btn-primary' type='submit' name='replace' value=\""._sx('button','Replace')."\">";
       echo "</td><td>";
-      echo "<input class='submit' type='submit' name='annuler' value=\""._sx('button','Cancel')."\">";
+      echo "<input class='btn btn-primary' type='submit' name='annuler' value=\""._sx('button','Cancel')."\">";
       echo "</td></tr></table>\n";
       Html::closeForm();
       echo "</div>";

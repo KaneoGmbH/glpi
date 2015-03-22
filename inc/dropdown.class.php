@@ -898,8 +898,8 @@ class Dropdown {
    **/
    static function showItemTypeMenu($title, $optgroup, $value='') {
 
-      echo "<table class='tab_cadre' width='50%'>";
-      echo "<tr class='tab_bg_1'><td class='b'>&nbsp;".$title."&nbsp; ";
+      echo "<table class='table table-striped table-hover' width='50%'>";
+      echo "<tr ><td class='b'>&nbsp;".$title."&nbsp; ";
       $values   = array('' => self::EMPTY_VALUE);
       $selected = '';
 
@@ -936,17 +936,17 @@ class Dropdown {
       }
       $step = ($nb > 15 ? ($nb/3) : $nb);
       echo "<table class='tab_glpi'><tr class='top'><td width='33%' class='center'>";
-      echo "<table class='tab_cadre'>";
+      echo "<table class='table table-striped table-hover'>";
       $i = 1;
 
       foreach ($optgroup as $label => $dp) {
          echo "<tr><th>$label</th></tr>\n";
 
          foreach ($dp as $key => $val) {
-            $class="class='tab_bg_4'";
+            $class="";
             if (($itemtype = getItemForItemtype($key))
                 && $itemtype->isEntityAssign()) {
-               $class="class='tab_bg_2'";
+               $class="";
             }
             echo "<tr $class><td><a href='".$key::getSearchURL()."'>";
             echo "$val</a></td></tr>\n";
@@ -954,7 +954,7 @@ class Dropdown {
          }
 
          if (($i >= $step) && ($i < $nb)) {
-            echo "</table></td><td width='25'>&nbsp;</td><td><table class='tab_cadre'>";
+            echo "</table></td><td width='25'>&nbsp;</td><td><table class='table table-striped table-hover'>";
             $step += $step;
          }
       }

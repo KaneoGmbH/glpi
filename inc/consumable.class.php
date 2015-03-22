@@ -425,14 +425,14 @@ class Consumable extends CommonDBChild {
       if ($ID > 0) {
          echo "<div class='firstbloc'>";
          echo "<form method='post' action=\"".static::getFormURL()."\">";
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table table-striped'>";
          echo "<tr><td class='tab_bg_2 center'>";
          echo "<input type='hidden' name='consumableitems_id' value='$ID'>\n";
          Dropdown::showNumber('to_add', array('value' => 1,
                                               'min'   => 1,
                                               'max'   => 100));
          echo " <input type='submit' name='add_several' value=\""._sx('button','Add consumables')."\"
-                class='submit'>";
+                class='btn btn-primary'>";
          echo "</td></tr>";
          echo "</table>";
          Html::closeForm();
@@ -499,7 +499,7 @@ class Consumable extends CommonDBChild {
          echo "<input type='hidden' name='consumableitems_id' value='$tID'>\n";
       }
 
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='table table-hover'>";
       if (!$show_old) {
          echo "<tr><th colspan=".($canedit?'5':'4').">";
          echo self::getCount($tID, -1);
@@ -535,7 +535,7 @@ class Consumable extends CommonDBChild {
             $date_in  = Html::convDate($data["date_in"]);
             $date_out = Html::convDate($data["date_out"]);
 
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr >";
             if ($canedit) {
                echo "<td width='10'>";
                Html::showMassiveActionCheckBox(__CLASS__, $data["id"]);
@@ -633,7 +633,7 @@ class Consumable extends CommonDBChild {
       $total = array();
       if (count($types) > 0) {
          // Produce headline
-         echo "<div class='center'><table class='tab_cadrehov'><tr>";
+         echo "<div class='center'><table class='table table-striped table-hover'><tr>";
 
          // Type
          echo "<th>".__('Give to')."</th>";
@@ -646,7 +646,7 @@ class Consumable extends CommonDBChild {
          echo "</tr>";
 
          // new
-         echo "<tr class='tab_bg_2'><td class='b'>".__('In stock')."</td>";
+         echo "<tr ><td class='b'>".__('In stock')."</td>";
          $tot = 0;
          foreach ($types as $id_type => $type) {
             if (!isset($new[$id_type])) {
@@ -660,7 +660,7 @@ class Consumable extends CommonDBChild {
          echo "</tr>";
 
          foreach ($used as $itemtype_items_id => $val) {
-            echo "<tr class='tab_bg_2'><td>";
+            echo "<tr ><td>";
             list($itemtype,$items_id) = explode('####',$itemtype_items_id);
             $item = new $itemtype();
             if ($item->getFromDB($items_id)) {
@@ -680,7 +680,7 @@ class Consumable extends CommonDBChild {
          echo "<td class='numeric'>".$tot."</td>";
          echo "</tr>";
          }
-         echo "<tr class='tab_bg_1'><td class='b'>".__('Total')."</td>";
+         echo "<tr ><td class='b'>".__('Total')."</td>";
          $tot = 0;
          foreach ($types as $id_type => $type) {
             $tot += $total[$id_type];

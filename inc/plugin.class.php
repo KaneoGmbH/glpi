@@ -341,7 +341,7 @@ class Plugin extends CommonDBTM {
       global $CFG_GLPI, $PLUGIN_HOOKS;
 
       $this->checkStates();
-      echo "<div class='center'><table class='tab_cadrehov'>";
+      echo "<div class='center'><table class='table table-striped table-hover'>";
 
       $pluglist          = $this->find("", "name, directory");
       $i                 = 0;
@@ -583,13 +583,13 @@ class Plugin extends CommonDBTM {
          }
 
       } else {
-         echo "<tr class='tab_bg_1'><td class='center' colspan='7'>".__('No plugin installed').
+         echo "<tr ><td class='center' colspan='7'>".__('No plugin installed').
               "</td></tr>";
       }
       echo "</table></div>";
       echo "<br>";
       echo "<div class='center'><p>";
-      echo "<a href='http://plugins.glpi-project.org'  class='vsubmit' target='_blank'>".
+      echo "<a href='http://plugins.glpi-project.org'  class='btn btn-info btn-xs' target='_blank'>".
             __('See the catalog of plugins')."</a></p>";
       echo "</div>";
 
@@ -940,8 +940,8 @@ class Plugin extends CommonDBTM {
 
       // No need to translate, this part always display in english (for copy/paste to forum)
 
-      echo "\n<tr class='tab_bg_2'><th>Plugins list</th></tr>";
-      echo "<tr class='tab_bg_1'><td><pre>\n&nbsp;\n";
+      echo "\n<tr ><th>Plugins list</th></tr>";
+      echo "<tr ><td><pre>\n&nbsp;\n";
 
       $plug     = new Plugin();
       $pluglist = $plug->find("","name, directory");

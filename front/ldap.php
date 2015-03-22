@@ -42,14 +42,14 @@ if (isset($_SESSION["ldap_sortorder"])) {
 }
 
 AuthLdap::manageValuesInSession(array(),true);
-echo "<div class='center'><table class='tab_cadre'>";
+echo "<div class='center'><table class='table table-striped table-hover'>";
 echo "<tr><th>".__('Bulk import users from a LDAP directory')."</th></tr>";
 
-echo "<tr class='tab_bg_1'><td class='center b'>".
+echo "<tr ><td class='center b'>".
      "<a href='ldap.import.php?mode=1&action=show'>". __('Synchronizing already imported users').
      "</a></td></tr>";
 
-echo "<tr class='tab_bg_1'><td class='center b'>".
+echo "<tr ><td class='center b'>".
      "<a href='ldap.import.php?mode=0&action=show'>". __('Import new users')."</a></td> </tr>";
 
 echo "</table></div>";

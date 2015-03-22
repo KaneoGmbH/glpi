@@ -240,7 +240,7 @@ class Software extends CommonDBTM {
 
       $canedit = $this->canEdit($ID);
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>" . __('Name') . "</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "name");
@@ -249,7 +249,7 @@ class Software extends CommonDBTM {
       Manufacturer::dropdown(array('value' => $this->fields["manufacturers_id"]));
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>" . __('Location') . "</td><td>";
       Location::dropdown(array('value'  => $this->fields["locations_id"],
                                'entity' => $this->fields["entities_id"]));
@@ -258,7 +258,7 @@ class Software extends CommonDBTM {
       SoftwareCategory::dropdown(array('value' => $this->fields["softwarecategories_id"]));
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>" . __('Technician in charge of the hardware') . "</td><td>";
       User::dropdown(array('name'   => 'users_id_tech',
                            'value'  => $this->fields["users_id_tech"],
@@ -269,7 +269,7 @@ class Software extends CommonDBTM {
       Dropdown::showYesNo('is_helpdesk_visible', $this->fields['is_helpdesk_visible']);
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Group in charge of the hardware')."</td>";
       echo "<td>";
       Group::dropdown(array('name'      => 'groups_id_tech',
@@ -282,7 +282,7 @@ class Software extends CommonDBTM {
       echo "<textarea cols='45' rows='8' name='comment' >".$this->fields["comment"]."</textarea>";
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td >" . __('User') . "</td>";
       echo "<td >";
       User::dropdown(array('value'  => $this->fields["users_id"],
@@ -290,14 +290,14 @@ class Software extends CommonDBTM {
                            'right'  => 'all'));
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>" . __('Group') . "</td><td>";
       Group::dropdown(array('value'     => $this->fields["groups_id"],
                             'entity'    => $this->fields["entities_id"],
                             'condition' => '`is_itemgroup`'));
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>";
       if ((!isset($options['withtemplate']) || ($options['withtemplate'] == 0))
           && !empty($this->fields['template_name'])) {
@@ -318,7 +318,7 @@ class Software extends CommonDBTM {
       echo "</td></tr>\n";
 
       // UPDATE
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       //TRANS: a noun, (ex : this software is an upgrade of..)
       echo "<td>" . __('Upgrade') . "</td><td>";
       Dropdown::showYesNo("is_update", $this->fields['is_update']);
@@ -957,7 +957,7 @@ class Software extends CommonDBTM {
                     'item'          => $this);
          Html::showMassiveActions($massiveactionparams);
 
-         echo "<table class='tab_cadre_fixehov'>";
+         echo "<table class='table table-hover'>";
          echo "<tr><th width='10'>";
          echo Html::checkAllAsCheckbox('mass'.__CLASS__.$rand);
          echo "</th>";
@@ -967,7 +967,7 @@ class Software extends CommonDBTM {
          echo "<th>"._n('License', 'Licenses', Session::getPluralNumber())."</th></tr>";
 
          foreach ($req as $data) {
-            echo "<tr class='tab_bg_2'>";
+            echo "<tr >";
             echo "<td>".Html::getMassiveActionCheckBox(__CLASS__, $data["id"])."</td>";
             echo "<td><a href='".$link."?id=".$data["id"]."'>".$data["name"]."</a></td>";
             echo "<td>".$data["entity"]."</td>";
@@ -1000,8 +1000,8 @@ class Software extends CommonDBTM {
       $ID = $this->getField('id');
 
       echo "<div class='center'>";
-      echo "<table class='tab_cadrehov'><tr><th>".__('Merging')."</th></tr>";
-      echo "<tr class='tab_bg_2'><td>";
+      echo "<table class='table table-striped table-hover'><tr><th>".__('Merging')."</th></tr>";
+      echo "<tr ><td>";
       Html::createProgressBar(__('Work in progress...'));
       echo "</td></tr></table></div>\n";
 

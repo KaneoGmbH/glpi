@@ -39,9 +39,9 @@ Html::header(MailCollector::getTypeName(Session::getPluralNumber()), $_SERVER['P
 
 if (!Toolbox::canUseImapPop()) {
    echo "<div class='center'>";
-   echo "<table class='tab_cadre_fixe'>";
+   echo "<table class='table table-striped'>";
    echo "<tr><th colspan='2'>" . _n('Receiver', 'Receivers', 2)."</th></tr>";
-   echo "<tr class='tab_bg_2'>";
+   echo "<tr >";
    echo "<td class='center red'>" . __('Your PHP parser was compiled without the IMAP functions');
    echo "</td></tr></table>";
    echo "</div>";

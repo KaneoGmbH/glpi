@@ -267,21 +267,21 @@ class Netpoint extends CommonDropdown {
          echo "<div class='first-bloc'>";
          // Minimal form for quick input.
          echo "<form action='".$netpoint->getFormURL()."' method='post'>";
-         echo "<br><table class='tab_cadre_fixe'>";
+         echo "<br><table class='table table-striped'>";
          echo "<tr class='tab_bg_2 center'>";
          echo "<td class='b'>"._n('Network outlet', 'Network outlets', 1)."</td>";
          echo "<td>".__('Name')."</td><td>";
          Html::autocompletionTextField($item, "name", array('value' => ''));
          echo "<input type='hidden' name='entities_id' value='".$_SESSION['glpiactive_entity']."'>";
          echo "<input type='hidden' name='locations_id' value='$ID'></td>";
-         echo "<td><input type='submit' name='add' value=\""._sx('button','Add')."\" class='submit'>";
+         echo "<td><input type='submit' name='add' value=\""._sx('button','Add')."\" class='btn btn-primary'>";
          echo "</td></tr>\n";
          echo "</table>\n";
          Html::closeForm();
 
          // Minimal form for massive input.
          echo "<form action='".$netpoint->getFormURL()."' method='post'>";
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table table-striped'>";
          echo "<tr class='tab_bg_2 center'>";
          echo "<td class='b'>"._n('Network outlet', 'Network outlets', Session::getPluralNumber())."</td>";
          echo "<td>".__('Name')."</td><td>";
@@ -298,7 +298,7 @@ class Netpoint extends CommonDropdown {
          echo "<input type='hidden' name='locations_id' value='$ID'>";
          echo "<input type='hidden' name='_method' value='AddMulti'></td>";
          echo "<td><input type='submit' name='execute' value=\""._sx('button','Add')."\"
-                    class='submit'>";
+                    class='btn btn-primary'>";
          echo "</td></tr>\n";
          echo "</table>\n";
          Html::closeForm();
@@ -308,7 +308,7 @@ class Netpoint extends CommonDropdown {
       echo "<div class='spaced'>";
 
       if ($number < 1) {
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table'>";
          echo "<tr><th>".self::getTypeName(1)."</th>";
          echo "<th>".__('No item found')."</th></tr>";
          echo "</table>\n";
@@ -329,7 +329,7 @@ class Netpoint extends CommonDropdown {
             Html::showMassiveActions($massiveactionparams);
          }
 
-         echo "<table class='tab_cadre_fixe'><tr>";
+         echo "<table class='table'><tr>";
 
          if ($canedit) {
             echo "<th width='10'>";
@@ -353,7 +353,7 @@ class Netpoint extends CommonDropdown {
 
          foreach ($DB->request('glpi_netpoints', $crit) as $data) {
             Session::addToNavigateListItems('Netpoint',$data["id"]);
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr >";
 
             if ($canedit) {
                echo "<td>".Html::getMassiveActionCheckBox(__CLASS__, $data["id"])."</td>";

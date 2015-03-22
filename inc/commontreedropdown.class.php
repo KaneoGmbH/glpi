@@ -397,10 +397,10 @@ abstract class CommonTreeDropdown extends CommonDropdown {
          $link = $this->getFormURL();
          echo "<div class='firstbloc'>";
          echo "<form action='".$link."' method='post'>";
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table table-striped'>";
          echo "<tr><th colspan='3'>".__('New child heading')."</th></tr>";
 
-         echo "<tr class='tab_bg_1'><td>".__('Name')."</td><td>";
+         echo "<tr ><td>".__('Name')."</td><td>";
          Html::autocompletionTextField($this, "name", array('value' => ''));
 
          if ($entity_assign
@@ -412,7 +412,7 @@ abstract class CommonTreeDropdown extends CommonDropdown {
             echo "<input type='hidden' name='is_recursive' value='1'>";
          }
          echo "<input type='hidden' name='".$this->getForeignKeyField()."' value='$ID'></td>";
-         echo "<td><input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='submit'>";
+         echo "<td><input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='btn btn-primary'>";
          echo "</td></tr>\n";
          echo "</table>";
          Html::closeForm();
@@ -420,7 +420,7 @@ abstract class CommonTreeDropdown extends CommonDropdown {
       }
 
       echo "<div class='spaced'>";
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='table table-hover'>";
       echo "<tr class='noHover'><th colspan='".($nb+3)."'>".sprintf(__('Sons of %s'),
                                                                     $this->getTreeLink());
       echo "</th></tr>";
@@ -453,7 +453,7 @@ abstract class CommonTreeDropdown extends CommonDropdown {
       $nb = 0;
       foreach ($DB->request($this->getTable(), $crit) as $data) {
          $nb++;
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr >";
          echo "<td><a href='".$this->getFormURL();
          echo '?id='.$data['id']."'>".$data['name']."</a></td>";
          if ($entity_assign) {
@@ -525,7 +525,7 @@ abstract class CommonTreeDropdown extends CommonDropdown {
             Dropdown::show($itemtype, array('name'     => 'parent',
                                             'comments' => 0,
                                             'entity'   => $_SESSION['glpiactive_entity']));
-            echo "<br><br><input type='submit' name='massiveaction' class='submit' value='".
+            echo "<br><br><input type='submit' name='massiveaction' class='btn btn-primary' value='".
                            _sx('button', 'Move')."'>\n";
             return true;
 

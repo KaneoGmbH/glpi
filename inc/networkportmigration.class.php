@@ -194,7 +194,7 @@ class NetworkPortMigration extends CommonDBChild {
          $number_real_errors ++;
          $interface_cell = "th";
 
-         echo "<tr class='tab_bg_1'><th>". $motives['unknown_interface_type'] ."</th>\n".
+         echo "<tr ><th>". $motives['unknown_interface_type'] ."</th>\n".
               "<td>" .__('Transform this network port to');
          echo "</td><td colspan=2>";
          Dropdown::showItemTypes('transform_to', NetworkPort::getNetworkPortInstantiations(),
@@ -207,7 +207,7 @@ class NetworkPortMigration extends CommonDBChild {
          $number_real_errors ++;
          $network_cell = "th";
          $address_cell = "th";
-         echo "<tr class='tab_bg_1'><th>" .$motives['invalid_network'] ."</th>\n<td colspan=3>";
+         echo "<tr ><th>" .$motives['invalid_network'] ."</th>\n<td colspan=3>";
          if (isset($network)) {
             printf(__('Network port information conflicting with %s'), $network->getLink());
          } else {
@@ -225,7 +225,7 @@ class NetworkPortMigration extends CommonDBChild {
       if ($this->fields['invalid_gateway'] == 1) {
          $number_real_errors ++;
          $gateway_cell = "th";
-         echo "<tr class='tab_bg_1'><th>" . $motives['invalid_gateway'] ."</th>\n<td colspan=3>";
+         echo "<tr ><th>" . $motives['invalid_gateway'] ."</th>\n<td colspan=3>";
          if (isset($network)) {
             printf(__('Append a correct gateway to the network %s'), $network->getLink());
          } else {
@@ -239,7 +239,7 @@ class NetworkPortMigration extends CommonDBChild {
       if ($this->fields['invalid_address'] == 1) {
          $number_real_errors ++;
          $address_cell = "th";
-         echo "<tr class='tab_bg_1'><th>" .$motives['invalid_address'] ."</th>\n<td colspan=3>";
+         echo "<tr ><th>" .$motives['invalid_address'] ."</th>\n<td colspan=3>";
          $networkPort = new NetworkPort();
          if ($networkPort->getFromDB($this->getID())) {
             $number_real_errors ++;
@@ -252,14 +252,14 @@ class NetworkPortMigration extends CommonDBChild {
       }
 
        if ($number_real_errors == 0) {
-         echo "<tr class='tab_bg_1'><th colspan='3'>" .
+         echo "<tr ><th colspan='3'>" .
               __('I don\'t understand why this migration error is not deleted.');
          echo "</th><th>";
          Html::showSimpleForm($this->getFormURL(), 'delete', __('You can delete this migration error'),
                            array('id' => $this->getID()));
          echo "</th></tr>\n";
        } else {
-         echo "<tr class='tab_bg_1'><th>" . __('At all events') . "</th>\n";
+         echo "<tr ><th>" . __('At all events') . "</th>\n";
          echo "<td colspan='3'>";
          Html::showSimpleForm($this->getFormURL(), 'delete', __('You can delete this migration error'),
                array('id' => $this->getID()));
@@ -267,12 +267,12 @@ class NetworkPortMigration extends CommonDBChild {
          echo "</td></tr>\n";
        }
 
-      echo "<tr class='tab_bg_1'><td colspan='4'>&nbsp;</td></tr>\n";
+      echo "<tr ><td colspan='4'>&nbsp;</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'><th colspan='4'>" .__('Original network port information') ."</th>".
+      echo "<tr ><th colspan='4'>" .__('Original network port information') ."</th>".
            "</tr>\n";
 
-      echo "<tr class='tab_bg_1'><td>";
+      echo "<tr ><td>";
       $this->displayRecursiveItems($recursiveItems, 'Type');
       echo "</td>\n<td>";
       $this->displayRecursiveItems($recursiveItems, "Link");
@@ -281,19 +281,19 @@ class NetworkPortMigration extends CommonDBChild {
       echo "<td>".__('Comments')."</td>";
       echo "<td class='middle'>" . $this->fields["comment"] . "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'><td>". __('Network address') ."</td>\n";
+      echo "<tr ><td>". __('Network address') ."</td>\n";
       echo "<$network_cell>" . $this->fields['subnet'] . "</$network_cell>\n";
 
       echo "<td>". IPNetmask::getTypeName(1) ."</td>\n";
       echo "<$network_cell>" . $this->fields['netmask'] . "</$network_cell></tr>\n";
 
-      echo "<tr class='tab_bg_1'><td>". IPAddress::getTypeName(1) ."</td>\n";
+      echo "<tr ><td>". IPAddress::getTypeName(1) ."</td>\n";
       echo "<$address_cell>" . $this->fields['ip'] . "</$address_cell>\n";
 
       echo "<td>". __('Gateway') ."</td>\n";
       echo "<$gateway_cell>" . $this->fields['gateway'] . "</$gateway_cell></tr>\n";
 
-      echo "<tr class='tab_bg_1'><td>". __('Network interface') ."</td><$interface_cell>\n";
+      echo "<tr ><td>". __('Network interface') ."</td><$interface_cell>\n";
       if (TableExists('glpi_networkinterfaces')) {
          $query = "SELECT `name`
                    FROM `glpi_networkinterfaces`

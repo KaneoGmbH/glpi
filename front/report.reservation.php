@@ -44,14 +44,14 @@ if (!isset($_GET["id"])) {
 Report::title();
 
 echo "<form method='get' name='form' action='report.reservation.php'>";
-echo "<table class='tab_cadre' width='500'><tr class='tab_bg_2'>";
+echo "<table class='table table-striped table-hover' width='500'><tr >";
 echo "<td class='center' width='300'>";
 User::dropdown(array('name'   => 'id',
                      'value'  => $_GET["id"],
                      'right'  => 'reservation'));
 
 echo "</td>";
-echo "<td class='center'><input type='submit' class='submit' name='submit' value='".
+echo "<td class='center'><input type='submit' class='btn btn-primary' name='submit' value='".
       __s('Display report')."'></td></tr>";
 echo "</table>";
 Html::closeForm();

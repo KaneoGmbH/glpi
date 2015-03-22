@@ -1133,7 +1133,7 @@ abstract class CommonITILTask  extends CommonDBTM {
       if (isset($this->fields["state"])) {
          $rowspan++;
       }
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td rowspan='$rowspan' class='middle'>".__('Description')."</td>";
       echo "<td class='center middle' rowspan='$rowspan'>".
            "<textarea name='content' cols='50' rows='$rowspan'>".$this->fields["content"].
@@ -1150,21 +1150,21 @@ abstract class CommonITILTask  extends CommonDBTM {
       echo "<input type='hidden' name='$fkfield' value='".$this->fields[$fkfield]."'>";
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Category')."</td><td>";
       TaskCategory::dropdown(array('value'  => $this->fields["taskcategories_id"],
                                    'entity' => $item->fields["entities_id"]));
       echo "</td></tr>\n";
 
       if (isset($this->fields["state"])) {
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr >";
          echo "<td>".__('Status')."</td><td>";
          Planning::dropdownState("state", $this->fields["state"]);
          echo "</td></tr>\n";
       }
 
       if ($this->maybePrivate()) {
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr >";
          echo "<td>".__('Private')."</td>";
          echo "<td>";
          Dropdown::showYesNo('is_private',$this->fields["is_private"]);
@@ -1172,7 +1172,7 @@ abstract class CommonITILTask  extends CommonDBTM {
          echo "</tr>";
       }
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>". __('Duration')."</td><td>";
 
       $toadd = array();
@@ -1189,7 +1189,7 @@ abstract class CommonITILTask  extends CommonDBTM {
 
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('By');
       echo " <a href='#' onClick=\"".Html::jsGetElementbyID('planningcheck'.$rand).".dialog('open');\">";
       echo "<img src='".$CFG_GLPI["root_doc"]."/pics/reservation-3.png'
@@ -1276,7 +1276,7 @@ abstract class CommonITILTask  extends CommonDBTM {
 
             if ($canplan) {
                echo "<div id='plan'  onClick='showPlanUpdate()'>\n";
-               echo "<span class='vsubmit'>".__('Plan this task')."</span>";
+               echo "<span class='btn btn-info btn-xs'>".__('Plan this task')."</span>";
                echo "</div>\n";
                echo "<div id='viewplan'></div>\n";
             }
@@ -1290,7 +1290,7 @@ abstract class CommonITILTask  extends CommonDBTM {
       if (!empty($this->fields["begin"])
           && PlanningRecall::isAvailable()) {
 
-         echo "<tr class='tab_bg_1'><td>"._x('Planning','Reminder')."</td><td class='center'>";
+         echo "<tr ><td>"._x('Planning','Reminder')."</td><td class='center'>";
          PlanningRecall::dropdown(array('itemtype' => $this->getType(),
                                         'items_id' => $this->getID()));
          echo "</td></tr>";
@@ -1354,16 +1354,16 @@ abstract class CommonITILTask  extends CommonDBTM {
          if (($item->fields["status"] != CommonITILObject::SOLVED)
              && ($item->fields["status"] != CommonITILObject::CLOSED)) {
             echo "<div class='center'>".
-                 "<a class='vsubmit' href='javascript:viewAddTask".$item->fields['id']."$rand();'>";
+                 "<a class='btn btn-info btn-xs' href='javascript:viewAddTask".$item->fields['id']."$rand();'>";
             echo __('Add a new task')."</a></div><br>\n";
          }
       }
 
       if ($DB->numrows($result) == 0) {
-         echo "<table class='tab_cadre_fixe'><tr class='tab_bg_2'><th>" . __('No task found.');
+         echo "<table class='table table-striped'><tr ><th>" . __('No task found.');
          echo "</th></tr></table>";
       } else {
-         echo "<table class='tab_cadre_fixehov'>";
+         echo "<table class='table table-hover'>";
 
          $header = "<tr><th>&nbsp;</th><th>".__('Type')."</th><th>" . __('Date') . "</th>";
          $header .= "<th>" . __('Description') . "</th><th>" .  __('Duration') . "</th>";
@@ -1399,7 +1399,7 @@ abstract class CommonITILTask  extends CommonDBTM {
       if ($this->maybePrivate()) {
          echo "<input type='hidden' name='is_private' value='".$_SESSION['glpitask_private']."'>";
       }
-      echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='submit'>";
+      echo "<input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='btn btn-primary'>";
    }
 
 

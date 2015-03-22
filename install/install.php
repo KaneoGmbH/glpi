@@ -85,8 +85,8 @@ function choose_language() {
    Dropdown::showLanguages("language", array('value' => "en_GB"));
    echo "</p>";
    echo "";
-   echo "<p class='submit'><input type='hidden' name='install' value='lang_select'>";
-   echo "<input type='submit' name='submit' class='submit' value='OK'></p>";
+   echo "<p class='btn btn-primary'><input type='hidden' name='install' value='lang_select'>";
+   echo "<input type='submit' name='submit' class='btn btn-primary' value='OK'></p>";
    Html::closeForm();
 }
 
@@ -110,7 +110,7 @@ function acceptLicense() {
    echo "<input type='radio' name='install' value='lang_select' id='disagree' checked='checked'>";
    echo " <label for='disagree'>";
    echo __('I have read and DO NOT ACCEPT the terms of the license written above')." </label>";
-   echo "<p><input type='submit' name='submit' class='submit' value=\"".__s('Continue')."\"></p>";
+   echo "<p><input type='submit' name='submit' class='btn btn-primary' value=\"".__s('Continue')."\"></p>";
    Html::closeForm();
    echo "</div>";
 }
@@ -124,14 +124,14 @@ function step0() {
    echo "<p> ".__s("Select 'Upgrade' to update your version of GLPI from an earlier version")."</p>";
    echo "<form action='install.php' method='post'>";
    echo "<input type='hidden' name='update' value='no'>";
-   echo "<p class='submit'><input type='hidden' name='install' value='Etape_0'>";
-   echo "<input type='submit' name='submit' class='submit' value=\""._sx('button', 'Install')."\"></p>";
+   echo "<p class='btn btn-primary'><input type='hidden' name='install' value='Etape_0'>";
+   echo "<input type='submit' name='submit' class='btn btn-primary' value=\""._sx('button', 'Install')."\"></p>";
    Html::closeForm();
 
    echo "<form action='install.php' method='post'>";
    echo "<input type='hidden' name='update' value='yes'>";
-   echo "<p class='submit'><input type='hidden' name='install' value='Etape_0'>";
-   echo "<input type='submit' name='submit' class='submit' value=\""._sx('button', 'Upgrade')."\"></p>";
+   echo "<p class='btn btn-primary'><input type='hidden' name='install' value='Etape_0'>";
+   echo "<input type='submit' name='submit' class='btn btn-primary' value=\""._sx('button', 'Upgrade')."\"></p>";
    Html::closeForm();
 }
 
@@ -153,19 +153,19 @@ function step1($update) {
          echo "<form action='install.php' method='post'>";
          echo "<input type='hidden' name='update' value='". $update."'>";
          echo "<input type='hidden' name='language' value='". $_SESSION['glpilanguage']."'>";
-         echo "<p class='submit'><input type='hidden' name='install' value='Etape_1'>";
-         echo "<input type='submit' name='submit' class='submit' value=\"".__('Continue')."\">";
+         echo "<p class='btn btn-primary'><input type='hidden' name='install' value='Etape_1'>";
+         echo "<input type='submit' name='submit' class='btn btn-primary' value=\"".__('Continue')."\">";
          echo "</p>";
          Html::closeForm();
          break;
 
       case 1 :
          echo "<h3>".__('Do you want to continue?')."</h3>";
-         echo "<div class='submit'><form action='install.php' method='post' class='inline'>";
+         echo "<div class='btn btn-primary'><form action='install.php' method='post' class='inline'>";
          echo "<input type='hidden' name='install' value='Etape_1'>";
          echo "<input type='hidden' name='update' value='". $update."'>";
          echo "<input type='hidden' name='language' value='". $_SESSION['glpilanguage']."'>";
-         echo "<input type='submit' name='submit' class='submit' value=\"".__('Continue')."\">";
+         echo "<input type='submit' name='submit' class='btn btn-primary' value=\"".__('Continue')."\">";
          Html::closeForm();
          echo "&nbsp;&nbsp;";
 
@@ -173,7 +173,7 @@ function step1($update) {
          echo "<input type='hidden' name='update' value='". $update."'>";
          echo "<input type='hidden' name='language' value='". $_SESSION['glpilanguage']."'>";
          echo "<input type='hidden' name='install' value='Etape_0'>";
-         echo "<input type='submit' name='submit' class='submit' value=\"".__('Try again')."\">";
+         echo "<input type='submit' name='submit' class='btn btn-primary' value=\"".__('Try again')."\">";
          Html::closeForm();
          echo "</div>";
          break;
@@ -182,8 +182,8 @@ function step1($update) {
          echo "<h3>".__('Do you want to continue?')."</h3>";
          echo "<form action='install.php' method='post'>";
          echo "<input type='hidden' name='update' value='".$update."'>";
-         echo "<p class='submit'><input type='hidden' name='install' value='Etape_0'>";
-         echo "<input type='submit' name='submit' class='submit' value=\"".__('Try again')."\">";
+         echo "<p class='btn btn-primary'><input type='hidden' name='install' value='Etape_0'>";
+         echo "<input type='submit' name='submit' class='btn btn-primary' value=\"".__('Try again')."\">";
          echo "</p>";
          Html::closeForm();
          break;
@@ -206,7 +206,7 @@ function step2($update) {
    echo "<p><label class='block'>".__('Mysql password')." </label>";
    echo "<input type='password' name='db_pass'></p></fieldset>";
    echo "<input type='hidden' name='install' value='Etape_2'>";
-   echo "<p class='submit'><input type='submit' name='submit' class='submit' value='".
+   echo "<p class='btn btn-primary'><input type='submit' name='submit' class='btn btn-primary' value='".
          __('Continue')."'></p>";
    Html::closeForm();
 }
@@ -241,7 +241,7 @@ function step3($host, $user, $password, $update) {
       echo "<form action='install.php' method='post'>";
       echo "<input type='hidden' name='update' value='".$update."'>";
       echo "<input type='hidden' name='install' value='Etape_1'>";
-      echo "<p class='submit'><input type='submit' name='submit' class='submit' value='".
+      echo "<p class='btn btn-primary'><input type='submit' name='submit' class='btn btn-primary' value='".
             __s('Back')."'></p>";
       Html::closeForm();
 
@@ -269,7 +269,7 @@ function step3($host, $user, $password, $update) {
          _e('Create a new database or use an existing one:');
          echo "&nbsp;<input type='text' name='newdatabasename'></p>";
          echo "<input type='hidden' name='install' value='Etape_3'>";
-         echo "<p class='submit'><input type='submit' name='submit' class='submit' value='".
+         echo "<p class='btn btn-primary'><input type='submit' name='submit' class='btn btn-primary' value='".
                __('Continue')."'></p>";
          $link->close();
          Html::closeForm();
@@ -285,7 +285,7 @@ function step3($host, $user, $password, $update) {
          }
 
          echo "<input type='hidden' name='install' value='update_1'>";
-         echo "<p class='submit'><input type='submit' name='submit' class='submit' value='".
+         echo "<p class='btn btn-primary'><input type='submit' name='submit' class='btn btn-primary' value='".
                 __('Continue')."'></p>";
          $link->close();
          Html::closeForm();
@@ -314,7 +314,7 @@ function step4 ($databasename, $newdatabasename) {
       echo " <input type='hidden' name='db_pass' value='". rawurlencode($password) ."'>";
       echo "<input type='hidden' name='update' value='no'>";
       echo "<input type='hidden' name='install' value='Etape_2'>";
-      echo "<p class='submit'><input type='submit' name='submit' class='submit' value='".
+      echo "<p class='btn btn-primary'><input type='submit' name='submit' class='btn btn-primary' value='".
             __s('Back')."'></p>";
       Html::closeForm();
    }
@@ -325,7 +325,7 @@ function step4 ($databasename, $newdatabasename) {
 
       echo "<br><form action='install.php' method='post'>";
       echo "<input type='hidden' name='install' value='Etape_4'>";
-      echo "<p class='submit'><input type='submit' name='submit' class='submit' value='".
+      echo "<p class='btn btn-primary'><input type='submit' name='submit' class='btn btn-primary' value='".
              __('Continue')."'></p>";
       Html::closeForm();
    }
@@ -453,7 +453,7 @@ function step7() {
    echo "<li>".__('normal/normal for the normal account')."</li>";
    echo "<li>".__('post-only/postonly for the postonly account')."</li></ul></p>";
    echo "<p>".__('You can delete or modify these accounts as well as the initial data.')."</p>";
-   echo "<p class='center'><a class='vsubmit' href='../index.php'>".__('Use GLPI');
+   echo "<p class='center'><a class='btn btn-info btn-xs' href='../index.php'>".__('Use GLPI');
    echo "</a></p>";
 }
 
@@ -489,8 +489,8 @@ function update1($DBname) {
       echo "<h3>".__('Do you want to continue?')."</h3>";
       echo "<form action='install.php' method='post'>";
       echo "<input type='hidden' name='update' value='yes'>";
-      echo "<p class='submit'><input type='hidden' name='install' value='Etape_0'>";
-      echo "<input type='submit' name='submit' class='submit' value=\"".__('Continue')."\">";
+      echo "<p class='btn btn-primary'><input type='hidden' name='install' value='Etape_0'>";
+      echo "<input type='submit' name='submit' class='btn btn-primary' value=\"".__('Continue')."\">";
       echo "</p>";
       Html::closeForm();
    }

@@ -166,7 +166,7 @@ class Phone extends CommonDBTM {
       $withtemplate = $this->initForm($ID, $options);
       $this->showFormHeader($options);
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       //TRANS: %1$s is a string, %2$s a second one without spaces between them : to change for RTL
       echo "<td>".sprintf(__('%1$s%2$s'),__('Name'),
                           (isset($options['withtemplate']) && $options['withtemplate']?"*":"")).
@@ -184,7 +184,7 @@ class Phone extends CommonDBTM {
                             'condition' => "`is_visible_phone`='1'"));
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Location')."</td>";
       echo "<td>";
       Location::dropdown(array('value'  => $this->fields["locations_id"],
@@ -195,7 +195,7 @@ class Phone extends CommonDBTM {
       PhoneType::dropdown(array('value' => $this->fields["phonetypes_id"]));
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Technician in charge of the hardware')."</td>";
       echo "<td>";
       User::dropdown(array('name'   => 'users_id_tech',
@@ -208,7 +208,7 @@ class Phone extends CommonDBTM {
       Manufacturer::dropdown(array('value' => $this->fields["manufacturers_id"]));
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Group in charge of the hardware')."</td>";
       echo "<td>";
       Group::dropdown(array('name'      => 'groups_id_tech',
@@ -221,7 +221,7 @@ class Phone extends CommonDBTM {
       PhoneModel::dropdown(array('value' => $this->fields["phonemodels_id"]));
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Alternate username number')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "contact_num");
@@ -231,7 +231,7 @@ class Phone extends CommonDBTM {
       Html::autocompletionTextField($this,"serial");
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Alternate username')."</td><td>";
       Html::autocompletionTextField($this, "contact");
       echo "</td>";
@@ -245,7 +245,7 @@ class Phone extends CommonDBTM {
       Html::autocompletionTextField($this, 'otherserial', array('value' => $objectName));
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('User')."</td>";
       echo "<td>";
       User::dropdown(array('value'  => $this->fields["users_id"],
@@ -272,7 +272,7 @@ class Phone extends CommonDBTM {
           $rowspan       -= 2;
        }
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Group')."</td>";
       echo "<td>";
       Group::dropdown(array('value'     => $this->fields["groups_id"],
@@ -284,30 +284,30 @@ class Phone extends CommonDBTM {
             <textarea cols='45' rows='".($rowspan+3)."' name='comment' >".$this->fields["comment"];
       echo "</textarea></td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Brand')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this,"brand");
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Power supply')."</td>";
       echo "<td>";
       PhonePowerSupply::dropdown(array('value' => $this->fields["phonepowersupplies_id"]));
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>"._n('Firmware', 'Firmwares', 1)."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "firmware");
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>"._x('quantity', 'Number of lines')."</td><td>";
       Html::autocompletionTextField($this, "number_line");
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Flags')."</td>";
       echo "<td>";
       // micro?
@@ -330,7 +330,7 @@ class Phone extends CommonDBTM {
 
       echo "</tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>";
       if ((!isset($options['withtemplate']) || ($options['withtemplate'] == 0))
           && !empty($this->fields['template_name'])) {

@@ -1543,9 +1543,9 @@ class Stat extends CommonGLPI {
       }
 
       //Affichage du tableau de presentation des stats
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table table-striped'>";
       echo "<tr><th colspan='2'>".__('Select statistics to be displayed')."</th></tr>";
-      echo "<tr class='tab_bg_1'><td class='center'>";
+      echo "<tr ><td class='center'>";
 
       $values   = array($CFG_GLPI["root_doc"].'/front/stat.php' => Dropdown::EMPTY_VALUE);
 

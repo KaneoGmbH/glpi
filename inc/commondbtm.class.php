@@ -1982,7 +1982,7 @@ class CommonDBTM extends CommonGLPI {
          }
          return false;
       }
-      echo "<tr class='tab_bg_2'>";
+      echo "<tr >";
 
       if ($params['withtemplate']
           ||$this->isNewID($ID)) {
@@ -2008,7 +2008,7 @@ class CommonDBTM extends CommonGLPI {
                 && $this->can($ID, UPDATE)) {
                echo "<td class='center' colspan='".($params['colspan']*2)."'>\n";
                echo Html::submit(_x('button','Save'), array('name' => 'update'));
-               echo "</td></tr><tr class='tab_bg_2'>\n";
+               echo "</td></tr><tr >\n";
             }
             if ($this->isDeleted()
                 && $this->can($ID, PURGE)) {
@@ -2063,13 +2063,13 @@ class CommonDBTM extends CommonGLPI {
 
       if ($params['canedit']
           && count($params['addbuttons'])) {
-         echo "<tr class='tab_bg_2'>";
+         echo "<tr >";
          if ((($params['colspan']*2) - count($params['addbuttons'])) > 0) {
             echo "<td colspan='".($params['colspan']*2 - count($params['addbuttons']))."'>&nbsp;".
                  "</td>";
          }
          foreach ($params['addbuttons'] as $key => $val) {
-            echo "<td><input class='submit' type='submit' name='$key' value=\"".
+            echo "<td><input class='btn btn-primary' type='submit' name='$key' value=\"".
                         Html::entities_deep($val)."\"></td>";
          }
          echo "</tr>";
@@ -2197,7 +2197,7 @@ class CommonDBTM extends CommonGLPI {
       }
 
       echo "<div class='spaced' id='tabsbody'>";
-      echo "<table class='tab_cadre_fixe' id='mainformtable'>";
+      echo "<table class='table table-striped' id='mainformtable'>";
 
       echo "<tr class='headerRow'><th colspan='".$params['colspan']."'>";
 
@@ -4169,7 +4169,7 @@ class CommonDBTM extends CommonGLPI {
       $query .= " ORDER by `template_name`";
 
       if ($result = $DB->query($query)) {
-         echo "<div class='center'><table class='tab_cadre'>";
+         echo "<div class='center'><table class='table table-striped table-hover'>";
          if ($add) {
             $blank_params =
                (strpos($target, '?') ? '&amp;' : '?')

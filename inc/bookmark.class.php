@@ -302,7 +302,7 @@ class Bookmark extends CommonDBTM {
          echo "<input type='hidden' name='url' value='" . rawurlencode($options['url']) . "'>";
       }
 
-      echo "<table class='tab_cadre' width='".self::WIDTH."px'>";
+      echo "<table class='table table-striped table-hover' width='".self::WIDTH."px'>";
       echo "<tr><th>&nbsp;</th><th>";
       if ($ID > 0) {
          //TRANS: %1$s is the Itemtype name and $2$d the ID of the item
@@ -312,12 +312,12 @@ class Bookmark extends CommonDBTM {
       }
       echo "</th></tr>";
 
-      echo "<tr><td class='tab_bg_1'>".__('Name')."</td>";
-      echo "<td class='tab_bg_1'>";
+      echo "<tr><td >".__('Name')."</td>";
+      echo "<td >";
       Html::autocompletionTextField($this, "name", array('user' => $this->fields["users_id"]));
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_2'><td>".__('Type')."</td>";
+      echo "<tr ><td>".__('Type')."</td>";
       echo "<td>";
 
       if (static::canCreate()) {
@@ -338,17 +338,17 @@ class Bookmark extends CommonDBTM {
          echo "<td class='tab_bg_2 top' colspan='2'>";
          echo "<input type='hidden' name='users_id' value='".$this->fields['users_id']."'>";
          echo "<div class='center'>";
-         echo "<input type='submit' name='add' value=\""._sx('button','Add')."\" class='submit'>";
+         echo "<input type='submit' name='add' value=\""._sx('button','Add')."\" class='btn btn-primary'>";
          echo "</div></td></tr>";
 
       } else {
          echo "<tr>";
          echo "<td class='tab_bg_2 top' colspan='2'>";
          echo "<input type='hidden' name='id' value='$ID'>";
-         echo "<input type='submit' name='update' value=\"".__s('Save')."\" class='submit'>";
+         echo "<input type='submit' name='update' value=\"".__s('Save')."\" class='btn btn-primary'>";
          echo "</td></tr><tr><td class='tab_bg_2 right' colspan='2'>";
          echo "<input type='submit' name='purge' value=\""._sx('button', 'Delete permanently')."\"
-                class='submit'>";
+                class='btn btn-primary'>";
          echo "</td></tr>";
       }
       echo "</table></div>";
@@ -663,7 +663,7 @@ class Bookmark extends CommonDBTM {
 
       // No massive action on bottom
 
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='table table-hover'>";
       echo "<tr>";
       echo "<th>".Html::getCheckAllAsCheckbox('mass'.__CLASS__.$rand)."</th>";
       echo "<th class='center' colspan='2'>"._n('Bookmark', 'Bookmarks', Session::getPluralNumber())."</th>";
@@ -694,7 +694,7 @@ class Bookmark extends CommonDBTM {
             }
             $canedit = $this->canEdit($this->fields["id"]);
 
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr >";
             echo "<td width='10px'>";
             if ($canedit) {
                Html::showMassiveActionCheckBox(__CLASS__, $this->fields["id"]);
@@ -714,7 +714,7 @@ class Bookmark extends CommonDBTM {
             echo "</td>";
 
             echo "<td><a href=\"".$CFG_GLPI['root_doc']."/front/bookmark.php?action=load&amp;id=".
-                       $this->fields["id"]."\" class='vsubmit'>".__('Load')."</a>";
+                       $this->fields["id"]."\" class='btn btn-info btn-xs'>".__('Load')."</a>";
             echo "</td>";
             echo "<td class='center'>";
             if ($this->fields['type'] == self::SEARCH) {
@@ -764,7 +764,7 @@ class Bookmark extends CommonDBTM {
             Html::showMassiveActions($massiveactionparams);
          }
       } else {
-         echo "<tr class='tab_bg_1'><td colspan='$colspan'>";
+         echo "<tr ><td colspan='$colspan'>";
          _e('You have not recorded any bookmarks yet');
          echo "</td></tr></table>";
       }

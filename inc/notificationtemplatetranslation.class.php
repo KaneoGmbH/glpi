@@ -112,7 +112,7 @@ class NotificationTemplateTranslation extends CommonDBChild {
 
       $this->showFormHeader($options);
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".NotificationTemplate::getTypeName()."</td>";
       echo "<td colspan='2'><a href='".Toolbox::getItemTypeFormURL('NotificationTemplate').
                            "?id=".$notificationtemplates_id."'>".$template->getField('name')."</a>";
@@ -121,10 +121,10 @@ class NotificationTemplateTranslation extends CommonDBChild {
       Ajax::createIframeModalWindow("tags".$rand,
                                     $CFG_GLPI['root_doc']."/front/notification.tags.php?sub_type=".
                                        $template->getField('itemtype'));
-      echo "<a class='vsubmit' href='#' onClick=\"".Html::jsGetElementbyID("tags".$rand).".dialog('open');\">".__('Show list of available tags')."</a>";
+      echo "<a class='btn btn-info btn-xs' href='#' onClick=\"".Html::jsGetElementbyID("tags".$rand).".dialog('open');\">".__('Show list of available tags')."</a>";
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>" . __('Language') . "</td><td colspan='3'>";
 
       //Get all used languages
@@ -139,19 +139,19 @@ class NotificationTemplateTranslation extends CommonDBChild {
                                                 'used'                => $used));
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'><td>" . __('Subject') . "</td>";
+      echo "<tr ><td>" . __('Subject') . "</td>";
       echo "<td colspan='3'>";
       Html::autocompletionTextField($this,'subject', array('size' => 100));
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'><td>";
+      echo "<tr ><td>";
       _e('Email text body');
       echo "<br>".__('(leave the field empty for a generation from HTML)');
       echo "</td><td colspan='3'>";
       echo "<textarea cols='100' rows='15' name='content_text' >".$this->fields["content_text"];
       echo "</textarea></td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>" ;
       _e('Email HTML body');
       echo "</td><td colspan='3'>";
@@ -177,7 +177,7 @@ class NotificationTemplateTranslation extends CommonDBChild {
 
       if ($canedit) {
          echo "<div class='center'>".
-              "<a class='vsubmit' href='".Toolbox::getItemTypeFormURL('NotificationTemplateTranslation').
+              "<a class='btn btn-info btn-xs' href='".Toolbox::getItemTypeFormURL('NotificationTemplateTranslation').
                 "?notificationtemplates_id=".$nID."'>". __('Add a new translation')."</a></div><br>";
       }
 
@@ -196,8 +196,8 @@ class NotificationTemplateTranslation extends CommonDBChild {
          Html::showMassiveActions($massiveactionparams);
       }
 
-      echo "<table class='tab_cadre_fixe'>";
-      echo "<tr class='tab_bg_1'>";
+      echo "<table class='table table-striped'>";
+      echo "<tr >";
       if ($canedit) {
          echo "<th width='10'>";
          Html::checkAllAsCheckbox('mass'.__CLASS__.$rand);
@@ -210,7 +210,7 @@ class NotificationTemplateTranslation extends CommonDBChild {
 
          if ($this->getFromDB($data['id'])) {
             Session::addToNavigateListItems('NotificationTemplateTranslation',$data['id']);
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr >";
             if ($canedit) {
                echo "<td class='center'>";
                Html::showMassiveActionCheckBox(__CLASS__, $data["id"]);
@@ -331,7 +331,7 @@ class NotificationTemplateTranslation extends CommonDBChild {
       $target->getTags();
 
       echo "<div class='center'>";
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table'>";
       echo "<tr><th>".__('Tag')."</th>
                 <th>".__('Label')."</th>
                 <th>"._n('Event', 'Events', 1)."</th>
@@ -370,7 +370,7 @@ class NotificationTemplateTranslation extends CommonDBChild {
             $allowed_values = '';
          }
 
-         echo "<tr class='tab_bg_1'><td>".$tag."</td>".
+         echo "<tr ><td>".$tag."</td>".
               "<td>";
          if ($values['type'] == NotificationTarget::TAG_LANGUAGE) {
             printf(__('%1$s: %2$s'), __('Label'), $values['label']);
@@ -433,7 +433,7 @@ class NotificationTemplateTranslation extends CommonDBChild {
       }
 
       echo "<div class='spaced'>";
-      echo "<table class='tab_cadre_fixe'>";
+      echo "<table class='table'>";
       echo "<tr><th colspan='2'>".__('Preview')."</th></tr>";
 
       $oktypes = array('CartridgeItem', 'ConsumableItem', 'Contract', 'Crontask',
@@ -451,7 +451,7 @@ class NotificationTemplateTranslation extends CommonDBChild {
       $id    = Session::getSavedOption(__CLASS__, $key, 0);
       $event = Session::getSavedOption(__CLASS__, $key.'_event', '');
 
-      echo "<tr class='tab_bg_2'><td>".$item->getTypeName(1)."&nbsp;";
+      echo "<tr ><td>".$item->getTypeName(1)."&nbsp;";
       $item->dropdown(array('value'     => $id,
                             'on_change' => 'reloadTab("'.$key.'="+this.value)'));
       echo "</td><td>".NotificationEvent::getTypeName(1)."&nbsp;";
@@ -488,7 +488,7 @@ class NotificationTemplateTranslation extends CommonDBChild {
 
             echo "<tr><th>".__('Email text body')."</th>";
             echo "<th>".__('Email HTML body')."</th></tr>";
-            echo "<tr class='tab_bg_2'><td>".nl2br($data['content_text'])."</td>";
+            echo "<tr ><td>".nl2br($data['content_text'])."</td>";
             echo "<td>".$data['content_html']."</td></tr>";
          }
       }

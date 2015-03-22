@@ -355,7 +355,7 @@ class ProjectTask extends CommonDBChild {
 
       $this->showFormHeader($options);
 
-      echo "<tr class='tab_bg_1'><td>"._n('Project', 'Projects', Session::getPluralNumber())."</td>";
+      echo "<tr ><td>"._n('Project', 'Projects', Session::getPluralNumber())."</td>";
       echo "<td>";
       if ($this->isNewID($ID)) {
          echo "<input type='hidden' name='projects_id' value='$projects_id'>";
@@ -378,7 +378,7 @@ class ProjectTask extends CommonDBChild {
       }
 
       if ($ID) {
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr >";
          echo "<td>".__('Creation date')."</td>";
          echo "<td>";
          echo Html::convDateTime($this->fields["date"]);
@@ -391,12 +391,12 @@ class ProjectTask extends CommonDBChild {
          echo "</td></tr>";
       }
 
-      echo "<tr class='tab_bg_1'><td>".__('Name')."</td>";
+      echo "<tr ><td>".__('Name')."</td>";
       echo "<td colspan='3'>";
       Html::autocompletionTextField($this,"name", array('size' => 80));
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>"._x('item', 'State')."</td>";
       echo "<td>";
       ProjectState::dropdown(array('value' => $this->fields["projectstates_id"]));
@@ -406,7 +406,7 @@ class ProjectTask extends CommonDBChild {
       ProjectTaskType::dropdown(array('value' => $this->fields["projecttasktypes_id"]));
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Percent done')."</td>";
       echo "<td>";
       Dropdown::showNumber("percent_done", array('value' => $this->fields['percent_done'],
@@ -426,7 +426,7 @@ class ProjectTask extends CommonDBChild {
 
       echo "<tr><td colspan='4' class='subheader'>".__('Planning')."</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Planned start date')."</td>";
       echo "<td>";
       Html::showDateTimeField("plan_start_date",
@@ -438,7 +438,7 @@ class ProjectTask extends CommonDBChild {
                               array('value' => $this->fields['real_start_date']));
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Planned end date')."</td>";
       echo "<td>";
       Html::showDateTimeField("plan_end_date", array('value' => $this->fields['plan_end_date']));
@@ -448,7 +448,7 @@ class ProjectTask extends CommonDBChild {
       Html::showDateTimeField("real_end_date", array('value' => $this->fields['real_end_date']));
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Planned duration')."</td>";
       echo "<td>";
 
@@ -481,14 +481,14 @@ class ProjectTask extends CommonDBChild {
       }
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Description')."</td>";
       echo "<td colspan='3'>";
       echo "<textarea id='content' name='content' cols='90' rows='6'>".$this->fields["content"].
            "</textarea>";
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr >";
       echo "<td>".__('Comments')."</td>";
       echo "<td colspan='3'>";
       echo "<textarea id='comment' name='comment' cols='90' rows='6'>".$this->fields["comment"].
@@ -781,7 +781,7 @@ class ProjectTask extends CommonDBChild {
 
       if ($canedit) {
          echo "<div class='center firstbloc'>";
-         echo "<a class='vsubmit' href='projecttask.form.php?projects_id=$ID'>".
+         echo "<a class='btn btn-info btn-xs' href='projecttask.form.php?projects_id=$ID'>".
                 _x('button', 'Add a task')."</a>";
          echo "</div>";
       }
@@ -809,7 +809,7 @@ class ProjectTask extends CommonDBChild {
 
       if ($result = $DB->query($query)) {
          if ($DB->numrows($result)) {
-            echo "<table class='tab_cadre_fixehov'>";
+            echo "<table class='table table-hover'>";
 
             $sort_img = "<img src=\"" . $CFG_GLPI["root_doc"] . "/pics/" .
                           (($order == "DESC") ? "puce-down.png" : "puce-up.png") ."\" alt='' title=''>";
@@ -831,7 +831,7 @@ class ProjectTask extends CommonDBChild {
             while ($data=$DB->fetch_assoc($result)) {
                Session::addToNavigateListItems('ProjectTask',$data['id']);
                $rand = mt_rand();
-               echo "<tr class='tab_bg_2'>";
+               echo "<tr >";
                echo "<td>";
                $link = "<a id='ProjectTask".$data["id"].$rand."' href='projecttask.form.php?id=".
                          $data['id']."'>".$data['name'].
@@ -864,7 +864,7 @@ class ProjectTask extends CommonDBChild {
             echo "</table>\n";
 
          } else {
-            echo "<table class='tab_cadre_fixe'>";
+            echo "<table class='table table-striped'>";
             echo "<tr><th>".__('No item found')."</th></tr>";
             echo "</table>\n";
          }
@@ -939,9 +939,9 @@ class ProjectTask extends CommonDBChild {
          echo "<form name='projecttaskteam_form$rand' id='projecttaskteam_form$rand' ";
          echo " method='post' action='".Toolbox::getItemTypeFormURL('ProjectTaskTeam')."'>";
          echo "<input type='hidden' name='projecttasks_id' value='$ID'>";
-         echo "<table class='tab_cadre_fixe'>";
-         echo "<tr class='tab_bg_1'><th colspan='2'>".__('Add a team member')."</tr>";
-         echo "<tr class='tab_bg_2'><td>";
+         echo "<table class='table'>";
+         echo "<tr ><th colspan='2'>".__('Add a team member')."</tr>";
+         echo "<tr ><td>";
 
          $params = array('itemtypes'       => ProjectTeam::$available_types,
                          'entity_restrict' => ($task->fields['is_recursive']
@@ -953,7 +953,7 @@ class ProjectTask extends CommonDBChild {
 
          echo "</td>";
          echo "<td width='20%'>";
-         echo "<input type='submit' name='add' value=\""._sx('button','Add')."\" class='submit'>";
+         echo "<input type='submit' name='add' value=\""._sx('button','Add')."\" class='btn btn-primary'>";
          echo "</td>";
          echo "</tr>";
          echo "</table>";
@@ -974,7 +974,7 @@ class ProjectTask extends CommonDBChild {
 //          }
          Html::showMassiveActions($massiveactionparams);
       }
-      echo "<table class='tab_cadre_fixehov'>";
+      echo "<table class='table table-hover'>";
       $header_begin  = "<tr>";
       $header_top    = '';
       $header_bottom = '';
@@ -995,7 +995,7 @@ class ProjectTask extends CommonDBChild {
             if ($item = getItemForItemtype($type)) {
                foreach ($task->team[$type] as $data) {
                   $item->getFromDB($data['items_id']);
-                  echo "<tr class='tab_bg_2'>";
+                  echo "<tr >";
                   if ($canedit) {
                      echo "<td>";
                      Html::showMassiveActionCheckBox('ProjectTaskTeam',$data["id"]);
