@@ -45,6 +45,7 @@
 
                     </div>
                 </div>
+                <?php if($this->showSearch !== false): ?>
                 <form class="navbar-form navbar-right" role="search" action="<?php echo $this->CFG_GLPI["root_doc"]; ?>/front/search.php" methode="GET">
                     <div class="input-group">
                         <input type="text" class="form-control" name="globalsearch" placeholder="Search for...">
@@ -55,6 +56,7 @@
                         </span>
                     </div>
                 </form>
+                <?php endif; ?>
             </div>
         </div>
         <nav class="navbar navbar-default">
@@ -68,7 +70,7 @@
                                     <?php foreach ($data['content'] as $key => $val): ?>
                                         <?php if (isset($val['page']) && isset($val['title'])): ?>
                                             <li>
-                                                <a href="<?php echo $CFG_GLPI["root_doc"] . $val['page']; ?>"><?php echo $val['title']; ?></a>
+                                                <a href="<?php echo $this->CFG_GLPI["root_doc"] . $val['page']; ?>"><?php echo $val['title']; ?></a>
                                             </li>
                                         <?php endif; ?>
                                     <?php endforeach; ?>

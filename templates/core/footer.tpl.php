@@ -31,5 +31,4 @@
 </html>
 
 
-<?php
-// Html::displayDebugInfos(); ?>
+<?php Html::displayDebugInfos(); ?>

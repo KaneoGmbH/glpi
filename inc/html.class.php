@@ -1233,7 +1233,7 @@ class Html {
     * @param $item      item corresponding to the page displayed (default 'none')
     * @param $option    option corresponding to the page displayed (default '')
    **/
-   static function header($title, $url='', $sector="none", $item="none", $option="") {
+   static function header($title, $url='', $sector="none", $item="none", $option="",$returnTemplate = false) {
       global $CFG_GLPI, $PLUGIN_HOOKS, $HEADER_LOADED, $DB;
 
       // If in modal : display popHeader
@@ -1425,6 +1425,7 @@ class Html {
              );
          }
 
+
         $header->mainMenu = $menu;
         $header->homePage = $CFG_GLPI["root_doc"]."/front/central.php";
         $header->pageTitle = $title;
@@ -1459,11 +1460,17 @@ class Html {
        // Links
         if (count($links) > 0) {
            foreach ($links as $key => $val) {
-               $actionMenu[] = array(
+               $actionMenu[$key] = array(
                    'href' => $CFG_GLPI["root_doc"].$val,
                    'title' => __($key),
                    'class' => $key,
                );
+
+               switch($key){
+                   case 'my_tickets':
+                       $actionMenu[$key]['class'] = 'tags';
+
+               }
            }
         }
         $target = $CFG_GLPI["root_doc"]."/front/central.php";
@@ -1493,7 +1500,7 @@ class Html {
         $actionMenu[] = array(
             'href' => '#',
             'title' => __s('Load a bookmark'),
-            'class' => 'star',
+            'class' => 'bookmark',
             'onClick' => Html::jsGetElementbyID('loadbookmark').".dialog('open')"
         );
 
@@ -1505,6 +1512,10 @@ class Html {
         $profiles = $profiles->getOutput('components/profile-select.tpl.php');
 
         $header->assign('profileSelect',$profiles);
+
+        if($returnTemplate === true){
+            return $header;
+        }
 
         $header->display('header.tpl.php');
 
@@ -1651,208 +1662,100 @@ class Html {
    static function helpHeader($title, $url='') {
       global $CFG_GLPI, $HEADER_LOADED, $PLUGIN_HOOKS;
 
-      // Print a nice HTML-head for help page
-      if ($HEADER_LOADED) {
-         return;
-      }
-      $HEADER_LOADED = true;
 
-      self::includeHeader($title);
-
-      // Body
-      echo "<body>";
-
-      // Main Headline
-      echo "<div id='header'>";
-      echo "<div id='c_logo' >";
-      echo "<a href='".$CFG_GLPI["root_doc"]."/front/helpdesk.public.php' accesskey='1' title=\"".
-             __s('Home')."\"><span class='invisible'>Logo</span></a></div>";
-
-      // Les préférences + lien déconnexion
-      echo "<div id='c_preference' >";
-      echo "<ul><li id='deconnexion'><a href='".$CFG_GLPI["root_doc"]."/front/logout.php' title=\"".
-                                      __s('Logout')."\">".__('Logout')."</a>";
-
-      // check user id : header used for display messages when session logout
-      if (Session::getLoginUserID()) {
-         echo "&nbsp;(";
-         echo formatUserName (0, $_SESSION["glpiname"], $_SESSION["glpirealname"],
-                              $_SESSION["glpifirstname"], 0, 20);
-         echo ")";
-      }
-      echo "</li>\n";
-
-      echo "<li><a href='".(empty($CFG_GLPI["helpdesk_doc_url"])?
-                 "http://glpi-project.org/help-helpdesk":$CFG_GLPI["helpdesk_doc_url"]).
-                 "' target='_blank' title=\"".__s('Help')."\"> ".__('Help')."</a></li>";
-      echo "<li><a href='".$CFG_GLPI["root_doc"]."/front/preference.php' title=\"".
-                  __s('Settings')."\">".__('Settings')."</a></li>\n";
-
-      echo "</ul>";
-      echo "<div class='sep'></div>";
-      echo "</div>";
-
-      //-- Le moteur de recherche --
-      echo "<div id='c_recherche'>";
-      echo "<div class='sep'></div>";
-      echo "</div>";
-
-      //-- Le menu principal --
-      echo "<div id='c_menu'>";
-      echo "<ul id='menu'>";
-
-      // Build the navigation-elements
-
-      // Home
-      echo "<li id='menu1'>";
-      echo "<a href='".$CFG_GLPI["root_doc"]."/front/helpdesk.public.php' title=\"".
-             __s('Home')."\" class='itemP'>".__('Home')."</a>";
-      echo "</li>";
-
-      //  Create ticket
-      if (Session::haveRight("ticket", CREATE)) {
-         echo "<li id='menu2'>";
-         echo "<a href='".$CFG_GLPI["root_doc"]."/front/helpdesk.public.php?create_ticket=1' ".
-                "title=\"".__s('Create a ticket')."\" class='itemP'>".__('Create a ticket')."</a>";
-         echo "</li>";
-      }
-
-      //  Suivi ticket
-      if (Session::haveRight("ticket", Ticket::READMY)
-          || Session::haveRight("followup", TicketFollowup::SEEPUBLIC)) {
-         echo "<li id='menu3'>";
-         echo "<a href='".$CFG_GLPI["root_doc"]."/front/ticket.php' title=\"".
-                __s('Ticket followup')."\" class='itemP'>"._n('Ticket','Tickets', Session::getPluralNumber())."</a>";
-         echo "</li>";
-      }
-
-      // Reservation
-      if (Session::haveRight("reservation", ReservationItem::RESERVEANITEM)) {
-         echo "<li id='menu4'>";
-         echo "<a href='".$CFG_GLPI["root_doc"]."/front/reservationitem.php' title=\"".
-                _sn('Reservation', 'Reservations', Session::getPluralNumber())."\" class='itemP'>".
-                _n('Reservation', 'Reservations', Session::getPluralNumber())."</a>";
-         echo "</li>";
-      }
-
-      // FAQ
-      if (Session::haveRight('knowbase', KnowbaseItem::READFAQ)) {
-         echo "<li id='menu5' >";
-         echo "<a href='".$CFG_GLPI["root_doc"]."/front/helpdesk.faq.php' title=\"".
-                __s('FAQ')."\" class='itemP'>".__('FAQ')."</a>";
-         echo "</li>";
-      }
-
-      // PLUGINS
-      $plugins = array();
-      if (isset($PLUGIN_HOOKS["helpdesk_menu_entry"])
-          && count($PLUGIN_HOOKS["helpdesk_menu_entry"])) {
-
-         foreach ($PLUGIN_HOOKS["helpdesk_menu_entry"] as $plugin => $active) {
-            if ($active) {
-               $plugins[$plugin] = Plugin::getInfo($plugin);
-            }
-         }
-      }
-
-      if (isset($plugins) && (count($plugins) > 0)) {
-         $list = array();
-
-         foreach ($plugins as $key => $val) {
-            $list[$key] = $val["name"];
-         }
-
-         asort($list);
-         echo "<li id='menu5' onmouseover=\"javascript:menuAff('menu5','menu');\">";
-         echo "<a href='#' title=\""._sn('Plugin', 'Plugins', Session::getPluralNumber())."\" class='itemP'>".
-                __('Plugins')."</a>";  // default none
-         echo "<ul class='ssmenu'>";
-
-         // list menu item
-         foreach ($list as $key => $val) {
-            $link = "";
-
-            if (is_string($PLUGIN_HOOKS["helpdesk_menu_entry"][$key])) {
-               $link = $PLUGIN_HOOKS["helpdesk_menu_entry"][$key];
-            }
-            echo "<li><a href='".$CFG_GLPI["root_doc"]."/plugins/".$key.$link."'>".
-                       $plugins[$key]["name"]."</a></li>\n";
-         }
-         echo "</ul></li>";
-      }
-      echo "</ul>";
-      echo "<div class='sep'></div>";
-
-      echo "</div>";
-
-      // End navigation bar
-      // End headline
-      ///Le sous menu contextuel 1
-      echo "<div id='c_ssmenu1'>&nbsp;</div>";
-
-      //  Le fil d ariane
-      echo "<div id='c_ssmenu2'>";
-      echo "<ul>";
-      echo "<li><a href='".$CFG_GLPI["root_doc"]."/front/helpdesk.public.php' title=\"".
-                 __s('Home')."\">".__('Home')."></a></li>";
-      echo "<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>";
-
-      if (Session::haveRightsOr('ticketvalidation', array(TicketValidation::VALIDATEREQUEST,
-                                                    TicketValidation::VALIDATEINCIDENT))) {
-         $opt                  = array();
-         $opt['reset']         = 'reset';
-         $opt['criteria'][0]['field']      = 55; // validation status
-         $opt['criteria'][0]['searchtype'] = 'equals';
-         $opt['criteria'][0]['value']      = TicketValidation::WAITING;
-         $opt['criteria'][0]['link']       = 'AND';
-
-         $opt['criteria'][1]['field']      = 59; // validation aprobator
-         $opt['criteria'][1]['searchtype'] = 'equals';
-         $opt['criteria'][1]['value']      = Session::getLoginUserID();
-         $opt['criteria'][1]['link']       = 'AND';
+        $header = static::header($title,$url,'none','none','',true);
+        $header->assign('showSearch',false);
+        $header->assign('homePage',$CFG_GLPI["root_doc"].'/front/helpdesk.public.php');
+       /**
+        * overwrite help url
+        */
+        $header->metaMenu['help']['href'] = empty($CFG_GLPI["helpdesk_doc_url"])? "http://glpi-project.org/help-helpdesk":$CFG_GLPI["helpdesk_doc_url"];
 
 
-         $url_validate = $CFG_GLPI["root_doc"]."/front/ticket.php?".
-                         Toolbox::append_params($opt,'&amp;');
-         $pic_validate = "<a href='$url_validate'>".
-                         "<img title=\"".__s('Ticket waiting for your approval')."\" alt=\"".
-                           __s('Ticket waiting for your approval')."\" src='".
-                           $CFG_GLPI["root_doc"]."/pics/menu_showall.png'></a>";
-         echo "<li>$pic_validate</li>\n";
+        /* todo: plugins add navigation support
+             // PLUGINS
+             $plugins = array();
+             if (isset($PLUGIN_HOOKS["helpdesk_menu_entry"])
+                 && count($PLUGIN_HOOKS["helpdesk_menu_entry"])) {
 
-      }
-      echo "<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>";
+                foreach ($PLUGIN_HOOKS["helpdesk_menu_entry"] as $plugin => $active) {
+                   if ($active) {
+                      $plugins[$plugin] = Plugin::getInfo($plugin);
+                   }
+                }
+             }
 
-      if (Session::haveRight('ticket', CREATE)
-          && strpos($_SERVER['PHP_SELF'],"ticket")) {
-         echo "<li><a href='".$CFG_GLPI["root_doc"]."/front/helpdesk.public.php?create_ticket=1'>";
-         echo "<img src='".$CFG_GLPI["root_doc"]."/pics/menu_add.png' title=\"".__s('Add').
-                "\" alt=\"".__s('Add')."\"></a></li>";
-      }
+             if (isset($plugins) && (count($plugins) > 0)) {
+                $list = array();
 
-      echo "<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>";
+                foreach ($plugins as $key => $val) {
+                   $list[$key] = $val["name"];
+                }
 
-      /// Bookmark load
-      echo "<li>";
-      Ajax::createIframeModalWindow('loadbookmark',
-                                    $CFG_GLPI["root_doc"]."/front/bookmark.php?action=load",
-                                    array('title'         => __('Load a bookmark'),
-                                          'reloadonclose' => true));
-      echo "<a href='#' onClick=\"".Html::jsGetElementbyID('loadbookmark').".dialog('open');\"\">";
-      echo "<img src='".$CFG_GLPI["root_doc"]."/pics/bookmark.png' title=\"".__s('Load a bookmark').
-             "\" alt=\"".__s('Load a bookmark')."\">";
-      echo "</a></li>";
+                asort($list);
+                echo "<li id='menu5' onmouseover=\"javascript:menuAff('menu5','menu');\">";
+                echo "<a href='#' title=\""._sn('Plugin', 'Plugins', Session::getPluralNumber())."\" class='itemP'>".
+                       __('Plugins')."</a>";  // default none
+                echo "<ul class='ssmenu'>";
 
-      // check user id : header used for display messages when session logout
-      if (Session::getLoginUserID()) {
-         self::showProfileSelecter($CFG_GLPI["root_doc"]."/front/helpdesk.public.php");
-      }
-      echo "</ul></div>";
+                // list menu item
+                foreach ($list as $key => $val) {
+                   $link = "";
 
-      echo "</div>"; // fin header
-      echo "<div id='page' >";
+                   if (is_string($PLUGIN_HOOKS["helpdesk_menu_entry"][$key])) {
+                      $link = $PLUGIN_HOOKS["helpdesk_menu_entry"][$key];
+                   }
+                   echo "<li><a href='".$CFG_GLPI["root_doc"]."/plugins/".$key.$link."'>".
+                              $plugins[$key]["name"]."</a></li>\n";
+                }
+                echo "</ul></li>";
+             }
+             echo "</ul>";
 
-      // call static function callcron() every 5min
+        */
+
+       $menu = $header->actionMenu;
+
+       if (Session::haveRight('ticket', CREATE) && strpos($_SERVER['PHP_SELF'],"ticket")) {
+           $actionMenu[] = array(
+               'href' => $CFG_GLPI["root_doc"]."/front/helpdesk.public.php?create_ticket=1",
+               'title' => __s('Add'),
+               'class' => 'plus'
+           );
+       }
+
+        if (Session::haveRightsOr('ticketvalidation', array(TicketValidation::VALIDATEREQUEST,TicketValidation::VALIDATEINCIDENT))) {
+
+           $opt                  = array();
+           $opt['reset']         = 'reset';
+           $opt['criteria'][0]['field']      = 55; // validation status
+           $opt['criteria'][0]['searchtype'] = 'equals';
+           $opt['criteria'][0]['value']      = TicketValidation::WAITING;
+           $opt['criteria'][0]['link']       = 'AND';
+
+           $opt['criteria'][1]['field']      = 59; // validation aprobator
+           $opt['criteria'][1]['searchtype'] = 'equals';
+           $opt['criteria'][1]['value']      = Session::getLoginUserID();
+           $opt['criteria'][1]['link']       = 'AND';
+
+
+           $url_validate = $CFG_GLPI["root_doc"]."/front/ticket.php?".Toolbox::append_params($opt,'&amp;');
+            $actionMenu[] = array(
+                'href' => $url_validate,
+                'title' => __s('Ticket waiting for your approval'),
+                'class' => 'question-sign'
+            );
+
+        }
+
+
+
+
+       $header->actionMenu = array_merge($actionMenu,$menu);
+
+           $header->display('header.tpl.php');
+
+
       CronTask::callCron();
       self::displayMessageAfterRedirect();
    }
@@ -1862,37 +1765,7 @@ class Html {
     * Print footer for help page
    **/
    static function helpFooter() {
-      global $CFG_GLPI, $FOOTER_LOADED;
-
-      // Print foot for help page
-      if ($FOOTER_LOADED) {
-         return;
-      }
-      $FOOTER_LOADED = true;
-
-      echo "</div>"; // fin de la div id ='page' initiée dans la fonction header
-
-      echo "<div id='footer'>";
-      echo "<table width='100%'><tr><td class='right'>";
-      echo "<a href='http://glpi-project.org/'>";
-      echo "<span class='copyright'>GLPI ".$CFG_GLPI["version"]." Copyright (C) 2003-".date("Y").
-             " by the INDEPNET Development Team.</span>";
-      echo "</a></td></tr></table></div>";
-
-      if ($_SESSION['glpi_use_mode'] == Session::TRANSLATION_MODE) { // debug mode traduction
-         echo "<div id='debug-float'>";
-         echo "<a href='#see_debug'>GLPI TRANSLATION MODE</a>";
-         echo "</div>";
-      }
-
-      if ($_SESSION['glpi_use_mode'] == Session::DEBUG_MODE) { // mode debug
-         echo "<div id='debug-float'>";
-         echo "<a href='#see_debug'>GLPI DEBUG MODE</a>";
-         echo "</div>";
-      }
-      self::displayDebugInfos();
-      echo "</body></html>";
-      closeDBConnections();
+      static::footer();
    }
 
 
@@ -1914,9 +1787,6 @@ class Html {
       // Detect root_doc in case of error
       Config::detectRootDoc();
 
-      // Send UTF8 Headers
-      header("Content-Type: text/html; charset=UTF-8");
-
       // Send extra expires header if configured
       self::header_nocache();
 
@@ -1924,14 +1794,8 @@ class Html {
          return true;
       }
 
-      self::includeHeader($title);
+      self::header($title,$url);
 
-      // Body with configured stuff
-      echo "<body>";
-      echo "<div id='page'>";
-      echo "<br><br>";
-      echo "<div id='bloc'>";
-      echo "<div id='logo_bloc'></div>";
    }
 
 
@@ -1948,15 +1812,7 @@ class Html {
       $FOOTER_LOADED = true;
 
       if (!isCommandLine()) {
-         echo "</div></div>";
-
-         echo "<div id='footer-login'>";
-         echo "<a href='http://glpi-project.org/' title='Powered By Indepnet'>";
-         echo 'GLPI version '.(isset($CFG_GLPI["version"])?$CFG_GLPI["version"]:"").
-              ' Copyright (C) 2003-'.date("Y").' INDEPNET Development Team.';
-         echo "</a></div>";
-
-         echo "</body></html>";
+         self::footer();
       }
       closeDBConnections();
    }

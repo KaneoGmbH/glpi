@@ -711,7 +711,6 @@ class CommonGLPI {
             $glpilisturl = $this->getSearchURL();
          }
 
-//          echo "<div id='menu_navigate'>";
 
          $next = $prev = $first = $last = -1;
          $current = false;
@@ -740,48 +739,46 @@ class CommonGLPI {
             }
          }
          $cleantarget = HTML::cleanParametersURL($target);
-         echo "<div class='navigationheader'><table class='table'>";
-         echo "<tr >";
 
-         if ($first >= 0) {
-            echo "<td class='left'><a href='$cleantarget?id=$first$extraparamhtml'>".
-                  "<img src='".$CFG_GLPI["root_doc"]."/pics/first.png' alt=\"".__s('First').
-                    "\" title=\"".__s('First')."\"></a></td>";
-         } else {
-            echo "<td class='left'><img src='".$CFG_GLPI["root_doc"]."/pics/first_off.png' alt=\"".
-                                    __s('First')."\" title=\"".__s('First')."\"></td>";
-         }
 
-         if ($prev >= 0) {
-            echo "<td class='left'><a href='$cleantarget?id=$prev$extraparamhtml' id='previouspage'>".
-                  "<img src='".$CFG_GLPI["root_doc"]."/pics/left.png' alt=\"".__s('Previous').
-                    "\" title=\"".__s('Previous')."\"></a></td>";
-            $js = '$("body").keydown(function(e) {
-                       if ($("input, textarea").is(":focus") === false) {
-                          if(e.keyCode == 37 && e.ctrlKey) {
-                            window.location = $("#previouspage").attr("href");
-                          }
-                       }
-                  });';
-            echo Html::scriptBlock($js);
-         } else {
-            echo "<td class='left'><img src='".$CFG_GLPI["root_doc"]."/pics/left_off.png' alt=\"".
-                                    __s('Previous')."\" title=\"".__s('Previous')."\"></td>";
-         }
+         $buttons = array();
 
-         echo "<td><a href=\"".$glpilisturl."\">";
-         if ($glpilisttitle) {
-            if (Toolbox::strlen($glpilisttitle) > $_SESSION['glpidropdown_chars_limit']) {
-               $glpilisttitle = Toolbox::substr($glpilisttitle, 0,
-                                                $_SESSION['glpidropdown_chars_limit'])
-                                . "&hellip;";
-            }
-            echo $glpilisttitle;
+         $buttons['first'] = array(
+             'title' => __s('First'),
+             'href' => $first >= 0 ? $cleantarget.'?id='.$first.$extraparamhtml : '#',
+             'class' => $first >= 0 ? 'previous' : 'previous disabled'
+         );
+          $buttons['pref'] = array(
+              'title' => __s('Previous'),
+              'href' => $prev >= 0 ? $cleantarget.'?id='.$prev.$extraparamhtml : '#',
+              'class' => $prev >= 0 ? 'previous' : 'previous disabled'
+          );
+          $buttons['last'] = array(
+              'title' => __s('Last'),
+              'href' => $last >= 0 ? $cleantarget.'?id='.$last.$extraparamhtml : '#',
+              'class' => $last >= 0 ? 'next' : 'next disabled'
+          );
+          $buttons['next'] = array(
+              'title' => __s('Next'),
+              'href' => $next >= 0 ? $cleantarget.'?id='.$next.$extraparamhtml : '#',
+              'class' => $next >= 0 ? 'next' : 'next disabled'
+          );
 
-         } else {
-            _e('List');
-         }
-         echo "</a></td>";
+          $tmpl = new Template();
+          $tmpl->assign('buttons',$buttons);
+          $tmpl->assign('listUrl',$glpilisturl);
+
+          if($glpilisttitle){
+              if (Toolbox::strlen($glpilisttitle) > $_SESSION['glpidropdown_chars_limit']) {
+                  $glpilisttitle = Toolbox::substr($glpilisttitle, 0,
+                          $_SESSION['glpidropdown_chars_limit'])
+                      . "&hellip;";
+              }
+              $tmpl->assign('listTitle',$glpilisttitle);
+
+          }else{
+              $tmpl->assign('listTitle',_e('List'));
+          }
 
 
          $name = $this->getTypeName(1);
@@ -800,42 +797,11 @@ class CommonGLPI {
             $name = sprintf(__('%1$s (%2$s)'), $name, $entname);
 
          }
-         echo "<td class='b big'>".$name."</td>";
+          $tmpl->assign('entityName',$name);
+          $tmpl->assign('itemsCurrent',$current+1);
+          $tmpl->assign('itemsTotal', count($glpilistitems));
 
-         if ($current !== false) {
-            echo "<td>".($current+1) . "/" . count($glpilistitems)."</td>";
-         }
-
-         if ($next >= 0) {
-            echo "<td class='right'><a href='$cleantarget?id=$next$extraparamhtml' id='nextpage'>".
-                  "<img src='".$CFG_GLPI["root_doc"]."/pics/right.png' alt=\"".__s('Next').
-                    "\" title=\"".__s('Next')."\"></a></td>";
-            $js = '$("body").keydown(function(e) {
-                       if ($("input, textarea").is(":focus") === false) {
-                          if(e.keyCode == 39 && e.ctrlKey) {
-                            window.location = $("#nextpage").attr("href");
-                          }
-                       }
-                  });';
-            echo Html::scriptBlock($js);
-         } else {
-            echo "<td class='right'><img src='".$CFG_GLPI["root_doc"]."/pics/right_off.png' alt=\"".
-                                     __s('Next')."\" title=\"".__s('Next')."\"></td>";
-         }
-
-         if ($last >= 0) {
-            echo "<td class='right'><a href='$cleantarget?id=$last$extraparamhtml'>".
-                  "<img src=\"".$CFG_GLPI["root_doc"]."/pics/last.png\" alt=\"".__s('Last').
-                    "\" title=\"".__s('Last')."\"></a></td>";
-         } else {
-            echo "<td class='right'><img src='".$CFG_GLPI["root_doc"]."/pics/last_off.png' alt=\"".
-                                     __s('Last')."\" title=\"".__s('Last')."\"></td>";
-         }
-
-//          echo "</ul></div>";
-         // End pager
-         echo "</tr></table></div>";
-//          echo "<div class='sep'></div>";
+        $tmpl->display('components/navigation-header-detail.tpl.php');
       }
    }
 
