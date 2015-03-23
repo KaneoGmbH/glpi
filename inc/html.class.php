@@ -1427,18 +1427,16 @@ class Html {
          }
 
 
-        $header->mainMenu = $menu;
-        $header->homePage = $CFG_GLPI["root_doc"]."/front/central.php";
-        $header->pageTitle = $title;
-        $header->CFG_GLPI = $CFG_GLPI;
-        $header->breadcrumbItems = $breadcrumb;
+        $header->assign('mainMenu',$menu);
+        $header->assign('homePage',$CFG_GLPI["root_doc"]."/front/central.php");
+        $header->assign('pageTitle',$title);
+        $header->assign('breadcrumbItems',$breadcrumb);
+        $header->assign('showSearch',true);
 
        //todo: check output
         if ($DB->isSlave() && !$DB->first_connection) {
-            $header->isSlave = true;
+            $header->assign('isSlave',true);
         }
-
-
 
 
         $links = array();
@@ -1489,6 +1487,10 @@ class Html {
                        $actionMenu[$key]['title'] = __('Templates');
                        $actionMenu[$key]['class'] = 'folder-open';
                        break;
+                   case 'showall':
+                       $actionMenu[$key]['title'] = __('Show all');
+                       $actionMenu[$key]['class'] = 'list';
+                       break;
 
 
 
@@ -1515,9 +1517,9 @@ class Html {
         }
 
 
-        $header->ajaxContainerBookmark = Ajax::createIframeModalWindow('loadbookmark',
+        $header->assign('ajaxContainerBookmark',Ajax::createIframeModalWindow('loadbookmark',
                                    $CFG_GLPI["root_doc"]."/front/bookmark.php?action=load",
-                                   array('title' => __('Load a bookmark'),'reloadonclose' => true,'display' => false));
+                                   array('title' => __('Load a bookmark'),'reloadonclose' => true,'display' => false)));
 
         /// Bookmark load
         $actionMenu[] = array(
