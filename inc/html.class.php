@@ -1468,9 +1468,26 @@ class Html {
                    'class' => $key,
                );
 
-               switch($key){
+               switch(strtolower($key)){
                    case 'my_tickets':
                        $actionMenu[$key]['class'] = 'tags';
+                       $actionMenu[$key]['title'] = __('My Tickets');
+                       break;
+                   case 'add':
+                       $actionMenu[$key]['title'] = __('Add');
+                       break;
+                   case 'search':
+                       $actionMenu[$key]['title'] = __('Search');
+                       break;
+                   case 'summary':
+                       $actionMenu[$key]['title'] = __('Summary');
+                       $actionMenu[$key]['class'] = 'blackboard';
+                       break;
+                   case 'tasks':
+                       $actionMenu[$key]['class'] = 'paperclip';
+                       break;
+
+
 
                }
            }

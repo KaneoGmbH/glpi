@@ -15,10 +15,7 @@
 
     <div class="row">
         <div class="container">
-
-            <?php if ($this->glpi_use_mode == Session::TRANSLATION_MODE): ?>
-                GLPI TRANSLATION MODE
-            <?php elseif (isset($this->maintenance_mode) && $this->maintenance_mode === true): ?>
+            <?php if (isset($this->maintenance_mode) && $this->maintenance_mode === true): ?>
                 GLPI MAINTENANCE MODE
             <?php endif; ?>
         </div>
