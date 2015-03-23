@@ -3731,8 +3731,12 @@ class Html {
            'class' => $current_end<$numrows ? '': 'disabled'
        );
 
-       $tmpl->assign('pagination',$pagination);
-       $tmpl->display('components/navigation-header.tpl.php');
+       if($start == 0 && $current_end>=$numrows){
+
+       }else{
+           $tmpl->assign('pagination',$pagination);
+           $tmpl->display('components/navigation-header.tpl.php');
+      }
 
    }
 
