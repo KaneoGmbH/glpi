@@ -551,7 +551,7 @@ class Html {
           && !empty($_SESSION["MESSAGE_AFTER_REDIRECT"])) {
 
           echo '<div class="alert alert-info" role="alert">';
-            echo htmlentities($_SESSION["MESSAGE_AFTER_REDIRECT"]);
+            echo $_SESSION["MESSAGE_AFTER_REDIRECT"];
           echo '</div>';
 
       }
@@ -1834,9 +1834,8 @@ class Html {
          return;
       }
       $HEADER_LOADED = true;
-
-      self::includeHeader($title); // Body
-      echo "<body>";
+      $tmpl = new Template();
+      $tmpl->display('header-modal.tpl.php');
       self::displayMessageAfterRedirect();
    }
 
@@ -1851,9 +1850,9 @@ class Html {
          return;
       }
       $FOOTER_LOADED = true;
+       $tmpl = new Template();
+       $tmpl->display('footer-modal.tpl.php');
 
-      // Print foot
-      echo "</body></html>";
    }
 
 

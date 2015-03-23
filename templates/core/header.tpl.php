@@ -29,10 +29,11 @@
         <?php echo $this->ajaxContainerEntities; ?>
         <?php echo $this->ajaxContainerBookmark; ?>
 
+
         <div class="container-search">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="<?php echo $this->homePage; ?>"><img src="<?php echo $this->CFG_GLPI["root_doc"]; ?>/pics/login_logo_glpi.png" height="34"></a>
+                    <a class="navbar-brand" href="<?php echo $this->homePage; ?>"><?php echo $this->image('logo.png','GLPI',34); ?></a>
                 </div>
                 <div class="navbar-form navbar-left">
                     <div class="btn-group" role="group" aria-label="...">
