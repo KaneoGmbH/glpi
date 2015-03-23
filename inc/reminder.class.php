@@ -783,7 +783,7 @@ class Reminder extends CommonDBTM {
            "<td colspan='3'>";
 
       if ($canedit) {
-         echo "<textarea cols='115' rows='15' name='text'>".$this->fields["text"]."</textarea>";
+         echo "<textarea class='form-control'  cols='115' rows='15' name='text'>".$this->fields["text"]."</textarea>";
       } else {
          echo "<div  id='kbanswer'>";
          echo Toolbox::unclean_html_cross_side_scripting_deep($this->fields["text"]);

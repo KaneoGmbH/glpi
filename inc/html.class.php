@@ -551,7 +551,7 @@ class Html {
           && !empty($_SESSION["MESSAGE_AFTER_REDIRECT"])) {
 
           echo '<div class="alert alert-info" role="alert">';
-            echo htmlentities($_SESSION["MESSAGE_AFTER_REDIRECT"]);
+            echo $_SESSION["MESSAGE_AFTER_REDIRECT"];
           echo '</div>';
 
       }
@@ -995,7 +995,8 @@ class Html {
       $cssFiles = array(
           "/css/styles.css",
           "/lib/bootstrap/css/bootstrap.css",
-          "/lib/jquery/css/smoothness/jquery-ui-1.10.4.custom.min.css",
+         // "/lib/jquery/css/smoothness/jquery-ui-1.10.4.custom.min.css",
+          "/lib/jquery/css/bootstrap/jquery-ui-1.10.0.custom.css",
           "/lib/jqueryplugins/rateit/rateit.css",
           "/lib/jqueryplugins/select2/select2.css",
           "/lib/jqueryplugins/qtip2/jquery.qtip.min.css",
@@ -1003,8 +1004,9 @@ class Html {
           "/lib/jqueryplugins/spectrum-colorpicker/spectrum.css",
           "/lib/jqueryplugins/jquery-gantt/css/style.css",
           "/css/jstree/style.css",
+          "/css/select2-bootstrap.css",
           "/css/glpi.css",
-          "/templates/custom/res/css/styles.css"
+          "/templates/custom/css/styles.css"
       );
 
       // Add specific css for plugins
@@ -1036,15 +1038,14 @@ class Html {
         $jsFiles = array(
             "/lib/jquery/js/jquery-1.10.2.min.js",
             "/lib/jquery/js/jquery-ui-1.10.4.custom.min.js",
+            "/lib/jqueryplugins/jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.js",
+            "/lib/jqueryplugins/jquery-file-upload/js/jquery.iframe-transport.js",
             "/lib/tiny_mce/tiny_mce.js",
             //"/lib/jqueryplugins/backtotop/BackToTop.min.jquery.js",
             "/lib/jqueryplugins/select2/select2.min.js",
             "/lib/jqueryplugins/qtip2/jquery.qtip.min.js",
             "/lib/jqueryplugins/jstree/jquery.jstree.js",
             "/lib/jqueryplugins/rateit/jquery.rateit.min.js",
-            "/lib/jqueryplugins/jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.js",
-            "/lib/jqueryplugins/jquery-file-upload/js/jquery.iframe-transport.js",
-            "/lib/jqueryplugins/jquery-file-upload/js/jquery.fileupload.js",
             "/lib/jqueryplugins/jcrop/jquery.Jcrop.js",
             "/lib/jqueryplugins/imagepaste/jquery.image_paste.js",
             "/lib/jqueryplugins/spectrum-colorpicker/spectrum.js",
@@ -1426,18 +1427,16 @@ class Html {
          }
 
 
-        $header->mainMenu = $menu;
-        $header->homePage = $CFG_GLPI["root_doc"]."/front/central.php";
-        $header->pageTitle = $title;
-        $header->CFG_GLPI = $CFG_GLPI;
-        $header->breadcrumbItems = $breadcrumb;
+        $header->assign('mainMenu',$menu);
+        $header->assign('homePage',$CFG_GLPI["root_doc"]."/front/central.php");
+        $header->assign('pageTitle',$title);
+        $header->assign('breadcrumbItems',$breadcrumb);
+        $header->assign('showSearch',true);
 
        //todo: check output
         if ($DB->isSlave() && !$DB->first_connection) {
-            $header->isSlave = true;
+            $header->assign('isSlave',true);
         }
-
-
 
 
         $links = array();
@@ -1466,9 +1465,35 @@ class Html {
                    'class' => $key,
                );
 
-               switch($key){
+               switch(strtolower($key)){
                    case 'my_tickets':
                        $actionMenu[$key]['class'] = 'tags';
+                       $actionMenu[$key]['title'] = __('My Tickets');
+                       break;
+                   case 'add':
+                       $actionMenu[$key]['title'] = __('Add');
+                       break;
+                   case 'search':
+                       $actionMenu[$key]['title'] = __('Search');
+                       break;
+                   case 'summary':
+                       $actionMenu[$key]['title'] = __('Summary');
+                       $actionMenu[$key]['class'] = 'blackboard';
+                       break;
+                   case 'tasks':
+                       $actionMenu[$key]['class'] = 'paperclip';
+                       break;
+                   case 'template':
+                       $actionMenu[$key]['title'] = __('Templates');
+                       $actionMenu[$key]['class'] = 'folder-open';
+                       break;
+                   case 'showall':
+                       $actionMenu[$key]['title'] = __('Show all');
+                       $actionMenu[$key]['class'] = 'list';
+                       break;
+
+
+
 
                }
            }
@@ -1492,9 +1517,9 @@ class Html {
         }
 
 
-        $header->ajaxContainerBookmark = Ajax::createIframeModalWindow('loadbookmark',
+        $header->assign('ajaxContainerBookmark',Ajax::createIframeModalWindow('loadbookmark',
                                    $CFG_GLPI["root_doc"]."/front/bookmark.php?action=load",
-                                   array('title' => __('Load a bookmark'),'reloadonclose' => true,'display' => false));
+                                   array('title' => __('Load a bookmark'),'reloadonclose' => true,'display' => false)));
 
         /// Bookmark load
         $actionMenu[] = array(
@@ -1832,9 +1857,8 @@ class Html {
          return;
       }
       $HEADER_LOADED = true;
-
-      self::includeHeader($title); // Body
-      echo "<body>";
+      $tmpl = new Template();
+      $tmpl->display('header-modal.tpl.php');
       self::displayMessageAfterRedirect();
    }
 
@@ -1849,9 +1873,9 @@ class Html {
          return;
       }
       $FOOTER_LOADED = true;
+       $tmpl = new Template();
+       $tmpl->display('footer-modal.tpl.php');
 
-      // Print foot
-      echo "</body></html>";
    }
 
 
@@ -2662,13 +2686,24 @@ class Html {
          $p['value'] = $date_value.' '.$hour_value;
       }
 
-      $output  = "<input id='showdate".$p['rand']."' type='text' name='_$name' value='".
-                   self::convDateTime($p['value'])."'>";
-      $output .= Html::hidden($name, array('value' => $p['value'], 'id' => "hiddendate".$p['rand']));
-      if ($p['maybeempty'] && $p['canedit']) {
-         $output .= "<img src='".$CFG_GLPI['root_doc']."/pics/reset.png' alt=\"".__('Clear').
-                      "\" id='resetdate".$p['rand']."'>";
-      }
+       $output = '';
+       $output .= '<div class="control-group">';
+       $output .= '<div class="controls">';
+       $output .= '<div class="input-group">';
+       $output .= '<input id="showdate'.$p["rand"].'" type="text" class="date-picker form-control" name="_'.$name.'" value="'.self::convDateTime($p['value']).'"/>';
+       $output .= '<label for="showdate'.$p["rand"].'" class="input-group-addon btn"><span class="glyphicon glyphicon-calendar"></span></label>';
+       if ($p['maybeempty'] && $p['canedit']) {
+        $output .= '<label id="resetdate'.$p['rand'].'" class="input-group-addon btn"><span class="glyphicon glyphicon-remove"></span></label>';
+       }
+       $output .= Html::hidden($name, array('value' => $p['value'], 'id' => "hiddendate".$p['rand']));
+       $output .= '</div>';
+       $output .= '</div>';
+       $output .= '</div>';
+
+//      if ($p['maybeempty'] && $p['canedit']) {
+//         $output .= "<img src='".$CFG_GLPI['root_doc']."/pics/reset.png' alt=\"".__('Clear').
+//                      "\" id='resetdate".$p['rand']."'>";
+//      }
 
       $js = "";
       if ($p['maybeempty'] && $p['canedit']) {
@@ -2693,11 +2728,9 @@ class Html {
                   showButtonPanel: true,
                   changeMonth: true,
                   changeYear: true,
-                  showOn: 'button',
-                  showWeek: true,
-                  controlType: 'select',
-                  buttonImage: '".$CFG_GLPI['root_doc']."/pics/calendar.png',
-                  buttonImageOnly: true";
+                  showWeek: true
+
+                  ";
       if (!$p['canedit']) {
          $js .= ",disabled: true";
       }
@@ -3698,9 +3731,12 @@ class Html {
            'class' => $current_end<$numrows ? '': 'disabled'
        );
 
-       $tmpl->assign('pagination',$pagination);
-       $tmpl->display('components/navigation-header.tpl.php');
-       return;
+       if($start == 0 && $current_end>=$numrows){
+
+       }else{
+           $tmpl->assign('pagination',$pagination);
+           $tmpl->display('components/navigation-header.tpl.php');
+      }
 
    }
 

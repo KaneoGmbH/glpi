@@ -226,7 +226,7 @@ abstract class CommonDropdown extends CommonDBTM {
 
       echo "<td rowspan='".($nb+1)."'>". __('Comments')."</td>";
       echo "<td rowspan='".($nb+1)."'>
-            <textarea cols='45' rows='".($nb+2)."' name='comment' >".$this->fields["comment"];
+            <textarea class='form-control'  cols='45' rows='".($nb+2)."' name='comment' >".$this->fields["comment"];
       echo "</textarea></td></tr>\n";
 
       foreach ($fields as $field) {
@@ -291,7 +291,7 @@ abstract class CommonDropdown extends CommonDBTM {
                if (isset($field['cols'])) {
                   $cols = $field['cols'];
                }
-               echo "<textarea name='".$field['name']."' cols='$cols' rows='$rows'>".
+               echo "<textarea class='form-control'  name='".$field['name']."' cols='$cols' rows='$rows'>".
                      $this->fields[$field['name']]."</textarea >";
                break;
 

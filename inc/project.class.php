@@ -924,7 +924,7 @@ class Project extends CommonDBTM {
       echo "<tr >";
       echo "<td>".__('Description')."</td>";
       echo "<td colspan='3'>";
-      echo "<textarea id='content' name='content' cols='90' rows='6'>".$this->fields["content"].
+      echo "<textarea class='form-control'  id='content' name='content' cols='90' rows='6'>".$this->fields["content"].
            "</textarea>";
       echo "</td>";
       echo "</tr>\n";
@@ -932,7 +932,7 @@ class Project extends CommonDBTM {
       echo "<tr >";
       echo "<td>".__('Comments')."</td>";
       echo "<td colspan='3'>";
-      echo "<textarea id='comment' name='comment' cols='90' rows='6'>".$this->fields["comment"].
+      echo "<textarea class='form-control'  id='comment' name='comment' cols='90' rows='6'>".$this->fields["comment"].
            "</textarea>";
       echo "</td>";
       echo "</tr>\n";

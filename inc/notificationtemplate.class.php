@@ -125,12 +125,12 @@ class NotificationTemplate extends CommonDBTM {
 
       echo "<tr ><td>".__('Comments')."</td>";
       echo "<td colspan='3'>";
-      echo "<textarea cols='60' rows='5' name='comment' >".$this->fields["comment"]."</textarea>";
+      echo "<textarea class='form-control'  cols='60' rows='5' name='comment' >".$this->fields["comment"]."</textarea>";
       echo "</td></tr>";
 
       echo "<tr ><td>".__('CSS')."</td>";
       echo "<td colspan='3'>";
-      echo "<textarea cols='60' rows='5' name='css' >".$this->fields["css"]."</textarea></td></tr>";
+      echo "<textarea class='form-control'  cols='60' rows='5' name='css' >".$this->fields["css"]."</textarea></td></tr>";
 
       $this->showFormButtons($options);
       return true;

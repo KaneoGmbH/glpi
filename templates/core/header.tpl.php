@@ -29,10 +29,11 @@
         <?php echo $this->ajaxContainerEntities; ?>
         <?php echo $this->ajaxContainerBookmark; ?>
 
+
         <div class="container-search">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="<?php echo $this->homePage; ?>"><img src="<?php echo $this->CFG_GLPI["root_doc"]; ?>/pics/login_logo_glpi.png" height="34"></a>
+                    <a class="navbar-brand" href="<?php echo $this->homePage; ?>"><?php echo $this->image('logo.png','GLPI',34); ?></a>
                 </div>
                 <div class="navbar-form navbar-left">
                     <div class="btn-group" role="group" aria-label="...">
@@ -45,7 +46,7 @@
 
                     </div>
                 </div>
-                <?php if($this->showSearch !== false): ?>
+                <?php if(isset($this->showSearch) && $this->showSearch !== false): ?>
                 <form class="navbar-form navbar-right" role="search" action="<?php echo $this->CFG_GLPI["root_doc"]; ?>/front/search.php" methode="GET">
                     <div class="input-group">
                         <input type="text" class="form-control" name="globalsearch" placeholder="Search for...">
@@ -94,7 +95,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <?php if ($this->isSlave === true): ?>
+                    <?php if (isset($this->isSlave) && $this->isSlave === true): ?>
                         <div class="alert alert-warning" role="alert"><?php echo __('MySQL replica: read only') ?></div>
                     <?php endif; ?>
                 </div>
@@ -111,7 +112,7 @@
                     <div class="btn-toolbar" role="toolbar" aria-label="...">
                         <div class="btn-group" role="group" aria-label="...">
                             <?php foreach ($this->actionMenu as $item): ?>
-                                <a href="<?php echo $item['href'] ?>" class="btn btn-default" <?php echo $item['onClick'] ? 'onClick="' . $item['onClick'] . '"' : '' ?>>
+                                <a href="<?php echo $item['href'] ?>" class="btn btn-default" <?php echo isset($item['onClick']) && $item['onClick'] ? 'onClick="' . $item['onClick'] . '"' : '' ?>>
                                     <span class="glyphicon glyphicon-<?php echo $item['class'] ?>" aria-hidden="true"></span>
                                     <?php echo $item['title']; ?>
                                 </a>

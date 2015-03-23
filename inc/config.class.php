@@ -251,7 +251,7 @@ class Config extends CommonDBTM {
       echo "<tr >";
       echo "<td> " . __('Text in the login box') . "</td>";
       echo "<td colspan='3'>";
-      echo "<textarea cols='70' rows='4' name='text_login'>".$CFG_GLPI["text_login"]."</textarea>";
+      echo "<textarea class='form-control'  cols='70' rows='4' name='text_login'>".$CFG_GLPI["text_login"]."</textarea>";
       echo "</td></tr>";
 
       echo "<tr >";
@@ -1331,7 +1331,7 @@ class Config extends CommonDBTM {
       //TRANS: Proxy port
       echo "<td>" . __('Maintenance text') . "</td>";
       echo "<td>";
-      echo "<textarea cols='70' rows='4' name='maintenance_text'>".$CFG_GLPI["maintenance_text"];
+      echo "<textarea class='form-control'  cols='70' rows='4' name='maintenance_text'>".$CFG_GLPI["maintenance_text"];
       echo "</textarea>";
       echo "</td></tr>";
 

@@ -46,10 +46,30 @@ class Template extends Savant3 {
         if (!isset($config['template_path'])) {
             $config['template_path'] = GLPI_ROOT.'/templates/core';
         }
-
         parent::__construct($config);
 
-        //$this->assign('CFG_GLPI',$CFG_GLPI);
+        $this->assign('CFG_GLPI',$CFG_GLPI);
+
+    }
+
+    public function __call($func, $args)
+    {
+        $plugin = $this->plugin($func);
+
+        if ($this->isError($plugin)) {
+            return $plugin;
+        }
+
+        if($func == 'image'){
+            if(file_exists(GLPI_ROOT.'/templates/custom/images/'.$args[0])){
+                $args[0] = '/templates/custom/images/'.$args[0];
+            }else{
+                $args[0] = '/pics/'.$args[0];
+
+            }
+        }
+
+        return parent::__call($func,$args);
 
     }
 

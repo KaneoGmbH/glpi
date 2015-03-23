@@ -203,7 +203,7 @@ class Notification extends CommonDBTM {
       echo "</td>";
 
       echo "<td rowspan='6' class='middle right'>".__('Comments')."</td>";
-      echo "<td class='center middle' rowspan='6'><textarea cols='45' rows='9' name='comment' >".
+      echo "<td class='center middle' rowspan='6'><textarea class='form-control'  cols='45' rows='9' name='comment' >".
              $this->fields["comment"]."</textarea></td></tr>";
 
       echo "<tr ><td>" . __('Active') . "</td>";

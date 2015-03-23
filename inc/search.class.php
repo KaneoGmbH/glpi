@@ -1719,7 +1719,7 @@ class Search {
       $js .= "var $nbmetasearchcountvar=".count($p['metacriteria']).";";
       echo Html::scriptBlock($js);
 
-      echo "<table class='table table-striped' >";
+      echo "<table class='table'>";
       echo "<tr >";
 
       if ((count($p['criteria']) + count($p['metacriteria'])) > 1) {

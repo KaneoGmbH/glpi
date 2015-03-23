@@ -3953,7 +3953,7 @@ abstract class CommonITILObject extends CommonDBTM {
          Html::initEditorSystem("solution$rand");
 
          echo "<div id='solution$rand_text'>";
-         echo "<textarea id='solution$rand' name='solution' rows='12' cols='80'>".
+         echo "<textarea class='form-control'  id='solution$rand' name='solution' rows='12' cols='80'>".
                 $this->getField('solution')."</textarea></div>";
 
       } else {
@@ -4013,7 +4013,7 @@ abstract class CommonITILObject extends CommonDBTM {
       $rand = mt_rand();
       Html::initEditorSystem("solution$rand");
       echo "<div id='solution$rand_text'>";
-      echo "<textarea id='solution$rand' name='solution' rows='12' cols='80'></textarea></div>";
+      echo "<textarea class='form-control'  id='solution$rand' name='solution' rows='12' cols='80'></textarea></div>";
       echo "</td></tr>";
 
       echo '</table>';

@@ -15,20 +15,20 @@
 
     <div class="row">
         <div class="container">
-
-            <?php if ($this->glpi_use_mode == Session::TRANSLATION_MODE): ?>
-                GLPI TRANSLATION MODE
-            <?php elseif ($this->glpi_use_mode == Session::DEBUG_MODE): ?>
-                GLPI DEBUG MODE
-            <?php elseif ($this->maintenance_mode === true): ?>
+            <?php if (isset($this->maintenance_mode) && $this->maintenance_mode === true): ?>
                 GLPI MAINTENANCE MODE
             <?php endif; ?>
         </div>
     </div>
+    <?php if ($this->glpi_use_mode == Session::DEBUG_MODE): ?>
+        <div class="row">
+            <div class="container">
+                <?php Html::displayDebugInfos(); ?>
+            </div>
+        </div>
+    <?php endif; ?>
 </footer>
 
 </body>
 </html>
 
-
-<?php Html::displayDebugInfos(); ?>

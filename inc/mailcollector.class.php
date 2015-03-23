@@ -304,7 +304,7 @@ class MailCollector  extends CommonDBTM {
       echo "</td></tr>\n";
 
       echo "<tr ><td>".__('Comments')."</td>";
-      echo "<td><textarea cols='45' rows='5' name='comment' >".$this->fields["comment"]."</textarea>";
+      echo "<td><textarea class='form-control'  cols='45' rows='5' name='comment' >".$this->fields["comment"]."</textarea>";
 
       if ($ID > 0) {
          echo "<br>";

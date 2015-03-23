@@ -143,7 +143,7 @@ class Supplier extends CommonDBTM {
       echo "</td>";
       echo "<td rowspan='8' class='middle right'>".__('Comments')."</td>";
       echo "<td class='center middle' rowspan='8'>";
-      echo "<textarea cols='45' rows='13' name='comment' >".$this->fields["comment"]."</textarea>";
+      echo "<textarea class='form-control'  cols='45' rows='13' name='comment' >".$this->fields["comment"]."</textarea>";
       echo "</td></tr>";
 
       echo "<tr >";
@@ -167,7 +167,7 @@ class Supplier extends CommonDBTM {
       echo "<tr >";
       echo "<td class='middle'>".__('Address')."</td>";
       echo "<td class='middle'>";
-      echo "<textarea cols='37' rows='3' name='address'>".$this->fields["address"]."</textarea>";
+      echo "<textarea class='form-control'  cols='37' rows='3' name='address'>".$this->fields["address"]."</textarea>";
       echo "</td></tr>";
 
       echo "<tr >";

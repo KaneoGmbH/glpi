@@ -360,7 +360,7 @@ class AuthLDAP extends CommonDBTM {
 
          echo "<tr ><td>" . __('Connection filter') . "</td>";
          echo "<td colspan='3'>";
-         echo "<textarea cols='100' rows='1' name='condition'>".$this->fields["condition"];
+         echo "<textarea class='form-control'  cols='100' rows='1' name='condition'>".$this->fields["condition"];
          echo "</textarea>";
          echo "</td></tr>";
 
@@ -387,7 +387,7 @@ class AuthLDAP extends CommonDBTM {
 
          echo "<tr ><td>" . __('Comments') . "</td>";
          echo "<td colspan='3'>";
-         echo "<textarea cols='40' rows='4' name='comment'>".$this->fields["comment"]."</textarea>";
+         echo "<textarea class='form-control'  cols='40' rows='4' name='comment'>".$this->fields["comment"]."</textarea>";
 
          //Fill fields when using preconfiguration models
          if (!$ID) {

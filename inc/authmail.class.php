@@ -185,7 +185,7 @@ class AuthMail extends CommonDBTM {
 
          echo "<tr ><td>" . __('Comments') . "</td>";
          echo "<td>";
-         echo "<textarea cols='40' rows='4' name='comment'>".$this->fields["comment"]."</textarea>";
+         echo "<textarea class='form-control'  cols='40' rows='4' name='comment'>".$this->fields["comment"]."</textarea>";
          if ($ID>0) {
             echo "<br>";
             //TRANS: %s is the datetime of update
