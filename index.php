@@ -83,11 +83,11 @@ if (!file_exists(GLPI_CONFIG_DIR . "/config_db.php")) {
     $login->assign('hiddenInputs',$hiddenInputs);
 
     $login->assign('lostPassword',false);
-
     if ($CFG_GLPI["use_mailing"] && countElementsInTable('glpi_notifications', "`itemtype`='User' AND `event`='passwordforget' AND `is_active`=1")) {
         $login->assign('lostPassword',true);
         $login->assign('lostPasswordLink', $CFG_GLPI['root_doc']."/front/lostpassword.php?lostpassword=1");
     }
+    
     $login->assign('publicFAQ',false);
     if ($CFG_GLPI["use_public_faq"]) {
         $login->assign('publicFAQ',true);
