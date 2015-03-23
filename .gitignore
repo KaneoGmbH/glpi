@@ -1,4 +1,3 @@
 files/_*
 config/config_db.php
 .idea/
-templates/custom/*
