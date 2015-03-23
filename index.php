@@ -69,7 +69,8 @@ if (!file_exists(GLPI_CONFIG_DIR . "/config_db.php")) {
     $login->assign('CFG_GLPI',$CFG_GLPI);
     $login->assign('loginText',nl2br(Toolbox::unclean_html_cross_side_scripting_deep($CFG_GLPI['text_login'])));
     $login->assign('formAction',$CFG_GLPI["root_doc"]."/front/login.php");
-
+    
+    $hiddenInputs = array();
     if (isset($_GET["noAUTO"])) {
         $hiddenInputs[] = '<input type="hidden" name="noAUTO" value="1" />';
     }
@@ -81,11 +82,13 @@ if (!file_exists(GLPI_CONFIG_DIR . "/config_db.php")) {
 
     $login->assign('hiddenInputs',$hiddenInputs);
 
+    $login->assign('lostPassword',false);
+
     if ($CFG_GLPI["use_mailing"] && countElementsInTable('glpi_notifications', "`itemtype`='User' AND `event`='passwordforget' AND `is_active`=1")) {
         $login->assign('lostPassword',true);
         $login->assign('lostPasswordLink', $CFG_GLPI['root_doc']."/front/lostpassword.php?lostpassword=1");
     }
-
+    $login->assign('publicFAQ',false);
     if ($CFG_GLPI["use_public_faq"]) {
         $login->assign('publicFAQ',true);
         $login->assign('publicFAQLink', $CFG_GLPI['root_doc']."/front/helpdesk.faq.php");
