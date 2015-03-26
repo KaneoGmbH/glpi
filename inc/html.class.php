@@ -989,24 +989,24 @@ class Html {
     }
 
     static function getCssFiles(){
-      global $PLUGIN_HOOKS;
+       global $CFG_GLPI, $PLUGIN_HOOKS;
 
         //  CSS link
       $cssFiles = array(
-          "/css/styles.css",
-          "/lib/bootstrap/css/bootstrap.css",
+          $CFG_GLPI['root_doc']."/css/styles.css",
+          $CFG_GLPI['root_doc']."/lib/bootstrap/css/bootstrap.css",
          // "/lib/jquery/css/smoothness/jquery-ui-1.10.4.custom.min.css",
-          "/lib/jquery/css/bootstrap/jquery-ui-1.10.0.custom.css",
-          "/lib/jqueryplugins/rateit/rateit.css",
-          "/lib/jqueryplugins/select2/select2.css",
-          "/lib/jqueryplugins/qtip2/jquery.qtip.min.css",
-          "/lib/jqueryplugins/jcrop/jquery.Jcrop.min.css",
-          "/lib/jqueryplugins/spectrum-colorpicker/spectrum.css",
-          "/lib/jqueryplugins/jquery-gantt/css/style.css",
-          "/css/jstree/style.css",
-          "/css/select2-bootstrap.css",
-          "/css/glpi.css",
-          "/templates/custom/css/styles.css"
+          $CFG_GLPI['root_doc']."/lib/jquery/css/bootstrap/jquery-ui-1.10.0.custom.css",
+          $CFG_GLPI['root_doc']."/lib/jqueryplugins/rateit/rateit.css",
+          $CFG_GLPI['root_doc']."/lib/jqueryplugins/select2/select2.css",
+          $CFG_GLPI['root_doc']."/lib/jqueryplugins/qtip2/jquery.qtip.min.css",
+          $CFG_GLPI['root_doc']."/lib/jqueryplugins/jcrop/jquery.Jcrop.min.css",
+          $CFG_GLPI['root_doc']."/lib/jqueryplugins/spectrum-colorpicker/spectrum.css",
+          $CFG_GLPI['root_doc']."/lib/jqueryplugins/jquery-gantt/css/style.css",
+          $CFG_GLPI['root_doc']."/css/jstree/style.css",
+          $CFG_GLPI['root_doc']."/css/select2-bootstrap.css",
+          $CFG_GLPI['root_doc']."/css/glpi.css",
+          $CFG_GLPI['root_doc']."/templates/custom/css/styles.css"
       );
 
       // Add specific css for plugins
@@ -1036,22 +1036,22 @@ class Html {
 
         // AJAX library
         $jsFiles = array(
-            "/lib/jquery/js/jquery-1.10.2.min.js",
-            "/lib/jquery/js/jquery-ui-1.10.4.custom.min.js",
-            "/lib/jqueryplugins/jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.js",
-            "/lib/jqueryplugins/jquery-file-upload/js/jquery.iframe-transport.js",
-            "/lib/tiny_mce/tiny_mce.js",
+            $CFG_GLPI['root_doc']."/lib/jquery/js/jquery-1.10.2.min.js",
+            $CFG_GLPI['root_doc']."/lib/jquery/js/jquery-ui-1.10.4.custom.min.js",
+            $CFG_GLPI['root_doc']."/lib/jqueryplugins/jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.js",
+            $CFG_GLPI['root_doc']."/lib/jqueryplugins/jquery-file-upload/js/jquery.iframe-transport.js",
+            $CFG_GLPI['root_doc']."/lib/tiny_mce/tiny_mce.js",
             //"/lib/jqueryplugins/backtotop/BackToTop.min.jquery.js",
-            "/lib/jqueryplugins/select2/select2.min.js",
-            "/lib/jqueryplugins/qtip2/jquery.qtip.min.js",
-            "/lib/jqueryplugins/jstree/jquery.jstree.js",
-            "/lib/jqueryplugins/rateit/jquery.rateit.min.js",
-            "/lib/jqueryplugins/jcrop/jquery.Jcrop.js",
-            "/lib/jqueryplugins/imagepaste/jquery.image_paste.js",
-            "/lib/jqueryplugins/spectrum-colorpicker/spectrum.js",
-            "/lib/jqueryplugins/jquery-gantt/js/jquery.fn.gantt.min.js",
-            "/lib/bootstrap/js/bootstrap.js",
-            "/lib/glpi/js/scripts.js"
+            $CFG_GLPI['root_doc']."/lib/jqueryplugins/select2/select2.min.js",
+            $CFG_GLPI['root_doc']."/lib/jqueryplugins/qtip2/jquery.qtip.min.js",
+            $CFG_GLPI['root_doc']."/lib/jqueryplugins/jstree/jquery.jstree.js",
+            $CFG_GLPI['root_doc']."/lib/jqueryplugins/rateit/jquery.rateit.min.js",
+            $CFG_GLPI['root_doc']."/lib/jqueryplugins/jcrop/jquery.Jcrop.js",
+            $CFG_GLPI['root_doc']."/lib/jqueryplugins/imagepaste/jquery.image_paste.js",
+            $CFG_GLPI['root_doc']."/lib/jqueryplugins/spectrum-colorpicker/spectrum.js",
+            $CFG_GLPI['root_doc']."/lib/jqueryplugins/jquery-gantt/js/jquery.fn.gantt.min.js",
+            $CFG_GLPI['root_doc']."/lib/bootstrap/js/bootstrap.js",
+            $CFG_GLPI['root_doc']."/lib/glpi/js/scripts.js"
         );
 
       if (isset($_SESSION['glpilanguage'])) {
