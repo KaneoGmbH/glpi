@@ -1067,7 +1067,7 @@ class Html {
       }
 
       // Some Javascript-Functions which we may need later
-       $jsFiles[] = '/script.js';
+       $jsFiles[] = $CFG_GLPI['root_doc'].'/script.js';
 
       // Add specific javascript for plugins
       if (isset($PLUGIN_HOOKS['add_javascript']) && count($PLUGIN_HOOKS['add_javascript'])) {
@@ -1076,12 +1076,12 @@ class Html {
             if (is_array($files)) {
                foreach ($files as $file) {
                   if (file_exists(GLPI_ROOT."/plugins/$plugin/$file")) {
-                     $jsFiles[] = "/plugins/$plugin/$file";
+                     $jsFiles[] = $CFG_GLPI['root_doc']."/plugins/$plugin/$file";
                   }
                }
             } else {
                if (file_exists(GLPI_ROOT."/plugins/$plugin/$files")) {
-                  $jsFiles[] = "/plugins/$plugin/$files";
+                  $jsFiles[] = $CFG_GLPI['root_doc']."/plugins/$plugin/$files";
                }
             }
          }
