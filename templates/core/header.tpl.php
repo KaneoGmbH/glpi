@@ -25,10 +25,13 @@
         <![endif]-->
     </head>
     <body>
-
-        <?php echo $this->ajaxContainerEntities; ?>
-        <?php echo $this->ajaxContainerBookmark; ?>
-
+        <?php if(isset($this->ajaxContainerEntities)): ?>
+            <?php echo $this->ajaxContainerEntities; ?>
+        <?php endif; ?>
+        
+        <?php if(isset($this->ajaxContainerBookmark)): ?>
+            <?php echo $this->ajaxContainerBookmark; ?>
+        <?php endif; ?>
 
         <div class="container-search">
             <div class="container">

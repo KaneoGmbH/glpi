@@ -43,7 +43,7 @@ if (isset($_POST['activate'])) {
    $tmp['id']          = 1;
    $tmp['use_mailing'] = 1;
    $config->update($tmp);
-   Html::back();
+   //Html::back();
 }
 
 if (!$CFG_GLPI['use_mailing']) {
