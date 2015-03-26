@@ -61,7 +61,7 @@ class Template extends Savant3 {
             return $plugin;
         }
 
-        if($func == 'image'){
+        if($func == 'img'){
             if(file_exists(GLPI_ROOT.'/templates/custom/images/'.$args[0])){
                 $args[0] = $CFG_GLPI['root_doc'].'/templates/custom/images/'.$args[0];
             }else{

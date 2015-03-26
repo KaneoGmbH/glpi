@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <link rel="shortcut icon" type="images/x-icon" href="<?php echo $this->CFG_GLPI["root_doc"]; ?>/pics/favicon.ico" >
+        <link rel="shortcut icon" type="images/x-icon" href="<?php echo $this->img('favicon.ico'); ?>" >
 
         <title><?php echo $this->pageTitle; ?></title>
 
@@ -33,7 +33,7 @@
         <div class="container-search">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="<?php echo $this->homePage; ?>"><?php echo $this->image('logo.png','GLPI',34); ?></a>
+                    <a class="navbar-brand" href="<?php echo $this->homePage; ?>"><img src="<?php echo $this->img('logo.png'); ?>" height="34" alt=""/></a>
                 </div>
                 <div class="navbar-form navbar-left">
                     <div class="btn-group" role="group" aria-label="...">
