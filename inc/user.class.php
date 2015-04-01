@@ -2057,7 +2057,7 @@ class User extends CommonDBTM {
           && ($userid != Session::getLoginUserID())) {
          return false;
       }
-      echo "<table class='tab_glpi left' width='100%'>";
+      echo "<table class='table left' width='100%'>";
       echo "<tr >";
       echo "<td class='b' width='20%'>";
       _e('Name');

@@ -935,7 +935,7 @@ class Dropdown {
          $nb += count($dp);
       }
       $step = ($nb > 15 ? ($nb/3) : $nb);
-      echo "<table class='tab_glpi'><tr class='top'><td width='33%' class='center'>";
+      echo "<table class='table'><tr class='top'><td width='33%' class='center'>";
       echo "<table class='table table-striped table-hover'>";
       $i = 1;
 

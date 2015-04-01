@@ -1921,9 +1921,9 @@ class Html {
       global $CFG_GLPI;
 
       if ($fixed) {
-         echo "<table class='tab_glpi' width='950px'>";
+         echo "<table class='table' width='950px'>";
       } else {
-         echo "<table class='tab_glpi' width='80%'>";
+         echo "<table class='table' width='80%'>";
       }
 
       echo "<tr>";
@@ -2389,7 +2389,7 @@ class Html {
                                           'height'          => $p['height'],
                                           'js_modal_fields' => $js_modal_fields));
          }
-         echo "<table class='tab_glpi' width='$width'><tr>";
+         echo "<table class='table' width='$width'><tr>";
          if ($p['display_arrow']) {
             echo "<td width='30px'><img src='".$CFG_GLPI["root_doc"]."/pics/arrow-left".
                    ($p['ontop']?'-top':'').".png' alt=''></td>";

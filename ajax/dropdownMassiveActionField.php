@@ -69,7 +69,7 @@ if (isset($_POST["itemtype"])
    $FIELDNAME_PRINTED = false;
    $USE_TABLE         = false;
 
-   echo "<table class='tab_glpi' width='100%'><tr><td>";
+   echo "<table class='table' width='100%'><tr><td>";
 
    $plugdisplay = false;
    // Specific plugin Type case

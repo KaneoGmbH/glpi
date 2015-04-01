@@ -595,7 +595,7 @@ if (isset($_POST["delfile"])) {
 }
 
 if (Session::haveRight('backup', Backup::CHECKUPDATE)) {
-   echo "<div class='center spaced'><table class='tab_glpi'>";
+   echo "<div class='center spaced'><table class='table'>";
    echo "<tr ><td colspan='4' class='center b'>";
    Html::showSimpleForm($_SERVER['PHP_SELF'], 'check_version',
                         __('Check if a new version is available'));
@@ -605,7 +605,7 @@ if (Session::haveRight('backup', Backup::CHECKUPDATE)) {
 // Title backup
 echo "<div class='center'>";
 if (Session::haveRight('backup', CREATE)) {
-   echo "<table class='tab_glpi'><tr><td>".
+   echo "<table class='table'><tr><td>".
          "<img src='".$CFG_GLPI["root_doc"]."/pics/sauvegardes.png' alt=\"".__s('Deleted')."\">".
          "</td>";
    echo "<td><a class='btn btn-info btn-xs'

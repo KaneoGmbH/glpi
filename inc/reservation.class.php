@@ -444,7 +444,7 @@ class Reservation extends CommonDBChild {
          $all  = "&nbsp;";
       }
 
-      echo "<div class='center'><table class='tab_glpi'><tr><td>";
+      echo "<div class='center'><table class='table'><tr><td>";
       echo "<img src='".$CFG_GLPI["root_doc"]."/pics/reservation.png' alt='' title=''></td>";
       echo "<td class ='b'>".$name."</td></tr>";
       echo "<tr><td colspan='2' class ='center'>$all</td></tr></table></div><br>\n";
@@ -466,7 +466,7 @@ class Reservation extends CommonDBChild {
                                              $annee_courante));
 
       echo "<div class='center'>";
-      echo "<table class='tab_glpi'><tr><td><a href='reservation.php".$str_precedent."'>";
+      echo "<table class='table'><tr><td><a href='reservation.php".$str_precedent."'>";
       echo "<img src='".$CFG_GLPI["root_doc"]."/pics/left.png' alt=\"".__s('Previous').
              "\" title=\"".__s('Previous')."\"></a></td>";
       echo "<td class='b'>".sprintf(__('%1$s %2$s'), $monthsarray[$mois_courant], $annee_courante).
@@ -476,7 +476,7 @@ class Reservation extends CommonDBChild {
              "\" title=\"".__s('Next')."\"></a></td></tr></table>\n";
 
       // test
-      echo "<table width='90%' class='tab_glpi'><tr><td class='top' width='100px'>";
+      echo "<table width='90%' class='table'><tr><td class='top' width='100px'>";
 
       echo "<table><tr><td width='100px' class='top'>";
 

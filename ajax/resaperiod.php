@@ -55,7 +55,7 @@ if (isset($_POST['type']) && isset($_POST['end'])) {
          echo "<tr><td>".__('End date').'</td><td>';
          Html::showDateField('periodicity[end]', array('value' => $_POST['end']));
          echo "</td></tr></table>";
-         echo "<table class='tab_glpi'>";
+         echo "<table class='table'>";
          echo "<tr class='center'><td>&nbsp;</td>";
          $days = array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday');
          foreach ($days as $day) {
