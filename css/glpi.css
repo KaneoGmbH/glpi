@@ -72,3 +72,10 @@ form[role=login] > div {
     color: #fff;
 }
 
+.qtip-content .invisible {
+    visibility: visible !important;
+}
+
+.qtip-content {
+    font-size:10px;
+}

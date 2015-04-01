@@ -1039,6 +1039,7 @@ class Html {
             $CFG_GLPI['root_doc']."/lib/jquery/js/jquery-1.10.2.min.js",
             $CFG_GLPI['root_doc']."/lib/jquery/js/jquery-ui-1.10.4.custom.min.js",
             $CFG_GLPI['root_doc']."/lib/jqueryplugins/jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.js",
+            $CFG_GLPI["root_doc"]."/lib/jqueryplugins/jquery-file-upload/js/jquery.fileupload.js",
             $CFG_GLPI['root_doc']."/lib/jqueryplugins/jquery-file-upload/js/jquery.iframe-transport.js",
             $CFG_GLPI['root_doc']."/lib/tiny_mce/tiny_mce.js",
             //"/lib/jqueryplugins/backtotop/BackToTop.min.jquery.js",
@@ -1687,8 +1688,12 @@ class Html {
    static function helpHeader($title, $url='') {
       global $CFG_GLPI, $HEADER_LOADED, $PLUGIN_HOOKS;
 
-
+        if($HEADER_LOADED){
+            return;
+        }
+        
         $header = static::header($title,$url,'none','none','',true);
+        
         $header->assign('showSearch',false);
         $header->assign('homePage',$CFG_GLPI["root_doc"].'/front/helpdesk.public.php');
        /**

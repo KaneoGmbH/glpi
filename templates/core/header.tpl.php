@@ -40,7 +40,7 @@
                 </div>
                 <div class="navbar-form navbar-left">
                     <div class="btn-group" role="group" aria-label="...">
-                        <?php if($this->ajaxContainerEntities): ?>
+                        <?php if(isset($this->ajaxContainerEntities)): ?>
                             <button type="button" class="btn btn-default" onclick="entity_window.dialog('open');"><?php echo $this->currentEntityName; ?></button>
                         <?php endif; ?>
                         <div class="btn-group" role="group">
@@ -105,13 +105,6 @@
             </div>
             <div class="row">
                 <div class="col-lg-6">
-                    <ul class="breadcrumb">
-                        <?php foreach ($this->breadcrumbItems as $item): ?>
-                            <li><a href="<?php echo $item['href']; ?>"><?php echo $item['title']; ?></a></li>
-                        <?php endforeach; ?>
-                    </ul>
-                </div>
-                <div class="col-lg-6">
                     <div class="btn-toolbar" role="toolbar" aria-label="...">
                         <div class="btn-group" role="group" aria-label="...">
                             <?php foreach ($this->actionMenu as $item): ?>
@@ -122,5 +115,12 @@
                             <?php endforeach; ?>
                         </div>
                     </div>
+                </div>
+                <div class="col-lg-6">
+                    <ul class="breadcrumb">
+                        <?php foreach ($this->breadcrumbItems as $item): ?>
+                            <li><a href="<?php echo $item['href']; ?>"><?php echo $item['title']; ?></a></li>
+                        <?php endforeach; ?>
+                    </ul>
                 </div>
             </div>

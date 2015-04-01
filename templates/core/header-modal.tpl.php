@@ -5,7 +5,6 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <link rel="shortcut icon" type="images/x-icon" href="<?php echo $this->CFG_GLPI["root_doc"]; ?>/pics/favicon.ico" >
 
         <title><?php echo $this->pageTitle; ?></title>
 
