@@ -59,7 +59,7 @@ if (isset($_POST['type']) && !empty($_POST['type'])
          if (Session::isViewAllEntities()) {
             $params['toadd'] = array(-1 => __('No restriction'));
          }
-         echo "<table class='tab_format'><tr><td>";
+         echo "<table class='table'><tr><td>";
          _e('Entity');
          echo "</td><td>";
          Entity::dropdown($params);

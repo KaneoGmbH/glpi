@@ -352,7 +352,7 @@ class Cartridge extends CommonDBChild {
          }
 
          if (!$nohtml) {
-            $out .= "<table  class='tab_format $highlight' width='100%'><tr><td>";
+            $out .= "<table  class='table $highlight' width='100%'><tr><td>";
             $out .= __('Total')."</td><td>$total";
             $out .= "</td><td class='b'>";
             $out .= _nx('cartridge','New','New',$unused);
@@ -406,7 +406,7 @@ class Cartridge extends CommonDBChild {
          }
 
          if (!$nohtml) {
-            $out .= "<table  class='tab_format $highlight' width='100%'><tr><td>";
+            $out .= "<table  class='table $highlight' width='100%'><tr><td>";
             $out .= __('Total')."</td><td>$total";
             $out .= "</td><td colspan='2'></td><tr>";
             $out .= "<tr><td>";

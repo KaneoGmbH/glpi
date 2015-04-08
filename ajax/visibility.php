@@ -54,7 +54,7 @@ if (isset($_POST['type']) && !empty($_POST['type'])
       $_POST['prefix'] = '';
    }
 
-   echo "<table class='tab_format'><tr>";
+   echo "<table class='table'><tr>";
    switch ($_POST['type']) {
       case 'User' :
          echo "<td>";

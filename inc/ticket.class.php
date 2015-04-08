@@ -4051,7 +4051,7 @@ class Ticket extends CommonITILObject {
          echo "<td width='".(100-$colsize1)."%' colspan='3'>";
          if ($canupdate) {
             echo "<div style='display:none' id='linkedticket$rand_linked_ticket'>";
-            echo "<table class='tab_format' width='100%'><tr><td width='30%'>";
+            echo "<table class='table' width='100%'><tr><td width='30%'>";
             Ticket_Ticket::dropdownLinks('_link[link]',
                                          (isset($values["_link"])?$values["_link"]['link']:''));
             echo "<input type='hidden' name='_link[tickets_id_1]' value='$ID'>\n";
