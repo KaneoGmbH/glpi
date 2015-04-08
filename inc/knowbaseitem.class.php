@@ -803,31 +803,32 @@ class KnowbaseItem extends CommonDBTM {
 
       $tmp = "<a href='".$this->getSearchURL().
              "?knowbaseitemcategories_id=$knowbaseitemcategories_id'>".$fullcategoryname."</a>";
-      echo "<table class='table table-striped'>";
-      echo "<tr ><th colspan='4'>".sprintf(__('%1$s: %2$s'), __('Category'), $tmp);
-      echo "</th></tr>";
+      //echo "<table class='table table-striped'>";
+      //echo "<tr ><th colspan='4'>".sprintf(__('%1$s: %2$s'), __('Category'), $tmp);
+      //echo "</th></tr>";
 
-      echo "<tr ><td class='left' colspan='4'><h2>".__('Subject')."</h2>";
-      if (KnowbaseItemTranslation::canBeTranslated($this)) {
-         echo KnowbaseItemTranslation::getTranslatedValue($this, 'name');
-      } else {
-         echo $this->fields["name"];
-      }
+      //echo "<tr ><td class='left' colspan='4'><h2>".__('Subject')."</h2>";
+      //if (KnowbaseItemTranslation::canBeTranslated($this)) {
+      //   echo KnowbaseItemTranslation::getTranslatedValue($this, 'name');
+      //} else {
+      //   echo $this->fields["name"];
+      //}
 
-      echo "</td></tr>";
-      echo "<tr ><td class='left' colspan='4'><h2>".__('Content')."</h2>\n";
+      //echo "</td></tr>";
+      //echo "<tr ><td class='left' colspan='4'>\n";
 
-      echo "<div id='kbanswer'>";
+      echo "<div class='kbanswer'>";
       if (KnowbaseItemTranslation::canBeTranslated($this)) {
          $answer = KnowbaseItemTranslation::getTranslatedValue($this, 'answer');
       } else {
          $answer = $this->fields["answer"];
       }
-      echo Toolbox::unclean_html_cross_side_scripting_deep($answer);
-      echo "</div>";
-      echo "</td></tr>";
+      echo $answer;
+      //echo "</div>";
+      //echo "</td></tr>";
 
-      echo "<tr><th class='tdkb'  colspan='2'>";
+      //echo "<tr><td colspan='2'>";
+      echo '<div class="small">';
       if ($this->fields["users_id"]) {
          // Integer because true may be 2 and getUserName return array
          if ($linkusers_id) {
@@ -850,9 +851,9 @@ class KnowbaseItem extends CommonDBTM {
          //TRANS: %s is the datetime of update
          printf(__('Last update on %s'), Html::convDateTime($this->fields["date_mod"]));
       }
-
-      echo "</th>";
-      echo "<th class='tdkb' colspan='2'>";
+      
+      //echo "</td>";
+      //echo "<td colspan='2'>";
       if ($this->countVisibilities() == 0) {
          echo "<span class='red'>".__('Unpublished')."</span><br>";
       }
@@ -864,9 +865,20 @@ class KnowbaseItem extends CommonDBTM {
       } else {
          _e('This item is not part of the FAQ');
       }
-      echo "</th></tr>";
-      echo "</table>";
+      echo '</div>';
+       echo '</div>';
+        //echo "</td></tr>";
+      //echo "</table>";
 
+      echo <<<EOT
+       <script>
+        jQuery(document).ready(function($) {
+            $('.kbanswer pre code').each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
+        });
+       </script>
+EOT;
       return true;
    }
 
@@ -895,24 +907,22 @@ class KnowbaseItem extends CommonDBTM {
             $params[$key] = $val;
          }
       }
-
-      echo "<div>";
-      echo "<form method='get' action='".$this->getSearchURL()."'>";
-      echo "<table class='table'>";
-      echo "<tr ><td class='right' width='50%'>";
-      echo "<input type='text' size='50' name='contains' value=\"".
-             Html::cleanInputText(stripslashes($params["contains"]))."\"></td>";
-      echo "<td class='left'>";
-      echo "<input type='submit' value=\""._sx('button','Search')."\" class='btn btn-primary'></td></tr>";
-      echo "</table>";
+      echo '<div class="searchform" style="padding:20px;" >';
+      echo "<form method='get' action='".$this->getSearchURL()."' class='form-inline'>";
+      echo '<div class="form-group">';
+      echo "<input class='form-control' placeholder='Search for...' type='text' size='50' name='contains' value=\"". Html::cleanInputText(stripslashes($params["contains"]))."\">";
+      echo '</div>';
+      echo "<button type='submit' class='btn btn-primary'>"._sx('button','Search')."</button>";
+    
       if (isset($options['item_itemtype'])
           && isset($options['item_items_id'])) {
          echo "<input type='hidden' name='item_itemtype' value='".$options['item_itemtype']."'>";
          echo "<input type='hidden' name='item_items_id' value='".$options['item_items_id']."'>";
       }
       Html::closeForm();
-
-      echo "</div>";
+   
+      echo '</div>';
+          
    }
 
 

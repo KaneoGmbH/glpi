@@ -432,64 +432,6 @@ td.subheader {
    width:550px;
 }
 
-#kbanswer ul {
-   padding-left: 15px;
-   list-style-type: circle;
-}
-
-#kbanswer ol {
-   padding-left: 15px;
-   list-style-type: decimal;
-}
-
-
-#kbanswer p {
-   margin: 1.12em 0
-}
-
-#kbanswer h1 {
-   font-size: 2em;
-   margin: .67em 0
-}
-
-#kbanswer h2 {
-   font-size: 1.5em;
-   margin: .75em 0;
-   font-weight: bolder;
-}
-
-#kbanswer h3 {
-   font-size: 1.17em;
-   margin: .83em 0;
-   font-weight: bolder;
-}
-
-#kbanswer h4 {
-   margin: 1.12em 0;
-   font-weight: bolder;
-}
-
-#kbanswer h5 {
-   font-size: .83em;
-   margin: 1.5em 0;
-   font-weight: bolder;
-}
-
-#kbanswer h6 {
-   font-size: .75em;
-   margin: 1.67em 0;
-   font-weight: bolder;
-}
-
-#kbanswer address {
-   font-style: italic;
-}
-
-#kbanswer pre {
-   font-family: monospace;
-   white-space: pre;
-}
-
 
 .tdkb_result {
    vertical-align:top;
@@ -498,18 +440,6 @@ td.subheader {
    padding: 3px 20px 3px 25px;
 }
 
-.kb {
-   text-align:left;
-   padding-top:5px;
-}
-
-.kb_resume {
-   text-align:left;
-   font-size: 9px;
-   line-height: 10px; 
-   clear: both;
-   padding: 5px 0 10px 25px;
-}
 
 .tdkb {
    text-align:left;
@@ -535,9 +465,6 @@ td.subheader {
    border: dotted 2px #ccc;
 }
 
-a.knowbase {
-   margin-left:8px;
-}
 
 a.pubfaq {
    margin-left:8px;
@@ -1002,8 +929,6 @@ div#tabcontent {
     /*css hack for IE*/
    position: absolute;
    bottom: auto;
-   top: expression((parseInt(document.documentElement.clientHeight)+parseInt(document.documentElement.scrollTop)-42)+'px');
-   width: expression(parseInt(document.documentElement.clientWidth)+'px');
 }
 
 

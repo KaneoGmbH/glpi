@@ -100,7 +100,7 @@ class Knowbase extends CommonGLPI {
     * Show the knowbase search view
    **/
    static function showSearchView() {
-
+      
       // Search a solution
       if (!isset($_GET["contains"])
           && isset($_GET["itemtype"])
@@ -121,20 +121,26 @@ class Knowbase extends CommonGLPI {
       $ki = new KnowbaseItem();
       $ki->searchForm($_GET);
 
-      if (!isset($_GET['contains']) || empty($_GET['contains'])) {
-         echo "<div><table class='table' width='950px'><tr class='noHover'><td class='center top'>";
-         KnowbaseItem::showRecentPopular("recent");
-         echo "</td><td class='center top'>";
-         KnowbaseItem::showRecentPopular("lastupdate");
-         echo "</td><td class='center top'>";
-         KnowbaseItem::showRecentPopular("popular");
-         echo "</td></tr>";
-         echo "</table></div>";
-      } else {
-         KnowbaseItem::showList($_GET, 'search');
-      }
+      //if (!isset($_GET['contains']) || empty($_GET['contains'])) {
+      //   echo "<div><table class='table' width='950px'><tr class='noHover'><td class='center top'>";
+      //   KnowbaseItem::showRecentPopular("recent");
+      //   echo "</td><td class='center top'>";
+      //   KnowbaseItem::showRecentPopular("lastupdate");
+     //    echo "</td><td class='center top'>";
+      //   KnowbaseItem::showRecentPopular("popular");
+      //   echo "</td></tr>";
+      //   echo "</table></div>";
+      //} else {
+      //   
+      //}
+      KnowbaseItem::showList($_GET, 'search');
+
+       
    }
 
+   static function showListAllView() {
+       KnowbaseItem::showList($_GET, 'search');
+   }
 
    /**
     * Show the knowbase browse view

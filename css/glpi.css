@@ -79,3 +79,7 @@ form[role=login] > div {
 .qtip-content {
     font-size:10px;
 }
+
+.kbanswer {
+    padding:15px;
+}

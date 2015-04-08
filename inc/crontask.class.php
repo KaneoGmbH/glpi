@@ -783,7 +783,7 @@ class CronTask extends CommonDBTM{
                }
                $fonction = array($crontask->fields['itemtype'],
                                  'cron' . $crontask->fields['name']);
-
+                                    
                if (is_callable($fonction)) {
                   if ($crontask->start()) { // Lock in DB + log start
                      $taskname = $crontask->fields['name'];
@@ -849,15 +849,18 @@ class CronTask extends CommonDBTM{
    **/
    static public function Register($itemtype, $name, $frequency, $options=array()) {
 
+     
       // Check that hook exists
       if (!isPluginItemType($itemtype)) {
          return false;
       }
+      
       $temp = new self();
       // Avoid duplicate entry
       if ($temp->getFromDBbyName($itemtype, $name)) {
          return false;
       }
+     
       $input = array('itemtype'  => $itemtype,
                      'name'      => $name,
                      'frequency' => $frequency);
@@ -868,6 +871,7 @@ class CronTask extends CommonDBTM{
             $input[$key] = $options[$key];
          }
       }
+       
       return $temp->add($input);
    }
 
