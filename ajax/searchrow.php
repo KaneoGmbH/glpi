@@ -54,7 +54,7 @@ if (isset($_POST["itemtype"])
    if ($_POST["num"] == 0) {
       $addclass = ' headerRow';
    }
-   echo "<tr class='normalcriteria$addclass' id='$rowid'><td class='left' width='45%'>";
+   echo "<tr class='normalcriteria$addclass' id='$rowid'><td class='left'>";
    // First line display add / delete images for normal and meta search items
    if ($_POST["num"] == 0) {
       $linked = Search::getMetaItemtypeAvailable($_POST["itemtype"]);

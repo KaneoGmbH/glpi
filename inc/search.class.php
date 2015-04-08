@@ -1736,7 +1736,7 @@ class Search {
 
       echo "<td>";
 
-      echo "<table class='tab_format' id='$searchcriteriatableid'>";
+      echo "<table class='table' id='$searchcriteriatableid'>";
 
       // Display normal search parameters
       for ($i=0 ; $i<count($p['criteria']) ; $i++) {
