@@ -1708,36 +1708,27 @@ class Search {
       foreach ($params as $key => $val) {
          $p[$key] = $val;
       }
-
+      echo '<div class="panel panel-default" id="filter">';
+        echo '<div class="panel-heading">';
+        echo '<a data-toggle="collapse" data-parent="#filter" href="#collapseFilter" aria-expanded="true" aria-controls="collapseFilter">';
+            echo __('Filter');
+        echo '</a>';
+        echo '</div>';
+      echo '<div id="collapseFilter" class="panel-collapse collapse">';
+      echo '<div class="panel-body">';
       echo "<form name='searchform$itemtype' method='get' action=\"".$p['target']."\">";
-      echo "<div id='searchcriterias'>";
+
       $nbsearchcountvar      = 'nbcriteria'.strtolower($itemtype).mt_rand();
       $nbmetasearchcountvar  = 'nbmetacriteria'.strtolower($itemtype).mt_rand();
-      $searchcriteriatableid = 'criteriatable'.strtolower($itemtype).mt_rand();
+
       // init criteria count
       $js  = "var $nbsearchcountvar=".count($p['criteria']).";";
       $js .= "var $nbmetasearchcountvar=".count($p['metacriteria']).";";
+      
       echo Html::scriptBlock($js);
+   
 
-      echo "<table class='table'>";
-      echo "<tr >";
-
-      if ((count($p['criteria']) + count($p['metacriteria'])) > 1) {
-         echo "<td width='10' class='center'>";
-         echo "<a href=\"javascript:toggleTableDisplay('$searchcriteriatableid','searchcriteriasimg',
-                                                       '".$CFG_GLPI["root_doc"].
-                                                          "/pics/deplier_down.png',
-                                                       '".$CFG_GLPI["root_doc"].
-                                                          "/pics/deplier_up.png')\">";
-         echo "<img alt='' name='searchcriteriasimg' src=\"".$CFG_GLPI["root_doc"].
-                                                            "/pics/deplier_up.png\">";
-         echo "</td>";
-      }
-
-      echo "<td>";
-
-      echo "<table class='table' id='$searchcriteriatableid'>";
-
+    
       // Display normal search parameters
       for ($i=0 ; $i<count($p['criteria']) ; $i++) {
          $_POST['itemtype'] = $itemtype;
@@ -1753,44 +1744,32 @@ class Search {
 
             $_POST['itemtype'] = $itemtype;
             $_POST['num'] = $i ;
-            include(GLPI_ROOT.'/ajax/searchmetarow.php');
+          //  include(GLPI_ROOT.'/ajax/searchmetarow.php');
          }
       }
-      echo "</table>\n";
-      echo "</td>\n";
-
-      echo "<td width='150px'>";
-      echo "<table width='100%'>";
 
       // Display deleted selection
 
-      echo "<tr>";
-
       // Display submit button
-      echo "<td width='80' class='center'>";
-      echo "<input type='submit' name='".$p['actionname']."' value=\"".$p['actionvalue']."\" class='btn btn-primary' >";
-      echo "</td>";
-      if ($p['showbookmark'] || $p['showreset']) {
-         echo "<td>";
-         if ($p['showbookmark']) {
-            Bookmark::showSaveButton(Bookmark::SEARCH, $itemtype);
-         }
+      echo '<div class="row">';
+        echo '<div class="col-lg-6">';
+        if ($p['showbookmark'] || $p['showreset']) {
+           if ($p['showbookmark']) {
+              Bookmark::showSaveButton(Bookmark::SEARCH, $itemtype);
+           }
 
-         if ($p['showreset']) {
-            echo "<a href='"
-               .$p['target']
-               .(strpos($p['target'],'?') ? '&amp;' : '?')
-               ."reset=reset' >";
-            echo "&nbsp;&nbsp;<img title=\"".__s('Blank')."\" alt=\"".__s('Blank')."\" src='".
-                  $CFG_GLPI["root_doc"]."/pics/reset.png' class='calendrier'></a>";
-         }
-         echo "</td>";
-      }
-      echo "</tr></table>\n";
-
-      echo "</td></tr>";
-      echo "</table>\n";
-
+           if ($p['showreset']) {
+              echo "<a class='btn btn-warning btn-sm' href='".$p['target'].(strpos($p['target'],'?') ? '&amp;' : '?')."reset=reset' >";
+              echo __s('Reset');
+              echo "</a>";
+           }
+        }
+        echo '</div>';
+        echo '<div class="col-lg-6 text-right">';
+              echo "<input type='submit' name='".$p['actionname']."' value=\"".$p['actionvalue']."\" class='btn btn-primary' >";
+        echo '</div>';
+      echo '</div>';
+      
       if (count($p['addhidden'])) {
          foreach ($p['addhidden'] as $key => $val) {
             echo Html::hidden($key, array('value' => $val));
@@ -1801,8 +1780,11 @@ class Search {
       echo Html::hidden('itemtype', array('value' => $itemtype));
       // Reset to start when submit new search
       echo Html::hidden('start', array('value'    => 0));
-
-      echo "</div>";
+      
+     
+      echo '</div>';
+      echo '</div>';
+      echo '</div>';
       Html::closeForm();
    }
 

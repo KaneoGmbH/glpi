@@ -50,43 +50,52 @@ if (isset($_POST["itemtype"])
    $randrow  = mt_rand();
    $rowid    = 'searchrow'.$_POST['itemtype'].$randrow;
 
-   $addclass = '';
-   if ($_POST["num"] == 0) {
-      $addclass = ' headerRow';
-   }
-   echo "<tr class='normalcriteria$addclass' id='$rowid'><td class='left'>";
+   echo "<div id='$rowid'>";
+   
+   echo '<div class="row spaceafter">';
+   echo '<div class="col-lg-12">';
    // First line display add / delete images for normal and meta search items
    if ($_POST["num"] == 0) {
+       echo '<div class="btn-toolbar" role="toolbar">';
+      echo '<div class="btn-group" role="group">';
       $linked = Search::getMetaItemtypeAvailable($_POST["itemtype"]);
-      echo "<img class='pointer' src=\"".$CFG_GLPI["root_doc"]."/pics/plus.png\" alt='+' title=\"".
-             __s('Add a search criterion')."\" id='addsearchcriteria$randrow'>";
+      echo '<button class="btn btn-info btn-xs" id="addsearchcriteria'.$randrow.'">';
+      //echo __s('Add a search criterion');
+      echo ' <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>';
+      echo '</button>';
+
 
       $js = Html::jsGetElementbyID("addsearchcriteria$randrow").".on('click', function(e) {
+            e.preventDefault();
                $.post( '".$CFG_GLPI['root_doc']."/ajax/searchrow.php',
                      { itemtype: '".$_POST["itemtype"]."', num: $nbsearchcountvar })
                         .done(function( data ) {
-                        $('#".$searchcriteriatableid." .normalcriteria:last').after(data);
+                        $('#".$rowid."').append(data);
                         });
             $nbsearchcountvar = $nbsearchcountvar +1;});";
+      
       echo Html::scriptBlock($js);
 
-      echo "&nbsp;&nbsp;&nbsp;&nbsp;";
 
       if (is_array($linked) && (count($linked) > 0)) {
-         echo "<img class='pointer' src=\"".$CFG_GLPI["root_doc"]."/pics/meta_plus.png\" 
-                alt='+' title=\"". __s('Add a global search criterion').
-                "\" id='addmetasearchcriteria$randrow'>";
-
+          
+          echo '<button class="btn btn-info btn-xs" id="addmetasearchcriteria'.$randrow.'">';
+            //echo __s('Add a global search criterion');
+                  echo ' <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>';
+          echo '</button>';
+          
          $js = Html::jsGetElementbyID("addmetasearchcriteria$randrow").".on('click', function(e) {
+             e.preventDefault();
                   $.post( '".$CFG_GLPI['root_doc']."/ajax/searchmetarow.php',
                         { itemtype: '".$_POST["itemtype"]."', num: $nbmetasearchcountvar })
                            .done(function( data ) {
-                           $('#".$searchcriteriatableid."').append(data);
+                           $('#".$rowid."').append(data);
                            });
                $nbmetasearchcountvar = $nbmetasearchcountvar +1;});";
          echo Html::scriptBlock($js);
-         echo "&nbsp;&nbsp;&nbsp;&nbsp;";
-      }
+
+         }
+    echo '</div>';
 
       // Instanciate an object to access method
       $item = NULL;
@@ -94,23 +103,31 @@ if (isset($_POST["itemtype"])
          $item = getItemForItemtype($_POST["itemtype"]);
       }
       if ($item && $item->maybeDeleted()) {
+          echo '<div class="btn-group" role="group">';
          echo "<input type='hidden' id='is_deleted' name='is_deleted' value='".$p['is_deleted']."'>";
-         echo "<a href='#' onClick = \"toogle('is_deleted','','','');
-                  document.forms['searchform".$_POST["itemtype"]."'].submit();\">
-                  <img src=\"".$CFG_GLPI["root_doc"]."/pics/showdeleted".
-                  (!$p['is_deleted']?'_no':'').".png\" name='img_deleted' alt=\"".
-                  (!$p['is_deleted']?__s('Show the dustbin'):__s("Don't show deleted items")).
-                  "\" title=\"".
-                  (!$p['is_deleted']?__s('Show the dustbin'):__s("Don't show deleted items")).
-                  "\"></a>";
-         echo '&nbsp;&nbsp;';
+         echo "<button class='btn btn-info btn-xs' onClick = \"toogle('is_deleted','','',''); document.forms['searchform".$_POST["itemtype"]."'].submit();\">";
+          echo ' <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>';
+         echo !$p['is_deleted']?__s('Show the dustbin'):__s("Don't show deleted items");
+         echo '</button>';
+         echo '</div>';
+   
+    
       }
+      
+      echo '</div>';
    } else {
-      echo "<img class='pointer' src=\"".$CFG_GLPI["root_doc"]."/pics/moins.png\" alt='-' title=\"".
-             __s('Delete a search criterion')."\" onclick=\"".
-             Html::jsGetElementbyID($rowid).".remove();\">&nbsp;&nbsp;";
+     echo '<button class="btn btn-info btn-xs" onclick="'.Html::jsGetElementbyID($rowid).'.remove();">';
+      //echo __s('Add a search criterion');
+      echo ' <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>';
+      echo __s('Delete a search criterion');
+      echo '</button>';
+      
    }
-
+  echo '</div>';
+  echo '</div>';
+  
+  echo '<div class="row spaceafter">';
+ echo '<div class="col-lg-12">';
    $criteria = array();
 
    if (isset($_SESSION['glpisearch'][$_POST["itemtype"]]['criteria'][$_POST["num"]])
@@ -131,12 +148,17 @@ if (isset($_POST["itemtype"])
       if (isset($criteria["link"])) {
          $value = $criteria["link"];
       }
+      //echo '<div class="col-lg-2">';
       Dropdown::showFromArray("criteria[".$_POST["num"]."][link]",
                               Search::getLogicalOperators(),
                               array('value' => $value,
                                     'width' => '30%'));
-   }
-
+    
+      //echo '</div>';
+      
+      }
+ 
+  //echo '<div class="col-lg-4">';
    $selected = $first = '';
    $values   = array();
    // display select box to define search item
@@ -172,10 +194,13 @@ if (isset($_POST["itemtype"])
    $rand     = Dropdown::showFromArray("criteria[".$_POST["num"]."][field]", $values,
                                        array('value' => $value,
                                              'width' => '60%'));
+
+   //echo '</div>';
+  
    $field_id = Html::cleanId("dropdown_criteria[".$_POST["num"]."][field]$rand");
-   echo "</td><td class='left'>";
+
    $spanid= 'SearchSpan'.$_POST["itemtype"].$_POST["num"];
-   echo "<div id='$spanid'>\n";
+
 
    $used_itemtype = $_POST["itemtype"];
 
@@ -188,8 +213,10 @@ if (isset($_POST["itemtype"])
    $_POST['field']      = $value;
    $_POST['searchtype'] = (isset($criteria['searchtype'])?$criteria['searchtype']:"" );
    $_POST['value']      = (isset($criteria['value'])?stripslashes($criteria['value']):"" );
-   include (GLPI_ROOT."/ajax/searchoption.php");
-   echo "</div>\n";
+
+   echo "<div id='$spanid'>\n";
+    include (GLPI_ROOT."/ajax/searchoption.php");
+   echo '</div>';
 
    $params = array('field'      => '__VALUE__',
                    'itemtype'   => $used_itemtype,
@@ -199,7 +226,8 @@ if (isset($_POST["itemtype"])
 
    Ajax::updateItemOnSelectEvent($field_id, $spanid,
                                  $CFG_GLPI["root_doc"]."/ajax/searchoption.php", $params);
-
-   echo "</td></tr>\n";
+   echo "</div>";
+   echo "</div>";
+   echo "</div>";
 }
 ?>

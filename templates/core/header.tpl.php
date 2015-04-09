@@ -34,7 +34,7 @@
         <?php endif; ?>
 
         <div class="container-search">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="<?php echo $this->homePage; ?>"><img src="<?php echo $this->img('logo.png'); ?>" height="34" alt=""/></a>
                 </div>
@@ -43,9 +43,11 @@
                         <?php if(isset($this->ajaxContainerEntities)): ?>
                             <button type="button" class="btn btn-default" onclick="entity_window.dialog('open');"><?php echo $this->currentEntityName; ?></button>
                         <?php endif; ?>
-                        <div class="btn-group" role="group">
-                            <?php echo $this->profileSelect; ?>
-                        </div>
+                        <?php if($this->profileSelect): ?>
+                            <div class="btn-group" role="group">
+                                <?php echo $this->profileSelect; ?>
+                            </div>
+                        <?php endif; ?>
 
                     </div>
                 </div>
@@ -64,7 +66,7 @@
             </div>
         </div>
         <nav class="navbar navbar-default">
-            <div class="container">
+            <div class="container-fluid">
                 <ul class="nav navbar-nav">
                     <?php foreach ($this->mainMenu as $part => $data) : ?>
                         <?php if (isset($data['content']) && count($data['content'])): ?>
@@ -95,7 +97,7 @@
                 </ul>
             </div>
         </nav>
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
                     <?php if (isset($this->isSlave) && $this->isSlave === true): ?>

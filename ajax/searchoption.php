@@ -70,8 +70,7 @@ if (isset($_POST["itemtype"])
    $randsearch   = -1;
    $dropdownname = "searchtype$fieldname".$_POST["itemtype"].$_POST["num"];
    $searchopt    = array();
-
-   echo "<table width='100%'><tr><td width='20%'>";
+   
    if (count($actions)>0) {
 
       // get already get search options
@@ -84,18 +83,19 @@ if (isset($_POST["itemtype"])
       $randsearch = Dropdown::showFromArray($fieldname."[".$_POST["num"]."][searchtype]",
                                             $actions,
                                             array('value'  => $_POST["searchtype"],
-                                                  'width'  => '100%'));
+                                                  'width'  => ''));
       $fieldsearch_id = Html::cleanId("dropdown_".$fieldname."[".$_POST["num"]."][searchtype]$randsearch");
    }
-   echo "</td><td width='80%'>";
-   echo "<span id='span$dropdownname'>\n";
+
+
 
    $_POST['value']      = stripslashes($_POST['value']);
    $_POST['searchopt']  = $searchopt;
 
+   echo "<span id='span$dropdownname'>\n";
    include(GLPI_ROOT."/ajax/searchoptionvalue.php");
    echo "</span>\n";
-   echo "</td></tr></table>";
+
 
    $paramsaction = array('searchtype' => '__VALUE__',
                          'field'      => $_POST["field"],
@@ -109,5 +109,7 @@ if (isset($_POST["itemtype"])
                                  "span$dropdownname",
                                  $CFG_GLPI["root_doc"]."/ajax/searchoptionvalue.php",
                                  $paramsaction);
+   
 }
+    
 ?>

@@ -66,24 +66,20 @@ if (isset($_POST["itemtype"])
 
    $rowid  = 'metasearchrow'.$_POST['itemtype'].$rand;
 
-   echo "<tr class='metacriteria' id='$rowid'><td class='left' colspan='2'>";
+   echo "<div class='metacriteria' id='$rowid'>";
    
-   echo "<table class='table'><tr class='left'>";
-   echo "<td width='30%'>";
+
    echo "<img class='pointer' src=\"".$CFG_GLPI["root_doc"]."/pics/meta_moins.png\" alt='-' title=\"".
           __s('Delete a global search criterion')."\" onclick=\"".
           Html::jsGetElementbyID($rowid).".remove();\">";
-   echo "&nbsp;&nbsp;";
+
 
    // Display link item (not for the first item)
    $value = '';
    if (isset($metacriteria["link"])) {
       $value = $metacriteria["link"];
    }
-   Dropdown::showFromArray("metacriteria[".$_POST["num"]."][link]",
-                           Search::getLogicalOperators(),
-                           array('value' => $value,
-                                 'width' => '40%'));
+   Dropdown::showFromArray("metacriteria[".$_POST["num"]."][link]", Search::getLogicalOperators(),array('value' => $value,'width' => '40%'));
 
    // Display select of the linked item type available
    foreach ($linked as $key) {
@@ -94,18 +90,15 @@ if (isset($_POST["itemtype"])
       }
    }
    $value = '';
-   if (isset($metacriteria['itemtype'])
-       && !empty($metacriteria['itemtype'])) {
+   if (isset($metacriteria['itemtype']) && !empty($metacriteria['itemtype'])) {
       $value = $metacriteria['itemtype'];
    }
 
-   $rand = Dropdown::showItemTypes("metacriteria[".$_POST["num"]."][itemtype]", $linked,
-                                    array('width' => '50%',
-                                          'value' => $value));
+   $rand = Dropdown::showItemTypes("metacriteria[".$_POST["num"]."][itemtype]", $linked,array('width' => '50%','value' => $value));
    $field_id = Html::cleanId("dropdown_metacriteria[".$_POST["num"]."][itemtype]$rand");
-   echo "</td><td>";
+
    // Ajax script for display search met& item
-   echo "<span id='show_".$_POST["itemtype"]."_".$_POST["num"]."_$rand'>&nbsp;</span>\n";
+   echo "<span id='show_".$_POST["itemtype"]."_".$_POST["num"]."_$rand'></span>\n";
 
    $params = array('itemtype'   => '__VALUE__',
                    'num'        => $_POST["num"],
@@ -115,22 +108,12 @@ if (isset($_POST["itemtype"])
                    'searchtype' => (isset($metacriteria['searchtype'])
                                     ? $metacriteria['searchtype'] : ""));
 
-   Ajax::updateItemOnSelectEvent($field_id,
-                                 "show_".$_POST["itemtype"]."_".$_POST["num"]."_$rand",
-                                 $CFG_GLPI["root_doc"]."/ajax/updateMetaSearch.php",
-                                 $params);
+   Ajax::updateItemOnSelectEvent($field_id,"show_".$_POST["itemtype"]."_".$_POST["num"]."_$rand",$CFG_GLPI["root_doc"]."/ajax/updateMetaSearch.php",$params);
 
-   if (isset($metacriteria['itemtype'])
-       && !empty($metacriteria['itemtype'])) {
-
+   if (isset($metacriteria['itemtype']) && !empty($metacriteria['itemtype'])) {
       $params['itemtype'] = $metacriteria['itemtype'];
-
-      Ajax::updateItem("show_".$_POST["itemtype"]."_".$_POST["num"]."_$rand",
-                       $CFG_GLPI["root_doc"]."/ajax/updateMetaSearch.php", $params);
-
+      Ajax::updateItem("show_".$_POST["itemtype"]."_".$_POST["num"]."_$rand", $CFG_GLPI["root_doc"]."/ajax/updateMetaSearch.php", $params);
    }
-   echo "</td></tr></table>";
-
-   echo "</td></tr>\n";
+   echo '</div>';
 }
 ?>

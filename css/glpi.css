@@ -83,3 +83,12 @@ form[role=login] > div {
 .kbanswer {
     padding:15px;
 }
+
+.spaceafter {
+    margin-bottom: 15px;
+}
+
+#filter .select2-container {
+    float:left;
+    margin-right:10px;
+}

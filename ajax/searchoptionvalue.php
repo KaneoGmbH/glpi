@@ -58,7 +58,7 @@ if (isset($_POST['searchtype'])) {
    $item              = getItemForItemtype($_POST['itemtype']);
    $options2          = array();
    $options2['value'] = $_POST['value'];
-   $options2['width'] = '100%';
+   $options2['width'] = '';
    // For tree dropdpowns
    $options2['permit_select_parent'] = true;
 

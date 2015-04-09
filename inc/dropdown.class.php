@@ -1796,7 +1796,8 @@ class Dropdown {
       }
 
       // Width set on select
-      $output .= Html::jsAdaptDropdown($field_id, array('width' => $param["width"]));
+      // array('width' => $param["width"]);
+      $output .= Html::jsAdaptDropdown($field_id);
 
       if ($param["multiple"]) {
          // Hack for All / None because select2 does not provide it

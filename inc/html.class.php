@@ -1532,13 +1532,15 @@ class Html {
 
         $header->assign('actionMenu',$actionMenu);
 
-        $profiles = new Template();
-        $profiles->assign('profiles',self::getProfiles($target));
-        $profiles->assign('currentProfile',$_SESSION["glpiactiveprofile"]["name"]);
-        $profiles = $profiles->getOutput('components/profile-select.tpl.php');
+        $profilesToUse = self::getProfiles($target);
+        if($profilesToUse){
+            $profiles = new Template();
+            $profiles->assign('profiles',$profilesToUse);
+            $profiles->assign('currentProfile',$_SESSION["glpiactiveprofile"]["name"]);
+            $profiles = $profiles->getOutput('components/profile-select.tpl.php');
 
-        $header->assign('profileSelect',$profiles);
-
+            $header->assign('profileSelect',$profiles);
+        }
         if($returnTemplate === true){
             return $header;
         }
@@ -2350,13 +2352,12 @@ class Html {
           && ($max < ($p['num_displayed']+10))) {
          if (!$p['ontop']
              || (isset($p['forcecreate']) && $p['forcecreate'])) {
-            echo "<table class='table table-striped table-hover' width='$width'><tr >".
-                  "<td><span class='b'>";
-            echo __('Selection too large, massive action disabled.')."</span>";
+            //echo "<table class='table table-striped table-hover' width='$width'><tr >"."<td><span class='b'>";
+            echo __('Selection too large, massive action disabled.');
             if ($_SESSION['glpi_use_mode'] == Session::DEBUG_MODE) {
                echo "<br>".__('To increase the limit: change max_input_vars or suhosin.post.max_vars in php configuration.');
             }
-            echo "</td></tr></table>";
+            //echo "</td></tr></table>";
          }
       } else {
          // Create Modal window on top
@@ -2389,12 +2390,12 @@ class Html {
                                           'height'          => $p['height'],
                                           'js_modal_fields' => $js_modal_fields));
          }
-         echo "<table class='table' width='$width'><tr>";
+         //echo "<table class='table' width='$width'><tr>";
          if ($p['display_arrow']) {
-            echo "<td width='30px'><img src='".$CFG_GLPI["root_doc"]."/pics/arrow-left".
-                   ($p['ontop']?'-top':'').".png' alt=''></td>";
+            echo "<img src='".$CFG_GLPI["root_doc"]."/pics/arrow-left".
+                   ($p['ontop']?'-top':'').".png' alt=''>";
          }
-         echo "<td width='100%' class='left'>";
+         //echo "<td width='100%' class='left'>";
          echo "<a class='btn btn-info btn-xs' ";
          if (is_array($p['confirm'] || strlen($p['confirm']))) {
             echo self::addConfirmationOnAction($p['confirm'], "massiveaction_window$identifier.dialog(\"open\");");
@@ -2403,9 +2404,9 @@ class Html {
          }
          echo " href='#modal_massaction_content$identifier' title=\"".htmlentities($p['title'], ENT_QUOTES, 'UTF-8')."\">";
          echo $p['title']."</a>";
-         echo "</td>";
+         //echo "</td>";
 
-         echo "</tr></table>";
+         //echo "</tr></table>";
          if (!$p['ontop']
              || (isset($p['forcecreate']) && $p['forcecreate'])) {
             // Clean selection
@@ -4076,16 +4077,12 @@ class Html {
    static function jsAdaptDropdown($id, $params=array()) {
       global $CFG_GLPI;
 
-      $width = '80%';
-      if (isset($params["width"]) && !empty($params["width"])) {
-         $width = $params["width"];
-         unset($params["width"]);
-      }
       $js = "$('#$id').select2({
-                  width: '$width',
+                  dropdownAutoWidth: true,
                   closeOnSelect: false,
                   quietMillis: 100,
                   minimumResultsForSearch: ".$CFG_GLPI['ajax_limit_count']."});";
+      
       return Html::scriptBlock($js);
    }
 
