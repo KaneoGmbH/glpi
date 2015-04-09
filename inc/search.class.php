@@ -5565,9 +5565,9 @@ class Search {
 
          default :
             if ($fixed) {
-               $out = "<div class='center'><table border='0' class='table table-hover'>\n";
+               $out = "<div class='table-responsive'><table border='0' class='table table-hover'>\n";
             } else {
-               $out = "<div class='center'><table border='0' class='table table-striped table-hover'>\n";
+               $out = "<div class='table-responsive'><table border='0' class='table table-striped table-hover'>\n";
             }
       }
       return $out;
