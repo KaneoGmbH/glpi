@@ -84,6 +84,12 @@ foreach ($notvalidoptions as $key) {
       unset($options[$key]);
    }
 }
+
+// Set active Tab
+if (isset($_GET['_glpi_tab']) && isset($_GET['_itemtype'])) {
+    Session::setActiveTab($_GET['_itemtype'], $_GET['_glpi_tab']);
+}
+
 CommonGLPI::displayStandardTab($item, $_GET['_glpi_tab'],$_GET["withtemplate"], $options);
 
 

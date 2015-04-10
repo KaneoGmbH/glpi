@@ -285,16 +285,17 @@ class Ajax {
         global $CFG_GLPI;
 
         /// TODO need to clean params !!
-        $active_tabs = Session::getActiveTab($type);
-
+        $active_tab = Session::getActiveTab($type);
+            
         $rand = mt_rand();
         if (count($tabs) > 0) {
 
             echo '<div role="tabbable tabs-left">';
                 echo '<ul class="nav nav-tabs" role="tablist">';
 
-                foreach ($tabs as $val) {
-                    echo '<li role="presentation">';
+                foreach ($tabs as $key => $val) {
+                    $class = $key == $active_tab ? 'class="active"' : '';     
+                    echo '<li role="presentation" '. $class .'>';
                         echo '<a href="'.$val['url'].(isset($val['params'])?'?'.$val['params']:'').'" aria-controls="home" data-toggle="tabajax" data-target="#tabcontent-'.$rand.'" role="tab" >'.$val['title'].'</a>';
                     echo '</li>';
                 }
