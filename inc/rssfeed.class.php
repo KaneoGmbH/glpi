@@ -907,8 +907,6 @@ class RSSFeed extends CommonDBTM {
          }
       }
 
-      echo "<br><table class='table table-striped table-hover'>";
-      echo "<tr class='noHover'><th colspan='2'><div class='relative'><span>$titre</span>";
 
       if (($personal && self::canCreate()) 
             || (!$personal && Session::haveRight('rssfeed_public', CREATE))) {
@@ -918,10 +916,12 @@ class RSSFeed extends CommonDBTM {
                 __s('Add')."\"></a></span>";
       }
 
-      echo "</div></th></tr>\n";
 
       if ($nb) {
-         usort($items, array('SimplePie', 'sort_items'));
+      echo "<br><table class='table table-striped table-hover'>";
+      echo "<tr class='noHover'><th colspan='2'><div class='relative'><span>$titre</span>";
+
+          usort($items, array('SimplePie', 'sort_items'));
          foreach ($items as $item) {
             echo "<tr ><td>";
             echo HTML::convDateTime($item->get_date('Y-m-d H:i:s'));
@@ -953,8 +953,11 @@ class RSSFeed extends CommonDBTM {
                                                                               'display' => true));
             echo "</td></tr>";
          }
+               echo "</div></th></tr>\n";
+                     echo "</table>\n";
+
+
       }
-      echo "</table>\n";
 
    }
 

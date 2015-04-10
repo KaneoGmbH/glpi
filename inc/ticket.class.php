@@ -4358,8 +4358,6 @@ class Ticket extends CommonITILObject {
       }
 
       if ($numrows > 0) {
-         echo "<table class='table table-striped table-hover'>";
-         echo "<tr class='noHover'><th colspan='4'>";
 
          $options['reset'] = 'reset';
          $forcetab         = '';
@@ -4378,9 +4376,9 @@ class Ticket extends CommonITILObject {
                   $options['criteria'][1]['link']       = 'AND';
                   $forcetab                 = 'Ticket$2';
 
-                  echo "<a href=\"".$CFG_GLPI["root_doc"]."/front/ticket.php?".
+                  echo "<h4><a href=\"".$CFG_GLPI["root_doc"]."/front/ticket.php?".
                          Toolbox::append_params($options,'&amp;')."\">".
-                         Html::makeTitle(__('Your tickets to close'), $number, $numrows)."</a>";
+                         Html::makeTitle(__('Your tickets to close'), $number, $numrows)."</a></h4>";
                   break;
 
                case "waiting" :
@@ -4394,9 +4392,9 @@ class Ticket extends CommonITILObject {
                   $options['criteria'][1]['value']      = 'mygroups';
                   $options['criteria'][1]['link']       = 'AND';
 
-                  echo "<a href=\"".$CFG_GLPI["root_doc"]."/front/ticket.php?".
+                  echo "<h4><a href=\"".$CFG_GLPI["root_doc"]."/front/ticket.php?".
                          Toolbox::append_params($options,'&amp;')."\">".
-                         Html::makeTitle(__('Tickets on pending status'), $number, $numrows)."</a>";
+                         Html::makeTitle(__('Tickets on pending status'), $number, $numrows)."</a></h4>";
                   break;
 
                case "process" :
@@ -4410,9 +4408,9 @@ class Ticket extends CommonITILObject {
                   $options['criteria'][1]['value']      = 'mygroups';
                   $options['criteria'][1]['link']       = 'AND';
 
-                  echo "<a href=\"".$CFG_GLPI["root_doc"]."/front/ticket.php?".
+                  echo "<h4><a href=\"".$CFG_GLPI["root_doc"]."/front/ticket.php?".
                          Toolbox::append_params($options,'&amp;')."\">".
-                         Html::makeTitle(__('Tickets to be processed'), $number, $numrows)."</a>";
+                         Html::makeTitle(__('Tickets to be processed'), $number, $numrows)."</a></h4>";
                   break;
 
                case "observed":
@@ -4426,9 +4424,9 @@ class Ticket extends CommonITILObject {
                   $options['criteria'][1]['value']      = 'mygroups';
                   $options['criteria'][1]['link']       = 'AND';
 
-                  echo "<a href=\"".$CFG_GLPI["root_doc"]."/front/ticket.php?".
+                  echo "<h4><a href=\"".$CFG_GLPI["root_doc"]."/front/ticket.php?".
                          Toolbox::append_params($options,'&amp;')."\">".
-                         Html::makeTitle(__('Your observed tickets'), $number, $numrows)."</a>";
+                         Html::makeTitle(__('Your observed tickets'), $number, $numrows)."</a></h4>";
                   break;
 
                case "requestbyself" :
@@ -4443,9 +4441,9 @@ class Ticket extends CommonITILObject {
                   $options['criteria'][1]['value']      = 'mygroups';
                   $options['criteria'][1]['link']       = 'AND';
 
-                  echo "<a href=\"".$CFG_GLPI["root_doc"]."/front/ticket.php?".
+                  echo "<h4><a href=\"".$CFG_GLPI["root_doc"]."/front/ticket.php?".
                          Toolbox::append_params($options,'&amp;')."\">".
-                         Html::makeTitle(__('Your tickets in progress'), $number, $numrows)."</a>";
+                         Html::makeTitle(__('Your tickets in progress'), $number, $numrows)."</a></h4>";
             }
 
          } else {
@@ -4461,9 +4459,9 @@ class Ticket extends CommonITILObject {
                   $options['criteria'][1]['value']      = Session::getLoginUserID();
                   $options['criteria'][1]['link']       = 'AND';
 
-                  echo "<a href=\"".$CFG_GLPI["root_doc"]."/front/ticket.php?".
+                  echo "<h4><a href=\"".$CFG_GLPI["root_doc"]."/front/ticket.php?".
                          Toolbox::append_params($options,'&amp;')."\">".
-                         Html::makeTitle(__('Tickets on pending status'), $number, $numrows)."</a>";
+                         Html::makeTitle(__('Tickets on pending status'), $number, $numrows)."</a></h4>";
                   break;
 
                case "process" :
@@ -4477,9 +4475,9 @@ class Ticket extends CommonITILObject {
                   $options['criteria'][1]['value']      = 'process';
                   $options['criteria'][1]['link']       = 'AND';
 
-                  echo "<a href=\"".$CFG_GLPI["root_doc"]."/front/ticket.php?".
+                  echo "<h4><a href=\"".$CFG_GLPI["root_doc"]."/front/ticket.php?".
                          Toolbox::append_params($options,'&amp;')."\">".
-                         Html::makeTitle(__('Tickets to be processed'), $number, $numrows)."</a>";
+                         Html::makeTitle(__('Tickets to be processed'), $number, $numrows)."</a></h4>";
                   break;
 
                case "tovalidate" :
@@ -4499,9 +4497,9 @@ class Ticket extends CommonITILObject {
                   $options['criteria'][2]['link']       = 'AND NOT';
                   $forcetab                 = 'TicketValidation$1';
 
-                  echo "<a href=\"".$CFG_GLPI["root_doc"]."/front/ticket.php?".
+                  echo "<h4><a href=\"".$CFG_GLPI["root_doc"]."/front/ticket.php?".
                         Toolbox::append_params($options,'&amp;')."\">".
-                        Html::makeTitle(__('Your tickets to validate'), $number, $numrows)."</a>";
+                        Html::makeTitle(__('Your tickets to validate'), $number, $numrows)."</a></h4>";
 
                   break;
 
@@ -4516,9 +4514,9 @@ class Ticket extends CommonITILObject {
                   $options['criteria'][1]['value']      = Session::getLoginUserID();
                   $options['criteria'][1]['link']       = 'AND';
 
-                  echo "<a href=\"".$CFG_GLPI["root_doc"]."/front/ticket.php?".
+                  echo "<h4><a href=\"".$CFG_GLPI["root_doc"]."/front/ticket.php?".
                         Toolbox::append_params($options,'&amp;')."\">".
-                        Html::makeTitle(__('Your rejected tickets'), $number, $numrows)."</a>";
+                        Html::makeTitle(__('Your rejected tickets'), $number, $numrows)."</a></h4>";
 
                   break;
 
@@ -4545,9 +4543,9 @@ class Ticket extends CommonITILObject {
 
                   $forcetab                 = 'Ticket$2';
 
-                  echo "<a href=\"".$CFG_GLPI["root_doc"]."/front/ticket.php?".
+                  echo "<h4><a href=\"".$CFG_GLPI["root_doc"]."/front/ticket.php?".
                         Toolbox::append_params($options,'&amp;')."\">".
-                        Html::makeTitle(__('Your tickets to close'), $number, $numrows)."</a>";
+                        Html::makeTitle(__('Your tickets to close'), $number, $numrows)."</a></h4>";
                   break;
 
                case "observed" :
@@ -4561,9 +4559,9 @@ class Ticket extends CommonITILObject {
                   $options['criteria'][1]['value']      = 'notold';
                   $options['criteria'][1]['link']       = 'AND';
 
-                  echo "<a href=\"".$CFG_GLPI["root_doc"]."/front/ticket.php?".
+                  echo "<h4><a href=\"".$CFG_GLPI["root_doc"]."/front/ticket.php?".
                         Toolbox::append_params($options,'&amp;')."\">".
-                        Html::makeTitle(__('Your observed tickets'), $number, $numrows)."</a>";
+                        Html::makeTitle(__('Your observed tickets'), $number, $numrows)."</a></h4>";
                   break;
 
                case "requestbyself" :
@@ -4578,15 +4576,17 @@ class Ticket extends CommonITILObject {
                   $options['criteria'][1]['value']      = 'notold';
                   $options['criteria'][1]['link']       = 'AND';
 
-                  echo "<a href=\"".$CFG_GLPI["root_doc"]."/front/ticket.php?".
+                  echo "<h4><a href=\"".$CFG_GLPI["root_doc"]."/front/ticket.php?".
                         Toolbox::append_params($options,'&amp;')."\">".
-                        Html::makeTitle(__('Your tickets in progress'), $number, $numrows)."</a>";
+                        Html::makeTitle(__('Your tickets in progress'), $number, $numrows)."</a></h4>";
             }
          }
 
-         echo "</th></tr>";
+
          if ($number) {
-            echo "<tr><th></th>";
+         echo "<table class='table table-striped table-bordered table-hover'>";
+         echo "<tr class='noHover'>";
+             echo "<th>".__('Requester')."</th>";
             echo "<th>".__('Requester')."</th>";
             echo "<th>"._n('Associated element', 'Associated elements', Session::getPluralNumber())."</th>";
             echo "<th>".__('Description')."</th></tr>";
@@ -4594,8 +4594,9 @@ class Ticket extends CommonITILObject {
                $ID = $DB->result($result, $i, "id");
                self::showVeryShort($ID, $forcetab);
             }
+              echo "</table>";
          }
-         echo "</table>";
+       
 
       }
    }
@@ -4678,20 +4679,22 @@ class Ticket extends CommonITILObject {
       $options['criteria'][0]['value']      = 'process';
       $options['criteria'][0]['link']       = 'AND';
       $options['reset']         ='reset';
-
-      echo "<table class='table table-striped table-hover' >";
-      echo "<tr class='noHover'><th colspan='2'>";
-
-      if ($_SESSION["glpiactiveprofile"]["interface"] != "central") {
-         echo "<a href=\"".$CFG_GLPI["root_doc"]."/front/helpdesk.public.php?create_ticket=1\">".
-                __('Create a ticket')."&nbsp;<img src='".$CFG_GLPI["root_doc"].
-                "/pics/menu_add.png' title=\"". __s('Add')."\" alt=\"".__s('Add')."\"></a>";
-      } else {
-         echo "<a href=\"".$CFG_GLPI["root_doc"]."/front/ticket.php?".
-                Toolbox::append_params($options,'&amp;')."\">".__('Ticket followup')."</a>";
-      }
-      echo "</th></tr>";
-      echo "<tr><th>"._n('Ticket','Tickets', Session::getPluralNumber())."</th><th>"._x('quantity', 'Number')."</th></tr>";
+      echo '<h3>';
+      echo __('Your tickets');
+      echo '</h3>';
+      
+      //if ($_SESSION["glpiactiveprofile"]["interface"] != "central") {
+      //   echo "<a href=\"".$CFG_GLPI["root_doc"]."/front/helpdesk.public.php?create_ticket=1\">".
+      //          __('Create a ticket')."&nbsp;<img src='".$CFG_GLPI["root_doc"].
+      //          "/pics/menu_add.png' title=\"". __s('Add')."\" alt=\"".__s('Add')."\"></a>";
+      //} else {
+      //   echo "<a href=\"".$CFG_GLPI["root_doc"]."/front/ticket.php?".
+      //          Toolbox::append_params($options,'&amp;')."\">".__('Ticket followup')."</a>";
+      //}
+      
+      
+      echo "<table class='table table-striped table-bordered table-hover' >";
+      echo "<tr><th>".__('Status')."</th><th class='text-right'>"._x('quantity', 'Number')."</th></tr>";
 
       foreach ($status as $key => $val) {
          $options['criteria'][0]['value'] = $key;

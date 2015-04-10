@@ -68,10 +68,17 @@ if (isset($_POST["itemtype"])
 
    echo "<div class='metacriteria' id='$rowid'>";
    
+      echo '<div class="row spaceafter">';
+   echo '<div class="col-lg-12">';
+        echo '<button class="btn btn-info btn-xs" onclick="'.Html::jsGetElementbyID($rowid).'.remove();">';
+      echo ' <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>';
+      echo __s('Delete a search criterion');
+      echo '</button>';
+   echo '</div>';
+   echo '</div>';
+      echo '<div class="row spaceafter">';
+   echo '<div class="col-lg-12">';
 
-   echo "<img class='pointer' src=\"".$CFG_GLPI["root_doc"]."/pics/meta_moins.png\" alt='-' title=\"".
-          __s('Delete a global search criterion')."\" onclick=\"".
-          Html::jsGetElementbyID($rowid).".remove();\">";
 
 
    // Display link item (not for the first item)
@@ -115,5 +122,7 @@ if (isset($_POST["itemtype"])
       Ajax::updateItem("show_".$_POST["itemtype"]."_".$_POST["num"]."_$rand", $CFG_GLPI["root_doc"]."/ajax/updateMetaSearch.php", $params);
    }
    echo '</div>';
+    echo '</div>';
+     echo '</div>';
 }
 ?>

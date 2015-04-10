@@ -177,10 +177,9 @@ class Central extends CommonGLPI {
                             __('MySQL replica: read only'));
       }
 
-      echo "<table class='table'>";
-
-      echo "<tr class='noHover'><td class='top' width='50%'><table class='central'>";
-      echo "<tr class='noHover'><td>";
+      echo '<div class="row">';
+      echo '<div class="col-lg-6">';
+      echo '<div class="inner padding">';
       if (Session::haveRightsOr('ticketvalidation', TicketValidation::getValidateRights())) {
          Ticket::showCentralList(0,"tovalidate",false);
       }
@@ -198,17 +197,19 @@ class Central extends CommonGLPI {
       if ($showproblem) {
          Problem::showCentralList(0, "process", false);
       }
-      echo "</td></tr>";
-      echo "</table></td>";
-      echo "<td class='top'  width='50%'><table class='central'>";
-      echo "<tr class='noHover'><td>";
+      echo '</div>';
+      echo '</div>';
+      echo '<div class="col-lg-6">';
+      echo '<div class="inner padding">';
+
       Planning::showCentral(Session::getLoginUserID());
       Reminder::showListForCentral();
       if (Session::haveRight("reminder_public", READ)) {
          Reminder::showListForCentral(false);
       }
-      echo "</td></tr>";
-      echo "</table></td></tr></table>";
+      echo '</div>';
+      echo '</div>';
+       echo '</div>';
    }
 
 

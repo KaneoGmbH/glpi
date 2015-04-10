@@ -56,13 +56,13 @@ if (isset($_POST["itemtype"])
    echo '<div class="col-lg-12">';
    // First line display add / delete images for normal and meta search items
    if ($_POST["num"] == 0) {
-       echo '<div class="btn-toolbar" role="toolbar">';
-      echo '<div class="btn-group" role="group">';
+ 
       $linked = Search::getMetaItemtypeAvailable($_POST["itemtype"]);
       echo '<button class="btn btn-info btn-xs" id="addsearchcriteria'.$randrow.'">';
-      //echo __s('Add a search criterion');
+
       echo ' <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>';
-      echo '</button>';
+            echo __s('Add a search criterion');
+      echo '</button> ';
 
 
       $js = Html::jsGetElementbyID("addsearchcriteria$randrow").".on('click', function(e) {
@@ -80,9 +80,10 @@ if (isset($_POST["itemtype"])
       if (is_array($linked) && (count($linked) > 0)) {
           
           echo '<button class="btn btn-info btn-xs" id="addmetasearchcriteria'.$randrow.'">';
-            //echo __s('Add a global search criterion');
                   echo ' <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>';
-          echo '</button>';
+                              echo __s('Add a global search criterion');
+
+          echo '</button> ';
           
          $js = Html::jsGetElementbyID("addmetasearchcriteria$randrow").".on('click', function(e) {
              e.preventDefault();
@@ -95,7 +96,7 @@ if (isset($_POST["itemtype"])
          echo Html::scriptBlock($js);
 
          }
-    echo '</div>';
+   
 
       // Instanciate an object to access method
       $item = NULL;
@@ -103,20 +104,20 @@ if (isset($_POST["itemtype"])
          $item = getItemForItemtype($_POST["itemtype"]);
       }
       if ($item && $item->maybeDeleted()) {
-          echo '<div class="btn-group" role="group">';
+        
          echo "<input type='hidden' id='is_deleted' name='is_deleted' value='".$p['is_deleted']."'>";
          echo "<button class='btn btn-info btn-xs' onClick = \"toogle('is_deleted','','',''); document.forms['searchform".$_POST["itemtype"]."'].submit();\">";
           echo ' <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>';
          echo !$p['is_deleted']?__s('Show the dustbin'):__s("Don't show deleted items");
-         echo '</button>';
-         echo '</div>';
+         echo '</button> ';
+         
    
     
       }
       
-      echo '</div>';
+    
    } else {
-     echo '<button class="btn btn-info btn-xs" onclick="'.Html::jsGetElementbyID($rowid).'.remove();">';
+     echo '<button class="btn btn-info btn-xs" onclick="'.Html::jsGetElementbyID($rowid).'.remove();"> ';
       //echo __s('Add a search criterion');
       echo ' <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>';
       echo __s('Delete a search criterion');

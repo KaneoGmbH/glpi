@@ -1235,7 +1235,7 @@ class Html {
     * @param $item      item corresponding to the page displayed (default 'none')
     * @param $option    option corresponding to the page displayed (default '')
    **/
-   static function header($title, $url='', $sector="none", $item="none", $option="",$returnTemplate = false) {
+   static function header($title, $url='', $sector="none", $item="none", $option="",$returnTemplate = false,$target= '') {
       global $CFG_GLPI, $PLUGIN_HOOKS, $HEADER_LOADED, $DB;
 
       // If in modal : display popHeader
@@ -1499,8 +1499,9 @@ class Html {
                }
            }
         }
-        $target = $CFG_GLPI["root_doc"]."/front/central.php";
-
+        if(!isset($target)){
+            $target = $CFG_GLPI["root_doc"]."/front/central.php";
+        }
         if (Session::isMultiEntitiesMode()) {
 
             $options = array(
@@ -1694,10 +1695,11 @@ class Html {
             return;
         }
         
-        $header = static::header($title,$url,'none','none','',true);
+        $target = $CFG_GLPI["root_doc"].'/front/helpdesk.public.php'; 
+        $header = static::header($title,$url,'none','none','',true,$target);
         
         $header->assign('showSearch',false);
-        $header->assign('homePage',$CFG_GLPI["root_doc"].'/front/helpdesk.public.php');
+        $header->assign('homePage',$target);
        /**
         * overwrite help url
         */

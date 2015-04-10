@@ -106,6 +106,7 @@
                 </div>
             </div>
             <div class="row">
+                <?php if($this->actionMenu): ?>
                 <div class="col-lg-6">
                     <div class="btn-toolbar" role="toolbar" aria-label="...">
                         <div class="btn-group" role="group" aria-label="...">
@@ -118,6 +119,7 @@
                         </div>
                     </div>
                 </div>
+                <?php endif; ?>
                 <div class="col-lg-6">
                     <ul class="breadcrumb">
                         <?php foreach ($this->breadcrumbItems as $item): ?>

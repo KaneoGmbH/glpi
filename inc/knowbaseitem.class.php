@@ -1497,15 +1497,18 @@ EOT;
       $number = $DB->numrows($result);
 
       if ($number > 0) {
-         echo "<table class='table table-striped table-hover'>";
-         echo "<tr class='noHover'><th>".$title."</th></tr>";
+          echo '<h3>';
+         echo $title;
+         echo '</h3>';
+         echo "<table class='table table-striped table-bordered'>";
+         
          while ($data = $DB->fetch_assoc($result)) {
             $name = $data['name'];
 
             if (isset($data['transname']) && !empty($data['transname'])) {
                $name = $data['transname'];
             }
-            echo "<tr ><td class='left'>";
+            echo "<tr><td class='left'>";
             echo "<a ".($data['is_faq']?" class='pubfaq' ":" class='knowbase' ")." href=\"".
                   $CFG_GLPI["root_doc"]."/front/knowbaseitem.form.php?id=".$data["id"]."\">".
                   Html::resume_text($name,80)."</a></td></tr>";

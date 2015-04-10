@@ -1708,13 +1708,16 @@ class Search {
       foreach ($params as $key => $val) {
          $p[$key] = $val;
       }
+      if(isset($_GET['criteria'])){
+          $class = 'in';
+      }
       echo '<div class="panel panel-default" id="filter">';
         echo '<div class="panel-heading">';
         echo '<a data-toggle="collapse" data-parent="#filter" href="#collapseFilter" aria-expanded="true" aria-controls="collapseFilter">';
             echo __('Filter');
         echo '</a>';
         echo '</div>';
-      echo '<div id="collapseFilter" class="panel-collapse collapse">';
+      echo '<div id="collapseFilter" class="panel-collapse collapse '.$class.'">';
       echo '<div class="panel-body">';
       echo "<form name='searchform$itemtype' method='get' action=\"".$p['target']."\">";
 
@@ -1744,7 +1747,7 @@ class Search {
 
             $_POST['itemtype'] = $itemtype;
             $_POST['num'] = $i ;
-          //  include(GLPI_ROOT.'/ajax/searchmetarow.php');
+            include(GLPI_ROOT.'/ajax/searchmetarow.php');
          }
       }
 
@@ -1759,7 +1762,7 @@ class Search {
            }
 
            if ($p['showreset']) {
-              echo "<a class='btn btn-warning btn-sm' href='".$p['target'].(strpos($p['target'],'?') ? '&amp;' : '?')."reset=reset' >";
+              echo " <a class='btn btn-warning btn-sm' href='".$p['target'].(strpos($p['target'],'?') ? '&amp;' : '?')."reset=reset' >";
               echo __s('Reset');
               echo "</a>";
            }

@@ -1071,8 +1071,7 @@ class Reminder extends CommonDBTM {
       $result = $DB->query($query);
       $nb     = $DB->numrows($result);
 
-      echo "<br><table class='table table-striped table-hover'>";
-      echo "<tr class='noHover'><th><div class='relative'><span>$titre</span>";
+
 
       if (($personal && self::canCreate()) 
         || (!$personal && Session::haveRight(self::$rightname, CREATE))) {
@@ -1082,10 +1081,12 @@ class Reminder extends CommonDBTM {
                 title=\"". __s('Add')."\"></a></span>";
       }
 
-      echo "</div></th></tr>\n";
+  
 
       if ($nb) {
-         $rand = mt_rand();
+      echo "<br><table class='table table-striped table-hover'>";
+      echo "<tr class='noHover'><th><div class='relative'><span>$titre</span>";
+          $rand = mt_rand();
 
          while ($data = $DB->fetch_assoc($result)) {
             echo "<tr ><td>";
@@ -1113,9 +1114,12 @@ class Reminder extends CommonDBTM {
 
             echo "</td></tr>\n";
          }
+    echo "</div></th></tr>\n";
+          echo "</table>\n";  
+    
+            }
+      
 
-      }
-      echo "</table>\n";
 
    }
 

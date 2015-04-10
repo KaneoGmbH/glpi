@@ -879,7 +879,7 @@ class Bookmark extends CommonDBTM {
    static function showSaveButton($type, $itemtype=0) {
       global $CFG_GLPI;
 
-      echo " <button class='btn btn-info btn-sm' href='#' onClick=\"".Html::jsGetElementbyID('bookmarksave').".dialog('open');\">";
+      echo " <button class='btn btn-info btn-sm' href='#' onClick=\"".Html::jsGetElementbyID('bookmarksave').".dialog('open'); return false; \">";
       echo __s('Save as bookmark');
       echo "</button>";
       Ajax::createIframeModalWindow('bookmarksave',

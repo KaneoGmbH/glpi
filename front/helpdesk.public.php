@@ -36,7 +36,7 @@ include ('../inc/includes.php');
 // Change profile system
 if (isset($_REQUEST['newprofile'])) {
    if (isset($_SESSION["glpiprofiles"][$_REQUEST['newprofile']])) {
-      Session::changeProfile($_POST['newprofile']);
+      Session::changeProfile($_REQUEST['newprofile']);
 
       if ($_SESSION["glpiactiveprofile"]["interface"] == "central") {
          Html::redirect($CFG_GLPI['root_doc']."/front/central.php");
@@ -95,49 +95,32 @@ if (isset($_GET['create_ticket'])) {
 
 } else {
    Html::helpHeader(__('Home'), $_SERVER['PHP_SELF'], $_SESSION["glpiname"]);
-   echo "<table class='table'><tr class='noHover'>";
-   echo "<td class='top' width='50%'><br>";
-   echo "<table class='central'>";
+   echo '<div class="row">';
+   echo '<div class="col-lg-6">';
    if (Session::haveRight('ticket', CREATE)) {
-      echo "<tr class='noHover'><td class='top'>";
       Ticket::showCentralCount(true);
-      echo "</td></tr>";
    }
 
    if (Session::haveRight("reminder_public", READ)) {
-      echo "<tr class='noHover'><td class='top'>";
       Reminder::showListForCentral(false);
-      echo "</td></tr>";
    }
 
    if (Session::haveRight("rssfeed_public", READ)) {
-      echo "<tr class='noHover'><td class='top'>";
       RSSFeed::showListForCentral(false);
-      echo "</td></tr>";
    }
-   echo "</table></td>";
 
-   echo "<td class='top' width='50%'><br>";
-   echo "<table class='central'>";
+
+   echo '</div>';
+   echo '<div class="col-lg-6">';
 
    // Show KB items
    if (Session::haveRight('knowbase', KnowbaseItem::READFAQ)) {
-      echo "<tr class='noHover'><td class='top'>";
       KnowbaseItem::showRecentPopular("popular");
-      echo "</td></tr>";
-      echo "<tr class='noHover'><td class='top'><br>";
       KnowbaseItem::showRecentPopular("recent");
-      echo "</td></tr>";
-      echo "<tr class='noHover'><td class='top'><br>";
       KnowbaseItem::showRecentPopular("lastupdate");
-      echo "</td></tr>";
-   } else {
-      echo "<tr><td>&nbsp;</td></tr>";
    }
 
-   echo "</table>";
-   echo "</td>";
-   echo "</tr></table>";
+   echo '</div>';
 
 }
 

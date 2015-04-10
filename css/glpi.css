@@ -92,3 +92,11 @@ form[role=login] > div {
     float:left;
     margin-right:10px;
 }
+
+.tab-content .firstbloc {
+    padding:15px;
+}
+
+.inner.padding {
+    padding:15px;
+}
