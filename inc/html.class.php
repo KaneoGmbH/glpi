@@ -4378,7 +4378,7 @@ class Html {
 
       // Set default class to submit
       if (!isset($options['class'])) {
-         $options['class'] = 'submit';
+         $options['class'] = 'submit btn btn-primary';
       }
       if (isset($options['confirm'])) {
          if (!empty($options['confirm'])) {

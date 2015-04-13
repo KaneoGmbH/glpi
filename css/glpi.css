@@ -100,3 +100,11 @@ form[role=login] > div {
 .inner.padding {
     padding:15px;
 }
+
+
+.center {
+    text-align: center;
+}
+.center > * {
+    text-align:left;
+}

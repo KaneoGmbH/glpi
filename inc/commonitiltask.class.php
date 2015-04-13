@@ -1349,12 +1349,13 @@ abstract class CommonITILTask  extends CommonDBTM {
                          'id'                        => -1);
          Ajax::updateItemJsCode("viewfollowup" . $item->fields['id'] . "$rand",
                                 $CFG_GLPI["root_doc"]."/ajax/viewsubitem.php", $params);
+         echo "$('#addButton$tID$rand').hide();";
          echo "};";
          echo "</script>\n";
          if (($item->fields["status"] != CommonITILObject::SOLVED)
              && ($item->fields["status"] != CommonITILObject::CLOSED)) {
-            echo "<div class='center'>".
-                 "<a class='btn btn-info btn-xs' href='javascript:viewAddTask".$item->fields['id']."$rand();'>";
+            echo "<div class='center firstbloc'>".
+                 "<a class='btn btn-info btn-xs' id='addButton$tID$rand' href='javascript:viewAddTask".$item->fields['id']."$rand();'>";
             echo __('Add a new task')."</a></div><br>\n";
          }
       }

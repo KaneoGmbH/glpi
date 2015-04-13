@@ -1755,22 +1755,24 @@ class Search {
 
       // Display submit button
       echo '<div class="row">';
-        echo '<div class="col-lg-6">';
+        echo '<div class="col-lg-12">';
         if ($p['showbookmark'] || $p['showreset']) {
-           if ($p['showbookmark']) {
-              Bookmark::showSaveButton(Bookmark::SEARCH, $itemtype);
-           }
-
-           if ($p['showreset']) {
+           
+            if ($p['showreset']) {
               echo " <a class='btn btn-warning btn-sm' href='".$p['target'].(strpos($p['target'],'?') ? '&amp;' : '?')."reset=reset' >";
               echo __s('Reset');
               echo "</a>";
            }
+           
+            if ($p['showbookmark']) {
+              Bookmark::showSaveButton(Bookmark::SEARCH, $itemtype);
+           }
+
+
         }
+        echo " <button type='submit' name='".$p['actionname']."' class='btn btn-primary btn-sm' >".$p['actionvalue'].'</button>';
         echo '</div>';
-        echo '<div class="col-lg-6 text-right">';
-              echo "<input type='submit' name='".$p['actionname']."' value=\"".$p['actionvalue']."\" class='btn btn-primary' >";
-        echo '</div>';
+
       echo '</div>';
       
       if (count($p['addhidden'])) {

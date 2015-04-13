@@ -4128,27 +4128,28 @@ class Ticket extends CommonITILObject {
                 || $this->canDeleteItem()
                 || $this->canUpdateItem()) {
                echo "<td class='tab_bg_2 center' colspan='4'>";
-               if ($this->fields["is_deleted"] == 1) {
-                  if (self::canPurge()) {
-                     echo "<input type='submit' class='btn btn-primary' name='restore' value='".
-                            _sx('button', 'Restore')."'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-                  }
-               } else {
-                  if (self::canUpdate() ) {
-                     echo "<input type='submit' class='btn btn-primary' name='update' value='".
-                            _sx('button', 'Save')."'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-                  }
-               }
+              
                if ($this->fields["is_deleted"] == 1) {
                   if (self::canPurge()) {
                      echo "<input type='submit' class='btn btn-primary' name='purge' value='".
                             _sx('button', 'Delete permanently')."' ".
-                            Html::addConfirmationOnAction(__('Confirm the final deletion?')).">";
+                            Html::addConfirmationOnAction(__('Confirm the final deletion?'))."> ";
                   }
                } else {
                   if (self::canDelete()) {
-                     echo "<input type='submit' class='btn btn-primary' name='delete' value='".
-                            _sx('button', 'Put in dustbin')."'>";
+                     echo "<input type='submit' class='btn btn-warning btn-sm' name='delete' value='".
+                            _sx('button', 'Put in dustbin')."'> ";
+                  }
+               }
+                if ($this->fields["is_deleted"] == 1) {
+                  if (self::canPurge()) {
+                     echo "<input type='submit' class='btn btn-primary' name='restore' value='".
+                            _sx('button', 'Restore')."'> ";
+                  }
+               } else {
+                  if (self::canUpdate() ) {
+                     echo "<input type='submit' class='btn btn-primary' name='update' value='".
+                            _sx('button', 'Save')."'> ";
                   }
                }
                echo "<input type='hidden' name='_read_date_mod' value='".$this->getField('date_mod')."'>";

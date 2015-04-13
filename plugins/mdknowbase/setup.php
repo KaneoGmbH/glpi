@@ -27,7 +27,7 @@ function plugin_init_mdknowbase() {
 	$PLUGIN_HOOKS['csrf_compliant']['mdknowbase'] = true;
         $PLUGIN_HOOKS['add_javascript']['mdknowbase'] = array("highlight.min.js","scripts.js");
 
-        $PLUGIN_HOOKS['add_css']['mdknowbase']="highlight.min.css";
+        $PLUGIN_HOOKS['add_css']['mdknowbase']="highlight.css";
             
         //Plugin::registerClass('PluginMdKnowbase');
                 
