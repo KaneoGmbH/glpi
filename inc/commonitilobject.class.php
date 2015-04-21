@@ -2989,8 +2989,8 @@ abstract class CommonITILObject extends CommonDBTM {
                   $icontitle = __s('Technician');
                   break;
             }
-            return "<img width=20 src='".$CFG_GLPI['root_doc']."/pics/users.png'
-                     alt=\"$icontitle\" title=\"$icontitle\">";
+            return '<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="left" title="'.$icontitle.'"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></button>';
+            //return "<i class=""><img width=20 src='".$CFG_GLPI['root_doc']."/pics/users.png' alt=\"$icontitle\" title=\"$icontitle\">";
 
          case 'group' :
             $icontitle = __('Group');
@@ -3007,8 +3007,8 @@ abstract class CommonITILObject extends CommonDBTM {
                   $icontitle = __('Group in charge of the ticket');
                   break;
             }
-            return  "<img width=20 src='".$CFG_GLPI['root_doc']."/pics/groupes.png'
-                      alt=\"$icontitle\" title=\"$icontitle\">";
+            return '<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="left" title="'.$icontitle.'"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></button>';
+            // return  "<img width=20 src='".$CFG_GLPI['root_doc']."/pics/groupes.png' alt=\"$icontitle\" title=\"$icontitle\">";
 
          case 'supplier' :
             $icontitle = __('Supplier');
@@ -3574,7 +3574,7 @@ abstract class CommonITILObject extends CommonDBTM {
              && !$is_hidden['_users_id_requester']) {
             $this->showActorAddFormOnCreate(CommonITILActor::REQUESTER, $options);
             $reqdisplay = true;
-         } else {
+             } else {          
             $delegating = User::getDelegateGroupsForUser($options['entities_id']);
             if (count($delegating)
                 && !$is_hidden['_users_id_requester']) {
