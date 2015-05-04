@@ -848,15 +848,13 @@ class Problem extends CommonITILObject {
       $options['criteria'][0]['value']      = 'process';
       $options['criteria'][0]['link']       = 'AND';
       $options['reset']                     ='reset';
-
+      
+      echo '<div class="panel-body"><h4>';
+      echo __('Problems');
+      echo '</h4></div>';
+      
       echo "<table class='table table-striped table-hover' >";
-      echo "<tr class='noHover'><th colspan='2'>";
-
-      echo "<a href=\"".$CFG_GLPI["root_doc"]."/front/problem.php?".
-               Toolbox::append_params($options,'&amp;')."\">".__('Problem followup')."</a>";
-
-      echo "</th></tr>";
-      echo "<tr><th>"._n('Problem','Problems', Session::getPluralNumber())."</th><th>"._x('quantity', 'Number')."</th></tr>";
+      echo "<tr><th>"._n('Problem','Problems', Session::getPluralNumber())."</th><th class='text-right'>"._x('quantity', 'Number')."</th></tr>";
 
       foreach ($status as $key => $val) {
          $options['criteria'][0]['value'] = $key;

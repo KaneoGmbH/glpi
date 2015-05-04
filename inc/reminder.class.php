@@ -1072,27 +1072,16 @@ class Reminder extends CommonDBTM {
       $nb     = $DB->numrows($result);
 
 
-
-      if (($personal && self::canCreate()) 
-        || (!$personal && Session::haveRight(self::$rightname, CREATE))) {
-         echo "<span class='floatright'>";
-         echo "<a href='".$CFG_GLPI["root_doc"]."/front/reminder.form.php'>";
-         echo "<img src='".$CFG_GLPI["root_doc"]."/pics/plus.png' alt='".__s('Add')."'
-                title=\"". __s('Add')."\"></a></span>";
-      }
-
-  
+ 
 
       if ($nb) {
-      echo "<br><table class='table table-striped table-hover'>";
+      echo "<table class='table table-striped table-hover'>";
       echo "<tr class='noHover'><th><div class='relative'><span>$titre</span>";
           $rand = mt_rand();
 
          while ($data = $DB->fetch_assoc($result)) {
             echo "<tr ><td>";
-            $link = "<a id='content_reminder_".$data["id"].$rand."'
-                      href='".$CFG_GLPI["root_doc"]."/front/reminder.form.php?id=".$data["id"]."'>".
-                      $data["name"]."</a>";
+            $link = "<a id='content_reminder_".$data["id"].$rand."'href='".$CFG_GLPI["root_doc"]."/front/reminder.form.php?id=".$data["id"]."'>". $data["name"]."</a>";
 
             $tooltip = Html::showToolTip(Toolbox::unclean_html_cross_side_scripting_deep($data["text"]),
                                          array('applyto' => "content_reminder_".$data["id"].$rand,
@@ -1102,14 +1091,13 @@ class Reminder extends CommonDBTM {
             if ($data["is_planned"]) {
                $tab      = explode(" ",$data["begin"]);
                $date_url = $tab[0];
+               echo '<br>';
+               echo printf(__s('From %1$s to %2$s'),Html::convDateTime($data["begin"]), Html::convDateTime($data["end"])); 
                echo "<span class='floatright'>";
                echo "<a href='".$CFG_GLPI["root_doc"]."/front/planning.php?date=".$date_url.
                      "&amp;type=day'>";
-               echo "<img src='".$CFG_GLPI["root_doc"]."/pics/rdv.png' alt=\"". __s('Planning').
-                     "\" title=\"".sprintf(__s('From %1$s to %2$s'),
-                                           Html::convDateTime($data["begin"]),
-                                           Html::convDateTime($data["end"]))."\">";
-               echo "</a></span>";
+               echo '<i class="glyphicon glyphicon-time"></i>';
+               echo "</span>";
             }
 
             echo "</td></tr>\n";

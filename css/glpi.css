@@ -7,15 +7,37 @@ and open the template in the editor.
     Created on : 15.03.2015, 17:59:23
     Author     : ubka
 */
+
+html {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color:#F7F9FA;
+}
+
 .container-search {
-    background-color: #E7E7E7;
-    border-color: #E7E7E7;
+    background-color: #F7F9FA;
+    border-color: #F7F9FA;
+}
+footer {
+    padding:15px;
+    background-color: #F7F9FA;
+    border-color: #F7F9FA;
+}
+.navbar-default {
+    background-color: #fff;
+    border-color: #F7F9FA;
+    margin-bottom: 0;
 }
 
 .navbar-brand {
     padding:8px;
 }
 
+.spacer {
+    margin-bottom: 15px;
+}
 /** Icon mapping */
 
 
@@ -32,10 +54,10 @@ and open the template in the editor.
 .tab-content {
     border: 1px solid #ddd;
     border-top: none;
+    background-color:#fff;
 }
 
 /* Login Form */
-
 
 .login-form {
     margin-top: 60px;
@@ -107,4 +129,15 @@ form[role=login] > div {
 }
 .center > * {
     text-align:left;
+}
+
+.glpi-breadcrumb {
+    background-color: #F7F9FA;
+    margin-bottom: 20px;
+}
+
+.breadcrumb {
+    margin:0;
+    font-size:10px;
+    background-color:transparent;
 }

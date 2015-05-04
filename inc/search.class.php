@@ -1089,10 +1089,12 @@ class Search {
    static function displayDatas(array &$data) {
       global $CFG_GLPI;
 
+
       $rand = mt_rand();
       if (!isset($data['data']) || !isset($data['data']['totalcount'])) {
          return false;
       }
+      echo '<div class="panel panel-default">';
       // Contruct Pager parameters
       $globallinkto
          = Toolbox::append_params(array('criteria'
@@ -1221,7 +1223,7 @@ class Search {
          if ($data['display_type'] == self::HTML_OUTPUT && $showmassiveactions) { // HTML display - massive modif
             $nbcols++;
          }
-
+        
          // Display List Header
          echo self::showHeader($data['display_type'], $end_display-$begin_display+1, $nbcols);
 
@@ -1423,6 +1425,8 @@ class Search {
       } else {
          echo self::showError($data['display_type']);
       }
+      echo '</div>';
+
    }
 
    /**

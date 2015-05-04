@@ -653,7 +653,7 @@ class TicketFollowup  extends CommonDBTM {
       }
 
       $tID = $ticket->fields['id'];
-
+      
       // Display existing Followups
       $showprivate   = Session::haveRight(self::$rightname, self::SEEPRIVATE);
       $caneditall    = Session::haveRight(self::$rightname, self::UPDATEALL);
@@ -691,7 +691,7 @@ class TicketFollowup  extends CommonDBTM {
       $result = $DB->query($query);
 
       $rand   = mt_rand();
-
+      echo '<div class="container">';
       if ($caneditall || $canadd) {
          echo "<div id='viewfollowup" . $tID . "$rand'></div>\n";
       }
@@ -782,23 +782,19 @@ class TicketFollowup  extends CommonDBTM {
                $color = 'bytech';
             }
 
-            $classtoadd = '';
-            if ($canedit) {
-               $classtoadd = " pointer";
-            }
 
-            echo "<div class='boxnote $color' id='view$id'";
-            echo ">";
+            echo "<div class='media $color' id='view$id'>";
 
-            echo "<div class='boxnoteleft'>";
-            echo "<img class='user_picture_verysmall' alt=\"".__s('Picture')."\" src='".
+            echo "<div class='media-left'>";
+            echo "<img class='media-object' alt=\"".__s('Picture')."\" src='".
                 User::getThumbnailURLForPicture($data['picture'])."'>";
             echo "</div>"; // boxnoteleft
 
-            echo "<div class='boxnotecontent'";
-            echo ">";
-
-            echo "<div class='boxnotefloatright'>";
+            echo "<div class='media-body'>";
+            
+            echo '<div class="row">';
+            echo '<div class="col-md-6">';
+            echo "<h4 class='media-heading'>";
             $username = NOT_AVAILABLE;
             if ($data['users_id']) {
                $username = getUserName($data['users_id'], $showuserlink);
@@ -814,31 +810,33 @@ class TicketFollowup  extends CommonDBTM {
                $name = sprintf(__('%1$s - %2$s'), $name, __('Private'));
             }
             echo $name;
-            echo "</div>"; // floatright
-
-            echo "<div class='boxnotetext $classtoadd'";
-            if ($canedit) {
-               echo " onClick=\"viewEditFollowup".$ticket->fields['id'].
-                        $data['id']."$rand(); ".Html::jsHide("view$id")." ".
-                        Html::jsShow("viewfollowup" . $ticket->fields['id'].$data["id"]."$rand")."\" ";
-            }
-            echo ">";
-            $content = nl2br($data['content']);
-            if (empty($content)) $content = NOT_AVAILABLE;
-            echo $content.'</div>'; // boxnotetext
-
-            echo "</div>"; // boxnotecontent
-            echo "<div class='boxnoteright'>";
+            echo "</h4>"; // floatright
+            echo '</div>';
+            echo '<div class="col-md-6 text-right">';
             if ($candelete) {
                Html::showSimpleForm(Toolbox::getItemTypeFormURL('TicketFollowup'),
                                     array('purge' => 'purge'),
                                     _x('button', 'Delete permanently'),
                                     array('id' => $data['id']),
-                                    $CFG_GLPI["root_doc"]."/pics/delete.png",
+                                    'glyphicon glyphicon-remove',
                                     '',
                                      __('Confirm the final deletion?'));
             }
-            echo "</div>"; // boxnoteright
+            if ($canedit) {
+                echo "<button type='button' class='btn btn-default btn-xs' onClick=\"viewEditFollowup".$ticket->fields['id'].$data['id']."$rand(); ".Html::jsHide("view$id")." ".Html::jsShow("viewfollowup" . $ticket->fields['id'].$data["id"]."$rand")."\">";
+                echo '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit';
+                echo '</button>';                        
+            }
+            echo '</div>';
+            echo '</div>';
+            
+
+            $content = nl2br($data['content']);
+            if (empty($content)) $content = NOT_AVAILABLE;
+            
+            echo $content;
+
+            echo "</div>"; // boxnotecontent
             echo "</div>"; // boxnote
             if ($canedit) {
                echo "<div id='viewfollowup" . $ticket->fields['id'].$data["id"]."$rand' class='starthidden'></div>\n";
@@ -856,6 +854,7 @@ class TicketFollowup  extends CommonDBTM {
             }
          }
       }
+      echo '</div>';
    }
 
 

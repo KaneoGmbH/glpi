@@ -868,12 +868,12 @@ class Contract extends CommonDBTM {
                                            MONTH),CURDATE() )<'30'";
       $result        = $DB->query($query);
       $contractpre30 = $DB->result($result,0,0);
-
+      
+      echo '<div class="panel-body"><h4>';
+      echo __('Contract');
+      echo '</h4></div>';
+      
       echo "<table class='table table-striped table-hover'>";
-      echo "<tr class='noHover'><th colspan='2'>";
-      echo "<a href=\"".$CFG_GLPI["root_doc"]."/front/contract.php?reset=reset\">".
-             self::getTypeName(1)."</a></th></tr>";
-
       echo "<tr >";
 
       $options['reset'] = 'reset';

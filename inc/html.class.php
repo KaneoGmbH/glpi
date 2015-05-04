@@ -577,22 +577,22 @@ class Html {
 
        //todo: dont use img use str insted
       $class = 'alert-info';
-      if ($ref_pic_link!="") {
+      if ($ref_pic_link != "") {
          switch(basename($ref_pic_link)){
-             case 'warning':
+             case 'warning.png':
                  $class = 'alert-warning';
                  break;
-             case 'ok':
+             case 'ok.png':
                  $class = 'alert-success';
                  break;
-             case 'users':
-             case 'groups':
+             case 'users.png':
+             case 'groups.png':
                  $class = 'alert-info';
          }
       }
 
 
-    echo '<div class="panel-body"><div class="alert '.$class.'" role="alert">';
+    echo '<div class="alert '.$class.'" role="alert">';
 
       if ($ref_title != "") {
          echo '<h4>'.$ref_title.'</h4>';
@@ -609,7 +609,7 @@ class Html {
          }
          echo '</ul>';
       }
-       echo '</div></div>';
+       echo '</div>';
    }
 
 
@@ -1431,7 +1431,11 @@ class Html {
         $header->assign('mainMenu',$menu);
         $header->assign('homePage',$CFG_GLPI["root_doc"]."/front/central.php");
         $header->assign('pageTitle',$title);
-        $header->assign('breadcrumbItems',$breadcrumb);
+        if(count($breadcrumb) > 1){
+            $header->assign('breadcrumbItems',$breadcrumb);
+        }else{
+            $header->assign('breadcrumbItems',false);
+        }
         $header->assign('showSearch',true);
 
        //todo: check output
@@ -3841,11 +3845,7 @@ class Html {
       }
       // Do not force class if already defined
       if (!strstr($btoption, 'class=')) {
-         if (empty($btimage)) {
-            $link .= " class='btn btn-info btn-xs' ";
-         } else {
-            $link .= " class='pointer' ";
-         }
+        $link .= " class='btn btn-default btn-xs' ";
       }
       $btlabel = htmlentities($btlabel, ENT_QUOTES, 'UTF-8');
       $action  = " submitGetLink('$action', {" .implode(', ', $javascriptArray) ."});";
@@ -3857,11 +3857,12 @@ class Html {
       }
 
       $link .= '>';
-      if (empty($btimage)) {
-         $link .= $btlabel;
-      } else {
-         $link .= "<img src='$btimage' title='$btlabel' alt='$btlabel'>";
-      }
+    if($btimage){
+        $link .= '<span class="'.$btimage.'" aria-hidden="true"></span>';
+    }
+     
+      $link .= $btlabel;
+
       $link .="</a>";
 
       return $link;

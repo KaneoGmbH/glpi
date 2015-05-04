@@ -73,8 +73,11 @@ if (isset($_GET["redirect"])) {
    Toolbox::manageRedirect($_GET["redirect"]);
 }
 
+
 $central = new Central();
-$central->display();
+$template = new Template();
+$template->assign('central',$central);
+$template->display('dashboard.tpl.php');
 
 Html::footer();
 ?>

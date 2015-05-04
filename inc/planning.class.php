@@ -1056,12 +1056,13 @@ class Planning extends CommonGLPI {
 
       ksort($interv);
 
-      echo "<table class='table table-striped table-hover'><tr class='noHover'><th>";
-      echo "<a href='".$CFG_GLPI["root_doc"]."/front/planning.php?uID=$who'>".__('Your planning').
-           "</a>";
-      echo "</th></tr>";
+
+ 
       $type = '';
       if (count($interv) > 0) {
+            echo "<h4><a href='".$CFG_GLPI["root_doc"]."/front/planning.php?uID=$who'>".__('Your planning')."</a></h4>";
+
+          echo "<table class='table>";
          foreach ($interv as $key => $val) {
             echo "<tr >";
             echo "<td>";
@@ -1074,8 +1075,8 @@ class Planning extends CommonGLPI {
             self::displayPlanningItem($val, $who, 'in');
             echo "</td></tr>\n";
          }
+         echo "</table>";
       }
-      echo "</table>";
    }
 
 

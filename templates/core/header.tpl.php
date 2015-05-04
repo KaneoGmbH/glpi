@@ -34,7 +34,7 @@
         <?php endif; ?>
 
         <div class="container-search">
-            <div class="container-fluid">
+            <div class="container">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="<?php echo $this->homePage; ?>"><img src="<?php echo $this->img('logo.png'); ?>" height="34" alt=""/></a>
                 </div>
@@ -66,7 +66,7 @@
             </div>
         </div>
         <nav class="navbar navbar-default">
-            <div class="container-fluid">
+            <div class="container">
                 <ul class="nav navbar-nav">
                     <?php foreach ($this->mainMenu as $part => $data) : ?>
                         <?php if (isset($data['content']) && count($data['content'])): ?>
@@ -97,17 +97,29 @@
                 </ul>
             </div>
         </nav>
-        <div class="container-fluid">
-            <div class="row">
+        <?php if($this->breadcrumbItems): ?>
+        <div class="glpi-breadcrumb">
+             <div class="container">
+                <ol class="breadcrumb">
+                    <?php foreach ($this->breadcrumbItems as $item): ?>
+                    <li><a href="<?php echo $item['href']; ?>"><?php echo $item['title']; ?></a></li>
+                    <?php endforeach; ?>
+                </ol>
+             </div>
+        </div>
+  
+        <?php endif; ?>
+        <div class="container">
+           <?php if (isset($this->isSlave) && $this->isSlave === true): ?>
+            <div class="row spacer">
                 <div class="col-lg-12">
-                    <?php if (isset($this->isSlave) && $this->isSlave === true): ?>
-                        <div class="alert alert-warning" role="alert"><?php echo __('MySQL replica: read only') ?></div>
-                    <?php endif; ?>
+                    <div class="alert alert-warning" role="alert"><?php echo __('MySQL replica: read only') ?></div>
                 </div>
             </div>
-            <div class="row">
+            <?php endif; ?>
+            <div class="row spacer">
                 <?php if($this->actionMenu): ?>
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <div class="btn-toolbar" role="toolbar" aria-label="...">
                         <div class="btn-group" role="group" aria-label="...">
                             <?php foreach ($this->actionMenu as $item): ?>
@@ -120,11 +132,4 @@
                     </div>
                 </div>
                 <?php endif; ?>
-                <div class="col-lg-6">
-                    <ul class="breadcrumb">
-                        <?php foreach ($this->breadcrumbItems as $item): ?>
-                            <li><a href="<?php echo $item['href']; ?>"><?php echo $item['title']; ?></a></li>
-                        <?php endforeach; ?>
-                    </ul>
-                </div>
             </div>

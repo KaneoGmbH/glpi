@@ -65,7 +65,7 @@ class Template extends Savant3 {
             if(file_exists(GLPI_ROOT.'/templates/custom/images/'.$args[0])){
                 $args[0] = $CFG_GLPI['root_doc'].'/templates/custom/images/'.$args[0];
             }else{
-                $args[0] = $CFG_GLPI['root_doc'].'/pics/'.$args[0];
+                $args[0] = $CFG_GLPI['root_doc'].'/templates/core/images/'.$args[0];
 
             }
         }

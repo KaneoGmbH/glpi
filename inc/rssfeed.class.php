@@ -859,9 +859,6 @@ class RSSFeed extends CommonDBTM {
                          AND `glpi_rssfeeds`.`is_active` = '1'
                    ORDER BY `glpi_rssfeeds`.`name`";
 
-         $titre = "<a href='".$CFG_GLPI["root_doc"]."/front/rssfeed.php'>".
-                    _n('Personal RSS feed', 'Personal RSS feeds', Session::getPluralNumber())."</a>";
-
       } else {
          // Show public rssfeeds / not mines : need to have access to public rssfeeds
          if (!self::canView()) {
@@ -881,12 +878,6 @@ class RSSFeed extends CommonDBTM {
                          AND ".self::addVisibilityRestrict()."
                    ORDER BY `glpi_rssfeeds`.`name`";
 
-         if ($_SESSION['glpiactiveprofile']['interface'] != 'helpdesk') {
-            $titre = "<a href=\"".$CFG_GLPI["root_doc"]."/front/rssfeed.php\">".
-                       _n('Public RSS feed', 'Public RSS feeds', Session::getPluralNumber())."</a>";
-         } else {
-            $titre = _n('Public RSS feed', 'Public RSS feeds', Session::getPluralNumber());
-         }
       }
 
       $result  = $DB->query($query);
@@ -907,56 +898,18 @@ class RSSFeed extends CommonDBTM {
          }
       }
 
+     $template = new Template();
 
       if (($personal && self::canCreate()) 
             || (!$personal && Session::haveRight('rssfeed_public', CREATE))) {
-         echo "<span class='floatright'>";
-         echo "<a href='".$CFG_GLPI["root_doc"]."/front/rssfeed.form.php'>";
-         echo "<img src='".$CFG_GLPI["root_doc"]."/pics/plus.png' alt='".__s('Add')."' title=\"".
-                __s('Add')."\"></a></span>";
+          $template->assign('canAdd',true);
+          $template->assign('canAddUrl',$CFG_GLPI["root_doc"]."/front/rssfeed.form.php");
       }
 
-
       if ($nb) {
-      echo "<br><table class='table table-striped table-hover'>";
-      echo "<tr class='noHover'><th colspan='2'><div class='relative'><span>$titre</span>";
-
           usort($items, array('SimplePie', 'sort_items'));
-         foreach ($items as $item) {
-            echo "<tr ><td>";
-            echo HTML::convDateTime($item->get_date('Y-m-d H:i:s'));
-            echo "</td><td>";
-            $link = $item->feed->get_permalink();
-            if (empty($link)) {
-               echo $item->feed->get_title();
-            } else {
-               echo "<a target='_blank' href='$link'>".$item->feed->get_title().'</a>';
-            }
-            $link = $item->get_permalink();
-//                echo "<br>";
-//                echo $item->get_title();
-//                echo "</td><td>";
-
-            $rand = mt_rand();
-            echo "<div id='rssitem$rand' class='pointer rss'>";
-            if (!is_null($link)) {
-               echo "<a target='_blank' href='$link'>";
-            }
-            echo $item->get_title();
-//                echo Html::resume_text(Html::clean(Toolbox::unclean_cross_side_scripting_deep($item->get_content())), 300);
-            if (!is_null($link)) {
-               echo "</a>";
-            }
-            echo "</div>";
-            Html::showToolTip(Toolbox::unclean_html_cross_side_scripting_deep($item->get_content()),
-                                                                        array('applyto' => "rssitem$rand",
-                                                                              'display' => true));
-            echo "</td></tr>";
-         }
-               echo "</div></th></tr>\n";
-                     echo "</table>\n";
-
-
+          $template->assign('items',$items);
+          $template->display('components/rss-items.tpl.php');
       }
 
    }
