@@ -1094,7 +1094,21 @@ class Search {
       if (!isset($data['data']) || !isset($data['data']['totalcount'])) {
          return false;
       }
+      if ($data['itemtype'] != 'AllAssets') {
+            $showmassiveactions = count(MassiveAction::getAllMassiveActions($data['item'], $data['search']['is_deleted']));
+         } else {
+            $showmassiveactions = true;
+         }
+         $massformid = 'massform'.$data['itemtype'];
+         if ($showmassiveactions && ($data['display_type'] == self::HTML_OUTPUT)) {
+
+            Html::openMassiveActionsForm($massformid);
+
+         }
+         
       echo '<div class="panel panel-default">';
+      
+      echo '<div class="panel-heading">';
       // Contruct Pager parameters
       $globallinkto
          = Toolbox::append_params(array('criteria'
@@ -1138,23 +1152,21 @@ class Search {
                   }
                }
             }
+            
             $search_config_top    = "";
-            $search_config_bottom = "";
+      
             if (!isset($_GET['_in_modal'])
                 && Session::haveRightsOr('search_config', array(DisplayPreference::PERSONAL,
                                                                 DisplayPreference::GENERAL))) {
 
-               $search_config_top = $search_config_bottom
-                  = "<img alt=\"".__s('Select default items to show')."\" title=\"".
+               $search_config_top  = "<img alt=\"".__s('Select default items to show')."\" title=\"".
                         __s('Select default items to show')."\" src='".
                         $CFG_GLPI["root_doc"]."/pics/options_search.png' ";
 
                $search_config_top    .= " class='pointer' onClick=\"";
                $search_config_top    .= Html::jsGetElementbyID('search_config_top').
                                                       ".dialog('open');\">";
-               $search_config_bottom .= " class='pointer' onClick=\"";
-               $search_config_bottom .= Html::jsGetElementbyID('search_config_bottom').
-                                                      ".dialog('open');\">";
+
                $search_config_top
                   .= Ajax::createIframeModalWindow('search_config_top',
                                                    $CFG_GLPI["root_doc"].
@@ -1166,17 +1178,7 @@ class Search {
                                                             => true,
                                                          'display'
                                                             => false));
-               $search_config_bottom
-                  .= Ajax::createIframeModalWindow('search_config_bottom',
-                                                   $CFG_GLPI["root_doc"].
-                                                      "/front/displaypreference.form.php?itemtype=".
-                                                      $data['itemtype'],
-                                                   array('title'
-                                                            => __('Select default items to show'),
-                                                         'reloadonclose'
-                                                            => true,
-                                                         'display'
-                                                            => false));
+               
             }
 
             Html::printPager($data['search']['start'], $data['data']['totalcount'],
@@ -1184,6 +1186,10 @@ class Search {
                               $search_config_top);
          }
 
+         if ($showmassiveactions && ($data['display_type'] == self::HTML_OUTPUT)) {
+            Html::showMassiveActions($massiveactionparams);
+         }
+         
          // Define begin and end var for loop
          // Search case
          $begin_display = $data['data']['begin'];
@@ -1195,26 +1201,7 @@ class Search {
                && InfoCom::canApplyOn($data['itemtype'])) {
             $isadmin = (Infocom::canUpdate() || Infocom::canCreate());
          }
-         if ($data['itemtype'] != 'AllAssets') {
-            $showmassiveactions
-               = count(MassiveAction::getAllMassiveActions($data['item'],
-                                                           $data['search']['is_deleted']));
-         } else {
-            $showmassiveactions = true;
-         }
-         $massformid = 'massform'.$data['itemtype'];
-         if ($showmassiveactions
-             && ($data['display_type'] == self::HTML_OUTPUT)) {
-
-            Html::openMassiveActionsForm($massformid);
-            $massiveactionparams                  = $data['search']['massiveactionparams'];
-            $massiveactionparams['num_displayed'] = $end_display-$begin_display;
-            $massiveactionparams['fixed']         = false;
-            $massiveactionparams['is_deleted']    = $data['search']['is_deleted'];
-            $massiveactionparams['container']     = $massformid;
-
-            Html::showMassiveActions($massiveactionparams);
-         }
+         
 
          // Compute number of columns to display
          // Add toview elements
@@ -1223,7 +1210,7 @@ class Search {
          if ($data['display_type'] == self::HTML_OUTPUT && $showmassiveactions) { // HTML display - massive modif
             $nbcols++;
          }
-        
+         echo '</div>';
          // Display List Header
          echo self::showHeader($data['display_type'], $end_display-$begin_display+1, $nbcols);
 
@@ -1400,28 +1387,30 @@ class Search {
          }
 
          if ($data['display_type'] == self::HTML_OUTPUT) {
-            echo $headers_line_bottom;
+            echo '<tfoot>'.$headers_line_bottom.'</tfoot>';
          }
          // Display footer
          echo self::showFooter($data['display_type'], $title);
 
-         // Delete selected item
+         echo '<div class="panel-footer">';
+                  // Delete selected item
          if ($data['display_type'] == self::HTML_OUTPUT) {
             if ($showmassiveactions) {
                $massiveactionparams['ontop'] = false;
                Html::showMassiveActions($massiveactionparams);
                // End form for delete item
                Html::closeForm();
-            } else {
-               echo "<br>";
             }
          }
+         
          if ($data['display_type'] == self::HTML_OUTPUT) { // In case of HTML display
             Html::printPager($data['search']['start'], $data['data']['totalcount'],
                              $data['search']['target'], $parameters, '', 0,
                               $search_config_bottom);
 
          }
+
+         echo '</div>';
       } else {
          echo self::showError($data['display_type']);
       }
@@ -1791,10 +1780,11 @@ class Search {
       echo Html::hidden('start', array('value'    => 0));
       
      
-      echo '</div>';
-      echo '</div>';
-      echo '</div>';
       Html::closeForm();
+      echo '</div>';   
+      echo '</div>';
+      echo '</div>';
+ 
    }
 
 

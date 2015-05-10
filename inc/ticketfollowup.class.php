@@ -691,7 +691,7 @@ class TicketFollowup  extends CommonDBTM {
       $result = $DB->query($query);
 
       $rand   = mt_rand();
-      echo '<div class="container">';
+   
       if ($caneditall || $canadd) {
          echo "<div id='viewfollowup" . $tID . "$rand'></div>\n";
       }
@@ -786,7 +786,7 @@ class TicketFollowup  extends CommonDBTM {
             echo "<div class='media $color' id='view$id'>";
 
             echo "<div class='media-left'>";
-            echo "<img class='media-object' alt=\"".__s('Picture')."\" src='".
+            echo "<img class='media-object img-circle' alt=\"".__s('Picture')."\" src='".
                 User::getThumbnailURLForPicture($data['picture'])."'>";
             echo "</div>"; // boxnoteleft
 
@@ -854,7 +854,7 @@ class TicketFollowup  extends CommonDBTM {
             }
          }
       }
-      echo '</div>';
+     
    }
 
 

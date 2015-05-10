@@ -989,16 +989,14 @@ class Planning extends CommonGLPI {
                break;
          }
       }
-      echo "<div style=' margin:auto; text-align:left; border:1px dashed #cccccc;
-             background-color: $color; font-size:9px; width:98%;'>";
+      echo "<div style='background-color: $color;'>";
 
       // Plugins case
       if (isset($val['itemtype']) && !empty($val['itemtype'])) {
          $val['itemtype']::displayPlanningItem($val, $who, $type, $complete);
-
       }
 
-      echo "</div><br>";
+      echo "</div>";
    }
 
 
@@ -1057,14 +1055,13 @@ class Planning extends CommonGLPI {
       ksort($interv);
 
 
- 
       $type = '';
       if (count($interv) > 0) {
-            echo "<h4><a href='".$CFG_GLPI["root_doc"]."/front/planning.php?uID=$who'>".__('Your planning')."</a></h4>";
+         echo "<div class='panel-body'><h4>".__('Your planning')."<a href='".$CFG_GLPI["root_doc"]."/front/planning.php?uID=$who'> <small><i class='glyphicon glyphicon-link'></i></small></a></h4></div>";
 
-          echo "<table class='table>";
+         echo "<table class='table table-striped table-hover'>";
          foreach ($interv as $key => $val) {
-            echo "<tr >";
+            echo "<tr>";
             echo "<td>";
             if ($val["begin"] < $begin) {
                $val["begin"] = $begin;

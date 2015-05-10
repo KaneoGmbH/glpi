@@ -938,7 +938,7 @@ class Reminder extends CommonDBTM {
    **/
    static function displayPlanningItem(array $val, $who, $type="", $complete=0) {
       global $CFG_GLPI;
-
+ 
       $rand     = mt_rand();
       $users_id = "";  // show users_id reminder
       $img      = "rdv_private.png"; // default icon for reminder
@@ -1037,8 +1037,7 @@ class Reminder extends CommonDBTM {
                          $restrict_visibility
                    ORDER BY `glpi_reminders`.`name`";
 
-         $titre = "<a href='".$CFG_GLPI["root_doc"]."/front/reminder.php'>".
-                    _n('Personal reminder', 'Personal reminders', Session::getPluralNumber())."</a>";
+         $titre = _n('Personal reminder', 'Personal reminders', Session::getPluralNumber())." <a href='".$CFG_GLPI["root_doc"]."/front/reminder.php'><small><i class='glyphicon glyphicon-link'></i></small></a>";
 
       } else {
          // Show public reminders / not mines : need to have access to public reminders
@@ -1061,8 +1060,7 @@ class Reminder extends CommonDBTM {
                    ORDER BY `glpi_reminders`.`name`";
 
          if ($_SESSION['glpiactiveprofile']['interface'] != 'helpdesk') {
-            $titre = "<a href=\"".$CFG_GLPI["root_doc"]."/front/reminder.php\">".
-                       _n('Public reminder', 'Public reminders', Session::getPluralNumber())."</a>";
+            $titre =  _n('Public reminder', 'Public reminders', Session::getPluralNumber())." <a href=\"".$CFG_GLPI["root_doc"]."/front/reminder.php\"><small><i class='glyphicon glyphicon-link'></i></small></a>";
          } else {
             $titre = _n('Public reminder', 'Public reminders', Session::getPluralNumber());
          }
@@ -1075,12 +1073,13 @@ class Reminder extends CommonDBTM {
  
 
       if ($nb) {
-      echo "<table class='table table-striped table-hover'>";
-      echo "<tr class='noHover'><th><div class='relative'><span>$titre</span>";
+        echo "<div class='panel-body'><h4>$titre</h4></div>";
+        echo "<table class='table table-striped table-hover'>";
+
           $rand = mt_rand();
 
          while ($data = $DB->fetch_assoc($result)) {
-            echo "<tr ><td>";
+            echo "<tr><td>";
             $link = "<a id='content_reminder_".$data["id"].$rand."'href='".$CFG_GLPI["root_doc"]."/front/reminder.form.php?id=".$data["id"]."'>". $data["name"]."</a>";
 
             $tooltip = Html::showToolTip(Toolbox::unclean_html_cross_side_scripting_deep($data["text"]),
@@ -1100,12 +1099,11 @@ class Reminder extends CommonDBTM {
                echo "</span>";
             }
 
-            echo "</td></tr>\n";
+            echo "</td></tr>";
          }
-    echo "</div></th></tr>\n";
-          echo "</table>\n";  
+          echo "</table>";  
     
-            }
+        }
       
 
 

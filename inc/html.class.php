@@ -547,13 +547,21 @@ class Html {
    static function displayMessageAfterRedirect() {
 
       // Affichage du message apres redirection
-      if (isset($_SESSION["MESSAGE_AFTER_REDIRECT"])
-          && !empty($_SESSION["MESSAGE_AFTER_REDIRECT"])) {
+      if (count($_SESSION["MESSAGE_AFTER_REDIRECT"])) {
+    
+          foreach($_SESSION["MESSAGE_AFTER_REDIRECT"] as $message){
+              switch($message['type']){
+                  case ERROR: $class = 'danger'; break;
+                  case WARNING: $class = 'warning'; break;
+                  case INFO: $class = 'success'; break;
+                  default: $class = 'info';
+              }
+                      
+            echo '<div class="alert alert-'.$class.'" role="alert">';
+                echo $message['msg'];
+            echo '</div>';
 
-          echo '<div class="alert alert-info" role="alert">';
-            echo $_SESSION["MESSAGE_AFTER_REDIRECT"];
-          echo '</div>';
-
+          }
       }
 
       // Clean message
@@ -1328,8 +1336,7 @@ class Html {
             }
          }
 
-         $allassets = array('Computer', 'Monitor', 'Peripheral', 'NetworkEquipment', 'Phone',
-                            'Printer');
+         $allassets = array('Computer', 'Monitor', 'Peripheral', 'NetworkEquipment', 'Phone','Printer');
 
          foreach ($allassets as $type) {
             if (isset($menu['assets']['content'][strtolower($type)])) {
@@ -1479,7 +1486,8 @@ class Html {
                        $actionMenu[$key]['title'] = __('Add');
                        break;
                    case 'search':
-                       $actionMenu[$key]['title'] = __('Search');
+                       unset($actionMenu[$key]);
+                       //$actionMenu[$key]['title'] = __('Search');
                        break;
                    case 'summary':
                        $actionMenu[$key]['title'] = __('Summary');
@@ -1503,7 +1511,7 @@ class Html {
                }
            }
         }
-        if(!isset($target)){
+        if(empty($target)){
             $target = $CFG_GLPI["root_doc"]."/front/central.php";
         }
         if (Session::isMultiEntitiesMode()) {
@@ -1527,15 +1535,15 @@ class Html {
                                    $CFG_GLPI["root_doc"]."/front/bookmark.php?action=load",
                                    array('title' => __('Load a bookmark'),'reloadonclose' => true,'display' => false)));
 
+        $header->assign('actionMenu',$actionMenu);
         /// Bookmark load
-        $actionMenu[] = array(
+        $bootmarkbutton = array(
             'href' => '#',
             'title' => __s('Load a bookmark'),
             'class' => 'bookmark',
             'onClick' => Html::jsGetElementbyID('loadbookmark').".dialog('open')"
         );
-
-        $header->assign('actionMenu',$actionMenu);
+        $header->assign('bookmarkButton',$bootmarkbutton);
 
         $profilesToUse = self::getProfiles($target);
         if($profilesToUse){
@@ -2290,7 +2298,6 @@ class Html {
 
       $p['ontop']             = true;
       $p['num_displayed']     = -1;
-      $p['fixed']             = true;
       $p['forcecreate']       = false;
       $p['check_itemtype']    = '';
       $p['check_items_id']    = '';
@@ -2343,13 +2350,6 @@ class Html {
          $p['extraparams']['hidden']['_is_modal'] = 1;
       }
 
-
-      if ($p['fixed']) {
-         $width= '950px';
-      } else {
-         $width= '80%';
-      }
-
       $identifier = md5($url.serialize($p['extraparams']).$p['rand']);
       $max        = Toolbox::get_max_input_vars();
 
@@ -2358,12 +2358,10 @@ class Html {
           && ($max < ($p['num_displayed']+10))) {
          if (!$p['ontop']
              || (isset($p['forcecreate']) && $p['forcecreate'])) {
-            //echo "<table class='table table-striped table-hover' width='$width'><tr >"."<td><span class='b'>";
             echo __('Selection too large, massive action disabled.');
             if ($_SESSION['glpi_use_mode'] == Session::DEBUG_MODE) {
                echo "<br>".__('To increase the limit: change max_input_vars or suhosin.post.max_vars in php configuration.');
             }
-            //echo "</td></tr></table>";
          }
       } else {
          // Create Modal window on top
@@ -2396,12 +2394,7 @@ class Html {
                                           'height'          => $p['height'],
                                           'js_modal_fields' => $js_modal_fields));
          }
-         //echo "<table class='table' width='$width'><tr>";
-         if ($p['display_arrow']) {
-            echo "<img src='".$CFG_GLPI["root_doc"]."/pics/arrow-left".
-                   ($p['ontop']?'-top':'').".png' alt=''>";
-         }
-         //echo "<td width='100%' class='left'>";
+                   
          echo "<a class='btn btn-info btn-xs' ";
          if (is_array($p['confirm'] || strlen($p['confirm']))) {
             echo self::addConfirmationOnAction($p['confirm'], "massiveaction_window$identifier.dialog(\"open\");");
@@ -2409,13 +2402,14 @@ class Html {
             echo "onclick='massiveaction_window$identifier.dialog(\"open\");'";
          }
          echo " href='#modal_massaction_content$identifier' title=\"".htmlentities($p['title'], ENT_QUOTES, 'UTF-8')."\">";
+         if($p['ontop']){
+             echo '<i class="glyphicon glyphicon-arrow-down"></i> ';
+         }else{
+             echo '<i class="glyphicon glyphicon-arrow-up"></i> ';
+         }
          echo $p['title']."</a>";
-         //echo "</td>";
-
-         //echo "</tr></table>";
-         if (!$p['ontop']
-             || (isset($p['forcecreate']) && $p['forcecreate'])) {
-            // Clean selection
+         
+         if (!$p['ontop']|| (isset($p['forcecreate']) && $p['forcecreate'])) {
             $_SESSION['glpimassiveactionselected'] = array();
          }
       }
@@ -3668,7 +3662,7 @@ class Html {
 
       // Back and fast backward button
 
-
+      // if($start != 0 ){
           $pagination[] = array(
               'href' => "$target?$parameters&amp;start=0",
               'title' => __s('Previous'),
@@ -3681,7 +3675,7 @@ class Html {
               'icon' => 'glyphicon glyphicon-step-backward',
               'class' => $start == 0 ? 'disabled': ''
           );
-
+      //  }
        //todo: no output at this time
        if (!empty($additional_info)) {
            $tmpl->assign('additionanInfo',$additional_info);
@@ -3722,14 +3716,8 @@ class Html {
 
 
       $tmpl->assign('pagerText',sprintf(__('From %1$d to %2$d on %3$d'), $current_start, $current_end, $numrows));
-
-       //todo: add page Numbers... ( now only text
-       $pagination[] = array(
-           'href' => "",
-           'title' => sprintf(__('From %1$d to %2$d on %3$d'), $current_start, $current_end, $numrows),
-           'class' => 'disabled'
-       );
-
+      
+     //if($current_end<$numrows){
        $pagination[] = array(
            'href' => "$target?$parameters&amp;start=$forward",
            'title' => __s('Next'),
@@ -3742,13 +3730,10 @@ class Html {
            'icon' => 'glyphicon glyphicon-fast-forward',
            'class' => $current_end<$numrows ? '': 'disabled'
        );
-
-       //if($start == 0 && $current_end>=$numrows){
-
-       //}else{
+   // }
            $tmpl->assign('pagination',$pagination);
            $tmpl->display('components/navigation-header.tpl.php');
-      //}
+     
 
    }
 

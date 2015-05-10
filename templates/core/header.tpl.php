@@ -7,7 +7,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="shortcut icon" type="images/x-icon" href="<?php echo $this->img('favicon.ico'); ?>" >
 
-        <title><?php echo $this->pageTitle; ?></title>
+        <title>GLPI - <?php echo $this->pageTitle; ?></title>
 
         <?php foreach (Html::getCssFiles() as $cssFile): ?>
             <?php echo Html::css($cssFile); ?>
@@ -97,6 +97,7 @@
                 </ul>
             </div>
         </nav>
+        
         <?php if($this->breadcrumbItems): ?>
         <div class="glpi-breadcrumb">
              <div class="container">
@@ -107,29 +108,33 @@
                 </ol>
              </div>
         </div>
-  
         <?php endif; ?>
         <div class="container">
            <?php if (isset($this->isSlave) && $this->isSlave === true): ?>
-            <div class="row spacer">
+            <div class="row">
                 <div class="col-lg-12">
                     <div class="alert alert-warning" role="alert"><?php echo __('MySQL replica: read only') ?></div>
                 </div>
             </div>
             <?php endif; ?>
-            <div class="row spacer">
+            <div class="row">
                 <?php if($this->actionMenu): ?>
                 <div class="col-lg-12">
-                    <div class="btn-toolbar" role="toolbar" aria-label="...">
-                        <div class="btn-group" role="group" aria-label="...">
-                            <?php foreach ($this->actionMenu as $item): ?>
-                                <a href="<?php echo $item['href'] ?>" class="btn btn-default" <?php echo isset($item['onClick']) && $item['onClick'] ? 'onClick="' . $item['onClick'] . '"' : '' ?>>
-                                    <span class="glyphicon glyphicon-<?php echo $item['class'] ?>" aria-hidden="true"></span>
-                                    <?php echo $item['title']; ?>
-                                </a>
-                            <?php endforeach; ?>
+                    <div class="panel panel-default">
+                    <div class="panel-heading"><?php echo $this->pageTitle; ?></div>
+                    <div class="panel-body">
+                        <div class="btn-toolbar" role="toolbar" aria-label="...">
+                            <div class="btn-group" role="group" aria-label="...">
+                                <?php foreach ($this->actionMenu as $item): ?>
+                                    <a href="<?php echo $item['href'] ?>" class="btn btn-default" <?php echo isset($item['onClick']) && $item['onClick'] ? 'onClick="' . $item['onClick'] . '"' : '' ?>>
+                                        <span class="glyphicon glyphicon-<?php echo $item['class'] ?>" aria-hidden="true"></span>
+                                        <?php echo $item['title']; ?>
+                                    </a>
+                                <?php endforeach; ?>
+                            </div>
                         </div>
                     </div>
+                  </div>
                 </div>
                 <?php endif; ?>
             </div>

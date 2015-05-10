@@ -646,8 +646,7 @@ class Problem extends CommonITILObject {
       }
 
       if ($numrows > 0) {
-         echo "<table class='table table-striped table-hover'>";
-         echo "<tr class='noHover'><th colspan='3'>";
+
 
          $options['reset'] = 'reset';
          $forcetab         = '';
@@ -665,10 +664,7 @@ class Problem extends CommonITILObject {
                   $options['criteria'][1]['searchtype'] = 'equals';
                   $options['criteria'][1]['value']      = 'mygroups';
                   $options['criteria'][1]['link']       = 'AND';
-
-                  echo "<a href=\"".$CFG_GLPI["root_doc"]."/front/problem.php?".
-                         Toolbox::append_params($options,'&amp;')."\">".
-                         Html::makeTitle(__('Problems on pending status'), $number, $numrows)."</a>";
+                  $title = __('Problems on pending status'); 
                   break;
 
                case "process" :
@@ -681,10 +677,8 @@ class Problem extends CommonITILObject {
                   $options['criteria'][1]['searchtype'] = 'equals';
                   $options['criteria'][1]['value']      = 'mygroups';
                   $options['criteria'][1]['link']       = 'AND';
+                  $title = __('Problems to be processed'); 
 
-                  echo "<a href=\"".$CFG_GLPI["root_doc"]."/front/problem.php?".
-                         Toolbox::append_params($options,'&amp;')."\">".
-                         Html::makeTitle(__('Problems to be processed'), $number, $numrows)."</a>";
                   break;
 
                default :
@@ -697,10 +691,8 @@ class Problem extends CommonITILObject {
                   $options['criteria'][1]['searchtype'] = 'equals';
                   $options['criteria'][1]['value']      = 'mygroups';
                   $options['criteria'][1]['link']       = 'AND';
-
-                  echo "<a href=\"".$CFG_GLPI["root_doc"]."/front/problem.php?".
-                         Toolbox::append_params($options,'&amp;')."\">".
-                         Html::makeTitle(__('Your problems in progress'), $number, $numrows)."</a>";
+                  $title = __('Your problems in progress');   
+                  
             }
 
          } else {
@@ -715,10 +707,8 @@ class Problem extends CommonITILObject {
                   $options['criteria'][1]['searchtype'] = 'equals';
                   $options['criteria'][1]['value']      = Session::getLoginUserID();
                   $options['criteria'][1]['link']       = 'AND';
-
-                  echo "<a href=\"".$CFG_GLPI["root_doc"]."/front/problem.php?".
-                         Toolbox::append_params($options,'&amp;')."\">".
-                         Html::makeTitle(__('Problems on pending status'), $number, $numrows)."</a>";
+                  $title = __('Problems on pending status');  
+                 
                   break;
 
                case "process" :
@@ -732,9 +722,7 @@ class Problem extends CommonITILObject {
                   $options['criteria'][1]['value']      = 'process';
                   $options['criteria'][1]['link']       = 'AND';
 
-                  echo "<a href=\"".$CFG_GLPI["root_doc"]."/front/problem.php?".
-                         Toolbox::append_params($options,'&amp;')."\">".
-                         Html::makeTitle(__('Problems to be processed'), $number, $numrows)."</a>";
+                  $title = __('Problems to be processed');
                   break;
 
                default :
@@ -748,14 +736,21 @@ class Problem extends CommonITILObject {
                   $options['criteria'][1]['value']      = 'notold';
                   $options['criteria'][1]['link']       = 'AND';
 
-                  echo "<a href=\"".$CFG_GLPI["root_doc"]."/front/problem.php?".
-                        Toolbox::append_params($options,'&amp;')."\">".
-                        Html::makeTitle(__('Your problems in progress'), $number, $numrows)."</a>";
+                  $title = __('Your problems in progress');
             }
          }
 
-         echo "</th></tr>";
+     
          if ($number) {
+            echo '<div class="panel-body">';
+            echo "<h4>";
+            echo Html::makeTitle($title, $number, $numrows);
+            echo " <a href=\"".$CFG_GLPI["root_doc"]."/front/problem.php?".Toolbox::append_params($options,'&amp;')."\">";
+            echo '<small><i class="glyphicon glyphicon-link"></i></small>';
+            echo "</a>";
+            echo '</div>';
+                     
+          echo "<table class='table table-striped table-hover'>";
             echo "<tr><th></th>";
             echo "<th>".__('Requester')."</th>";
             echo "<th>".__('Description')."</th></tr>";
@@ -763,8 +758,9 @@ class Problem extends CommonITILObject {
                $ID = $DB->result($result, $i, "id");
                self::showVeryShort($ID, $forcetab);
             }
+              echo "</table>";
          }
-         echo "</table>";
+       
 
       }
    }

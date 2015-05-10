@@ -473,7 +473,7 @@ class CommonGLPI {
 
       if ($nb) {
          //TRANS: %1$s is the name of the tab, $2$d is number of items in the tab between ()
-         $text = sprintf(__('%1$s %2$s'), $text, "<sup>($nb)</sup>");
+         $text = sprintf(__('%1$s %2$s'), $text, '<span class="badge">'.$nb.'</span>');
       }
       return $text;
    }
@@ -620,7 +620,7 @@ class CommonGLPI {
          $extraparamhtml = "&amp;".Toolbox::append_params($cleaned_options,'&amp;');
          $extraparam     = "&".Toolbox::append_params($cleaned_options);
       }
-      echo "<div id='tabspanel' class='center-h'></div>";
+     
       $current_tab = 0;
       $onglets     = $this->defineAllTabs($options);
       $display_all = true;
@@ -663,7 +663,7 @@ class CommonGLPI {
     *
     * @return Nothing ()
    **/
-   function showNavigationHeader($options=array()) {
+   function showNavigationHeader($options=array(),$returnData=false) {
       global $CFG_GLPI;
 
 
@@ -800,7 +800,6 @@ class CommonGLPI {
           $tmpl->assign('entityName',$name);
           $tmpl->assign('itemsCurrent',$current+1);
           $tmpl->assign('itemsTotal', count($glpilistitems));
-
         $tmpl->display('components/navigation-header-detail.tpl.php');
       }
    }
@@ -979,9 +978,14 @@ class CommonGLPI {
             Html::displayNotFoundError();
          }
       }
-
+      echo '<div class="panel panel-default">';
+      echo '<div class="panel-heading">';
       $this->showNavigationHeader($options);
+      echo '</div>';
+      echo '<div class="panel-body" style="padding-left:0; padding-right:0;">';
       $this->showTabsContent($options);
+      echo '</div>';
+      echo '</div>';
    }
 
 

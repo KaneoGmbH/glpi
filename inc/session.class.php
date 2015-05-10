@@ -1013,31 +1013,8 @@ class Session {
             }
 
          } else {
-
-            if ($reset) {
-               $_SESSION["MESSAGE_AFTER_REDIRECT"] = '';
-            }
-            $toadd = "";
-
-            if ($check_once) {
-               if (strstr($_SESSION["MESSAGE_AFTER_REDIRECT"], $msg) === false) {
-                  $toadd = $msg.'<br>';
-               }
-            } else {
-               $toadd = $msg.'<br>';
-            }
-
-            if (!empty($toadd)) {
-               switch ($message_type) {
-                  case ERROR :
-                  case WARNING :
-                     $_SESSION["MESSAGE_AFTER_REDIRECT"] .= "<h3><span class='red'>$toadd</span></h3>";
-                     break;
-
-                  default: // INFO
-                     $_SESSION["MESSAGE_AFTER_REDIRECT"] .= "<h3>$toadd</h3>";
-               }
-            }
+            $_SESSION["MESSAGE_AFTER_REDIRECT"][md5($msg)]['msg'] = $msg ;
+            $_SESSION["MESSAGE_AFTER_REDIRECT"][md5($msg)]['type'] = $message_type;
          }
       }
    }

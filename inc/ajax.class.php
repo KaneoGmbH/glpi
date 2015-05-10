@@ -289,18 +289,21 @@ class Ajax {
             
         $rand = mt_rand();
         if (count($tabs) > 0) {
-
-            echo '<div role="tabbable tabs-left">';
-                echo '<ul class="nav nav-tabs" role="tablist">';
-
+       
+            echo '<div role="tabbable" class="col-md-3">';
+            echo '<ul class="nav nav-pills nav-stacked" role="tablist">';
+            //echo '<div class="list-group">';
                 foreach ($tabs as $key => $val) {
                     $class = $key == $active_tab ? 'class="active"' : '';     
                     echo '<li role="presentation" '. $class .'>';
-                        echo '<a href="'.$val['url'].(isset($val['params'])?'?'.$val['params']:'').'" aria-controls="home" data-toggle="tabajax" data-target="#tabcontent-'.$rand.'" role="tab" >'.$val['title'].'</a>';
+                        echo '<a  href="'.$val['url'].(isset($val['params'])?'?'.$val['params']:'').'" aria-controls="home" data-toggle="tabajax" data-target="#tabcontent-'.$rand.'" role="tab" >'.$val['title'].'</a>';
                     echo '</li>';
                 }
-                echo "</ul>";
-                echo '<div class="tab-content" id="tabcontent-'.$rand.'"></div>';
+            echo "</ul>";
+            //echo "</div>";
+            echo "</div>";
+            echo '<div role="tabbable" class="col-md-9">';
+            echo '<div class="tab-content" id="tabcontent-'.$rand.'"></div>';
             echo "</div>";
         }
     }
