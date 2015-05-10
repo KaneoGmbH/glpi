@@ -79,8 +79,8 @@ echo "<form method='get' name='form' action='stat.location.php'>";
 // keep it first param
 echo "<input type='hidden' name='itemtype' value='". $_GET['itemtype'] ."'>";
 
-echo "<table class='table table-striped' ><tr ><td rowspan='2' width='30%'>";
-$values = array(_sn('Dropdown','Dropdowns',2) => array('ComputerType'    => __('Type'),
+echo "<table class='table table-striped' ><tr class='tab_bg_2'><td rowspan='2' width='30%'>";
+$values = array(_n('Dropdown','Dropdowns',2) => array('ComputerType'    => __('Type'),
                                                        'ComputerModel'   => __('Model'),
                                                        'OperatingSystem' => __('Operating system'),
                                                        'Location'        => __('Location')),

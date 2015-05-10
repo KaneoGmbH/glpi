@@ -273,9 +273,14 @@ class TicketFollowup  extends CommonDBTM {
 
    function prepareInputForAdd($input) {
       global $CFG_GLPI;
-      
+
       $input["_job"] = new Ticket();
 
+      if (empty($input['content'])
+          && !isset($input['add_close'])
+          && !isset($input['add_reopen'])) {
+         return false;
+      }
       if (!$input["_job"]->getFromDB($input["tickets_id"])) {
          return false;
       }
@@ -321,6 +326,7 @@ class TicketFollowup  extends CommonDBTM {
       if (isset($input["add_close"])) {
          $input['_close'] = 1;
       }
+
       unset($input["add_close"]);
 
       if (!isset($input["is_private"])) {
@@ -399,7 +405,7 @@ class TicketFollowup  extends CommonDBTM {
          $options = array('followup_id' => $this->fields["id"],
                           'is_private'  => $this->fields['is_private']);
          NotificationEvent::raiseEvent("add_followup", $this->input["_job"], $options);
-      } 
+      }
 
       // Add log entry in the ticket
       $changes[0] = 0;
@@ -742,7 +748,7 @@ class TicketFollowup  extends CommonDBTM {
             $lastlastmonday = $lastmonday;
             $lastmonday = $today;
          }
-         
+
          $steps = array(0 => array('end'   => $today,
                                    'name'  => __('Today')),
                         1 => array('end'   => $lastmonday,

@@ -368,9 +368,12 @@ class Document_Item extends CommonDBRelation{
          if ($item->canView()) {
             if ($item instanceof CommonDevice) {
                $column = "designation";
+            } else if ($item instanceof Item_Devices) {
+               $column = "itemtype";
             } else {
                $column = "name";
             }
+
             if ($itemtype == 'Ticket') {
                $column = "id";
             }
@@ -444,6 +447,8 @@ class Document_Item extends CommonDBRelation{
                      }
                      if ($item instanceof CommonDevice) {
                         $linkname = $data["designation"];
+                     } else if ($item instanceof Item_Devices) {
+                        $linkname = $data["itemtype"];
                      } else {
                         $linkname = $data["name"];
                      }
@@ -451,7 +456,12 @@ class Document_Item extends CommonDBRelation{
                          || empty($data["name"])) {
                         $linkname = sprintf(__('%1$s (%2$s)'), $linkname, $data["id"]);
                      }
-
+                     if ($item instanceof Item_Devices) {
+                        $tmpitem = new $item::$itemtype_2();
+                        if ($tmpitem->getFromDB($data[$item::$items_id_2])) {
+                           $linkname = $tmpitem->getLink();
+                        }
+                     }
                      $link = Toolbox::getItemTypeFormURL($itemtype);
                      $name = "<a href=\"".$link."?id=".$data["id"]."\">".$linkname."</a>";
 

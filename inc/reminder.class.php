@@ -110,6 +110,24 @@ class Reminder extends CommonDBTM {
    }
 
 
+   /**
+    * @since 0.85
+    * for personnal reminder
+   **/
+   static function canUpdate() {
+      return ($_SESSION['glpiactiveprofile']['interface'] != 'helpdesk');
+   }
+
+
+   /**
+    * @since 0.85
+    * for personnal reminder
+   **/
+   static function canPurge() {
+      return ($_SESSION['glpiactiveprofile']['interface'] != 'helpdesk');
+   }
+
+
    function post_getFromDB() {
 
       // Users

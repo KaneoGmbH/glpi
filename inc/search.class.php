@@ -54,6 +54,9 @@ class Search {
 
    const LBBR = '#LBBR#';
    const LBHR = '#LBHR#';
+   
+   const SHORTSEP = '$#$';
+   const LONGSEP  = '$$##$$';
 
    const NULLVALUE = '__NULL__';
 
@@ -990,7 +993,6 @@ class Search {
 
          while (($i < $data['data']['totalcount']) && ($i <= $data['data']['end'])) {
             $row = $DBread->fetch_assoc($result);
-
             $newrow        = array();
             $newrow['raw'] = $row;
 
@@ -1000,7 +1002,6 @@ class Search {
 //                $newrow[$key] = $val;
 
                $keysplit = explode('_', $key);
-
                if (isset($keysplit[1])  && $keysplit[0] == 'ITEM') {
                   $j         = $keysplit[1];
                   $fieldname = 'name';
@@ -1014,17 +1015,17 @@ class Search {
                   }
 
                   // No Group_concat case
-                  if (strpos($val,"$$$$") === false) {
+                  if (strpos($val,self::LONGSEP) === false) {
                      $newrow[$j]['count'] = 1;
 
-                     if (strpos($val,"$$") === false) {
+                     if (strpos($val,self::SHORTSEP) === false) {
                         if ($val == self::NULLVALUE) {
                            $newrow[$j][0][$fieldname] = NULL;
                         } else {
                            $newrow[$j][0][$fieldname] = $val;
                         }
                      } else {
-                        $split2                    = self::explodeWithID("$$", $val);
+                        $split2                    = self::explodeWithID(self::SHORTSEP, $val);
                         $newrow[$j][0][$fieldname] = $split2[0];
                         $newrow[$j][0]['id']       = $split2[1];
                      }
@@ -1032,13 +1033,13 @@ class Search {
                      if (!isset($newrow[$j])) {
                         $newrow[$j] = array();
                      }
-                     $split               = explode("$$$$", $val);
+                     $split               = explode(self::LONGSEP, $val);
                      $newrow[$j]['count'] = count($split);
                      foreach ($split as $key2 => $val2) {
-                        if (strpos($val2,"$$") === false) {
+                        if (strpos($val2,self::SHORTSEP) === false) {
                            $newrow[$j][$key2][$fieldname] = $val2;
                         } else {
-                           $split2                  = self::explodeWithID("$$", $val2);
+                           $split2                  = self::explodeWithID(self::SHORTSEP, $val2);
                            $newrow[$j][$key2]['id'] = $split2[1];
                            if ($split2[0] == self::NULLVALUE) {
                               $newrow[$j][$key2][$fieldname] = NULL;
@@ -1062,7 +1063,6 @@ class Search {
                   }
                }
             }
-
             foreach ($data['data']['cols'] as $key => $val) {
                $newrow[$key]['displayname'] = self::giveItem($val['itemtype'], $val['id'],
                                                              $newrow, $key);
@@ -2153,7 +2153,7 @@ class Search {
                 || (isset($searchopt[$ID]["forcegroupby"]) && $searchopt[$ID]["forcegroupby"])) {
                $ADDITONALFIELDS .= " GROUP_CONCAT(DISTINCT CONCAT(IFNULL(`$table$addtable`.`$key`,
                                                                          '".self::NULLVALUE."'),
-                                                   '$$', $tocomputeid) SEPARATOR '$$$$')
+                                                   '".self::SHORTSEP."', $tocomputeid) SEPARATOR '".self::LONGSEP."')
                                     AS `".$NAME."_".$num."_$key`, ";
             } else {
                $ADDITONALFIELDS .= "`$table$addtable`.`$key` AS `".$NAME."_".$num."_$key`, ";
@@ -2189,9 +2189,9 @@ class Search {
                      $addaltemail
                         = "GROUP_CONCAT(DISTINCT CONCAT(`$ticket_user_table`.`users_id`, ' ',
                                                         `$ticket_user_table`.`alternative_email`)
-                                                        SEPARATOR '$$$$') AS `".$NAME."_".$num."_2`, ";
+                                                        SEPARATOR '".self::LONGSEP."') AS `".$NAME."_".$num."_2`, ";
                   }
-                  return " GROUP_CONCAT(DISTINCT `$table$addtable`.`id` SEPARATOR '$$$$')
+                  return " GROUP_CONCAT(DISTINCT `$table$addtable`.`id` SEPARATOR '".self::LONGSEP."')
                                        AS `".$NAME."_".$num."`,
                            $addaltemail
                            $ADDITONALFIELDS";
@@ -2215,12 +2215,12 @@ class Search {
          case "glpi_profiles.name" :
             if (($itemtype == 'User')
                 && ($ID == 20)) {
-               return " GROUP_CONCAT(`$table$addtable`.`$field` SEPARATOR '$$$$') AS `".$NAME."_$num`,
-                        GROUP_CONCAT(`glpi_profiles_users`.`entities_id` SEPARATOR '$$$$')
+               return " GROUP_CONCAT(`$table$addtable`.`$field` SEPARATOR '".self::LONGSEP."') AS `".$NAME."_$num`,
+                        GROUP_CONCAT(`glpi_profiles_users`.`entities_id` SEPARATOR '".self::LONGSEP."')
                                     AS `".$NAME."_".$num."_entities_id`,
-                        GROUP_CONCAT(`glpi_profiles_users`.`is_recursive` SEPARATOR '$$$$')
+                        GROUP_CONCAT(`glpi_profiles_users`.`is_recursive` SEPARATOR '".self::LONGSEP."')
                                     AS `".$NAME."_".$num."_is_recursive`,
-                        GROUP_CONCAT(`glpi_profiles_users`.`is_dynamic` SEPARATOR '$$$$')
+                        GROUP_CONCAT(`glpi_profiles_users`.`is_dynamic` SEPARATOR '".self::LONGSEP."')
                                     AS `".$NAME."_".$num."_is_dynamic`,
                         $ADDITONALFIELDS";
             }
@@ -2229,13 +2229,13 @@ class Search {
          case "glpi_entities.completename" :
             if (($itemtype == 'User')
                 && ($ID == 80)) {
-               return " GROUP_CONCAT(`$table$addtable`.`completename` SEPARATOR '$$$$')
+               return " GROUP_CONCAT(`$table$addtable`.`completename` SEPARATOR '".self::LONGSEP."')
                                     AS `".$NAME."_$num`,
-                        GROUP_CONCAT(`glpi_profiles_users`.`profiles_id` SEPARATOR '$$$$')
+                        GROUP_CONCAT(`glpi_profiles_users`.`profiles_id` SEPARATOR '".self::LONGSEP."')
                                     AS `".$NAME."_".$num."_profiles_id`,
-                        GROUP_CONCAT(`glpi_profiles_users`.`is_recursive` SEPARATOR '$$$$')
+                        GROUP_CONCAT(`glpi_profiles_users`.`is_recursive` SEPARATOR '".self::LONGSEP."')
                                     AS `".$NAME."_".$num."_is_recursive`,
-                        GROUP_CONCAT(`glpi_profiles_users`.`is_dynamic` SEPARATOR '$$$$')
+                        GROUP_CONCAT(`glpi_profiles_users`.`is_dynamic` SEPARATOR '".self::LONGSEP."')
                                     AS `".$NAME."_".$num."_is_dynamic`,
                         $ADDITONALFIELDS";
             }
@@ -2257,8 +2257,8 @@ class Search {
          case "glpi_softwareversions.name" :
             if ($meta) {
                return " GROUP_CONCAT(DISTINCT CONCAT(`glpi_softwares`.`name`, ' - ',
-                                                     `$table$addtable`.`$field`, '$$',
-                                                     `$table$addtable`.`id`) SEPARATOR '$$$$')
+                                                     `$table$addtable`.`$field`, '".self::SHORTSEP."',
+                                                     `$table$addtable`.`id`) SEPARATOR '".self::LONGSEP."')
                                     AS `".$NAME."_".$num."`,
                         $ADDITONALFIELDS";
             }
@@ -2270,14 +2270,14 @@ class Search {
          case "glpi_softwareversions.comment" :
             if ($meta) {
                return " GROUP_CONCAT(DISTINCT CONCAT(`glpi_softwares`.`name`, ' - ',
-                                                     `$table$addtable`.`$field`,'$$',
-                                                     `$table$addtable`.`id`) SEPARATOR '$$$$')
+                                                     `$table$addtable`.`$field`,'".self::SHORTSEP."',
+                                                     `$table$addtable`.`id`) SEPARATOR '".self::LONGSEP."')
                                     AS `".$NAME."_".$num."`,
                         $ADDITONALFIELDS";
             }
             return " GROUP_CONCAT(DISTINCT CONCAT(`$table$addtable`.`name`, ' - ',
-                                                  `$table$addtable`.`$field`, '$$',
-                                                  `$table$addtable`.`id`) SEPARATOR '$$$$')
+                                                  `$table$addtable`.`$field`, '".self::SHORTSEP."',
+                                                  `$table$addtable`.`id`) SEPARATOR '".self::LONGSEP."')
                                  AS `".$NAME."_".$num."`,
                      $ADDITONALFIELDS";
 
@@ -2285,14 +2285,14 @@ class Search {
             if ($meta && ($meta_type == 'Software')) {
                return " GROUP_CONCAT(DISTINCT CONCAT(`glpi_softwares`.`name`, ' - ',
                                                      `glpi_softwareversions$addtable`.`name`, ' - ',
-                                                     `$table$addtable`.`$field`, '$$',
-                                                     `$table$addtable`.`id`) SEPARATOR '$$$$')
+                                                     `$table$addtable`.`$field`, '".self::SHORTSEP."',
+                                                     `$table$addtable`.`id`) SEPARATOR '".self::LONGSEP."')
                                      AS `".$NAME."_".$num."`,
                         $ADDITONALFIELDS";
             } else if ($itemtype == 'Software') {
                return " GROUP_CONCAT(DISTINCT CONCAT(`glpi_softwareversions`.`name`, ' - ',
-                                                     `$table$addtable`.`$field`,'$$',
-                                                     `$table$addtable`.`id`) SEPARATOR '$$$$')
+                                                     `$table$addtable`.`$field`,'".self::SHORTSEP."',
+                                                     `$table$addtable`.`id`) SEPARATOR '".self::LONGSEP."')
                                     AS `".$NAME."_".$num."`,
                         $ADDITONALFIELDS";
             }
@@ -2342,7 +2342,7 @@ class Search {
                                                          INTERVAL (`$table$addtable`.`".
                                                                     $searchopt[$ID]["datafields"][2].
                                                                     "` $add_minus) $interval)
-                                         SEPARATOR '$$$$') AS `".$NAME."_$num`,
+                                         SEPARATOR '".self::LONGSEP."') AS `".$NAME."_$num`,
                            $ADDITONALFIELDS";
                }
                return "ADDDATE(`$table$addtable`.`".$searchopt[$ID]["datafields"][1]."`,
@@ -2353,8 +2353,8 @@ class Search {
             case "itemlink" :
                if ($meta
                   || (isset($searchopt[$ID]["forcegroupby"]) && $searchopt[$ID]["forcegroupby"])) {
-                  return " GROUP_CONCAT(DISTINCT CONCAT($tocompute, '$$' ,
-                                                        `$table$addtable`.`id`) SEPARATOR '$$$$')
+                  return " GROUP_CONCAT(DISTINCT CONCAT($tocompute, '".self::SHORTSEP."' ,
+                                                        `$table$addtable`.`id`) SEPARATOR '".self::LONGSEP."')
                                        AS `".$NAME."_$num`,
                            $ADDITONALFIELDS";
                }
@@ -2370,12 +2370,12 @@ class Search {
          $TRANS = '';
          if (Session::haveTranslations(getItemTypeForTable($table), $field)) {
             $TRANS = "GROUP_CONCAT(DISTINCT CONCAT(IFNULL($tocomputetrans, '".self::NULLVALUE."'),
-                                                   '$$',$tocomputeid) SEPARATOR '$$$$')
+                                                   '".self::SHORTSEP."',$tocomputeid) SEPARATOR '".self::LONGSEP."')
                                   AS `".$NAME."_".$num."_trans`, ";
 
          }
          return " GROUP_CONCAT(DISTINCT CONCAT(IFNULL($tocompute, '".self::NULLVALUE."'),
-                                               '$$',$tocomputeid) SEPARATOR '$$$$')
+                                               '".self::SHORTSEP."',$tocomputeid) SEPARATOR '".self::LONGSEP."')
                               AS `".$NAME."_$num`,
                   $TRANS
                   $ADDITONALFIELDS";
@@ -3501,7 +3501,7 @@ class Search {
          case 'Ticket' :
             $totable = getTableForItemType($to_type);
             array_push($already_link_tables2,$totable);
-            return " $LINK `glpi_items_tickets` 
+            return " $LINK `glpi_items_tickets`
                         ON (`glpi_tickets`.`id` = `glpi_items_tickets`.`tickets_id`)
                      $LINK `$totable`
                         ON (`$totable`.`id` = `glpi_items_tickets`.`items_id`
@@ -3697,6 +3697,7 @@ class Search {
       switch ($table.".".$field) {
          case "glpi_tickets.priority" :
          case "glpi_problems.priority" :
+         case "glpi_changes.priority" :
             return " style=\"background-color:".$_SESSION["glpipriority_".$data[$num][0]['name']].";\" ";
 
          case "glpi_tickets.due_date" :
@@ -3788,15 +3789,17 @@ class Search {
                   }
 
                   for ($k=0 ; $k<$data[$num]['count'] ; $k++) {
-                     
-                     if (($data[$num][$k]['name'] > 0)
-                         || ($data[$num][$k][2] != '')) {
+
+                     if (isset($data[$num][$k]['name'])
+                           && ($data[$num][$k]['name'] > 0)
+                              || ($data[$num][$k][2] != '')) {
                         if ($count_display) {
                            $out .= self::LBBR;
                         }
-                        
+
                         if ($itemtype == 'Ticket') {
-                           if ($data[$num][$k]['name'] > 0) {
+                           if (isset($data[$num][$k]['name'])
+                                 && $data[$num][$k]['name'] > 0) {
                               $userdata = getUserName($data[$num][$k]['name'],2);
                               $tooltip  = "";
                               if (Session::haveRight('user', READ)) {
@@ -3811,12 +3814,12 @@ class Search {
                            $out .= getUserName($data[$num][$k]['name'], $showuserlink);
                            $count_display++;
                         }
-                     
+
 
                         // Manage alternative_email for tickets_users
                         if (($itemtype == 'Ticket')
                             && isset($data[$num][$k][2])) {
-                           $split = explode("$$$$", $data[$num][$k][2]);
+                           $split = explode(self::LONGSEP, $data[$num][$k][2]);
                            for ($l=0 ; $l<count($split) ; $l++) {
                               $split2 = explode(" ",$split[$l]);
                               if ((count($split2) == 2) && ($split2[0] == 0) && !empty($split2[1])) {
@@ -4220,10 +4223,12 @@ class Search {
             case 'glpi_tickets.name' :
             case 'glpi_problems.name' :
             case 'glpi_changes.name' :
+            
                if (isset($data[$num][0]['content'])
                    && isset($data[$num][0]['id'])
                    && isset($data[$num][0]['status'])) {
                   $link = Toolbox::getItemTypeFormURL($itemtype);
+
                   $out  = "<a id='$itemtype".$data[$num][0]['id']."' href=\"".$link;
                   $out .= (strstr($link,'?') ?'&amp;' :  '?');
                   $out .= 'id='.$data[$num][0]['id'];
@@ -5000,7 +5005,7 @@ class Search {
                                                              'condition'
                                                               => getEntitiesRestrictRequest('AND',
                                                                                             'NEWTABLE'));
-                                                                                            
+
             $search[$itemtype][140]['table']         = 'glpi_problems';
             $search[$itemtype][140]['field']         = 'id';
             $search[$itemtype][140]['datatype']      = 'count';

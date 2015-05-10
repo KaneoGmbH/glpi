@@ -99,8 +99,14 @@ if (isset($_GET['create_ticket'])) {
    echo '<div class="col-lg-6">';
    if (Session::haveRight('ticket', CREATE)) {
       Ticket::showCentralCount(true);
+      echo "</td></tr>";
+      echo "<tr class='noHover'><td class='top'>";
+      Ticket::showCentralList(0, "survey", false);
+      echo "</td></tr>";
    }
 
+   
+   
    if (Session::haveRight("reminder_public", READ)) {
       Reminder::showListForCentral(false);
    }

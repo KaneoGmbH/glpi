@@ -723,9 +723,7 @@ abstract class CommonITILObject extends CommonDBTM {
                              && in_array($this->fields['status'], $this->getNewStatusArray()))
                             || (isset($input['status'])
                                 && in_array($input['status'], $this->getNewStatusArray()))) {
-                           if ($this instanceof Change) {
-                              $input['status'] = self::ACCEPTED;
-                           } else {
+                           if (in_array(self::ASSIGNED, array_keys($this->getAllStatusArray()))) {
                               $input['status'] = self::ASSIGNED;
                            }
                         }
@@ -747,12 +745,9 @@ abstract class CommonITILObject extends CommonDBTM {
                              && (in_array($this->fields['status'], $this->getNewStatusArray())))
                             || (isset($input['status'])
                                 && (in_array($input['status'], $this->getNewStatusArray())))) {
-                           if ($this instanceof Change) {
-                              $input['status'] = self::ACCEPTED;
-                           } else {
+                           if (in_array(self::ASSIGNED, array_keys($this->getAllStatusArray()))) {
                               $input['status'] = self::ASSIGNED;
                            }
-
                         }
                      }
                   }
@@ -771,9 +766,7 @@ abstract class CommonITILObject extends CommonDBTM {
                              && (in_array($this->fields['status'], $this->getNewStatusArray())))
                             || (isset($input['status'])
                                 && (in_array($input['status'], $this->getNewStatusArray())))) {
-                           if ($this instanceof Change) {
-                              $input['status'] = self::ACCEPTED;
-                           } else {
+                           if (in_array(self::ASSIGNED, array_keys($this->getAllStatusArray()))) {
                               $input['status'] = self::ASSIGNED;
                            }
 
@@ -1531,7 +1524,7 @@ abstract class CommonITILObject extends CommonDBTM {
          $docitem   = new Document_Item();
 
          $docID = 0;
-         $filename = GLPI_DOC_DIR."/_tmp/".$file;
+         $filename = GLPI_TMP_DIR."/".$file;
          $input2         = array();
 
          // Crop/Resize image file if needed
@@ -2454,6 +2447,13 @@ abstract class CommonITILObject extends CommonDBTM {
                                           $paramsmassaction);
             echo "<span id='show_massiveaction_field'>&nbsp;</span>\n";
             return true;
+         case 'update_notif' :
+
+            Dropdown::showYesNo('use_notification');
+            echo "<br><br>";
+            echo Html::submit(_x('button','Post'), array('name' => 'massiveaction'));
+            return true;
+            return true;
       }
       return parent::showMassiveActionsSubForm($ma);
    }
@@ -2489,6 +2489,33 @@ abstract class CommonITILObject extends CommonDBTM {
                      $ma->itemDone($item->getType(), $id, MassiveAction::ACTION_KO);
                      $ma->addMessage($item->getErrorMessage(ERROR_ON_ACTION));
                   }
+               } else {
+                  $ma->itemDone($item->getType(), $id, MassiveAction::ACTION_NORIGHT);
+                  $ma->addMessage($item->getErrorMessage(ERROR_RIGHT));
+               }
+            }
+            return;
+
+         case 'update_notif' :
+            $input = $ma->getInput();
+            foreach ($ids as $id) {
+               if ($item->can($id, UPDATE)) {
+                  $linkclass = new $item->userlinkclass();
+                  foreach ($linkclass->getActors($id) as $type => $users) {
+                    foreach ($users as $data) {
+                        $data['use_notification'] = $input['use_notification'];
+                        $linkclass->update($data);
+                    }
+                  }
+                  $linkclass = new $this->supplierlinkclass();
+                  foreach ($linkclass->getActors($id) as $type => $users) {
+                    foreach ($users as $data) {
+                        $data['use_notification'] = $input['use_notification'];
+                        $linkclass->update($data);
+                    }
+                  }
+
+                  $ma->itemDone($item->getType(), $id, MassiveAction::ACTION_OK);
                } else {
                   $ma->itemDone($item->getType(), $id, MassiveAction::ACTION_NORIGHT);
                   $ma->addMessage($item->getErrorMessage(ERROR_RIGHT));
@@ -2626,6 +2653,7 @@ abstract class CommonITILObject extends CommonDBTM {
       $tab[82]['datatype']            = 'bool';
       $tab[82]['massiveaction']       = false;
       $tab[82]['computation']         = "IF(TABLE.`due_date` IS NOT NULL
+                                            AND TABLE.`status` <> ".self::WAITING."
                                             AND (TABLE.`solvedate` > TABLE.`due_date`
                                                  OR (TABLE.`solvedate` IS NULL
                                                       AND TABLE.`due_date` < NOW())),
@@ -3134,6 +3162,7 @@ abstract class CommonITILObject extends CommonDBTM {
                              $withgroup=true, $withsupplier=false, $inobject=true) {
       global $CFG_GLPI;
 
+
       $types = array(''      => Dropdown::EMPTY_VALUE,
                      'user'  => __('User'));
 
@@ -3190,7 +3219,8 @@ abstract class CommonITILObject extends CommonDBTM {
                       'itemtype'        => $this->getType(),
                       'allow_email'     => (($type == CommonITILActor::OBSERVER)
                                             || $type == CommonITILActor::REQUESTER),
-                      'entity_restrict' => $entities_id);
+                      'entity_restrict' => $entities_id,
+                      'use_notif'       => Entity::getUsedConfig('is_notif_enable_default', $entities_id, '', 1));
 
       Ajax::updateItemOnSelectEvent("dropdown__itil_".$typename."[_type]$rand",
                                     "showitilactor".$typename."_$rand",
@@ -3444,6 +3474,11 @@ abstract class CommonITILObject extends CommonDBTM {
       $showuserlink = 0;
       if (User::canView()) {
          $showuserlink = 1;
+      }
+      $options['_default_use_notification'] = 1;
+
+      if (isset($options['entities_id'])) {
+         $options['_default_use_notification'] = Entity::getUsedConfig('is_notif_enable_default', $options['entities_id'], '', 1);
       }
 
       // check is_hidden fields
