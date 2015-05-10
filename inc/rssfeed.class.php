@@ -73,13 +73,17 @@ class RSSFeed extends CommonDBTM {
 
 
    static function getTypeName($nb=0) {
-      return _n('RSS feed', 'RSS feeds', $nb);
+
+      if (Session::haveRight('rssfeed_public',READ)) {
+         return _n('RSS feed', 'RSS feed', $nb);
+      }
+      return _n('Personal RSS feed', 'Personal RSS feed', $nb);
    }
 
 
    static function canCreate() {
 
-      return (Session::haveRight('rssfeed_public', CREATE)
+      return (Session::haveRight(self::$rightname, CREATE)
               || ($_SESSION['glpiactiveprofile']['interface'] != 'helpdesk'));
    }
 
@@ -111,6 +115,24 @@ class RSSFeed extends CommonDBTM {
       return (($this->fields['users_id'] == Session::getLoginUserID())
               || (Session::haveRight('rssfeed_public', UPDATE)
                   && $this->haveVisibilityAccess()));
+   }
+
+
+   /**
+    * @since 0.85
+    * for personal rss feed
+   **/
+   static function canUpdate() {
+      return ($_SESSION['glpiactiveprofile']['interface'] != 'helpdesk');
+   }
+
+
+   /**
+    * @since 0.85
+    * for personal rss feed
+   **/
+   static function canPurge() {
+      return ($_SESSION['glpiactiveprofile']['interface'] != 'helpdesk');
    }
 
 
@@ -900,7 +922,7 @@ class RSSFeed extends CommonDBTM {
 
      $template = new Template();
 
-      if (($personal && self::canCreate()) 
+      if (($personal && self::canCreate())
             || (!$personal && Session::haveRight('rssfeed_public', CREATE))) {
           $template->assign('canAdd',true);
           $template->assign('canAddUrl',$CFG_GLPI["root_doc"]."/front/rssfeed.form.php");

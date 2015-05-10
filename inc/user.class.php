@@ -243,6 +243,8 @@ class User extends CommonDBTM {
       $this->addStandardTab('Config', $ong, $options);
       $this->addStandardTab(__CLASS__, $ong, $options);
       $this->addStandardTab('Ticket', $ong, $options);
+      $this->addStandardTab('Item_Problem', $ong, $options);
+      $this->addStandardTab('Change_Item', $ong, $options);
       $this->addStandardTab('Document_Item', $ong, $options);
       $this->addStandardTab('Reservation', $ong, $options);
       $this->addStandardTab('Auth', $ong, $options);
@@ -677,7 +679,7 @@ class User extends CommonDBTM {
                   $filename     = $this->fields['id'];
                   $tmp          = explode(".", $_FILES['picture']['name']);
                   $extension    = array_pop($tmp);
-                  $picture_path = GLPI_DOC_DIR."/_pictures/$filename.".$extension;
+                  $picture_path = GLPI_PICTURE_DIR."/$filename.".$extension;
                   self::dropPictureFiles($filename.".".$extension);
 
                   if (Document::renameForce($_FILES['picture']['tmp_name'], $picture_path)) {
@@ -686,14 +688,14 @@ class User extends CommonDBTM {
                      $input['picture'] = $filename.".".$extension;
 
                      //prepare a thumbnail
-                     $thumb_path = GLPI_DOC_DIR."/_pictures/".$filename."_min.".$extension;
+                     $thumb_path = GLPI_PICTURE_DIR."/".$filename."_min.".$extension;
                       Toolbox::resizePicture($picture_path, $thumb_path);
                   } else {
                      Session::addMessageAfterRedirect(__('Potential upload attack or file too large. Moving temporary file failed.'),
                                                      false, ERROR);
                  }
               } else {
-                Session::addMessageAfterRedirect(__('Picture is not an image file.'),
+                Session::addMessageAfterRedirect(__('The file is not an image file.'),
                                                 false, ERROR);
               }
             }
@@ -1883,10 +1885,14 @@ class User extends CommonDBTM {
          echo "</td></tr>";
       }
 
-      echo "<tr >";
-      echo "<td>".__('Active')."</td><td>";
-      Dropdown::showYesNo('is_active',$this->fields['is_active']);
-      echo "</td>";
+      echo "<tr class='tab_bg_1'>";
+      if (!GLPI_DEMO_MODE) {
+        echo "<td>".__('Active')."</td><td>";
+        Dropdown::showYesNo('is_active',$this->fields['is_active']);
+        echo "</td>";
+      } else {
+        echo "<td colspan='2'></td>";
+      }
       echo "<td>" . _n('Email','Emails', Session::getPluralNumber());
       UserEmail::showAddEmailButton($this);
       echo "</td><td>";
@@ -1894,21 +1900,23 @@ class User extends CommonDBTM {
       echo "</td>";
       echo "</tr>";
 
+      if (!GLPI_DEMO_MODE) {
 
-      echo "<tr >";
-      echo "<td>".__('Valid since')."</td><td>";
-      Html::showDateTimeField("begin_date", array('value'       => $this->fields["begin_date"],
-                                                  'timestep'    => 1,
-                                                  'maybeempty'  => true));
-      echo "</td>";
+        echo "<tr class='tab_bg_1'>";
+        echo "<td>".__('Valid since')."</td><td>";
+        Html::showDateTimeField("begin_date", array('value'       => $this->fields["begin_date"],
+                                                    'timestep'    => 1,
+                                                    'maybeempty'  => true));
+        echo "</td>";
 
-      echo "<td>".__('Valid until')."</td><td>";
-      Html::showDateTimeField("end_date", array('value'       => $this->fields["end_date"],
-                                                'timestep'    => 1,
-                                                'maybeempty'  => true));
-      echo "</td></tr>";
-
-      echo "<tr >";
+        echo "<td>".__('Valid until')."</td><td>";
+        Html::showDateTimeField("end_date", array('value'       => $this->fields["end_date"],
+                                                    'timestep'    => 1,
+                                                    'maybeempty'  => true));
+        echo "</td></tr>";
+      }
+      
+      echo "<tr class='tab_bg_1'>";
       echo "<td>" .  __('Phone') . "</td><td>";
       Html::autocompletionTextField($this, "phone");
       echo "</td>";
@@ -2286,7 +2294,7 @@ class User extends CommonDBTM {
          } else {
             Html::autocompletionTextField($this, "registration_number");
          }
-         echo "</td></tr>";
+         echo "</td><td colspan='2'></td></tr>";
 
          echo "<tr ><td>" . __('Location') . "</td><td>";
          $entities = Profile_User::getUserEntities($ID, true);
@@ -3875,6 +3883,7 @@ class User extends CommonDBTM {
                $this->update($input);
                // Notication on root entity (glpi_users.entities_id is only a pref)
                NotificationEvent::raiseEvent('passwordforget', $this, array('entities_id' => 0));
+               QueuedMail::forceSendFor($this->getType(), $this->fields['id']);
                _e('An email has been sent to your email address. The email contains information for reset your password.');
             } else {
                _e('Invalid email address');
@@ -4100,14 +4109,14 @@ class User extends CommonDBTM {
 
       if (!empty($picture)) {
          // unlink main file
-         if (file_exists(GLPI_DOC_DIR."/_pictures/$picture")) {
+         if (file_exists(GLPI_PICTURE_DIR."/$picture")) {
             @unlink(GLPI_DOC_DIR."/_pictures/$picture");
          }
          // unlink Thunmnail
          $tmp = explode(".", $picture);
          if (count($tmp) == 2) {
-            if (file_exists(GLPI_DOC_DIR."/_pictures/".$tmp[0]."_min.".$tmp[1])) {
-               @unlink(GLPI_DOC_DIR."/_pictures/".$tmp[0]."_min.".$tmp[1]);
+            if (file_exists(GLPI_PICTURE_DIR."/".$tmp[0]."_min.".$tmp[1])) {
+               @unlink(GLPI_PICTURE_DIR."/".$tmp[0]."_min.".$tmp[1]);
             }
          }
       }

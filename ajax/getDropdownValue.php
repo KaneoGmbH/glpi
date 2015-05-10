@@ -142,9 +142,9 @@ if ($item instanceof CommonTreeDropdown) {
          }
          // Also search by id
          if ($displaywith && in_array('id', $_GET['displaywith'])) {
-            $where .= " OR `$table`.`id` ".$search;         
+            $where .= " OR `$table`.`id` ".$search;
          }
-         
+
          $where .= ")";
       }
    }
@@ -437,6 +437,8 @@ if ($item instanceof CommonTreeDropdown) {
    $field = "name";
    if ($item instanceof CommonDevice) {
       $field = "designation";
+   } else if ($item instanceof Item_Devices) {
+      $field = "itemtype";
    }
 
    if ($one_item >= 0) {
@@ -454,7 +456,7 @@ if ($item instanceof CommonTreeDropdown) {
          }
          // Also search by id
          if ($displaywith && in_array('id', $_GET['displaywith'])) {
-            $where .= " OR `$table`.`id` ".$search;         
+            $where .= " OR `$table`.`id` ".$search;
          }
 
          $where .= ')';
@@ -567,9 +569,17 @@ if ($item instanceof CommonTreeDropdown) {
 
             if (isset($data['transname']) && !empty($data['transname'])) {
                $outputval = $data['transname'];
+            } else if ($field == 'itemtype' && class_exists($data['itemtype'])) {
+               $tmpitem = new $data[$field]();
+               if ($tmpitem->getFromDB($data['items_id'])) {
+                  $outputval = sprintf(__('%1$s - %2$s'), $tmpitem->getTypeName(),$tmpitem->getName());
+               } else {
+                  $outputval = $tmpitem->getTypeName();
+               }
             } else {
                $outputval = $data[$field];
             }
+            $outputval = Toolbox::unclean_cross_side_scripting_deep($outputval);
 
             if ($displaywith) {
                foreach ($_GET['displaywith'] as $key) {
