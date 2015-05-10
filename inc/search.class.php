@@ -1094,6 +1094,21 @@ class Search {
       if (!isset($data['data']) || !isset($data['data']['totalcount'])) {
          return false;
       }
+      
+          // Global search header
+      if ($data['display_type'] == self::GLOBAL_SEARCH) {
+         if ($data['item']) {
+            echo "<div class='center'><h2>".$data['item']->getTypeName();
+            // More items
+            if ($data['data']['totalcount'] > ($data['search']['start'] + self::GLOBAL_DISPLAY_COUNT)) {
+               echo " <a href='".$data['search']['target']."?$parameters'>".__('All')."</a>";
+            }
+            echo "</h2></div>\n";
+         } else {
+            return false;
+         }
+      }
+      
       if ($data['itemtype'] != 'AllAssets') {
             $showmassiveactions = count(MassiveAction::getAllMassiveActions($data['item'], $data['search']['is_deleted']));
          } else {
@@ -1123,19 +1138,7 @@ class Search {
          $parameters .= "&amp;_in_modal=1";
       }
 
-      // Global search header
-      if ($data['display_type'] == self::GLOBAL_SEARCH) {
-         if ($data['item']) {
-            echo "<div class='center'><h2>".$data['item']->getTypeName();
-            // More items
-            if ($data['data']['totalcount'] > ($data['search']['start'] + self::GLOBAL_DISPLAY_COUNT)) {
-               echo " <a href='".$data['search']['target']."?$parameters'>".__('All')."</a>";
-            }
-            echo "</h2></div>\n";
-         } else {
-            return false;
-         }
-      }
+  
 
       // If the begin of the view is before the number of items
       if ($data['data']['count'] > 0) {
@@ -1158,14 +1161,12 @@ class Search {
             if (!isset($_GET['_in_modal'])
                 && Session::haveRightsOr('search_config', array(DisplayPreference::PERSONAL,
                                                                 DisplayPreference::GENERAL))) {
-
-               $search_config_top  = "<img alt=\"".__s('Select default items to show')."\" title=\"".
-                        __s('Select default items to show')."\" src='".
-                        $CFG_GLPI["root_doc"]."/pics/options_search.png' ";
-
-               $search_config_top    .= " class='pointer' onClick=\"";
+                                                          
+                //__s('Select default items to show')
+               $search_config_top  = '<button class="btn btn-default btn-xs"'; 
+               $search_config_top    .= " onClick=\"";
                $search_config_top    .= Html::jsGetElementbyID('search_config_top').
-                                                      ".dialog('open');\">";
+                                                      ".dialog('open'); return false; \"><i class='glyphicon glyphicon-cog'></i></button>";
 
                $search_config_top
                   .= Ajax::createIframeModalWindow('search_config_top',
@@ -1697,12 +1698,14 @@ class Search {
       $p['actionname']   = 'search';
       $p['actionvalue']  = _sx('button', 'Search');
 
-
+    
       foreach ($params as $key => $val) {
          $p[$key] = $val;
       }
-      if(isset($_GET['criteria'])){
-          $class = 'in';
+      if(isset($_SESSION['glpisearch'][$itemtype]['criteria']) && count($_SESSION['glpisearch'][$itemtype]['criteria']) > 0){
+          if($_SESSION['glpisearch'][$itemtype]['criteria']['value'] != '' && $_SESSION['glpisearch'][$itemtype]['criteria']['value'] != 'notold'){
+            $class = 'in';
+          }
       }
       echo '<div class="panel panel-default" id="filter">';
         echo '<div class="panel-heading">';
@@ -5299,9 +5302,9 @@ class Search {
             $out = "<th $options>";
             if ($issort) {
                if ($order=="DESC") {
-                  $out .= "<img src=\"".$CFG_GLPI["root_doc"]."/pics/puce-down.png\" alt='' title=''>";
+                  $out .= '<i class="glyphicon glyphicon-chevron-down"></i> ';
                } else {
-                  $out .= "<img src=\"".$CFG_GLPI["root_doc"]."/pics/puce-up.png\" alt='' title=''>";
+                  $out .= '<i class="glyphicon glyphicon-chevron-up"></i> ';
                }
             }
             if (!empty($linkto)) {

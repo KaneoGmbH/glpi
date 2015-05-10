@@ -8,7 +8,7 @@
     </div>
     <div class="row">
         <div class="container text-right">
-            <a href='http://glpi-project.org/'><span class="copyright">GLPI <?php echo $this->CFG_GLPI["version"] ?> Copyright (C) 2003-<?php echo date("Y") ?> by the INDEPNET Development Team.</span></a>
+            <small><?php echo $this->timedebug; ?> | <a href='http://glpi-project.org/'><span class="copyright">GLPI <?php echo $this->CFG_GLPI["version"] ?> Copyright (C) 2003-<?php echo date("Y") ?> by the INDEPNET Development Team.</span></a></small>
         </div>
     </div>
 

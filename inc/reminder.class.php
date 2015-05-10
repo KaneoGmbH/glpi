@@ -69,8 +69,7 @@ class Reminder extends CommonDBTM {
 
    static function canView() {
 
-      return (Session::haveRight(self::$rightname, READ)
-              || ($_SESSION['glpiactiveprofile']['interface'] != 'helpdesk'));
+      return (Session::haveRight(self::$rightname, READ));
    }
 
 
@@ -1039,7 +1038,7 @@ class Reminder extends CommonDBTM {
                                     OR `glpi_reminders`.`begin_view_date` < '$now')
                               AND (`glpi_reminders`.`end_view_date` IS NULL
                                    OR `glpi_reminders`.`end_view_date` > '$now') ";
-
+     
       if ($personal) {
 
          /// Personal notes only for central view

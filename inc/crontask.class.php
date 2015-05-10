@@ -323,6 +323,7 @@ class CronTask extends CommonDBTM{
                 FROM `".$this->getTable()."`
                 WHERE (`itemtype` NOT LIKE 'Plugin%'";
 
+    
       if (count($_SESSION['glpi_plugins'])) {
          // Only activated plugins
          foreach ($_SESSION['glpi_plugins'] as $plug) {
@@ -334,7 +335,7 @@ class CronTask extends CommonDBTM{
       if ($name) {
          $query .= " AND `name` = '".addslashes($name)."' ";
       }
-
+    
       // In force mode
       if ($mode < 0) {
          $query .= " AND `state` != '".self::STATE_RUNNING."'
@@ -748,9 +749,9 @@ class CronTask extends CommonDBTM{
     *
     * @return the name of last task launched
    **/
-   static public function launch($mode, $max=1, $name='') {
+   static public function launch($mode, $max=5, $name='') {
       global $CFG_GLPI;
-
+     
       // No cron in maintenance mode
       if (isset($CFG_GLPI['maintenance_mode']) && $CFG_GLPI['maintenance_mode']) {
          return false;
@@ -771,11 +772,11 @@ class CronTask extends CommonDBTM{
          }
       }
 
-      if (self::get_lock()) {
-         for ($i=1 ; $i<=$max ; $i++) {
+      if (self::get_lock()) {   
+         for ($i=1 ; $i<=$max ; $i++) {         
             $prefix = (abs($mode) == self::MODE_EXTERNAL ? __('External')
-                                                         : __('Internal'));
-            if ($crontask->getNeedToRun($mode, $name)) {
+                                                         : __('Internal')); 
+            if ($crontask->getNeedToRun($mode, $name)) {       
                $_SESSION["glpicronuserrunning"] = "cron_".$crontask->fields['name'];
 
                if ($plug = isPluginItemType($crontask->fields['itemtype'])) {

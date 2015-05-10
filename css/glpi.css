@@ -36,7 +36,7 @@ footer {
 }
 
 .spacer {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 /** Icon mapping */
 
@@ -105,12 +105,8 @@ form[role=login] > div {
     font-size:10px;
 }
 
-.kbanswer {
-    padding:15px;
-}
-
 .spaceafter {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 #filter .select2-container {

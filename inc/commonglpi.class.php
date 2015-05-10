@@ -663,7 +663,7 @@ class CommonGLPI {
     *
     * @return Nothing ()
    **/
-   function showNavigationHeader($options=array(),$returnData=false) {
+   function showNavigationHeader($options=array()) {
       global $CFG_GLPI;
 
 
@@ -777,7 +777,7 @@ class CommonGLPI {
               $tmpl->assign('listTitle',$glpilisttitle);
 
           }else{
-              $tmpl->assign('listTitle',_e('List'));
+              $tmpl->assign('listTitle',__('List'));
           }
 
 

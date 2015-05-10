@@ -799,8 +799,8 @@ class TicketFollowup  extends CommonDBTM {
             echo "<div class='media-body'>";
             
             echo '<div class="row">';
-            echo '<div class="col-md-6">';
-            echo "<h4 class='media-heading'>";
+            echo '<div class="col-md-8">';
+            echo "<h4 class='media-heading'><small>";
             $username = NOT_AVAILABLE;
             if ($data['users_id']) {
                $username = getUserName($data['users_id'], $showuserlink);
@@ -816,9 +816,9 @@ class TicketFollowup  extends CommonDBTM {
                $name = sprintf(__('%1$s - %2$s'), $name, __('Private'));
             }
             echo $name;
-            echo "</h4>"; // floatright
+            echo "</small></h4>"; // floatright
             echo '</div>';
-            echo '<div class="col-md-6 text-right">';
+            echo '<div class="col-md-4 text-right">';
             if ($candelete) {
                Html::showSimpleForm(Toolbox::getItemTypeFormURL('TicketFollowup'),
                                     array('purge' => 'purge'),

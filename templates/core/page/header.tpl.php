@@ -65,7 +65,7 @@
                 <?php endif; ?>
             </div>
         </div>
-        <nav class="navbar navbar-default">
+        <nav class="navbar navbar-default <?php if(!$this->breadcrumbItems): ?> spacer<?php endif; ?>">
             <div class="container">
                 <ul class="nav navbar-nav">
                     <?php foreach ($this->mainMenu as $part => $data) : ?>

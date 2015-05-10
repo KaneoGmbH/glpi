@@ -1,11 +1,13 @@
 <div class="row">
     <div class="col-md-6">
         <?php if($this->pagerText): ?>
-            <p><span class="label label-default"><?php echo $this->pagerText; ?></span></p>
+            <span class="label label-default"><?php echo $this->pagerText; ?></span>
         <?php endif; ?>
         <?php if($this->additionanInfo): ?>
             <?php echo $this->additionanInfo; ?>
         <?php endif; ?>
+       
+      <?php Html::printPagerForm($this->printPageFormParam); ?>
     </div>
 
     <div class="col-md-6 text-right">

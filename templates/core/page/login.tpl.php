@@ -30,7 +30,7 @@
         <div class="col-md-4"></div>
         <div class="col-md-4">
             <section class="login-form">
-
+                    
                 <noscript>
                     <p><?php echo __('You must activate the JavaScript function of your browser'); ?></p>
                 </noscript>
@@ -39,7 +39,8 @@
 
                     <img src="<?php echo $this->img('logo.png'); ?>" class="img-responsive" alt=""/>
                      
-
+                    <?php Html::displayMessageAfterRedirect(); ?>     
+                    
                     <?php if ($this->loginText): ?>
                         <?php echo $this->loginText; ?>
                     <?php endif; ?>
@@ -68,14 +69,12 @@
                     <?php endif; ?>
 
                 <?php Html::closeForm(); ?>
-
+                    <div class="text-center">        
                 <small>
                     <a href='http://glpi-project.org/' title='Powered By Indepnet'>
-                        GLPI <?php echo isset($this->CFG_GLPI["version"]) ? 'version ' . $this->CFG_GLPI["version"] : "" ?>
-                        Copyright (C) 2003-<?php echo date("Y"); ?> INDEPNET Development Team.
-                    </a>
-                </small>
-
+                        GLPI <?php echo isset($this->CFG_GLPI["version"]) ? 'version ' . $this->CFG_GLPI["version"] : "" ?> Copyright (C) 2003-<?php echo date("Y"); ?> INDEPNET Development Team.</a>
+                    <a href="https://www.kaneo-gmbh.de/">Bootstrap theme by kaneo-gmbh.de</a>
+                    </div>
             </section>
         </div>
         <div class="col-md-4"></div>

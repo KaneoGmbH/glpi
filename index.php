@@ -32,6 +32,7 @@
 * @brief
 */
 
+
 // Check PHP version not to have trouble
 if (version_compare(PHP_VERSION, "5.3.0") < 0) {
    die("PHP >= 5.3.0 required");
@@ -113,7 +114,7 @@ if (!file_exists(GLPI_CONFIG_DIR . "/config_db.php")) {
         }
     }
 
-    $login->display('login.tpl.php');
+    $login->display('page/login.tpl.php');
 
 
 }

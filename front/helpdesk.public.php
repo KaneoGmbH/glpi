@@ -94,36 +94,13 @@ if (isset($_GET['create_ticket'])) {
    $ticket->showFormHelpdesk(Session::getLoginUserID());
 
 } else {
+   
+   
+    
    Html::helpHeader(__('Home'), $_SERVER['PHP_SELF'], $_SESSION["glpiname"]);
-   echo '<div class="row">';
-   echo '<div class="col-lg-6">';
-   if (Session::haveRight('ticket', CREATE)) {
-      Ticket::showCentralCount(true);
-      Ticket::showCentralList(0, "survey", false);
-   }
-
    
-   
-   if (Session::haveRight("reminder_public", READ)) {
-      Reminder::showListForCentral(false);
-   }
-
-   if (Session::haveRight("rssfeed_public", READ)) {
-      RSSFeed::showListForCentral(false);
-   }
-
-
-   echo '</div>';
-   echo '<div class="col-lg-6">';
-
-   // Show KB items
-   if (Session::haveRight('knowbase', KnowbaseItem::READFAQ)) {
-      KnowbaseItem::showRecentPopular("popular");
-      KnowbaseItem::showRecentPopular("recent");
-      KnowbaseItem::showRecentPopular("lastupdate");
-   }
-
-   echo '</div>';
+   $template = new Template();
+   $template->display('dashboard-helpdesk.tpl.php');
 
 }
 

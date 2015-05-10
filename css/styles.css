@@ -250,12 +250,11 @@ td.subheader {
 .tooltip_picture_border {
    padding:2px;
    border-radius: 51px;
-   border: 5px inset #D0D99D;
-   _border: 3px solid #D0D99D;
    width:72px;
    height:72px;
    position: absolute;
 }  
+
 .tooltip_picture {
    width:71px;
    height:71px;
@@ -453,15 +452,6 @@ td.subheader {
 }
 
 
-a.pubfaq {
-   margin-left:8px;
-   color: #c9993C;
-}
-
-a.pubfaq:hover {
-   color: black;
-}
-
 a.icon_nav_move img {
    padding: 4px;
    margin: 1px;
@@ -532,411 +522,25 @@ a.icon_nav_move:hover img {
    background-image: linear-gradient(left, green 50%, red  0%);
 }
 
-/* ################--------------- Menu navigation  ---------------#################### */
-
-div#menu_navigate {
-   margin: auto;
-   z-index:1;
-   font-size: 10px;
-   width:900px;
-}
-
-div#menu_navigate li {
-   margin-left:2px;
-   display:block;
-   float:left;
-   padding:2px;
-}
-
-div#menu_navigate li.info {
-   margin-left:2px;
-   display:block;
-   float:left;
-   font-size: 12px;
-   padding:2px;
-}
-
-div#tabcontent {
-   width:950px;
-   text-align:center;
-   margin: 0 auto;
-}
-
 /* ################--------------- Notepad  ---------------#################### */
 
-.boxnote {
-   margin: 0 auto;
-   width: 950px;
-   text-align: left;
-   border-radius:10px;
-   -moz-border-radius:10px;
-   -webkit-border-radius:10px;
-   background: #e7e7e2;
-   margin-bottom: 5px;
-   position:relative;
-   overflow: auto;
-   font-size: 11px;
-}
 
-
-
-.boxnoteleft {
-   float: left;
-   width: 10%;
-   min-height: 40px;
-   height: 100%;
-   padding: 4px;
-}
-.boxnotecontent {
-   float: left;
-   padding: 1px;
-   padding-top: 5px;
-   width: 75%;
-/*   top:  -60px;
-   left: 110px;*/
-/*    width: 300px; */
-}
-.boxnoteright {
-   float: right;
-/*   top:  0px;
-   left: 0px;*/
-   width: 10%;
-   min-height: 40px;
-   padding: 1px;
-   vertical-align: middle;
-}
-
-.boxnotefloatright {
-   float: right;
-   position: relative;
-   padding-left: 20px;
-   padding-bottom:  5px;
-}
-.boxnotetext {
-   padding: 5px;
-}
-
+/*
 .bytech {
    background: #f2f2f2;
 }
 
 .byuser {
-   background: #e7e7e2;
+  // background: #e7e7e2;
 }
-
-/* ################--------------- box (redirect and other)  ---------------#################### */
-
-.box {
-   margin: 0 auto; 
-   width:700px;
-   text-align:center;
-
-}
-
-
-
-.box-tleft {
-   background:transparent url(../pics/corners.gif) no-repeat 0 0;
-   zoom:1;
-}
-
-.box-tcenter {
-   height:8px;
-   background:transparent url(../pics/tb.gif) repeat-x 0 0;
-   overflow:hidden;
-}
-
-.box-tright {
-   background:transparent url(../pics/corners.gif) no-repeat right -8px;
-}
-
-.box-mleft {
-   background:transparent url(../pics/l.gif) repeat-y 0;
-   padding-left:4px;
-   overflow:hidden;
-   zoom:1;
-}
-
-.box-mcenter {
-   background:#eee url(../pics/tb.gif) repeat-x 0 -16px;
-   padding:4px 10px;
-   font-family:"Myriad Pro","Myriad Web","Tahoma","Helvetica","Arial",sans-serif;
-   color:#393939;
-   font-size:11px;
-}
-
-.box-mcenter h3 {
-   font-size:11px;
-   font-weight:bold;
-   margin:0 0 4px 0;
-   zoom:1;
-}
-
-.box-mright {
-   background:transparent url(../pics/r.gif) repeat-y right;
-   padding-right:4px;
-   overflow:hidden;
-}
-
-.box-bleft {
-   background:transparent url(../pics/corners.gif) no-repeat 0 -16px;
-   zoom:1;
-}
-
-.box-bcenter {
-   background:transparent url(../pics/tb.gif) repeat-x 0 -8px;
-   height:8px;
-   overflow:hidden;
-}
-
-.box-bright {
-   background:transparent url(../pics/corners.gif) no-repeat right -24px;
-}
-
-.box-tleft, .box-bleft {
-   padding-left:8px;
-   overflow:hidden;
-}
-
-.box-tright, .box-bright {
-   padding-right:8px;
-   overflow:hidden;
-}
-
-
-
-/* ################--------------- Login Null Header  ---------------#################### */
-
-#firstboxlogin {
-   height: 276px;
-   width: 650px;
-   margin-top:150px;
-   margin-left: auto;
-   margin-right: auto;
-   font-family : Verdana,Arial,Helvetica,sans-serif;
-   font-size : 12px;
-   color :#659900;
-   font-weight: bold;
-   background-color:#FFFFFF;
-   border:3px solid #ccc;
-   border-radius:10px;
-   -moz-border-radius:10px;
-   -webkit-border-radius:10px;
-   padding:10px;
-   position: relative;
-}
-
-
-#logo_login {
-   position:absolute;
-   top:-25px;
-   padding:0;
-   margin:0;
-   width: 107px;
-   height: 43px;
-   background: url(../pics/login_logo_glpi.png)  no-repeat; 
-}
-
-
-#text-login {
-   
-   font-size: 13px;
-   margin-bottom:10px;
-   max-height: 50px;
-   width: 95%;
-   /*margin-right:10px;
-   margin-left:0px;
-   margin-top:80px;*/
-   color :#000000;
-   overflow: auto;
-   padding:10px;
-}
-
-#text-login a:hover {
-   color :#659900;
-   text-decoration: underline;
-}
-
-
-#bloc {
-   
-   width:760px;
-   margin:0 auto;
-   text-align:left;
-   position:relative;
-   padding:10px;
-   background:#E9EDD0;
-   background:-moz-linear-gradient(360deg, #E9EDD0, #BBC972); /* Firefox */
-   background:-webkit-gradient(linear, left top, left bottom, from(#E9EDD0), to(#BBC972)); /* Webkit */
-
-   /* For Internet Explorer 5.5 - 7 */
-   filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#E9EDD0, endColorStr=#BBC972, GradientType=1);
-   /* For Internet Explorer 8 */
-   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#E9EDD0, endColorstr=#BBC972, GradientType=1)";
-
-   border:1px solid #aaa;
-   border-radius:10px;
-   -moz-border-radius:10px;
-   -webkit-border-radius:10px;
-   box-shadow:0 0 15px #aaa;
-   -moz-box-shadow:0 0 15px #aaa;
-   -webkit-box-shadow:0 0 15px #aaa;
-}
-
-#logo_bloc {
-   position:absolute;
-   top:-25px;
-   padding:0;
-   margin:0;
-   width: 107px;
-   height: 43px;
-   background: url(../pics/login_logo_glpi.png)  no-repeat; 
-}
-
-#boxlogin {
-   position:relative;
-   margin:auto;
-   text-align: left;  /* Bug IE Grrr */
-   width: 350px;
-   padding:10px;
-   background:#E9EDD0;
-   background:-moz-linear-gradient(360deg, #E9EDD0, #BBC972); /* Firefox */
-   background:-webkit-gradient(linear, left top, left bottom, from(#E9EDD0), to(#BBC972)); /* Webkit */
-
-   /* For Internet Explorer 5.5 - 7 */
-   filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#E9EDD0, endColorStr=#BBC972, GradientType=1);
-   /* For Internet Explorer 8 */
-   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#E9EDD0, endColorstr=#BBC972, GradientType=1)";
-
-   border:1px solid #aaa;
-   border-radius:10px;
-   -moz-border-radius:10px;
-   -webkit-border-radius:10px;
-   box-shadow:0 0 15px #aaa;
-   -moz-box-shadow:0 0 15px #aaa;
-   -webkit-box-shadow:0 0 15px #aaa;
-}
-
-#boxlogin p {
-   text-align:center;
-}
-
-#forget {
-   text-align:right;
-   text-decoration: underline;
-}
-
-
-.loginrow {
-   clear: both;
-   padding-top: 5px;
-}
-
-.loginlabel {
-   float: left;
-   margin-left:10px;
-   text-align: left;
-}
-
-.loginformw {
-   float: right;
-   margin-right:10px;
-   text-align: right;
-}
-
-#boxlogin fieldset {
-   background-color: transparent;
-   border: 2px solid #FFC65D;
-   padding-bottom:22px;
-}
-
-#boxlogin legend {
-   font-family:"Trebuchet MS",Verdana,Geneva,Arial,Helvetica,sans-serif;
-   font-size: 15px;
-   font-weight: 700;
-   background-color: transparent;
-   color :#659900;
-}
-
-#boxlogin input {
-
-   border: 1px solid #659900;
-   -moz-border-radius:5px;
-   -webkit-border-radius:5px;
-}
-
-#boxlogin input[type=text],
- #boxlogin input[type=password]{
-   width:13em;
-}
-
-#boxlogin input[type=text]:focus,
- #boxlogin input[type=password]:focus{
-   border-color:#FFA500;
-   background-color: #fff;
-   -moz-box-shadow:0 0 3px #FFA500;
-   -webkit-box-shadow:0 0 3px #FFA500;
-   outline:none; /* Pour enlever le contour jaune lorsque l'on sélectionne un input dans Chrome */
-}
-
-
-#box-faq {
-   padding-top:30px;
-   text-align:center;
-   position:relative;
-   margin:auto;
-}
-
-.sous_logo {
-   font-family: arial;
-   font-size: 9px;
-   color: #eeeeee;
-   text-decoration: none;
-}
-
-.error {
-   color: red; 
-   margin-top:20px;
-   text-align:center;
-}
-
-
-
+*/
 
 /* ################--------------- Footer  ---------------#################### */
 
 
 .copyright {
-   font-size: 9px;	
    color :#757575;
 }
-
-
-
-/* ################--------------- DB Slave---------------#################### */
-#dbslave-float {
-   top: 0px;
-   left: 300px;
-   position: absolute;
-   z-index: 100;
-}
-
-#dbslave-float a {
-   border-top: 1px solid #cecece;
-   border-bottom: 2px solid #4a4a4a;
-   border-left: 1px solid #cecece;
-   border-right: 1px solid #cecece;
-   text-decoration: none;
-   text-align: center;
-   margin: 0;
-   padding: 1px .5em;
-   font-family: helvetica,arial,sans-serif;
-   font-size: 10px;
-   font-weight: bold;
-   background-color: #fff;
-   color:blue;
-}
-
 
 
 /* ################--------------- Debug  ---------------#################### */
@@ -1001,14 +605,4 @@ div#tabcontent {
 
 #debug table, #debugajax table {
    margin:0;
-}
-
-
-/* Restore default behavior : drop user agent CSS*/
-:focus {
-  outline-width: 0;
-}
-
-.nostyle:focus {
-  outline-width: 5px;
 }

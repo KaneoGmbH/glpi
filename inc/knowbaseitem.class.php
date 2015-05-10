@@ -824,9 +824,9 @@ class KnowbaseItem extends CommonDBTM {
       } else {
          $answer = $this->fields["answer"];
       }
-      echo $answer;
-      //echo "</div>";
-      //echo "</td></tr>";
+      echo Toolbox::unclean_html_cross_side_scripting_deep($answer);
+      echo "</div>";
+      echo "</td></tr>";
 
       //echo "<tr><td colspan='2'>";
       echo '<div class="small">';
@@ -1498,23 +1498,24 @@ EOT;
       $number = $DB->numrows($result);
 
       if ($number > 0) {
-          echo '<h3>';
+          echo '<div class="panel-body"><h4>';
          echo $title;
-         echo '</h3>';
-         echo "<table class='table table-striped table-bordered'>";
-         
+         echo '</h4>';
+   
+         echo '<ul>';
          while ($data = $DB->fetch_assoc($result)) {
             $name = $data['name'];
 
             if (isset($data['transname']) && !empty($data['transname'])) {
                $name = $data['transname'];
             }
-            echo "<tr><td class='left'>";
-            echo "<a ".($data['is_faq']?" class='pubfaq' ":" class='knowbase' ")." href=\"".
+  
+            echo "<li><a ".($data['is_faq']?" class='pubfaq' ":" class='knowbase' ")." href=\"".
                   $CFG_GLPI["root_doc"]."/front/knowbaseitem.form.php?id=".$data["id"]."\">".
-                  Html::resume_text($name,80)."</a></td></tr>";
+                  Html::resume_text($name,80)."</a></li>";
          }
-         echo "</table>";
+         echo '</ul>';
+         echo "</div>";
       }
    }
 

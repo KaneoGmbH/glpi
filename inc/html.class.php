@@ -444,6 +444,14 @@ class Html {
    }
 
 
+   static function redirect($dest,$statusCode=303){
+       if(headers_sent() === false){
+          header('Location: ' . $dest, true, $statusCode);
+          exit();
+       }else{
+        self::redirectHTML($dest);
+       }
+   }
    /**
     * Redirection hack
     *
@@ -451,7 +459,7 @@ class Html {
     *
     * @return nothing
    **/
-   static function redirect($dest) {
+   static function redirectHTML($dest) {
 
       $toadd = '';
       if (!strpos($dest,"?")) {
@@ -762,11 +770,12 @@ class Html {
             self::helpHeader(__('Access denied'), '');
          }
       }
-      echo "<div class='center'><br><br>";
-      echo Html::image($CFG_GLPI["root_doc"] . "/pics/warning.png", array('alt' => __('Warning')));
-      echo "<br><br><span class='b'>$message</span></div>";
-      self::nullFooter();
-      exit ();
+
+      echo '<div class="alert alert-danger" role="alert">';
+      echo $message;
+      echo '</div>';
+      self::footer();
+      exit();
    }
 
 
@@ -1002,8 +1011,7 @@ class Html {
         //  CSS link
       $cssFiles = array(
           $CFG_GLPI['root_doc']."/css/styles.css",
-          $CFG_GLPI['root_doc']."/lib/bootstrap/css/bootstrap.css",
-         // "/lib/jquery/css/smoothness/jquery-ui-1.10.4.custom.min.css",
+          $CFG_GLPI['root_doc']."/lib/bootstrap/css/bootstrap.min.css",
           $CFG_GLPI['root_doc']."/lib/jquery/css/bootstrap/jquery-ui-1.10.0.custom.css",
           $CFG_GLPI['root_doc']."/lib/jqueryplugins/rateit/rateit.css",
           $CFG_GLPI['root_doc']."/lib/jqueryplugins/select2/select2.css",
@@ -1060,7 +1068,9 @@ class Html {
             $CFG_GLPI['root_doc']."/lib/jqueryplugins/spectrum-colorpicker/spectrum.js",
             $CFG_GLPI['root_doc']."/lib/jqueryplugins/jquery-gantt/js/jquery.fn.gantt.min.js",
             $CFG_GLPI['root_doc']."/lib/bootstrap/js/bootstrap.js",
-            $CFG_GLPI['root_doc']."/lib/glpi/js/scripts.js"
+            $CFG_GLPI['root_doc']."/lib/glpi/js/scripts.js",
+            $CFG_GLPI['root_doc']."/scripts.js"
+
         );
 
       if (isset($_SESSION['glpilanguage'])) {
@@ -1558,7 +1568,7 @@ class Html {
             return $header;
         }
 
-        $header->display('header.tpl.php');
+        $header->display('page/header.tpl.php');
 
 
         // call static function callcron() every 5min
@@ -1593,10 +1603,9 @@ class Html {
 
       $tmpl = new Template();
       $tmpl->timedebug = $timedebug;
-      $tmpl->CFG_GLPI = $CFG_GLPI;
       $tmpl->glpi_use_mode = $_SESSION['glpi_use_mode'];
 
-       $tmpl->display('footer.tpl.php');
+       $tmpl->display('page/footer.tpl.php');
 
       if (!$keepDB) {
          closeDBConnections();
@@ -1799,7 +1808,7 @@ class Html {
 
        $header->actionMenu = array_merge($actionMenu,$menu);
 
-           $header->display('header.tpl.php');
+           $header->display('page/header.tpl.php');
 
 
       CronTask::callCron();
@@ -1879,7 +1888,7 @@ class Html {
       }
       $HEADER_LOADED = true;
       $tmpl = new Template();
-      $tmpl->display('header-modal.tpl.php');
+      $tmpl->display('page/header-modal.tpl.php');
       self::displayMessageAfterRedirect();
    }
 
@@ -1895,7 +1904,7 @@ class Html {
       }
       $FOOTER_LOADED = true;
        $tmpl = new Template();
-       $tmpl->display('footer-modal.tpl.php');
+       $tmpl->display('page/footer-modal.tpl.php');
 
    }
 
@@ -3662,7 +3671,7 @@ class Html {
 
       // Back and fast backward button
 
-      // if($start != 0 ){
+      if($start != 0 ){
           $pagination[] = array(
               'href' => "$target?$parameters&amp;start=0",
               'title' => __s('Previous'),
@@ -3675,18 +3684,18 @@ class Html {
               'icon' => 'glyphicon glyphicon-step-backward',
               'class' => $start == 0 ? 'disabled': ''
           );
-      //  }
+       }
        //todo: no output at this time
        if (!empty($additional_info)) {
            $tmpl->assign('additionanInfo',$additional_info);
        }
-
-       //todo: implement printing etc
-      //self::printPagerForm("$target?$parameters&amp;start=$start");
-
+       
+       $tmpl->assign('printPageFormParam',"$target?$parameters&amp;start=$start");
 
 
-       /*
+
+      //todo: implement printing etc
+    /*
       if (!empty($item_type_output)
           && isset($_SESSION["glpiactiveprofile"])
           && ($_SESSION["glpiactiveprofile"]["interface"] == "central")) {
@@ -3712,12 +3721,11 @@ class Html {
          Html::closeForm();
          echo "</td>" ;
       }
-      */
-
+    */
 
       $tmpl->assign('pagerText',sprintf(__('From %1$d to %2$d on %3$d'), $current_start, $current_end, $numrows));
       
-     //if($current_end<$numrows){
+     if($current_end<$numrows){
        $pagination[] = array(
            'href' => "$target?$parameters&amp;start=$forward",
            'title' => __s('Next'),
@@ -3730,7 +3738,7 @@ class Html {
            'icon' => 'glyphicon glyphicon-fast-forward',
            'class' => $current_end<$numrows ? '': 'disabled'
        );
-   // }
+      }
            $tmpl->assign('pagination',$pagination);
            $tmpl->display('components/navigation-header.tpl.php');
      
@@ -3750,19 +3758,17 @@ class Html {
    static function printPagerForm($action="") {
 
       if ($action) {
-         echo "<form method='POST' action=\"$action\">";
-         echo "<span>".__('Display (number of items)')."</span>&nbsp;";
-         Dropdown::showListLimit("submit()");
-
+         $jsAction = 'document.location = "'.$action.'&amp;glpilist_limit="+this.value';  
+         Dropdown::showListLimit($jsAction);
       } else {
          echo "<form method='POST' action =''>\n";
          echo "<span>".__('Display (number of items)')."</span>&nbsp;";
          Dropdown::showListLimit("reloadTab(\"glpilist_limit=\"+this.value)");
+         Html::closeForm();
       }
-      Html::closeForm();
    }
 
-
+   
    /**
     * Create a title for list, as  "List (5 on 35)"
     *
