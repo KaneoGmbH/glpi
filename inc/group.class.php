@@ -65,7 +65,27 @@ class Group extends CommonTreeDropdown {
       return false;
    }
 
+   /**
+    * @see CommonGLPI::getAdditionalMenuLinks()
+   **/
+   static function getAdditionalMenuLinks() {   
+      global $CFG_GLPI;
 
+      $links = array();
+
+      if (Group::canUpdate()
+          && Session::haveRight("user", User::UPDATEAUTHENT)
+          && AuthLdap::useAuthLdap()) {
+
+         $links['LDAP directory link'] = '/front/ldap.group.php';
+      }
+    
+      if(count($links)){
+
+         return $links;
+      } 
+   }
+   
    /**
     * @see CommonGLPI::getMenuShorcut()
     *
@@ -310,31 +330,6 @@ class Group extends CommonTreeDropdown {
       $this->showFormButtons($options);
 
       return true;
-   }
-
-
-   /**
-    * Print a good title for group pages
-    *
-    *@return nothing (display)
-    **/
-   function title() {
-      global $CFG_GLPI;
-
-      $buttons = array();
-      if (Group::canUpdate()
-          && Session::haveRight("user", User::UPDATEAUTHENT)
-          && AuthLdap::useAuthLdap()) {
-
-         $buttons["ldap.group.php"] = __('LDAP directory link');
-         $title                     = "";
-
-      } else {
-         $title = self::getTypeName(Session::getPluralNumber());
-      }
-
-      Html::displayTitle($CFG_GLPI["root_doc"] . "/pics/groupes.png", self::getTypeName(Session::getPluralNumber()), $title,
-                         $buttons);
    }
 
 
