@@ -2702,7 +2702,7 @@ class Ticket extends CommonITILObject {
       $delegating = User::getDelegateGroupsForUser($values['entities_id']);
 
       if (count($delegating)) {
-         echo "<div class='center'><table class='table table-striped'>";
+         echo "<div class='center'><table class='table'>";
          echo "<tr><th colspan='2'>".__('This ticket concerns me')." ";
 
          $rand   = Dropdown::showYesNo("nodelegate", $values['nodelegate']);
@@ -2755,7 +2755,7 @@ class Ticket extends CommonITILObject {
          $values['_users_id_requester'] = Session::getLoginUserID();
 
          if ($CFG_GLPI['use_check_pref']) {
-            echo "<div class='center'><table class='table table-striped'>";
+            echo "<div class='center'><table class='table '>";
             echo "<tr><th>".__('Check your personnal information')."</th></tr>";
             echo "<tr ><td class='center'>";
             User::showPersonalInformation(Session::getLoginUserID());
@@ -2833,7 +2833,7 @@ class Ticket extends CommonITILObject {
          echo "<input type='hidden' name='locations_id' value='".$values['locations_id']."'>";
       }
       echo "<input type='hidden' name='entities_id' value='".$_SESSION["glpiactive_entity"]."'>";
-      echo "<div class='center'><table class='table table-striped'>";
+      echo "<div class='center'><table class='table'>";
 
       echo "<tr><th>".__('Describe the incident or request')."</th><th>";
       if (Session::isMultiEntitiesMode()) {
@@ -2953,7 +2953,7 @@ class Ticket extends CommonITILObject {
          echo "<tr class='tab_bg_1'>";
          echo "<td>".sprintf(__('%1$s%2$s'), __('Title'), $tt->getMandatoryMark('name'))."<td>";
          if (!$tt->isHiddenField('name')) {
-            echo "<input type='text' maxlength='250' size='80' name='name'
+            echo "<input class='form-control' type='text' maxlength='250' size='80' name='name'
                        value=\"".$values['name']."\">";
          } else {
             echo $values['name'];
@@ -3461,7 +3461,7 @@ class Ticket extends CommonITILObject {
          }
       }
       echo "<div class='spaced' id='tabsbody'>";
-      echo "<table class='table table-striped' id='mainformtable'>";
+      echo "<table class='table' id='mainformtable'>";
 
       // Optional line
       $ismultientities = Session::isMultiEntitiesMode();
@@ -3675,7 +3675,7 @@ class Ticket extends CommonITILObject {
 
       if ($ID) {
          echo "</table>";
-         echo "<table  class='table table-striped' id='mainformtable2'>";
+         echo "<table  class='table' id='mainformtable2'>";
       }
 
       echo "<tr >";
@@ -4021,7 +4021,7 @@ class Ticket extends CommonITILObject {
       if (!$ID
           || $canupdate_descr) {
          echo $tt->getBeginHiddenFieldValue('name');
-         echo "<input type='text' size='90' maxlength=250 name='name' ".
+         echo "<input class='form-control' type='text' size='90' maxlength=250 name='name' ".
                 " value=\"".Html::cleanInputText($this->fields["name"])."\">";
          echo $tt->getEndHiddenFieldValue('name', $this);
       } else {
@@ -4643,7 +4643,7 @@ class Ticket extends CommonITILObject {
           echo '</div>';
 
          if ($number) {
-         echo "<table class='table table-striped'>";
+         echo "<table class='table'>";
          echo "<tr class='noHover'>";
              echo "<th>".__('Requester')."</th>";
             echo "<th>".__('Requester')."</th>";
@@ -4748,7 +4748,7 @@ class Ticket extends CommonITILObject {
       }
       echo '</h4></div>';
       
-      echo "<table class='table table-striped table-hover' >";
+      echo "<table class='table table-hover' >";
       echo "<tr><th>".__('Status')."</th><th class='text-right'>"._x('quantity', 'Number')."</th></tr>";
 
       foreach ($status as $key => $val) {

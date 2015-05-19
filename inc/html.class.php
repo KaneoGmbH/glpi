@@ -596,13 +596,16 @@ class Html {
       if ($ref_pic_link != "") {
          switch(basename($ref_pic_link)){
              case 'warning.png':
+             case 'warning':
                  $class = 'alert-warning';
                  break;
              case 'ok.png':
+             case 'ok':
                  $class = 'alert-success';
                  break;
              case 'users.png':
              case 'groups.png':
+             case 'info':
                  $class = 'alert-info';
          }
       }
@@ -3193,7 +3196,7 @@ class Html {
          $content = "&nbsp;";
       }
       $rand = mt_rand();
-      $out  = '';
+      $out  = '<span class="tooltip-box">';
 
       // Force link for popup
       if (!empty($param['popup'])) {
@@ -3214,7 +3217,7 @@ class Html {
             }
             $out .= '>';
          }
-         $out .= "<img id='tooltip$rand' alt='ffff' src='".$param['img']."'>";
+         $out .= '<i id="tooltip'.$rand.'" class="glyphicon glyphicon-info-sign"></i>';
 
          if (!empty($param['link'])) {
             $out .= "</a>";
@@ -3249,7 +3252,7 @@ class Html {
       }
       $js .= "});";
       $out .= Html::scriptBlock($js);
-
+      $out  .= '</span>';
       if ($param['display']) {
          echo $out;
       } else {
@@ -3302,7 +3305,7 @@ class Html {
       if ($CFG_GLPI["use_ajax_autocompletion"]) {
          $rand    = mt_rand();
          $name    = "field_".$params['name'].$rand;
-         $output .=  "<input ".$params['option']." id='text$name' type='text' name='".
+         $output .=  "<input class='form-control' ".$params['option']." id='text$name' type='text' name='".
                        $params['name']."' value=\"".self::cleanInputText($params['value']).
                        "\" size='".$params['size']."'>\n";
 
@@ -3324,7 +3327,7 @@ class Html {
          $output .= Html::scriptBlock($js);
 
       } else {
-         $output .=  "<input ".$params['option']." type='text' name='".$params['name']."'
+         $output .=  "<input class='form-control' ".$params['option']." type='text' name='".$params['name']."'
                 value=\"".self::cleanInputText($params['value'])."\" size='".$params['size']."'>\n";
       }
 
@@ -4136,7 +4139,7 @@ class Html {
 
       $js = "";
       $js .= " $('#$field_id').select2({
-                        width: '$width',
+                        width: '100%',
                         minimumInputLength: 0,
                         quietMillis: 100,
                         minimumResultsForSearch: ".$CFG_GLPI['ajax_limit_count'].",
@@ -4367,11 +4370,14 @@ class Html {
          }
          unset($options['image']);
       }
-
+      if($options['name'] == 'purge'){
+          $options['class'] = 'btn btn-danger';
+      }
       // Set default class to submit
       if (!isset($options['class'])) {
          $options['class'] = 'submit btn btn-primary';
       }
+    
       if (isset($options['confirm'])) {
          if (!empty($options['confirm'])) {
             $confirmMessage = $options['confirm'];
@@ -4394,7 +4400,7 @@ class Html {
          return sprintf('<input type="image" src="%s" %s>',
                Html::cleanInputText($image), Html::parseAttributes($options));
       }
-      return sprintf('<input type="submit" value="%s" %s>',
+      return sprintf('<input type="submit" value="%s" %s>&nbsp;',
                      Html::cleanInputText($caption), Html::parseAttributes($options));
    }
 

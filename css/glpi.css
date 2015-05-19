@@ -187,10 +187,17 @@ form[role=login] > div {
   border-radius: 0 4px 4px 0;
   margin-right: 0;
 }
-.tab-content {
-    
-}
 
 .bgwhite {
     background-color: #fff;
+}
+
+.with-tooltip .form-control {
+    float:left;
+    width:-20px;
+}
+
+.input-auto-width .form-control {
+    width:auto;
+    display: inline-block;
 }

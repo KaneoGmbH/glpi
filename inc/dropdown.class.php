@@ -221,12 +221,11 @@ class Dropdown {
              && !isset($_REQUEST['_in_modal'])
              && $params['addicon']) {
 
-               $output .= "<img alt='' title=\"".__s('Add')."\" src='".$CFG_GLPI["root_doc"].
-                            "/pics/add_dropdown.png' style='cursor:pointer; margin-left:2px;'
-                            onClick=\"".Html::jsGetElementbyID('add_dropdown'.$params['rand']).".dialog('open');\">";
+               $output .= " <a href='#' onClick=\"".Html::jsGetElementbyID('add_dropdown'.$params['rand']).".dialog('open');\"><i class='link glyphicon glyphicon-plus-sign'></i></a>";
                $output .= Ajax::createIframeModalWindow('add_dropdown'.$params['rand'],
                                                         $item->getFormURL(),
                                                         array('display' => false));
+        
          }
          // Display specific Links
          if ($itemtype == "Supplier") {
@@ -1677,7 +1676,7 @@ class Dropdown {
       $param['display']         = true;
       $param['other']           = false;
       $param['rand']            = mt_rand();
-
+      
       if (is_array($options) && count($options)) {
          if (isset($options['value']) && strlen($options['value'])) {
             $options['values'] = array($options['value']);
@@ -1709,6 +1708,9 @@ class Dropdown {
       }
 
       $output = '';
+      if($options['tooltip']){
+          $output .= '<div class="with-tooltip">';
+      }
       // readonly mode
       $field_id = Html::cleanId("dropdown_".$name.$param['rand']);
       if ($param['readonly']) {
@@ -1723,7 +1725,7 @@ class Dropdown {
       } else {
 
 
-         $output  .= "<select name='$field_name' id='$field_id'";
+         $output  .= "<select class='form-control' name='$field_name' id='$field_id'";
 
          if (!empty($param["on_change"])) {
             $output .= " onChange='".$param["on_change"]."'";
@@ -1832,6 +1834,15 @@ class Dropdown {
       }
       $output .= Ajax::commonDropdownUpdateItem($param, false);
 
+            if($options['tooltip']){
+           $output .= '<div class="tooltip-icon">';
+           $output .= '<a href="#" data-toggle="tooltip" title="'.$options['tooltip'].'">';
+           $output .= '<i class="glyphicon glyphicon-search"></i>';
+           $output .= '</a>';
+           $output .= '</div>';
+          $output .= '</div>';
+      }
+      
       if ($param['display']) {
          echo $output;
          return $param['rand'];
@@ -2035,7 +2046,7 @@ class Dropdown {
       return self::showFromArray('glpilist_limit', $values,
                                  array('on_change' => $onchange,
                                        'value'     => $list_limit,
-                                       'width'     => '20%'));
+                                       'width'     => '1%'));
    }
 
 }

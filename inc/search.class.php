@@ -1702,8 +1702,8 @@ class Search {
       foreach ($params as $key => $val) {
          $p[$key] = $val;
       }
-      if(isset($_SESSION['glpisearch'][$itemtype]['criteria']) && count($_SESSION['glpisearch'][$itemtype]['criteria']) > 0){
-          if($_SESSION['glpisearch'][$itemtype]['criteria']['value'] != '' && $_SESSION['glpisearch'][$itemtype]['criteria']['value'] != 'notold'){
+      if((isset($_SESSION['glpisearch'][$itemtype]['criteria']) && count($_SESSION['glpisearch'][$itemtype]['criteria']) > 0) || $_GET['criteria']){
+          if(($_SESSION['glpisearch'][$itemtype]['criteria']['value'] != '' && $_SESSION['glpisearch'][$itemtype]['criteria']['value'] != 'notold' ) || $_GET['criteria']){
             $class = 'in';
           }
       }

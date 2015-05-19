@@ -254,78 +254,11 @@ class Group extends CommonTreeDropdown {
       $this->initForm($ID, $options);
       $this->showFormHeader($options);
 
-      echo "<tr >";
-      echo "<td>".__('Name')."</td>";
-      echo "<td>";
-      Html::autocompletionTextField($this, "name");
-      echo "</td>";
-      echo "<td rowspan='9' class='middle'>".__('Comments')."</td>";
-      echo "<td class='middle' rowspan='9'>";
-      echo "<textarea class='form-control'  cols='45' rows='8' name='comment' >".$this->fields["comment"]."</textarea>";
-      echo "</td></tr>";
-
-      echo "<tr >";
-      echo "<td>".__('As child of')."</td><td>";
-      self::dropdown(array('value'  => $this->fields['groups_id'],
-                           'name'   => 'groups_id',
-                           'entity' => $this->fields['entities_id'],
-                           'used'   => (($ID > 0) ? getSonsOf($this->getTable(), $ID) : array())));
-      echo "</td></tr>";
-
-      echo "<tr >";
-      echo "<td class='subheader' colspan='2'>".__('Visible in a ticket');
-      echo "</td></tr>";
-
-      echo "<tr >";
-      echo "<td>".__('Requester')."</td>";
-      echo "<td>";
-      Dropdown::showYesNo('is_requester', $this->fields['is_requester']);
-      echo "</td></tr>";
-
-      echo "<tr  >";
-      echo "<td>".__('Assigned to')."</td><td>";
-      Dropdown::showYesNo('is_assign', $this->fields['is_assign']);
-      echo "</td></tr>";
-
-      echo "<tr >";
-      echo "<td>".__('Can be notified')."</td>";
-      echo "<td>";
-      Dropdown::showYesNo('is_notify', $this->fields['is_notify']);
-      echo "</td></tr>";
-
-      echo "<tr >";
-      echo "<td class='subheader' colspan='2'>".__('Visible in a project');
-      echo "</td></tr>";
-
-      echo "<tr >";
-      echo "<td>".__('Can be manager')."</td>";
-      echo "<td>";
-      Dropdown::showYesNo('is_manager', $this->fields['is_manager']);
-      echo "</td></tr>";
-
-      echo "<tr >";
-      echo "<td class='subheader' colspan='2'>".__('Can contain');
-      echo "</td></tr>";
-
-      echo "<tr >";
-      echo "<td>"._n('Item', 'Items', Session::getPluralNumber())."</td>";
-      echo "<td>";
-      Dropdown::showYesNo('is_itemgroup', $this->fields['is_itemgroup']);
-      echo "</td></tr>";
-
-      echo "<tr >";
-      echo "<td>"._n('User', 'Users', Session::getPluralNumber())."</td><td>";
-      Dropdown::showYesNo('is_usergroup', $this->fields['is_usergroup']);
-      echo "</td>";
-      echo "<td colspan='2' class='center'>";
-      if (!$ID) {
-         //TRANS: %s is the datetime of insertion
-         printf(__('Created on %s'), Html::convDateTime($_SESSION["glpi_currenttime"]));
-      } else {
-         //TRANS: %s is the datetime of update
-         printf(__('Last update on %s'), Html::convDateTime($this->fields["date_mod"]));
-      }
-      echo "</td></tr>";
+      $template = new Template();
+      
+      $template->assign(__CLASS__.'Class',$this);
+      $template->assign('id',$ID);
+      $template->display('forms/group.form.tpl.php');
 
       $this->showFormButtons($options);
 

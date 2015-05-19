@@ -6,11 +6,12 @@
         <?php if($this->additionanInfo): ?>
             <?php echo $this->additionanInfo; ?>
         <?php endif; ?>
-       
-      <?php Html::printPagerForm($this->printPageFormParam); ?>
-    </div>
 
+    </div>
     <div class="col-md-6 text-right">
+        <span class="input-auto-width">
+            <?php Html::printPagerForm($this->printPageFormParam); ?>
+        </span>
         <?php if($this->pagination): ?>
         <nav>
             <ul class="pagination">

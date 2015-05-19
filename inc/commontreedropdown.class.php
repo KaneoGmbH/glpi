@@ -395,52 +395,38 @@ abstract class CommonTreeDropdown extends CommonDropdown {
       // Minimal form for quick input.
       if (static::canCreate()) {
          $link = $this->getFormURL();
-         echo "<div class='firstbloc'>";
-         echo "<form action='".$link."' method='post'>";
-         echo "<table class='table table-striped'>";
-         echo "<tr><th colspan='3'>".__('New child heading')."</th></tr>";
-
-         echo "<tr ><td>".__('Name')."</td><td>";
-         Html::autocompletionTextField($this, "name", array('value' => ''));
-
-         if ($entity_assign
-             && ($this->getForeignKeyField() != 'entities_id')) {
-            echo "<input type='hidden' name='entities_id' value='".$_SESSION['glpiactive_entity']."'>";
-         }
-
-         if ($entity_assign && $this->isRecursive()) {
-            echo "<input type='hidden' name='is_recursive' value='1'>";
-         }
-         echo "<input type='hidden' name='".$this->getForeignKeyField()."' value='$ID'></td>";
-         echo "<td><input type='submit' name='add' value=\""._sx('button', 'Add')."\" class='btn btn-primary'>";
-         echo "</td></tr>\n";
-         echo "</table>";
-         Html::closeForm();
-         echo "</div>\n";
+         $formTemplate = new Template();
+         $formTemplate->assign('action',$link);
+         $formTemplate->assign('id',$ID);
+         $formTemplate->assign('class',$this);
+         $formTemplate->assign('entity_assign',$entity_assign);
+         $formTemplate->display('forms/common-child-form.tpl.php');     
       }
+      
+      $listTemplate = new Template();
+      $listTemplate->assign('entity_assign',$entity_assign);
+      $listTemplate->assign('fields',$fields);
+      $listTemplate->assign('class',$this);
 
-      echo "<div class='spaced'>";
-      echo "<table class='table table-hover'>";
-      echo "<tr class='noHover'><th colspan='".($nb+3)."'>".sprintf(__('Sons of %s'),
-                                                                    $this->getTreeLink());
-      echo "</th></tr>";
-
-      $header = "<tr><th>".__('Name')."</th>";
+      $tableHeader = array();
+      
+      $tableHeader[] = __('Name');
       if ($entity_assign) {
-         $header .= "<th>".__('Entity')."</th>";
+        $tableHeader[] = __('Entity');
       }
+      
       foreach ($fields as $field) {
          if ($field['list']) {
-            $header .= "<th>".$field['label']."</th>";
+            $tableHeader[] = $field['label'];
          }
       }
-      $header .= "<th>".__('Comments')."</th>";
-      $header .= "</tr>\n";
-      echo $header;
+      
+      $tableHeader[] = __('Comments');
 
+      $listTemplate->assign('tableHeader',$tableHeader);
+      
       $fk   = $this->getForeignKeyField();
-      $crit = array($fk     => $ID,
-                    'ORDER' => 'name');
+      $crit = array($fk     => $ID, 'ORDER' => 'name');
 
       if ($entity_assign) {
          if ($fk == 'entities_id') {
@@ -450,46 +436,8 @@ abstract class CommonTreeDropdown extends CommonDropdown {
             $crit['entities_id'] = $_SESSION['glpiactiveentities'];
          }
       }
-      $nb = 0;
-      foreach ($DB->request($this->getTable(), $crit) as $data) {
-         $nb++;
-         echo "<tr >";
-         echo "<td><a href='".$this->getFormURL();
-         echo '?id='.$data['id']."'>".$data['name']."</a></td>";
-         if ($entity_assign) {
-            echo "<td>".Dropdown::getDropdownName("glpi_entities", $data["entities_id"])."</td>";
-         }
-
-         foreach ($fields as $field) {
-            if ($field['list']) {
-               echo "<td>";
-               switch ($field['type']) {
-                  case 'UserDropdown' :
-                     echo getUserName($data[$field['name']]);
-                     break;
-
-                  case 'bool' :
-                     echo Dropdown::getYesNo($data[$field['name']]);
-                     break;
-
-                  case 'dropdownValue' :
-                     echo Dropdown::getDropdownName(getTableNameForForeignKeyField($field['name']),
-                                                    $data[$field['name']]);
-                     break;
-
-                  default:
-                     echo $data[$field['name']];
-               }
-               echo "</td>";
-            }
-         }
-         echo "<td>".$data['comment']."</td>";
-         echo "</tr>\n";
-      }
-      if ($nb) {
-         echo $header;
-      }
-      echo "</table></div>\n";
+      $listTemplate->assign('data',$DB->request($this->getTable(), $crit));
+      $listTemplate->display('forms/common-child-list.tpl.php');
    }
 
 

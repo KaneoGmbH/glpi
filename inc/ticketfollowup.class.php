@@ -698,47 +698,21 @@ class TicketFollowup  extends CommonDBTM {
 
       $rand   = mt_rand();
    
-      if ($caneditall || $canadd) {
-         echo "<div id='viewfollowup" . $tID . "$rand'></div>\n";
-      }
-
-      if ($canadd) {
-         echo "<script type='text/javascript' >\n";
-         echo "function viewAddFollowup" . $ticket->fields['id'] . "$rand() {\n";
-         $params = array('type'       => __CLASS__,
-                         'parenttype' => 'Ticket',
-                         'tickets_id' => $ticket->fields['id'],
-                         'id'         => -1);
-         Ajax::updateItemJsCode("viewfollowup" . $ticket->fields['id'] . "$rand",
-                                $CFG_GLPI["root_doc"]."/ajax/viewsubitem.php", $params);
-         echo Html::jsHide('addbutton'.$ticket->fields['id'] . "$rand");
-         echo "};";
-         echo "</script>\n";
-         // Not closed ticket or closed
-         if (!in_array($ticket->fields["status"],
-                       array_merge($ticket->getSolvedStatusArray(), $ticket->getClosedStatusArray()))
-             || $reopen_case) {
-
-            if (isset($_GET['_openfollowup']) && $_GET['_openfollowup']) {
-               echo Html::scriptBlock("viewAddFollowup".$ticket->fields['id']."$rand()");
-            } else {
-               echo "<div id='addbutton".$ticket->fields['id'] . "$rand' class='center firstbloc'>".
-                    "<a class='btn btn-info btn-xs' href='javascript:viewAddFollowup".$ticket->fields['id'].
-                                              "$rand();'>";
-               if ($reopen_case) {
-                  _e('Reopen the ticket');
-               } else {
-                  _e('Add a new followup');
-               }
-               echo "</a></div>\n";
-            }
-
-         }
-      }
+      $template = new Template();
+      $template->assign('caneditall',$caneditall);
+      $template->assign('canadd',$canadd);
+      $template->assign('tID',$tID);
+      $template->assign('rand',$rand);
+      $template->assign('CLASS',__CLASS__);
+      $template->assign('ticket',$ticket); 
+      $template->assign('reopen_case',$reopen_case);
+      $template->display('components/tickets/ticket-followup-form.tpl.php');
+         
+         
+      
 
       if ($DB->numrows($result) == 0) {
-         echo "<table class='table table-striped'><tr >";
-         echo "<th class='b'>" . __('No followup for this ticket.')."</th></tr></table>";
+          Html::displayTitle('info',__('No followup for this ticket.'),__('No followup'));
       } else {
          $today          = strtotime('today');
          $lastmonday     = strtotime('last monday');
@@ -788,20 +762,11 @@ class TicketFollowup  extends CommonDBTM {
                $color = 'bytech';
             }
 
-
-            echo "<div class='media $color' id='view$id'>";
-
-            echo "<div class='media-left'>";
-            echo "<img class='media-object img-circle' alt=\"".__s('Picture')."\" src='".
-                User::getThumbnailURLForPicture($data['picture'])."'>";
-            echo "</div>"; // boxnoteleft
-
-            echo "<div class='media-body'>";
+            $data['content'] = nl2br($data['content']);
+            if(empty($data['content'])){
+                $data['content'] = NOT_AVAILABLE;
+            }
             
-            echo '<div class="row">';
-            echo '<div class="col-md-8">';
-            echo "<h4 class='media-heading'><small>";
-            $username = NOT_AVAILABLE;
             if ($data['users_id']) {
                $username = getUserName($data['users_id'], $showuserlink);
             }
@@ -815,49 +780,19 @@ class TicketFollowup  extends CommonDBTM {
             if ($showprivate && $data["is_private"]) {
                $name = sprintf(__('%1$s - %2$s'), $name, __('Private'));
             }
-            echo $name;
-            echo "</small></h4>"; // floatright
-            echo '</div>';
-            echo '<div class="col-md-4 text-right">';
-            if ($candelete) {
-               Html::showSimpleForm(Toolbox::getItemTypeFormURL('TicketFollowup'),
-                                    array('purge' => 'purge'),
-                                    _x('button', 'Delete permanently'),
-                                    array('id' => $data['id']),
-                                    'glyphicon glyphicon-remove',
-                                    '',
-                                     __('Confirm the final deletion?'));
-            }
-            if ($canedit) {
-                echo "<button type='button' class='btn btn-default btn-xs' onClick=\"viewEditFollowup".$ticket->fields['id'].$data['id']."$rand(); ".Html::jsHide("view$id")." ".Html::jsShow("viewfollowup" . $ticket->fields['id'].$data["id"]."$rand")."\">";
-                echo '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit';
-                echo '</button>';                        
-            }
-            echo '</div>';
-            echo '</div>';
             
-
-            $content = nl2br($data['content']);
-            if (empty($content)) $content = NOT_AVAILABLE;
+            $template = new Template();
+            $template->assign('id',$id);
+            $template->assign('rand',$rand);
+            $template->assign('color',$color);
+            $template->assign('data',$data);
+            $template->assign('canedit',$canedit);
+            $template->assign('candelete',$candelete);
+            $template->assign('name',$name);
+            $template->assign('ticket',$ticket);
+            $template->assign('CLASS',__CLASS__);
+            $template->display('components/tickets/ticket-followup.tpl.php');
             
-            echo $content;
-
-            echo "</div>"; // boxnotecontent
-            echo "</div>"; // boxnote
-            if ($canedit) {
-               echo "<div id='viewfollowup" . $ticket->fields['id'].$data["id"]."$rand' class='starthidden'></div>\n";
-
-               echo "\n<script type='text/javascript' >\n";
-               echo "function viewEditFollowup". $ticket->fields['id'].$data["id"]."$rand() {\n";
-               $params = array('type'       => __CLASS__,
-                              'parenttype' => 'Ticket',
-                              'tickets_id' => $data["tickets_id"],
-                              'id'         => $data["id"]);
-               Ajax::updateItemJsCode("viewfollowup" . $ticket->fields['id'].$data["id"]."$rand",
-                                    $CFG_GLPI["root_doc"]."/ajax/viewsubitem.php", $params);
-               echo "};";
-               echo "</script>\n";
-            }
          }
       }
      

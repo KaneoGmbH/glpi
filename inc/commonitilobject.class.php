@@ -3000,7 +3000,7 @@ abstract class CommonITILObject extends CommonDBTM {
    **/
    static function getActorIcon($user_group, $type) {
       global $CFG_GLPI;
-
+      return '';
       switch ($user_group) {
          case 'user' :
             $icontitle = __s('User').' - '.$type; // should never be used

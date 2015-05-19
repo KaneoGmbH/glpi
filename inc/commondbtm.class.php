@@ -1982,12 +1982,12 @@ class CommonDBTM extends CommonGLPI {
          }
          return false;
       }
-      echo "<tr >";
-
-      if ($params['withtemplate']
-          ||$this->isNewID($ID)) {
-
-         echo "<td class='center' colspan='".($params['colspan']*2)."'>";
+      
+      // Close for Form
+      echo "</table></div>";
+      
+      echo '<div class="text-right">';
+      if ($params['withtemplate'] ||$this->isNewID($ID)) {
 
          if (($ID <= 0) || ($params['withtemplate'] == 2)) {
             echo Html::submit(_x('button','Add'), array('name' => 'add'));
@@ -2006,30 +2006,27 @@ class CommonDBTM extends CommonGLPI {
          if ($params['candel']) {
             if ($params['canedit']
                 && $this->can($ID, UPDATE)) {
-               echo "<td class='center' colspan='".($params['colspan']*2)."'>\n";
                echo Html::submit(_x('button','Save'), array('name' => 'update'));
-               echo "</td></tr><tr >\n";
+
             }
-            if ($this->isDeleted()
-                && $this->can($ID, PURGE)) {
-               echo "<td class='right' colspan='".($params['colspan']*2)."' >\n";
+            if ($this->isDeleted() && $this->can($ID, PURGE)) {
+
                echo Html::submit(_x('button','Restore'), array('name' => 'restore'));
 
-               echo "<span class='very_small_space'>";
                if (in_array($this->getType(), Item_Devices::getConcernedItems())) {
                   Html::showToolTip(__('Check to keep the devices while deleting this item'));
-                  echo "&nbsp;";
+
                   echo "<input type='checkbox' name='keep_devices' value='1'";
                   if (!empty($_SESSION['glpikeep_devices_when_purging_item'])) {
                      echo " checked";
                   }
-                  echo ">&nbsp;";
+                  echo ">";
                }
                echo Html::submit(_x('button','Delete permanently'), array('name' => 'purge'));
-               echo "</span>";
+       
 
             } else {
-               echo "<td class='right' colspan='".($params['colspan']*2)."' >\n";
+
                // If maybe dynamic : do not take into account  is_deleted  field
                if (!$this->maybeDeleted()
                    || $this->useDeletedToLockIfDynamic()) {
@@ -2046,7 +2043,6 @@ class CommonDBTM extends CommonGLPI {
 
          } else {
             if ($this->can($ID, UPDATE)) {
-               echo "<td class='center' colspan='".($params['colspan']*2)."'>\n";
                echo Html::submit(_x('button','Save'), array('name' => 'update'));
             }
          }
@@ -2058,26 +2054,16 @@ class CommonDBTM extends CommonGLPI {
       if (!$this->isNewID($ID)) {
          echo "<input type='hidden' name='id' value='$ID'>";
       }
-      echo "</td>";
-      echo "</tr>\n";
 
-      if ($params['canedit']
-          && count($params['addbuttons'])) {
-         echo "<tr >";
-         if ((($params['colspan']*2) - count($params['addbuttons'])) > 0) {
-            echo "<td colspan='".($params['colspan']*2 - count($params['addbuttons']))."'>&nbsp;".
-                 "</td>";
-         }
+
+      if ($params['canedit'] && count($params['addbuttons'])) {
          foreach ($params['addbuttons'] as $key => $val) {
-            echo "<td><input class='btn btn-primary' type='submit' name='$key' value=\"".
-                        Html::entities_deep($val)."\"></td>";
+            echo "<input class='btn btn-primary' type='submit' name='$key' value=\"".Html::entities_deep($val)."\">";
          }
-         echo "</tr>";
+    
       }
+      echo '</div>';
 
-
-      // Close for Form
-      echo "</table></div>";
       Html::closeForm();
    }
 
@@ -2196,11 +2182,15 @@ class CommonDBTM extends CommonGLPI {
          }
       }
 
-      echo "<div class='spaced' id='tabsbody'>";
-      echo "<table class='table table-striped' id='mainformtable'>";
+      echo "<div id='tabsbody'>";
 
-      echo "<tr class='headerRow'><th colspan='".$params['colspan']."'>";
-
+      $entityname = '';
+      if (isset($this->fields["entities_id"])
+          && Session::isMultiEntitiesMode()
+          && $this->isEntityAssign()) {
+         $entityname = ' - '.Dropdown::getDropdownName("glpi_entities", $this->fields["entities_id"]);
+      }
+      
       $name = '';
       if (!empty($params['withtemplate']) && ($params['withtemplate'] == 2)
           && !$this->isNewID($ID)) {
@@ -2215,27 +2205,23 @@ class CommonDBTM extends CommonGLPI {
          _e('Template name');
          Html::autocompletionTextField($this, "template_name", array('size' => 25));
       } else if ($this->isNewID($ID)) {
-         printf(__('%1$s - %2$s'), __('New item'), $this->getTypeName(1));
+         printf('<h4>'.__('%1$s - %2$s').'<small>'.$entityname.'</small></h4>', __('New item'), $this->getTypeName(1));
       } else {
          //TRANS: %1$s is the Itemtype name and $2$d the ID of the item
-         printf(__('%1$s - ID %2$d'), $this->getTypeName(1), $ID);
-      }
-      $entityname = '';
-      if (isset($this->fields["entities_id"])
-          && Session::isMultiEntitiesMode()
-          && $this->isEntityAssign()) {
-         $entityname = Dropdown::getDropdownName("glpi_entities", $this->fields["entities_id"]);
+         printf('<h4>'.__('%1$s - ID %2$d').'</h4>', $this->getTypeName(1), $ID);
       }
 
-      echo "</th><th colspan='".$params['colspan']."'>";
+
+    
       if (get_class($this) == 'Entity') {
          // is recursive but cannot be change
 
       } else {
          if ($this->maybeRecursive()) {
             if (Session::isMultiEntitiesMode()) {
-               echo "<table class='table'><tr class='headerRow'><th>".$entityname."</th>";
-               echo "<th class='right'>".__('Child entities')."</th><th>";
+               
+               echo __('Child entities');
+              
                if ($params['canedit']) {
                   if ( $this instanceof CommonDBChild) {
                      echo Dropdown::getYesNo($this->isRecursive());
@@ -2254,12 +2240,12 @@ class CommonDBTM extends CommonGLPI {
                      Dropdown::showYesNo("is_recursive", $this->fields["is_recursive"]);
                      $comment = __('Change visibility in child entities');
                   }
-                  echo " ";
+                  
                   Html::showToolTip($comment);
                } else {
                   echo Dropdown::getYesNo($this->fields["is_recursive"]);
                }
-               echo "</th></tr></table>";
+            
             } else {
                echo $entityname;
                echo "<input type='hidden' name='is_recursive' value='0'>";
@@ -2273,8 +2259,8 @@ class CommonDBTM extends CommonGLPI {
       if (isset($_REQUEST['_in_modal']) && $_REQUEST['_in_modal']) {
          echo "<input type='hidden' name='_no_message_link' value='1'>";
       }
+      echo "<table class='table' id='mainformtable'>";
 
-      echo "</th></tr>\n";
    }
 
 
