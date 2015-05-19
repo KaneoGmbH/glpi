@@ -555,8 +555,8 @@ class Html {
    static function displayMessageAfterRedirect() {
 
       // Affichage du message apres redirection
-      if (count($_SESSION["MESSAGE_AFTER_REDIRECT"])) {
-    
+      if (count($_SESSION["MESSAGE_AFTER_REDIRECT"]) && is_array($_SESSION["MESSAGE_AFTER_REDIRECT"])) {
+          
           foreach($_SESSION["MESSAGE_AFTER_REDIRECT"] as $message){
               switch($message['type']){
                   case ERROR: $class = 'danger'; break;
