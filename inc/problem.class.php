@@ -418,14 +418,37 @@ class Problem extends CommonITILObject {
 
       $tab += $this->getSearchOptionsMain();
 
-      $tab[65]['table']         = 'glpi_items_problems';
-      $tab[65]['field']         = 'id';
-      $tab[65]['name']          = _x('quantity','Number of items');
-      $tab[65]['forcegroupby']  = true;
-      $tab[65]['usehaving']     = true;
-      $tab[65]['datatype']      = 'count';
-      $tab[65]['massiveaction'] = false;
-      $tab[65]['joinparams']    = array('jointype' => 'child');
+      $tab[63]['table']         = 'glpi_items_problems';
+      $tab[63]['field']         = 'id';
+      $tab[63]['name']          = _x('quantity','Number of items');
+      $tab[63]['forcegroupby']  = true;
+      $tab[63]['usehaving']     = true;
+      $tab[63]['datatype']      = 'count';
+      $tab[63]['massiveaction'] = false;
+      $tab[63]['joinparams']    = array('jointype' => 'child');
+
+      $tab[13]['table']             = 'glpi_items_problems';
+      $tab[13]['field']             = 'items_id';
+      $tab[13]['name']              = _n('Associated element', 'Associated elements', Session::getPluralNumber());
+      $tab[13]['datatype']          = 'specific';
+      $tab[13]['comments']          = true;
+      $tab[13]['nosort']            = true;
+      $tab[13]['nosearch']          = true;
+      $tab[13]['additionalfields']  = array('itemtype');
+      $tab[13]['joinparams']        = array('jointype'   => 'child');
+      $tab[13]['forcegroupby']      = true;
+      $tab[13]['massiveaction']     = false;
+
+      $tab[131]['table']            = 'glpi_items_problems';
+      $tab[131]['field']            = 'itemtype';
+      $tab[131]['name']             = _n('Associated item type', 'Associated item types', Session::getPluralNumber());
+      $tab[131]['datatype']         = 'itemtypename';
+      $tab[131]['itemtype_list']    = 'ticket_types';
+      $tab[131]['nosort']           = true;
+      $tab[131]['additionalfields'] = array('itemtype');
+      $tab[131]['joinparams']       = array('jointype'   => 'child');
+      $tab[131]['forcegroupby']     = true;
+      $tab[131]['massiveaction']    = false;
 
       $tab += $this->getSearchOptionsActors();
 
@@ -965,9 +988,9 @@ class Problem extends CommonITILObject {
       // In percent
       $colsize1 = '13';
       $colsize2 = '37';
-        
+
       $default_use_notif = Entity::getUsedConfig('is_notif_enable_default', $_SESSION['glpiactive_entity'], '', 1);
-    
+
       // Set default options
       if (!$ID) {
          $values = array('_users_id_requester'        => Session::getLoginUserID(),
@@ -1296,12 +1319,12 @@ class Problem extends CommonITILObject {
             $options['criteria'][1]['searchtype'] = 'equals';
             $options['criteria'][1]['value']      = $item->getID();
             $options['criteria'][1]['link']       = 'OR';
-            
+
             $options['criteria'][5]['field']      = 5; // status
             $options['criteria'][5]['searchtype'] = 'equals';
             $options['criteria'][5]['value']      = $item->getID();
             $options['criteria'][5]['link']       = 'OR';
-            
+
             break;
 
          case 'Supplier' :
