@@ -1089,7 +1089,6 @@ class Search {
    static function displayDatas(array &$data) {
       global $CFG_GLPI;
 
-
       $rand = mt_rand();
       if (!isset($data['data']) || !isset($data['data']['totalcount'])) {
          return false;
