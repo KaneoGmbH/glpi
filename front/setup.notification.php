@@ -75,8 +75,8 @@ if (!$CFG_GLPI['use_mailing']) {
          echo "<tr ><td class='center'>".
               "<a href='notification.php'>". _n('Notification', 'Notifications',2)."</a></td></tr>";
       } else {
-            echo "<tr ><td class='center'>" .
-            __('Impossible to configure the notifications: please configure your email followup using the above configuration.') .
+            echo "<tr class='tab_bg_1'><td class='center'>" .
+            __('Unable to configure notifications: please configure your email followup using the above configuration.') .
                  "</td></tr>";
       }
       echo "</table>";
