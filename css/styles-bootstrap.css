@@ -1,0 +1,608 @@
+/*
+ * @version $Id: styles.css 23003 2014-06-11 14:07:43Z moyo $
+ -------------------------------------------------------------------------
+ GLPI - Gestionnaire Libre de Parc Informatique
+ Copyright (C) 2003-2014 by the INDEPNET Development Team.
+
+ http://indepnet.net/   http://glpi-project.org
+ -------------------------------------------------------------------------
+
+ LICENSE
+
+ This file is part of GLPI.
+
+ GLPI is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+
+ GLPI is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with GLPI. If not, see <http://www.gnu.org/licenses/>.
+ --------------------------------------------------------------------------
+*/
+/* ################--------------- GLPI CSS style   ---------------#################### */
+
+
+
+
+/* ################--------------- Default style  ---------------#################### */
+
+
+
+span.invisible {
+   visibility: hidden;
+}
+
+.starthidden {
+   display: none;
+}
+
+/* separateur pour rétablir les comportements de block */
+div.sep {
+   font-size: 1px;
+   height: 1px;
+   padding: 0;
+   margin: 0;
+   clear: both;
+}
+
+sup {
+   vertical-align: baseline;
+   position: relative;
+   top: -0.4em;
+}
+
+.b {
+   font-weight: bold;
+}
+
+.left {
+   text-align:left;
+}
+
+.right {
+   text-align:right;
+}
+
+.floatright {
+   position: relative;
+   float: right;
+}
+
+.floatleft {
+   position: relative;
+   float: left;
+}
+
+.center-h {
+   margin:auto;
+}
+
+.middle {
+   vertical-align:middle;
+}
+
+.bottom {
+   vertical-align:bottom;
+}
+
+.top {
+   vertical-align:top;
+}
+
+.relative {
+   position: relative;
+}
+
+
+.red { 
+   color:red;
+}
+
+.blue {
+   color:blue;
+}
+
+.green {
+   color:green;
+}
+
+.yellow {
+   color:yellow;
+}
+
+
+.deleted {
+   background-color:#cf9b9b;
+}
+
+.separ {
+   clear: both;
+   visibility: hidden;
+}
+
+
+.pointer {
+   cursor:pointer;
+ }
+
+.invisible {
+   display: none;
+}
+
+/* ################--------------- Tabs ---------------#################### */
+
+.alltab {
+   font-size:14px; 
+   text-align:center; 
+   padding: 10px;
+   font-weight: bold;
+}
+
+
+
+/* ################--------------- form ---------------#################### */
+
+
+
+.entity_select {
+   border-left: 1px solid #C0CAD4;
+   border-right: 1px solid#C0CAD4;
+   padding:3px;
+}
+
+.entity_select:hover {
+   border-left: 1px solid #C0CAD4;
+   border-right: 1px solid #C0CAD4;
+   border-bottom: 1px solid #C0CAD4;
+   padding:3px;
+}
+
+.tree {
+   width:100%;
+   border:0;
+   border-bottom:1px solid #C0CAD4;
+}
+
+.treeroot {
+   width:100%;
+   background: url("../pics/treeroot.png") 0 2px no-repeat;
+   border:0;
+   /*margin-top:5px;*/
+   font-weight:bold;
+}
+
+.tree:hover{
+   background-color:#eeeeee;
+}
+
+.treeroot:hover{
+   background-color:#eeeeee;
+}
+
+
+/* ################--------------- Table  ---------------#################### */
+table {
+   font-size: 11px;
+}
+
+.central {
+   padding-top: 15px;
+   width: 100%;
+}
+
+.central table {
+   margin-bottom: 5px;
+}
+
+div.rss {
+   margin-left: 10px;
+}
+
+td.numeric {
+   text-align:right;
+/*   width:10%;*/
+/*   padding-right:4%;*/
+}
+
+td.htmltable_upper_separation_cell {
+    border-top: dashed 1px #a0a0a0;
+}
+
+td.nopadding { 
+   padding:0;
+}
+
+
+td.subheader {
+   background-color: #ddd;
+   text-align: center;
+   font-weight: bold;
+}
+
+
+/* ################--------------- Tracking  / Reminder ---------------#################### */
+
+
+.showplan {
+   font-weight: bold;
+   text-decoration: none; 
+   color : #659900; 
+   cursor:pointer;
+}
+
+
+/* ################--------------- User Picture ---------------#################### */
+.tooltip {
+   font-size: 11px !important;
+}
+.tooltip:contains(img) {
+   white-space: nowrap;
+   height: 100px !important;
+   border:10px solid red;
+}
+
+.tooltip_picture_border {
+   padding:2px;
+   border-radius: 51px;
+   width:72px;
+   height:72px;
+   position: absolute;
+}  
+
+.tooltip_picture {
+   width:71px;
+   height:71px;
+   border-radius:50px;
+}
+.tooltip_text {
+   margin-left:90px;
+   min-height: 85px;
+}
+
+.user_picture_border {
+   padding:2px;
+   border-radius: 6px;
+   border: 5px inset #D0D99D;
+   width:232px;
+   height:232px;
+   margin-right:5px;
+   background-color: #FFF
+}
+.user_picture {
+   margin: 0 auto;
+   width:230px;
+   height:230px;
+   border-radius: 5px;
+}
+
+.user_picture_border_small {
+   padding:2px;
+   border-radius: 6px;
+   border: 3px inset #D0D99D;
+   width:72px;
+   height:72px;
+   margin-right:5px;
+   background-color: #FFF
+}
+.user_picture_small {
+   margin: 0 auto;
+   width:71px;
+   height:71px;
+   border-radius: 5px;
+}
+
+.user_picture_verysmall {
+   margin: 0 auto;
+   width:35px;
+   height:35px;
+   border-radius: 5px;
+}
+/* ################--------------- Space to replace &nbsp; ---------------#################### */
+
+/* 2 space */
+.very_small_space {
+   margin-left: 15px;
+}
+
+/* 5 spaces */
+.small_space {
+   margin-left: 38px;
+}
+
+/* 10 spaces */
+.medium_space {
+   margin-left: 120px;
+}
+
+/* 20 spaces */
+.big_space {
+   margin-left:250px;
+}
+
+
+
+/* ################--------------- Espacement des blocs ---------------#################### */
+
+.spaced {
+   margin-bottom: 15px;
+}
+
+.firstbloc {
+   margin-bottom: 5px;
+}
+
+
+
+/* ################--------------- Calendrier  / reservation ---------------#################### */
+
+.calendrier {
+   vertical-align:middle;
+   /*border: 1px solid #888888;
+   background-color:#eeeeee;
+   background:  url("../pics/fond_form.png") repeat-x; */
+}
+
+.calendrier:hover {
+   /*border: 1px inset #888888;
+   background-color:#ffffff;*/
+   cursor:pointer;
+}
+
+.calendrier_mois { 
+   font-family: Verdana, Arial, Sans, sans-serif; 
+   font-size: 10px; 
+}
+
+.calendrier_jour {
+   font-family: arial,helvetica,sans-serif; 
+   font-size: 14px; 
+   color: black;
+}
+
+.calendrier_case1 {
+   margin-left: 10px; 
+   padding: 2px; 
+   -moz-border-radius: 5px;
+   -webkit-border-radius: 5px;
+   -o-border-radius: 5px;
+   margin-top: 2px; 
+   border: 1px solid #666666;
+   background-color: white;
+}
+
+.calendrier_case2 {
+   margin-left: 10px; 
+   padding: 2px; 
+   -moz-border-radius: 5px;
+   -webkit-border-radius: 5px;
+   -o-border-radius: 5px; 
+   margin-top: 2px;
+   border: 1px solid #cccccc; 
+   background-color: #eeeeee
+}
+
+.calendrier_case_white {
+   background-color:#ffffff;
+}
+
+
+
+/* ################--------------- Knowledge FAQ  ---------------#################### */
+#contenukb {
+   height: 100%;
+   width: 600px;
+   margin: 0 auto;
+}
+
+#contenukb legend {
+   font-weight: bold;
+}
+
+#contenukb fieldset {
+   background-color: #eeeeee;
+   border: 1px solid #FFC65D;
+   -moz-border-radius: 8px;
+   -webkit-border-radius: 8px;
+   -o-border-radius: 8px;
+   padding-bottom:10px;
+   width: 600px;
+}
+
+#contenukb textarea {
+   width:550px;
+}
+
+
+.tdkb_result {
+   vertical-align:top;
+   text-align:left;
+   width: 33%; 
+   padding: 3px 20px 3px 25px;
+}
+
+
+.tdkb {
+   text-align:left;
+   font-size:10px; 
+   color:#aaaaaa;
+}
+
+.baskb {
+   position: relative;
+   text-align:left;
+   font-size:10px;
+   color:#aaaaaa;
+}
+
+.baskb_right {
+   position:absolute; 
+   right:0; 
+   margin-right:5px;
+}
+
+.code {
+   width: 95%;
+   border: dotted 2px #ccc;
+}
+
+
+a.icon_nav_move img {
+   padding: 4px;
+   margin: 1px;
+   border: 1px solid #aaaaaa;
+   background-color: #ffffff;
+   -moz-border-radius: 5px;
+   -webkit-border-radius: 5px;
+   -o-border-radius: 5px;
+}
+
+a.icon_nav_move:hover img {
+   padding: 4px;
+   margin: 1px;
+   border: 1px solid #999999;
+   background-color:#e4e4e4;
+   -moz-border-radius: 5px;
+   -webkit-border-radius: 5px;
+   -o-border-radius: 5px;
+}
+
+/* ################--------------- File upload  ---------------#################### */
+.fileupload {
+   text-align: center;
+   border:1px dashed #cccccc;
+   min-height: 65px;
+    background-color: #fff;
+   -moz-border-radius: 5px;
+   -webkit-border-radius: 5px;
+   -o-border-radius: 5px;
+}
+
+
+/* ################--------------- planning  ---------------#################### */
+
+.planning {
+   text-align:center;
+   border:1px dashed #cccccc;
+   background-color: #d7d7d2;
+   font-size:9px;
+}
+
+.planning:hover {
+   border: 1px solid #999999;
+   background-color: white;
+}
+
+.available {
+   background-color: green;
+}
+
+.notavailable {
+   background-color: red;
+}
+
+.partialavailableend {
+   background-image: -webkit-linear-gradient(left, red 50%, green  0%);
+   background-image: -moz-linear-gradient(left, red 50%, green  0%);
+   background-image: -ms-linear-gradient(left, red 50%, green  0%);
+   background-image: -o-linear-gradient(left, red 50%, green  0%);
+   background-image: linear-gradient(left, red 50%, green  0%);
+}
+
+.partialavailablebegin {
+   background-image: -webkit-linear-gradient(left, green 50%, red  0%);
+   background-image: -moz-linear-gradient(left, green 50%, red  0%);
+   background-image: -ms-linear-gradient(left, green 50%, red  0%);
+   background-image: -o-linear-gradient(left, green 50%, red  0%);
+   background-image: linear-gradient(left, green 50%, red  0%);
+}
+
+/* ################--------------- Notepad  ---------------#################### */
+
+
+/*
+.bytech {
+   background: #f2f2f2;
+}
+
+.byuser {
+  // background: #e7e7e2;
+}
+*/
+
+/* ################--------------- Footer  ---------------#################### */
+
+
+.copyright {
+   color :#757575;
+}
+
+
+/* ################--------------- Debug  ---------------#################### */
+#debug-float {
+   top: 0px;
+   left: 80px;
+   position: absolute;
+   z-index: 100;
+}
+
+#maintenance-float {
+   top: 0px;
+   left: 280px;
+   position: absolute;
+   z-index: 100;
+}
+
+
+#debug-float a, #maintenance-float a {
+   border-top: 1px solid #cecece;
+   border-bottom: 2px solid #4a4a4a;
+   border-left: 1px solid #cecece;
+   border-right: 1px solid #cecece;
+   text-decoration: none;
+   text-align: center;
+   margin: 0;
+   padding: 1px .5em;
+   font-family: helvetica,arial,sans-serif;
+   font-size: 10px;
+   font-weight: bold;
+   background-color: #fff;
+   color:red;
+}
+
+#debug-float a:hover, #maintenance-float a:hover {
+   background-color: #fc3;
+   border-bottom: 2px solid #36f;
+}
+
+#debugajax {
+   margin: auto;
+   text-align:center;
+}
+
+#debug {
+   background-color:#F0F0F0;
+}
+
+#debug h1, #debugajax h1 {
+   font-size:18px; 
+   text-align:center; 
+   /*background-color:#efefe7;*/
+   padding: 5px;
+}
+
+#debug h2, #debugajax h2 {
+   font-size:14px; 
+   padding-left: 10px;
+   border-left: 4px solid #FFC65D;
+   border-bottom: 2px solid #FFC65D;
+}
+
+#debug table, #debugajax table {
+   margin:0;
+}

@@ -1013,7 +1013,7 @@ class Html {
 
         //  CSS link
       $cssFiles = array(
-          $CFG_GLPI['root_doc']."/css/styles.css",
+          $CFG_GLPI['root_doc']."/css/styles-bootstrap.css",
           $CFG_GLPI['root_doc']."/lib/bootstrap/css/bootstrap.min.css",
           $CFG_GLPI['root_doc']."/lib/jquery/css/bootstrap/jquery-ui-1.10.0.custom.css",
           $CFG_GLPI['root_doc']."/lib/jqueryplugins/rateit/rateit.css",

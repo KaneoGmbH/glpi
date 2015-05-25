@@ -183,7 +183,6 @@ class CommonDBTM extends CommonGLPI {
       $query = "SELECT `".$this->getTable()."`.*
                 FROM `".$this->getTable()."`
                 $query";
-            
       if ($result = $DB->query($query)) {
          if ($DB->numrows($result) == 1) {
             $this->fields = $DB->fetch_assoc($result);
