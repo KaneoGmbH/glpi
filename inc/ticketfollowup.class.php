@@ -587,61 +587,16 @@ class TicketFollowup  extends CommonDBTM {
          echo "<div class='center b'>".__('If you want to reopen the ticket, you must specify a reason')."</div>";
       }
 
-      if ($tech) {
-         $this->showFormHeader($options);
+      $this->showFormHeader($options);
+      
+      $template = new Template();
+      $template->assign('isTech',$tech);
+      $template->assign('class',$this);
+      $template->assign('reopen_case',$reopen_case);
+      $template->display('components/tickets/ticket-followup-form-form.tpl.php');    
 
-         echo "<tr >";
-         echo "<td rowspan='3' class='middle right'>".__('Description')."</td>";
-         echo "<td class='center middle' rowspan='3'>";
-         echo "<textarea class='form-control'  name='content' cols='70' rows='6'>".$this->fields["content"]."</textarea>";
-         if ($this->fields["date"]) {
-            echo "</td><td>".__('Date')."</td>";
-            echo "<td>".Html::convDateTime($this->fields["date"]);
-         } else {
-
-            echo "</td><td colspan='2'>&nbsp;";
-         }
-         echo "<input type='hidden' name='tickets_id' value='".$this->fields["tickets_id"]."'>";
-         // Reopen case
-         if ($reopen_case) {
-            echo "<input type='hidden' name='add_reopen' value='1'>";
-         }
-
-         echo "</td></tr>\n";
-
-         echo "<tr >";
-         echo "<td>".__('Source of followup')."</td><td>";
-         RequestType::dropdown(array('value' => $this->fields["requesttypes_id"]));
-         echo "</td></tr>\n";
-
-         echo "<tr >";
-         echo "<td>".__('Private')."</td><td>";
-         Dropdown::showYesNo('is_private', $this->fields["is_private"]);
-         echo "</td></tr>";
-
-         $this->showFormButtons($options);
-
-      } else {
-         $options['colspan'] = 1;
-
-         $this->showFormHeader($options);
-
-         echo "<tr >";
-         echo "<td class='middle right'>".__('Description')."</td>";
-         echo "<td class='center middle'>";
-         echo "<textarea class='form-control'  name='content' cols='80' rows='6'>".$this->fields["content"]."</textarea>";
-         echo "<input type='hidden' name='tickets_id' value='".$this->fields["tickets_id"]."'>";
-         echo "<input type='hidden' name='requesttypes_id' value='".
-                RequestType::getDefault('helpdesk')."'>";
-         // Reopen case
-         if ($reopen_case) {
-            echo "<input type='hidden' name='add_reopen' value='1'>";
-         }
-
-         echo "</td></tr>\n";
-
-         $this->showFormButtons($options);
-      }
+      $this->showFormButtons($options);
+               
       return true;
    }
 
