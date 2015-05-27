@@ -67,6 +67,8 @@ if (isset($_POST["itemtype"])
       unset($tmp);
    }
 
+   echo '<div class="col-md-4">';
+   
    $randsearch   = -1;
    $dropdownname = "searchtype$fieldname".$_POST["itemtype"].$_POST["num"];
    $searchopt    = array();
@@ -86,8 +88,8 @@ if (isset($_POST["itemtype"])
                                                   'width'  => ''));
       $fieldsearch_id = Html::cleanId("dropdown_".$fieldname."[".$_POST["num"]."][searchtype]$randsearch");
    }
-
-
+   echo '</div>';
+   echo '<div class="col-md-4">';
 
    $_POST['value']      = stripslashes($_POST['value']);
    $_POST['searchopt']  = $searchopt;
@@ -109,7 +111,7 @@ if (isset($_POST["itemtype"])
                                  "span$dropdownname",
                                  $CFG_GLPI["root_doc"]."/ajax/searchoptionvalue.php",
                                  $paramsaction);
-   
+   echo '</div>';
 }
     
 ?>

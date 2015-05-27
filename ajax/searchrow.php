@@ -53,7 +53,7 @@ if (isset($_POST["itemtype"])
    echo "<div id='$rowid'>";
    
    echo '<div class="row spaceafter">';
-   echo '<div class="col-lg-12">';
+   echo '<div class="col-md-12">';
    // First line display add / delete images for normal and meta search items
    if ($_POST["num"] == 0) {
  
@@ -128,7 +128,7 @@ if (isset($_POST["itemtype"])
   echo '</div>';
   
   echo '<div class="row spaceafter">';
- echo '<div class="col-lg-12">';
+  
    $criteria = array();
 
    if (isset($_SESSION['glpisearch'][$_POST["itemtype"]]['criteria'][$_POST["num"]])
@@ -149,17 +149,15 @@ if (isset($_POST["itemtype"])
       if (isset($criteria["link"])) {
          $value = $criteria["link"];
       }
-      //echo '<div class="col-lg-2">';
+      echo '<div class="col-md-1">';
       Dropdown::showFromArray("criteria[".$_POST["num"]."][link]",
                               Search::getLogicalOperators(),
-                              array('value' => $value,
-                                    'width' => '30%'));
+                              array('value' => $value));
     
-      //echo '</div>';
+      echo '</div>';
       
       }
  
-  //echo '<div class="col-lg-4">';
    $selected = $first = '';
    $values   = array();
    // display select box to define search item
@@ -191,12 +189,9 @@ if (isset($_POST["itemtype"])
    if (isset($criteria['field'])) {
       $value = $criteria['field'];
    } 
-
-   $rand     = Dropdown::showFromArray("criteria[".$_POST["num"]."][field]", $values,
-                                       array('value' => $value,
-                                             'width' => '60%'));
-
-   //echo '</div>';
+   echo '<div class="col-md-3">';
+   $rand = Dropdown::showFromArray("criteria[".$_POST["num"]."][field]", $values,array('value' => $value));
+   echo '</div>';
   
    $field_id = Html::cleanId("dropdown_criteria[".$_POST["num"]."][field]$rand");
 
@@ -227,7 +222,7 @@ if (isset($_POST["itemtype"])
 
    Ajax::updateItemOnSelectEvent($field_id, $spanid,
                                  $CFG_GLPI["root_doc"]."/ajax/searchoption.php", $params);
-   echo "</div>";
+
    echo "</div>";
    echo "</div>";
 }
