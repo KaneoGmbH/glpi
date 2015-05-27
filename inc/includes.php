@@ -36,7 +36,6 @@ if (!defined('GLPI_ROOT')) {
 }
 
 include_once (GLPI_ROOT . "/inc/autoload.function.php");
-include_once (GLPI_ROOT . "/lib/Savant3/Savant3.php");
 
 // Init Timer to compute time of display
 $TIMER_DEBUG = new Timer();

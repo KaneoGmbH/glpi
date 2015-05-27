@@ -1708,9 +1708,7 @@ class Dropdown {
       }
 
       $output = '';
-      if($options['tooltip']){
-          $output .= '<div class="with-tooltip">';
-      }
+
       // readonly mode
       $field_id = Html::cleanId("dropdown_".$name.$param['rand']);
       if ($param['readonly']) {
@@ -1834,14 +1832,7 @@ class Dropdown {
       }
       $output .= Ajax::commonDropdownUpdateItem($param, false);
 
-            if($options['tooltip']){
-           $output .= '<div class="tooltip-icon">';
-           $output .= '<a href="#" data-toggle="tooltip" title="'.$options['tooltip'].'">';
-           $output .= '<i class="glyphicon glyphicon-search"></i>';
-           $output .= '</a>';
-           $output .= '</div>';
-          $output .= '</div>';
-      }
+            
       
       if ($param['display']) {
          echo $output;

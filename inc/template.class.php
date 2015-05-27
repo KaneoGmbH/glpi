@@ -35,6 +35,8 @@ if (!defined('GLPI_ROOT')) {
     die("Sorry. You can't access directly to this file");
 }
 
+include_once (GLPI_ROOT . "/lib/Savant3/Savant3.php");
+
 /**
  * Template Class
  **/

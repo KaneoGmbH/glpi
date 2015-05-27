@@ -1096,12 +1096,12 @@ class Search {
           // Global search header
       if ($data['display_type'] == self::GLOBAL_SEARCH) {
          if ($data['item']) {
-            echo "<div class='center'><h2>".$data['item']->getTypeName();
+            echo "<h2>".$data['item']->getTypeName();
             // More items
             if ($data['data']['totalcount'] > ($data['search']['start'] + self::GLOBAL_DISPLAY_COUNT)) {
                echo " <a href='".$data['search']['target']."?$parameters'>".__('All')."</a>";
             }
-            echo "</h2></div>\n";
+            echo "</h2>";
          } else {
             return false;
          }
@@ -1118,10 +1118,10 @@ class Search {
             Html::openMassiveActionsForm($massformid);
 
          }
-         
-      echo '<div class="panel panel-default">';
-      
-      echo '<div class="panel-heading">';
+      if ($data['display_type'] != self::GLOBAL_SEARCH) {   
+        echo '<div class="panel panel-default">';
+        echo '<div class="panel-heading">';
+      }
       // Contruct Pager parameters
       $globallinkto
          = Toolbox::append_params(array('criteria'
@@ -1410,10 +1410,11 @@ class Search {
          }
 
          echo '</div>';
+  
       } else {
          echo self::showError($data['display_type']);
       }
-      echo '</div>';
+  
 
    }
 
@@ -5545,7 +5546,7 @@ class Search {
             break;
 
          default :
-            $out = "<div class='center b'>".__('No item found')."</div>\n";
+            $out = "<div class=''>".__('No item found')."</div>";
       }
       return $out;
    }

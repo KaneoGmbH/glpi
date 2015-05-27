@@ -3512,10 +3512,8 @@ abstract class CommonITILObject extends CommonDBTM {
       }
 
       // Manage actors : requester and assign
-      echo "<table class='tab_cadre_fixe' id='mainformtable5'>";
-      echo "<tr class='tab_bg_1'>";
-      echo "<th rowspan='2' width='13%'>".__('Actor')."</th>";
-      echo "<th width='29%'>";
+      echo '<div class="row">';
+      echo '<div class="col-md-4">';
       if (!$is_hidden['_users_id_requester'] || !$is_hidden['_groups_id_requester']) {
          _e('Requester');
       }
@@ -3526,15 +3524,15 @@ abstract class CommonITILObject extends CommonDBTM {
           && $can_admin
           && (!$is_hidden['_users_id_requester'] || !$is_hidden['_groups_id_requester'])) {
          $rand_requester = mt_rand();
-         echo "&nbsp;&nbsp;";
+  
          echo "<img title=\"".__s('Add')."\" alt=\"".__s('Add')."\"
                 onClick=\"".Html::jsShow("itilactor$rand_requester")."\"
                 class='pointer' src='".$CFG_GLPI["root_doc"]."/pics/add_dropdown.png'>";
          $candeleterequester = true;
       }
-      echo "</th>";
+      echo '</div>';
 
-      echo "<th width='29%'>";
+      echo '<div class="col-md-4">';
       if (!$is_hidden['_users_id_observer'] || !$is_hidden['_groups_id_observer']) {
          _e('Watcher');
       }
@@ -3546,7 +3544,7 @@ abstract class CommonITILObject extends CommonDBTM {
           && (!$is_hidden['_users_id_observer'] || !$is_hidden['_groups_id_observer'])) {
          $rand_observer = mt_rand();
 
-         echo "&nbsp;&nbsp;";
+   
          echo "<img title=\"".__s('Add')."\" alt=\"".__s('Add')."\"
                 onClick=\"".Html::jsShow("itilactor$rand_observer")."\"
                 class='pointer' src='".$CFG_GLPI["root_doc"]."/pics/add_dropdown.png'>";
@@ -3558,16 +3556,16 @@ abstract class CommonITILObject extends CommonDBTM {
                  && !$is_hidden['_users_id_observer']
                  && !$this->isUser(CommonITILActor::OBSERVER, Session::getLoginUserID())
                  && !$this->isUser(CommonITILActor::REQUESTER, Session::getLoginUserID())) {
-         echo "&nbsp;&nbsp;&nbsp;&nbsp;";
+ 
          Html::showSimpleForm($this->getFormURL(), 'addme_observer',
                               __('Associate myself'),
                               array($this->getForeignKeyField() => $this->fields['id']),
                               $CFG_GLPI["root_doc"]."/pics/addme.png");
       }
 
-      echo "</th>";
+      echo "</div>";
 
-      echo "<th width='29%'>";
+      echo '<div class="col-md-4">';
       if (!$is_hidden['_users_id_assign']
           || !$is_hidden['_groups_id_assign']
           || !$is_hidden['_suppliers_id_assign']) {
@@ -3583,7 +3581,7 @@ abstract class CommonITILObject extends CommonDBTM {
           && $this->isAllowedStatus($this->fields['status'], CommonITILObject::ASSIGNED)) {
          $rand_assign = mt_rand();
 
-         echo "&nbsp;&nbsp;";
+
          echo "<img title=\"".__s('Add')."\" alt=\"".__s('Add')."\"
                 onClick=\"".Html::jsShow("itilactor$rand_assign")."\"
                 class='pointer' src='".$CFG_GLPI["root_doc"]."/pics/add_dropdown.png'>";
@@ -3602,10 +3600,11 @@ abstract class CommonITILObject extends CommonDBTM {
           && $can_assign) {
          $candeleteassign = true;
       }
-      echo "</th></tr>";
-
-      echo "<tr class='tab_bg_1 top'>";
-      echo "<td>";
+      echo "</div>";
+      echo '</div>';
+      
+            echo '<div class="row">';
+                  echo '<div class="col-md-4">';
       if ($rand_requester >= 0) {
          $this->showActorAddForm(CommonITILActor::REQUESTER, $rand_requester,
                                  $this->fields['entities_id'], $is_hidden);
@@ -3632,7 +3631,7 @@ abstract class CommonITILObject extends CommonDBTM {
                   echo Dropdown::getDropdownName("glpi_users", $options["_users_id_requester"]);
                   echo "<input type='hidden' name='_users_id_requester' value=\"".
                          $options["_users_id_requester"]."\">";
-                  echo '<br>';
+
                   $reqdisplay=true;
                }
             }
@@ -3642,15 +3641,12 @@ abstract class CommonITILObject extends CommonDBTM {
          if ($this->userentity_oncreate
              && isset($this->countentitiesforuser)
              && ($this->countentitiesforuser > 1)) {
-            echo "<br>";
+
             $rand = Entity::dropdown(array('value'     => $this->fields["entities_id"],
                                            'entity'    => $this->userentities,
                                            'on_change' => 'this.form.submit()'));
          } else {
             echo "<input type='hidden' name='entities_id' value='".$this->fields["entities_id"]."'>";
-         }
-         if ($reqdisplay) {
-            echo '<hr>';
          }
 
       } else if (!$is_hidden['_users_id_requester']) {
@@ -3666,7 +3662,7 @@ abstract class CommonITILObject extends CommonDBTM {
             if (isset($options['_tickettemplate'])) {
                echo $options['_tickettemplate']->getMandatoryMark('_groups_id_requester');
             }
-            echo "&nbsp;";
+  
 
             Group::dropdown(array('name'      => '_groups_id_requester',
                                   'value'     => $options["_groups_id_requester"],
@@ -3680,15 +3676,14 @@ abstract class CommonITILObject extends CommonDBTM {
                echo Dropdown::getDropdownName("glpi_groups", $options["_groups_id_requester"]);
                echo "<input type='hidden' name='_groups_id_requester' value=\"".
                       $options["_groups_id_requester"]."\">";
-               echo '<br>';
             }
          }
       } else if (!$is_hidden['_groups_id_requester']) {
          $this->showGroupsAssociated(CommonITILActor::REQUESTER, $candeleterequester, $options);
       }
-      echo "</td>";
+      echo "</div>";
 
-      echo "<td>";
+      echo '<div class="col-md-4">';
       if ($rand_observer >= 0) {
          $this->showActorAddForm(CommonITILActor::OBSERVER, $rand_observer,
                                  $this->fields['entities_id'], $is_hidden);
@@ -3699,14 +3694,12 @@ abstract class CommonITILObject extends CommonDBTM {
          if ($can_admin
              && !$is_hidden['_users_id_observer']) {
             $this->showActorAddFormOnCreate(CommonITILActor::OBSERVER, $options);
-            echo '<hr>';
          } else { // predefined value
             if (isset($options["_users_id_observer"]) && $options["_users_id_observer"]) {
                echo self::getActorIcon('user', CommonITILActor::OBSERVER)."&nbsp;";
                echo Dropdown::getDropdownName("glpi_users", $options["_users_id_observer"]);
                echo "<input type='hidden' name='_users_id_observer' value=\"".
                       $options["_users_id_observer"]."\">";
-               echo '<hr>';
             }
          }
       } else if (!$is_hidden['_users_id_observer']) {
@@ -3740,9 +3733,9 @@ abstract class CommonITILObject extends CommonDBTM {
       } else if (!$is_hidden['_groups_id_observer']) {
          $this->showGroupsAssociated(CommonITILActor::OBSERVER, $candeleteobserver, $options);
       }
-      echo "</td>";
+      echo "</div>";
 
-      echo "<td>";
+            echo '<div class="col-md-4">';
       if ($rand_assign >= 0) {
          $this->showActorAddForm(CommonITILActor::ASSIGN, $rand_assign, $this->fields['entities_id'],
                                  $is_hidden, $this->canAssign(), $this->canAssign());
@@ -3754,7 +3747,7 @@ abstract class CommonITILObject extends CommonDBTM {
              && !$is_hidden['_users_id_assign']
              && $this->isAllowedStatus($this->fields['status'], CommonITILObject::ASSIGNED)) {
             $this->showActorAddFormOnCreate(CommonITILActor::ASSIGN, $options);
-            echo '<hr>';
+
 
          } else if ($can_assigntome
                     && !$is_hidden['_users_id_assign']
@@ -3764,7 +3757,7 @@ abstract class CommonITILObject extends CommonDBTM {
                                  'value'       => $options["_users_id_assign"],
                                  'entity'      => $this->fields["entities_id"],
                                  'ldap_import' => true));
-            echo '<hr>';
+          
 
          } else { // predefined value
             if (isset($options["_users_id_assign"]) && $options["_users_id_assign"]
@@ -3773,7 +3766,7 @@ abstract class CommonITILObject extends CommonDBTM {
                echo Dropdown::getDropdownName("glpi_users", $options["_users_id_assign"]);
                echo "<input type='hidden' name='_users_id_assign' value=\"".
                       $options["_users_id_assign"]."\">";
-               echo '<hr>';
+       
             }
          }
 
@@ -3791,7 +3784,7 @@ abstract class CommonITILObject extends CommonDBTM {
             if (isset($options['_tickettemplate'])) {
                echo $options['_tickettemplate']->getMandatoryMark('_groups_id_assign');
             }
-            echo "&nbsp;";
+ 
             $rand   = mt_rand();
             $params = array('name'      => '_groups_id_assign',
                             'value'     => $options["_groups_id_assign"],
@@ -3819,7 +3812,7 @@ abstract class CommonITILObject extends CommonDBTM {
                                    "dropdown__groups_id_assign$rand");
             echo "</script>";
 
-            echo '<hr>';
+         
          } else { // predefined value
             if (isset($options["_groups_id_assign"])
                 && $options["_groups_id_assign"]
@@ -3828,7 +3821,7 @@ abstract class CommonITILObject extends CommonDBTM {
                echo Dropdown::getDropdownName("glpi_groups", $options["_groups_id_assign"]);
                echo "<input type='hidden' name='_groups_id_assign' value=\"".
                       $options["_groups_id_assign"]."\">";
-               echo '<hr>';
+   
             }
          }
 
@@ -3850,7 +3843,7 @@ abstract class CommonITILObject extends CommonDBTM {
                echo Dropdown::getDropdownName("glpi_suppliers", $options["_suppliers_id_assign"]);
                echo "<input type='hidden' name='_suppliers_id_assign' value=\"".
                       $options["_suppliers_id_assign"]."\">";
-               echo '<hr>';
+           
             }
          }
 
@@ -3858,9 +3851,9 @@ abstract class CommonITILObject extends CommonDBTM {
          $this->showSuppliersAssociated(CommonITILActor::ASSIGN, $candeleteassign, $options);
       }
 
-      echo "</td>";
-      echo "</tr>";
-      echo "</table>";
+      echo "</div>";
+      echo "</div>";
+
    }
 
 
