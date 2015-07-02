@@ -1060,7 +1060,7 @@ class Html {
             $CFG_GLPI['root_doc']."/lib/jqueryplugins/jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.js",
             $CFG_GLPI["root_doc"]."/lib/jqueryplugins/jquery-file-upload/js/jquery.fileupload.js",
             $CFG_GLPI['root_doc']."/lib/jqueryplugins/jquery-file-upload/js/jquery.iframe-transport.js",
-            $CFG_GLPI['root_doc']."/lib/tiny_mce/tiny_mce.js",
+            //$CFG_GLPI['root_doc']."/lib/tiny_mce/tiny_mce.js",
             //"/lib/jqueryplugins/backtotop/BackToTop.min.jquery.js",
             $CFG_GLPI['root_doc']."/lib/jqueryplugins/select2/select2.min.js",
             $CFG_GLPI['root_doc']."/lib/jqueryplugins/qtip2/jquery.qtip.min.js",
@@ -1072,7 +1072,7 @@ class Html {
             $CFG_GLPI['root_doc']."/lib/jqueryplugins/jquery-gantt/js/jquery.fn.gantt.min.js",
             $CFG_GLPI['root_doc']."/lib/bootstrap/js/bootstrap.js",
             $CFG_GLPI['root_doc']."/lib/glpi/js/scripts.js",
-            $CFG_GLPI['root_doc']."/scripts.js"
+            $CFG_GLPI['root_doc']."/script.js"
 
         );
 
@@ -4871,7 +4871,7 @@ class Html {
       $param['col_check_all']        = false;
       $param['rotate_column_titles'] = false;
       $param['rand']                 = mt_rand();
-      $param['table_class']          = 'tab_cadre_fixehov';
+      $param['table_class']          = 'table table-striped table-bordered';
       $param['cell_class_method']    = NULL;
 
       if (is_array($options) && count($options)) {
@@ -4887,13 +4887,12 @@ class Html {
          $number_columns += 1;
       }
       $width = round(100/$number_columns);
+       if (!empty($param['title'])) {
+           echo '<h3>'.$param['title'].'</h3>';
+       }
+
       echo "\n<table class='".$param['table_class']."'>\n";
 
-      if (!empty($param['title'])) {
-         echo "\t<tr>\n";
-         echo "\t\t<th colspan='$number_columns'>".$param['title']."</th>\n";
-         echo "\t</tr>\n";
-      }
 
       echo "\t<tr >\n";
       echo "\t\t<td>".$param['first_cell']."</td>\n";

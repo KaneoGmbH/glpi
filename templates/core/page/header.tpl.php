@@ -33,39 +33,40 @@
             <?php echo $this->ajaxContainerBookmark; ?>
         <?php endif; ?>
 
-        <div class="container-search">
-            <div class="container">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="<?php echo $this->homePage; ?>"><img src="<?php echo $this->img('logo.png'); ?>" height="34" alt=""/></a>
-                </div>
-                <div class="navbar-form navbar-left">
-                    <div class="btn-group" role="group" aria-label="...">
-                        <?php if(isset($this->ajaxContainerEntities)): ?>
-                            <button type="button" class="btn btn-default" onclick="entity_window.dialog('open');"><?php echo $this->currentEntityName; ?></button>
-                        <?php endif; ?>
-                        <?php if($this->profileSelect): ?>
-                            <div class="btn-group" role="group">
-                                <?php echo $this->profileSelect; ?>
-                            </div>
-                        <?php endif; ?>
 
+        <nav class="navbar navbar-default navbar-fixed-top <?php if(!$this->breadcrumbItems): ?> spacer<?php endif; ?>">
+            <div class="container-search">
+                <div class="container">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="<?php echo $this->homePage; ?>"><img src="<?php echo $this->img('logo.png'); ?>" height="34" alt=""/></a>
                     </div>
+                    <div class="navbar-form navbar-left">
+                        <div class="btn-group" role="group" aria-label="...">
+                            <?php if(isset($this->ajaxContainerEntities)): ?>
+                                <button type="button" class="btn btn-default" onclick="entity_window.dialog('open');"><?php echo $this->currentEntityName; ?></button>
+                            <?php endif; ?>
+                            <?php if($this->profileSelect): ?>
+                                <div class="btn-group" role="group">
+                                    <?php echo $this->profileSelect; ?>
+                                </div>
+                            <?php endif; ?>
+
+                        </div>
+                    </div>
+                    <?php if(isset($this->showSearch) && $this->showSearch !== false): ?>
+                        <form class="navbar-form navbar-right" role="search" action="<?php echo $this->CFG_GLPI["root_doc"]; ?>/front/search.php" methode="GET">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="globalsearch" placeholder="Search for...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="submit">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
+                    <?php endif; ?>
                 </div>
-                <?php if(isset($this->showSearch) && $this->showSearch !== false): ?>
-                <form class="navbar-form navbar-right" role="search" action="<?php echo $this->CFG_GLPI["root_doc"]; ?>/front/search.php" methode="GET">
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="globalsearch" placeholder="Search for...">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="submit">
-                                <i class="glyphicon glyphicon-search"></i>
-                            </button>
-                        </span>
-                    </div>
-                </form>
-                <?php endif; ?>
             </div>
-        </div>
-        <nav class="navbar navbar-default <?php if(!$this->breadcrumbItems): ?> spacer<?php endif; ?>">
             <div class="container">
                 <ul class="nav navbar-nav">
                     <?php foreach ($this->mainMenu as $part => $data) : ?>

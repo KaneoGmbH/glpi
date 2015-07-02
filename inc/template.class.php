@@ -46,8 +46,15 @@ class Template extends Savant3 {
         global $CFG_GLPI;
 
         if (!isset($config['template_path'])) {
-            $config['template_path'] = GLPI_ROOT.'/templates/core';
+            $config['template_path'][] = GLPI_ROOT.'/templates/core';
         }
+        $plugins = glob(GLPI_ROOT.'/plugins/*/templates',GLOB_ONLYDIR);
+        if($plugins){
+            foreach($plugins as $plugin){
+                $config['template_path'][] = $plugin;
+            }
+        }
+
         parent::__construct($config);
 
         $this->assign('CFG_GLPI',$CFG_GLPI);
