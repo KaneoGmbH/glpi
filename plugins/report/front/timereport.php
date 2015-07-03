@@ -46,88 +46,40 @@
         $template->assign('customer',$entities['name']);
 
 
-        $resSolvedTickets = $DBread->query("SELECT * FROM glpi_tickets WHERE type = 2 AND status IN(5,6) AND entities_id = '".$entity_id."' AND ((closedate BETWEEN '".$startDate."' AND '".$endDate."') OR (solvedate BETWEEN '".$startDate."' AND '".$endDate."'))");
+        $condition = "type = 2 AND status IN(5,6) AND entities_id = '".$entity_id."' AND ((closedate BETWEEN '".$startDate."' AND '".$endDate."') OR (solvedate BETWEEN '".$startDate."' AND '".$endDate."'))";
+        $solvedTickets =  new Ticket();
+        $solvedTickets = $solvedTickets->find($condition);
+        $objSolvedTickets = array();
+        if(count($solvedTickets)){
+            foreach($solvedTickets as $ticket){
+                $objTicket = new Ticket();
+                $objTicket->fields = $ticket;
+                $objSolvedTickets[] = $objTicket;
+            }
+            $template->assign('solvedTickets',$objSolvedTickets);
+        }else{
+            $template->assign('solvedTickets',false);
+        }
 
-        $solvedTickets = parseRecords($resSolvedTickets);
-        $template->assign('solvedTickets',$solvedTickets);
+        $condition = "type = 2  AND status IN(1,2,3,4) AND entities_id = '".$entity_id."' AND (date BETWEEN '".$startDate."' AND '".$endDate."')";
+        $openTickets =  new Ticket();
+        $openTickets = $openTickets->find($condition);
+        $objOpenTickets = array();
 
-        $resOpenTickets = $DBread->query("SELECT * FROM glpi_tickets WHERE type = 2  AND status IN(1,2,3,4) AND entities_id = '".$entity_id."' AND (date BETWEEN '".$startDate."' AND '".$endDate."') ");
-        $openTickets = parseRecords($resOpenTickets);
-        $template->assign('openTickets',$openTickets);
+        if(count($openTickets)){
+            foreach($openTickets as $ticket){
+                $objTicket = new Ticket();
+                $objTicket->fields = $ticket;
+                $objOpenTickets[] = $objTicket;
+            }
+            $template->assign('openTickets',$objOpenTickets);
+        }else{
+            $template->assign('openTickets',false);
+        }
 
         if($solvedTickets || $openTickets){
             $template->display('timereport.tpl.php');
         }
-
     }
-
 
     Html::footer();
-    
-    
-    function parseRecords($resTickets){
-        $DBread = DBConnection::getReadConnection();
-
-        $aCollection = array();
-
-        if($resTickets->num_rows > 0){
-            while($ticket = $resTickets->fetch_assoc()){
-                $ticket['date'] = date('d.m.Y H:i',strtotime($ticket['date']));
-                $ticket['closedate']= date('d.m.Y H:i',strtotime($ticket['closedate']));
-                $ticket['solvedate']= date('d.m.Y H:i',strtotime($ticket['solvedate']));
-                $ticket['solve_delay_stat'] = $ticket['solve_delay_stat'] / (60 * 60 ); 
-
-                $resTime = $DBread->query("SELECT *,glpi_tickettasks.id as task_id,date as task_date, actiontime as task_actiontime FROM glpi_tickettasks JOIN glpi_users ON glpi_users.id = glpi_tickettasks.users_id  WHERE is_private = 0 AND actiontime > 0 AND name like '%kaneo.corp' AND tickets_id = ".$ticket['id']);
-
-                while($timeRow = $resTime->fetch_assoc()){
-                    $timeRow['task_actiontime'] = $timeRow['task_actiontime'] / ( 60 * 60 );
-                    $ticket['time-records'][] = $timeRow;
-                }
-                $aCollection[] = $ticket;
-            }
-        }else{
-            $aCollection = false;
-        }
-        return $aCollection;     
-    }
-    
-    
-    function export($data){
-//        ob_start();
-//
-//        $fh = fopen('php://output', 'w');
-//
-//        $headings = array(
-//            'ticket_id',
-//            'name',
-//            'date',
-//            'closedate',
-//            'solvedate',
-//            'solve_delay_stat',
-//            'task_id',
-//            'task_date',
-//            'task_actiontime'
-//        );
-//        fputcsv($fh, $headings,';');
-//
-//        foreach($data as $csvRow){
-//            fputcsv($fh, $csvRow,';');
-//        }
-//
-//        // Get the contents of the output buffer
-//        $string = ob_get_clean();
-//
-//        //$filename = 'timereport_' . $startDate .'-' . $endDate;
-//
-//        // Output CSV-specific headers
-//        header("Pragma: public");
-//        header("Expires: 0");
-//        header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-//        header("Cache-Control: private",false);
-//        header("Content-Type: application/octet-stream");
-//        header("Content-Disposition: attachment; filename=\"$filename.csv\";" );
-//        header("Content-Transfer-Encoding: binary");
-//
-//        exit($string);
-  
-    }

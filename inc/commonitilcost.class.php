@@ -425,8 +425,6 @@ abstract class CommonITILCost extends CommonDBChild {
          $canedit = $item->canUpdateItem();
       }
 
-      echo "<div class='center'>";
-
       $condition = "= '$ID'";
 
       if ($forproject) {
@@ -466,7 +464,7 @@ abstract class CommonITILCost extends CommonDBChild {
       $total_material = 0;
 
       if ($result = $DB->query($query)) {
-         echo "<table class='table table-hover'>";
+         echo "<table class='table table-striped'>";
          echo "<tr class='noHover'>";
          if ($forproject) {
             echo "<th colspan='10'>"._n('Ticket cost', 'Ticket costs', $DB->numrows($result))."</th>";
@@ -562,7 +560,7 @@ abstract class CommonITILCost extends CommonDBChild {
          }
          echo "</table>";
       }
-      echo "</div><br>";
+
       return $total;
    }
 

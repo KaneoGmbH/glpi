@@ -278,27 +278,18 @@ class NotificationTemplate extends CommonDBTM {
                $signature_html = Html::entities_deep($this->signature);
                $signature_html = Html::nl2br_deep($signature_html);
 
-               $template_datas['content_html'] = self::process($template_datas['content_html'],
-                                                               $data_html);
+               $template_datas['content_html'] = self::process($template_datas['content_html'], $data_html);
 
-               $lang['content_html'] =
-                     "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"
-                        'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>".
-                     "<html>
-                        <head>
-                         <META http-equiv='Content-Type' content='text/html; charset=utf-8'>
-                         <title>".Html::entities_deep($lang['subject'])."</title>
-                         <style type='text/css'>
-                           ".$this->fields['css']."
-                         </style>
-                        </head>
-                        <body>\n".(!empty($add_header)?$add_header."\n<br><br>":'').
-                        $template_datas['content_html'].
-                     "<br><br>-- \n<br>".$signature_html.
-                     //TRANS %s is the GLPI version
-                     "<br>$footer_string".
-                     "<br><br>\n".(!empty($add_footer)?$add_footer."\n<br><br>":'').
-                     "\n</body></html>";
+                $template = new Template();
+                $template->assign('subject',$lang['subject']);
+                $template->assign('additional_header',$add_header);
+                $template->assign('content', $template_datas['content_html']);
+                $template->assign('signature', $signature_html);
+                $template->assign('footer_string', $footer_string);
+                $template->assign('additional_footer', $add_footer);
+
+                $lang['content_html'] = $template->getOutput('email/template.tpl.php');
+
             }
 
             $lang['content_text']

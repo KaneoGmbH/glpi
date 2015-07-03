@@ -1209,7 +1209,9 @@ class Search {
          if ($data['display_type'] == self::HTML_OUTPUT && $showmassiveactions) { // HTML display - massive modif
             $nbcols++;
          }
-         echo '</div>';
+         if ($data['display_type'] != self::GLOBAL_SEARCH) {
+              echo '</div>';
+         }
          // Display List Header
          echo self::showHeader($data['display_type'], $end_display-$begin_display+1, $nbcols);
 

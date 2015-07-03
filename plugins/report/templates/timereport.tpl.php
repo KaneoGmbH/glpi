@@ -1,68 +1,44 @@
 
-<a href="#records_<?php echo $this->customer_id; ?>" data-toggle="collapse" aria-expanded="false" aria-controls="records_<?php echo $this->customer_id; ?>">
-    <h3>Timerecords for <?php echo $this->customer; ?></h3>
-</a>
 
-<div class="row collapse" id="records_<?php echo $this->customer_id; ?>">
-    <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">Solved Tickets</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
 
-                <?php if($this->solvedTickets): ?>
-                    <?php foreach($this->solvedTickets as $item): ?>
-
-                        <?php if(isset($item['time-records'])): ?>
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th colspan="2"><?php echo $item['name']; ?></th>
-                                </tr>
-                                </thead>
-                                <?php foreach($item['time-records'] as $timeRecord): ?>
-                                    <tr>
-                                        <td class="col-md-2"><?php echo date('d.m.Y h:i',  strtotime($timeRecord['task_date'])); ?></td>
-                                        <td class="col-md-2"><?php echo $timeRecord['task_actiontime']; ?></td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            </table>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
-
-                <?php else: ?>
-                    Keine Tickets in diesem Zeitraum vorhanden
-                <?php endif; ?>
-
-        </div>
+        <a href="#records_<?php echo $this->customer_id; ?>" data-toggle="collapse" aria-expanded="false" aria-controls="records_<?php echo $this->customer_id; ?>">
+            Timerecords for <?php echo $this->customer; ?>
+        </a>
     </div>
-    <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">Open Tickets</div>
+    <div class="panel-body collapse" id="records_<?php echo $this->customer_id; ?>">
+        <?php if($this->solvedTickets): ?>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a data-toggle="collapse" href="#records_<?php echo $this->customer_id; ?>_solved" aria-expanded="false" aria-controls="records_<?php echo $this->customer_id; ?>_solved">Solved Tickets</a>
+                    </div>
+                    <div class="collapse" id="records_<?php echo $this->customer_id; ?>_solved">
+                        <?php foreach($this->solvedTickets as $item): ?>
+                            <div class="panel-body">
+                                <strong><?php echo $item->fields['name']; ?></strong>
+                            </div>
+                            <?php TicketCost::showForObject($item); ?>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+        <?php endif; ?>
+        <?php if($this->openTickets): ?>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a data-toggle="collapse" href="#records_<?php echo $this->customer_id; ?>_open" aria-expanded="false" aria-controls="records_<?php echo $this->customer_id; ?>_open">Open Tickets</a>
+                    </div>
+                    <div class="collapse" id="records_<?php echo $this->customer_id; ?>_open">
 
-                <?php if($this->openTickets): ?>
-                    <?php foreach($this->openTickets as $item): ?>
+                        <?php foreach($this->openTickets as $item): ?>
+                            <div class="panel-body">
+                                <strong><?php echo $item->fields['name']; ?></strong>
+                            </div>
+                            <?php TicketCost::showForObject($item); ?>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+        <?php endif; ?>
 
-                        <?php if(isset($item['time-records'])): ?>
-
-
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th colspan="2"><?php echo $item['name']; ?></th>
-                                </tr>
-                                </thead>
-                                <?php foreach($item['time-records'] as $timeRecord): ?>
-                                    <tr>
-                                        <td class="col-md-2"><?php echo date('d.m.Y h:i',  strtotime($timeRecord['task_date'])); ?></td>
-                                        <td class="col-md-2"><?php echo $timeRecord['task_actiontime']; ?></td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            </table>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
-
-                <?php else: ?>
-                    Keine Tickets in diesem Zeitraum vorhanden
-                <?php endif; ?>
-        </div>
     </div>
 </div>
