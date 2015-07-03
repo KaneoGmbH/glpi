@@ -378,7 +378,7 @@ if (!$this->ID || $this->canupdate_descr) {
                     $cols = 100;
                     $rows = 10;
                 } else {
-                    $this->class->fields["content"] = $this->setSimpleTextContent($this->class->fields["content"]);
+                    $this->class->fields["content"] = $this->class->setSimpleTextContent($this->class->fields["content"]);
                 }
 
                 echo "<div id='content$rand_text'>";
