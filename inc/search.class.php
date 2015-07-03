@@ -1095,7 +1095,7 @@ class Search {
       
           // Global search header
       if ($data['display_type'] == self::GLOBAL_SEARCH) {
-         if ($data['item']) {
+         if ($data['item'] && $data['data']['count'] > 0) {
             echo "<h2>".$data['item']->getTypeName();
             // More items
             if ($data['data']['totalcount'] > ($data['search']['start'] + self::GLOBAL_DISPLAY_COUNT)) {
@@ -1123,8 +1123,7 @@ class Search {
         echo '<div class="panel-heading">';
       }
       // Contruct Pager parameters
-      $globallinkto
-         = Toolbox::append_params(array('criteria'
+      $globallinkto = Toolbox::append_params(array('criteria'
                                           => Toolbox::stripslashes_deep($data['search']['criteria']),
                                         'metacriteria'
                                           => Toolbox::stripslashes_deep($data['search']['metacriteria'])),
@@ -1135,8 +1134,6 @@ class Search {
       if (isset($_GET['_in_modal'])) {
          $parameters .= "&amp;_in_modal=1";
       }
-
-  
 
       // If the begin of the view is before the number of items
       if ($data['data']['count'] > 0) {
@@ -1209,7 +1206,10 @@ class Search {
          if ($data['display_type'] == self::HTML_OUTPUT && $showmassiveactions) { // HTML display - massive modif
             $nbcols++;
          }
+         if ($data['display_type'] != self::GLOBAL_SEARCH) {   
          echo '</div>';
+         }
+        
          // Display List Header
          echo self::showHeader($data['display_type'], $end_display-$begin_display+1, $nbcols);
 
