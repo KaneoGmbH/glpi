@@ -2,18 +2,21 @@
  * This file is to customize the Template
  **/
 
-body {
-    border-top: 5px solid #70be44;
-}
 
 .container-search {
     background-image: url("../images/imagedoc-darknoise.png");
 }
 
+.tooltip-box {
+    display: none;
+}
+
+.navbar {
+    border-top: 5px solid #70be44;
+}
 .navbar-brand {
     height:76px;
 }
-
 
 .navbar-brand img {
     height:60px!important;
