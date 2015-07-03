@@ -3481,138 +3481,9 @@ class Ticket extends CommonITILObject {
       
       $template->display('components/tickets/ticket-form.tpl.php');
       
-      
-
-
-
-
-     
-      // Display validation state
-
-
-      
-      
-
-
-      echo $tt->getBeginHiddenFieldText('itemtype');
-      printf(__('%1$s%2$s'), _n('Associated element', 'Associated elements', Session::getPluralNumber()), $tt->getMandatoryMark('itemtype'));
-      if ($ID && $canupdate) {
-         echo "<a  href='".$this->getFormURL()."?id=".$ID."&amp;forcetab=Item_Ticket$1'><img title='".__s('Update')."' alt='".__s('Update')."'
-                      class='pointer' src='".$CFG_GLPI["root_doc"]."/pics/showselect.png'></a>";
-      }
-      echo $tt->getEndHiddenFieldText('itemtype');
-
-      if (!$ID) {
-         echo $tt->getBeginHiddenFieldValue('itemtype');
-
-         // Select hardware on creation or if have update right
-         if ($canupdate
-                 || $canupdate_descr) {
-
-            $dev_user_id = $values['_users_id_requester'];
-            $dev_itemtype = $values["itemtype"];
-            $dev_items_id = $values["items_id"];
-
-            if ($dev_user_id > 0) {
-               Item_Ticket::dropdownMyDevices($dev_user_id, $this->fields["entities_id"], $dev_itemtype, $dev_items_id);
-            }
-            Item_Ticket::dropdownAllDevices("itemtype", $dev_itemtype, $dev_items_id, 1, $dev_user_id, $this->fields["entities_id"]);
-
-            echo "<span id='item_ticket_selection_information'></span>";
-         }
-         echo $tt->getEndHiddenFieldValue('itemtype');
-      } else {
-         // display associated elements
-         $item_tickets = getAllDatasFromTable(
-                           getTableForItemType('Item_Ticket'),
-                           "`tickets_id`='".$ID."'");
-         $i = 0;
-         foreach ($item_tickets as $itdata) {
-            if ($i >= 5) {
-               echo "<i><a href='".$this->getFormURL()."?id=".$ID.
-                       "&amp;forcetab=Item_Ticket$1'>"
-               .__('Display all items')." (".count($item_tickets).")</a></i>";
-               break;
-            }
-            $item = new $itdata['itemtype'];
-            $item->getFromDB($itdata['items_id']);
-            echo $item->getTypeName(1).": ".$item->getLink(array('comments' => true))."<br/>";
-            $i++;
-         }
-
-      }
-
-      // Need comment right to add a followup with the actiontime
-      if (!$ID && Session::haveRight('followup', TicketFollowup::ADDALLTICKET)) {
-         echo $tt->getBeginHiddenFieldText('actiontime');
-         printf(__('%1$s%2$s'), __('Total duration'), $tt->getMandatoryMark('actiontime'));
-         echo $tt->getEndHiddenFieldText('actiontime');
-
-         echo $tt->getBeginHiddenFieldValue('actiontime');
-         Dropdown::showTimeStamp('actiontime', array('value' => $values['actiontime'],
-                                                     'addfirstminutes' => true));
-         echo $tt->getEndHiddenFieldValue('actiontime',$this);
-  
-      }
 
 
       $view_linked_tickets = ($ID || $canupdate);
-
-
-      echo $tt->getBeginHiddenFieldText('name');
-      printf(__('%1$s%2$s'), __('Title'), $tt->getMandatoryMark('name'));
-      echo $tt->getEndHiddenFieldText('name')."</th>";
-
-      if (!$ID
-          || $canupdate_descr) {
-         echo $tt->getBeginHiddenFieldValue('name');
-         echo "<input class='form-control' type='text' size='90' maxlength=250 name='name' ".
-                " value=\"".Html::cleanInputText($this->fields["name"])."\">";
-         echo $tt->getEndHiddenFieldValue('name', $this);
-      } else {
-         if (empty($this->fields["name"])) {
-            _e('Without title');
-         } else {
-            echo $this->fields["name"];
-         }
-      }
-
-
-      echo $tt->getBeginHiddenFieldText('content');
-      printf(__('%1$s%2$s'), __('Description'), $tt->getMandatoryMark('content'));
-      if (!$ID || $canupdate_descr) {
-         $content = Toolbox::unclean_cross_side_scripting_deep(Html::entity_decode_deep($this->fields['content']));
-         Html::showTooltip(nl2br(Html::Clean($content)));
-      }
-      echo $tt->getEndHiddenFieldText('content');
-
-      if (!$ID || $canupdate_descr) { // Admin =oui on autorise la modification de la description
-         echo $tt->getBeginHiddenFieldValue('content');
-         $rand       = mt_rand();
-         $rand_text  = mt_rand();
-         $cols       = 90;
-         $rows       = 6;
-         $content_id = "content$rand";
-         if ($CFG_GLPI["use_rich_text"]) {
-            $this->fields["content"] = $this->setRichTextContent($content_id,
-                                                                 $this->fields["content"],
-                                                                 $rand);
-            $cols = 100;
-            $rows = 10;
-         } else {
-            $this->fields["content"] = $this->setSimpleTextContent($this->fields["content"]);
-         }
-
-         echo "<div id='content$rand_text'>";
-         echo "<textarea class='form-control'  id='$content_id' name='content' cols='$cols' rows='$rows'>".
-                $this->fields["content"]."</textarea></div>";
-         echo $tt->getEndHiddenFieldValue('content', $this);
-
-      } else {
-         $content = Toolbox::unclean_cross_side_scripting_deep(Html::entity_decode_deep($this->fields['content']));
-         echo nl2br(Html::Clean($content));
-      }
-
 
       if ($view_linked_tickets) {
          echo _n('Linked ticket', 'Linked tickets', Session::getPluralNumber());
@@ -3709,7 +3580,7 @@ class Ticket extends CommonITILObject {
                   }
                } else {
                   if (self::canDelete()) {
-                     echo "<input type='submit' class='btn btn-warning btn-sm' name='delete' value='".
+                     echo "<input type='submit' class='btn btn-danger' name='delete' value='".
                             _sx('button', 'Put in dustbin')."'> ";
                   }
                }
@@ -3734,8 +3605,7 @@ class Ticket extends CommonITILObject {
             echo "<input type='submit' name='add' value=\""._sx('button','Add')."\" class='btn btn-primary'>";
             if ($tt->isField('id') && ($tt->fields['id'] > 0)) {
                echo "<input type='hidden' name='_tickettemplates_id' value='".$tt->fields['id']."'>";
-               echo "<input type='hidden' name='_predefined_fields'
-                      value=\"".Toolbox::prepareArrayForInput($predefined_fields)."\">";
+               echo "<input type='hidden' name='_predefined_fields' value=\"".Toolbox::prepareArrayForInput($predefined_fields)."\">";
             }
          }
       }

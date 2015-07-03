@@ -55,11 +55,8 @@ if (isset($_GET["globalsearch"])) {
          $params["criteria"][$count]["field"]       = 'view';
          $params["criteria"][$count]["searchtype"]  = 'contains';
          $params["criteria"][$count]["value"]       = $searchtext;
-//          $_SESSION["glpisearchcount"][$itemtype]  = $count+1;
-//          $_SESSION["glpisearchcount2"][$itemtype] = 0;
 
          Search::showList($itemtype, $params);
-         echo "<hr>";
       }
    }
 }

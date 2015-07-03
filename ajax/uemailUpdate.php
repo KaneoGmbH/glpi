@@ -58,7 +58,7 @@ if ((isset($_POST['field']) && ($_POST["value"] > 0))
       }
    }
 
-   echo __('Email followup').'&nbsp;';
+   echo __('Email followup');
 
    $default_notif = true;
    if (isset($_POST['use_notification'])) {
@@ -73,20 +73,12 @@ if ((isset($_POST['field']) && ($_POST["value"] > 0))
    $rand = Dropdown::showYesNo($_POST['field'].'[use_notification]', $default_notif);
 
    $email_string = '';
-   
 
-   echo '<div class="input-group">';
-   echo '<div class="input-group-addon">';
-   echo '<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>';
-   echo '</div>';
+
    // Only one email
-   if ((count($emails) == 1)
-       && !empty($default_email)
-       && NotificationMail::isUserAddressValid($default_email)) {
-      $email_string =  $default_email;
+   if ((count($emails) == 1) && !empty($default_email) && NotificationMail::isUserAddressValid($default_email)) {
       // Clean alternative email
-      echo "<input type='hidden' class='form-control' name='".$_POST['field']."[alternative_email]'
-             value=''>";
+      echo "<input type='hidden' class='form-control' name='".$_POST['field']."[alternative_email]' value=''>";
 
    } else if (count($emails) > 1) {
       // Several emails : select in the list
@@ -102,14 +94,12 @@ if ((isset($_POST['field']) && ($_POST["value"] > 0))
                                               array('value'   => '',
                                                     'display' => false));
    } else {
-      $email_string = "<input type='text' class='form-control' name='".$_POST['field']."[alternative_email]'
-                        value='$default_email'>";
+      $email_string = "<input type='text' class='form-control' name='".$_POST['field']."[alternative_email]' value='$default_email'>";
    }
 
-  
+
    echo $email_string;
-   
-   echo '</div>';
+
 }
 
 Ajax::commonDropdownUpdateItem($_POST);
