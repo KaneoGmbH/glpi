@@ -713,7 +713,7 @@ class Cartridge extends CommonDBChild {
             $printer  = $data["printers_id"];
             $page     = $data["pages"];
 
-            echo "<tr >";
+            echo "<tr class='tab_bg_1'>";
             if ($canedit) {
                echo "<td width='10'>";
                Html::showMassiveActionCheckBox(__CLASS__, $data["id"]);
@@ -779,7 +779,7 @@ class Cartridge extends CommonDBChild {
             if ($nb_pages_printed == 0) {
                 $nb_pages_printed = 1;
             }
-            echo "<tr ><td colspan='".($canedit?'4':'3')."'>&nbsp;</td>";
+            echo "<tr class='tab_bg_1'><td colspan='".($canedit?'4':'3')."'>&nbsp;</td>";
             echo "<td class='center b'>".__('Average time in stock')."<br>";
             echo round($stock_time/$number/60/60/24/30.5,1)." ".__('month')."</td>";
             echo "<td>&nbsp;</td>";
@@ -1041,7 +1041,7 @@ class Cartridge extends CommonDBChild {
             if ($nb_pages_printed == 0) {
                $nb_pages_printed = 1;
             }
-            echo "<tr ><td colspan='".($canedit?"4":'3')."'>&nbsp;</td>";
+            echo "<tr class='tab_bg_1'><td colspan='".($canedit?"4":'3')."'>&nbsp;</td>";
             echo "<td class='center b'>".__('Average time in stock')."<br>";
             $time_stock = round($stock_time/$number/60/60/24/30.5,1);
             echo sprintf(_n('%d month', '%d months', $time_stock), $time_stock)."</td>";
@@ -1095,7 +1095,7 @@ class Cartridge extends CommonDBChild {
       $options['canedit'] = $is_used; // Do not permit edit if cart is not used
       $this->showFormHeader($options);
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>"._n('Printer','Printers',1)."</td><td>";
       echo $printer->getLink();
       echo "<input type='hidden' name='printers_id' value='".$this->getField('printers_id')."'>\n";
@@ -1105,7 +1105,7 @@ class Cartridge extends CommonDBChild {
       echo "<td>"._n('Cartridge model','Cartridge models',1)."</td>";
       echo "<td>".$cartitem->getLink()."</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Add date')."</td>";
       echo "<td>".Html::convDate($this->fields["date_in"])."</td>";
 
@@ -1121,7 +1121,7 @@ class Cartridge extends CommonDBChild {
       echo "</td></tr>\n";
 
       if ($is_old) {
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<td>".__('End date')."</td><td>";
          Html::showDateField("date_out", array('value'      => $this->fields["date_out"],
                                                'maybeempty' => false,

@@ -56,7 +56,6 @@ if (isset($_POST["itemtype"])
    echo '<div class="col-md-12">';
    // First line display add / delete images for normal and meta search items
    if ($_POST["num"] == 0) {
- 
       $linked = Search::getMetaItemtypeAvailable($_POST["itemtype"]);
       echo '<button class="btn btn-info btn-xs" id="addsearchcriteria'.$randrow.'">';
 
@@ -73,12 +72,11 @@ if (isset($_POST["itemtype"])
                         $('#".$rowid."').append(data);
                         });
             $nbsearchcountvar = $nbsearchcountvar +1;});";
-      
       echo Html::scriptBlock($js);
 
 
       if (is_array($linked) && (count($linked) > 0)) {
-          
+
           echo '<button class="btn btn-info btn-xs" id="addmetasearchcriteria'.$randrow.'">';
                   echo ' <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>';
                               echo __s('Add a global search criterion');
@@ -95,8 +93,7 @@ if (isset($_POST["itemtype"])
                $nbmetasearchcountvar = $nbmetasearchcountvar +1;});";
          echo Html::scriptBlock($js);
 
-         }
-   
+      }
 
       // Instanciate an object to access method
       $item = NULL;
@@ -104,29 +101,22 @@ if (isset($_POST["itemtype"])
          $item = getItemForItemtype($_POST["itemtype"]);
       }
       if ($item && $item->maybeDeleted()) {
-        
          echo "<input type='hidden' id='is_deleted' name='is_deleted' value='".$p['is_deleted']."'>";
          echo "<button class='btn btn-info btn-xs' onClick = \"toogle('is_deleted','','',''); document.forms['searchform".$_POST["itemtype"]."'].submit();\">";
           echo ' <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>';
          echo !$p['is_deleted']?__s('Show the dustbin'):__s("Don't show deleted items");
          echo '</button> ';
-         
-   
-    
       }
-      
-    
    } else {
      echo '<button class="btn btn-info btn-xs" onclick="'.Html::jsGetElementbyID($rowid).'.remove();"> ';
       //echo __s('Add a search criterion');
       echo ' <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>';
       echo __s('Delete a search criterion');
       echo '</button>';
-      
    }
   echo '</div>';
   echo '</div>';
-  
+
   echo '<div class="row spaceafter">';
   
    $criteria = array();
@@ -155,7 +145,6 @@ if (isset($_POST["itemtype"])
                               array('value' => $value));
     
       echo '</div>';
-      
       }
  
    $selected = $first = '';
@@ -197,7 +186,6 @@ if (isset($_POST["itemtype"])
 
    $spanid= 'SearchSpan'.$_POST["itemtype"].$_POST["num"];
 
-
    $used_itemtype = $_POST["itemtype"];
 
    // Force Computer itemtype for AllAssets to permit to show specific items
@@ -209,9 +197,7 @@ if (isset($_POST["itemtype"])
    $_POST['field']      = $value;
    $_POST['searchtype'] = (isset($criteria['searchtype'])?$criteria['searchtype']:"" );
    $_POST['value']      = (isset($criteria['value'])?stripslashes($criteria['value']):"" );
-
-   echo "<div id='$spanid'>\n";
-    include (GLPI_ROOT."/ajax/searchoption.php");
+   include (GLPI_ROOT."/ajax/searchoption.php");
    echo '</div>';
 
    $params = array('field'      => '__VALUE__',

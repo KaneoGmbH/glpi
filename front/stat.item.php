@@ -66,12 +66,12 @@ if (!isset($_GET["start"])) {
 Stat::title();
 
 echo "<div class='center'><form method='post' name='form' action='stat.item.php'>";
-echo "<table class='table table-striped table-hover'><tr >";
+echo "<table class='table table-striped table-hover'><tr class='tab_bg_2'>";
 echo "<td class='right'>".__('Start date')."</td><td>";
 Html::showDateField("date1", array('value' => $_POST["date1"]));
 echo "</td><td rowspan='2' class='center'>";
 echo "<input type='submit' class='btn btn-primary' name='submit' value='".__s('Display report')."'></td></tr>";
-echo "<tr ><td class='right'>".__('End date')."</td><td>";
+echo "<tr class='tab_bg_2'><td class='right'>".__('End date')."</td><td>";
 Html::showDateField("date2", array('value' => $_POST["date2"]));
 echo "</td></tr>";
 echo "</table>";

@@ -420,7 +420,7 @@ class Item_Devices extends CommonDBRelation {
       }
 
       if ($canedit) {
-         echo "<table class='table table-striped'><tr ><td>";
+         echo "<table class='table table-striped'><tr class='tab_bg_1'><td>";
          echo __('Add a new component')."</td><td class=left width='70%'>";
          if ($is_device) {
             Dropdown::showNumber('number_devices_to_add', array('value' => 0,
@@ -982,7 +982,7 @@ class Item_Devices extends CommonDBRelation {
       $item   = $this->getOnePeer(0);
       $device = $this->getOnePeer(1);
 
-      echo "<tr ><td>".__('Item')."</td>";
+      echo "<tr class='tab_bg_1'><td>".__('Item')."</td>";
       echo "<td>";
       if ($item === false) {
          echo __('No associated item');
@@ -998,7 +998,7 @@ class Item_Devices extends CommonDBRelation {
       $nb = count(static::getSpecificities());
       foreach (static::getSpecificities() as $field => $attributs) {
          if (($even % 2) == 0) {
-            echo "<tr >";
+            echo "<tr class='tab_bg_1'>";
          }
          echo "<td>".$attributs['long name']."</td>";
          echo "<td>";

@@ -124,16 +124,16 @@ class NotificationMailSetting extends CommonDBTM {
       echo "<div>";
       echo "<input type='hidden' name='id' value='1'>";
       echo "<table class='table table-striped'>";
-      echo "<tr ><th colspan='4'>"._n('Notification', 'Notifications', Session::getPluralNumber())."</th></tr>";
+      echo "<tr class='tab_bg_1'><th colspan='4'>"._n('Notification', 'Notifications', Session::getPluralNumber())."</th></tr>";
 
-      echo "<tr ><td>" . __('Enable followup via email') . "</td><td>";
+      echo "<tr class='tab_bg_1'><td>" . __('Enable followup via email') . "</td><td>";
       Dropdown::showYesNo("use_mailing", $CFG_GLPI["use_mailing"]);
       echo "</td>";
 
       if ($CFG_GLPI['use_mailing']) {
          echo "<td colspan='2'></td></tr>";
 
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<td>" . __('Administrator email') . "</td>";
          echo "<td><input type='text' name='admin_email' size='40' value='".
                     $CFG_GLPI["admin_email"]."'>";
@@ -146,7 +146,7 @@ class NotificationMailSetting extends CommonDBTM {
                     $CFG_GLPI["admin_email_name"] . "'>";
          echo " </td></tr>";
 
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<td >" . __('Administrator reply-to email (if needed)') . "</td>";
          echo "<td><input type='text' name='admin_reply' size='40' value='" .
                     $CFG_GLPI["admin_reply"] . "'>";
@@ -159,7 +159,7 @@ class NotificationMailSetting extends CommonDBTM {
                     $CFG_GLPI["admin_reply_name"] . "'>";
          echo " </td></tr>";
          
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<td>" . __('Add documents into ticket notifications') . "</td><td>";
          Dropdown::showYesNo("attach_ticket_documents_to_mail",
                              $CFG_GLPI["attach_ticket_documents_to_mail"]);
@@ -167,19 +167,19 @@ class NotificationMailSetting extends CommonDBTM {
          echo "<td colspan='2'></td></tr>";
          
          if (!function_exists('mail')) {
-             echo "<tr ><td class='center' colspan='2'>";
+             echo "<tr class='tab_bg_1'><td class='center' colspan='2'>";
              echo "<span class='red'>" .
                     __('The PHP mail function is unknown or is not activated on your system.') .
                   "</span><br>". __('The use of a SMTP is needed.') . "</td></tr>";
          }
 
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<td>" . __('Email signature') . "</td>";
          echo "<td colspan='3'><textarea class='form-control'  cols='60' rows='3' name='mailing_signature'>".
                                 $CFG_GLPI["mailing_signature"]."</textarea></td></tr>";
 
-         echo "<tr ><th colspan='4'>".__('Mail server')."</th></tr>";
-         echo "<tr ><td>" . __('Way of sending emails') . "</td><td>";
+         echo "<tr class='tab_bg_1'><th colspan='4'>".__('Mail server')."</th></tr>";
+         echo "<tr class='tab_bg_1'><td>" . __('Way of sending emails') . "</td><td>";
          $mail_methods = array(MAIL_MAIL    => __('PHP'),
                                MAIL_SMTP    => __('SMTP'),
                                MAIL_SMTPSSL => __('SMTP+SSL'),
@@ -189,7 +189,7 @@ class NotificationMailSetting extends CommonDBTM {
          echo "</td><td colspan='2'>&nbsp;</td>";
          echo "</tr>";
 
-         echo "<tr ><td >" . __('SMTP host') . "</td>";
+         echo "<tr class='tab_bg_1'><td >" . __('SMTP host') . "</td>";
          echo "<td><input type='text' name='smtp_host' size='40' value='".$CFG_GLPI["smtp_host"]."'>";
          echo "</td>";
          //TRANS: SMTP port
@@ -198,7 +198,7 @@ class NotificationMailSetting extends CommonDBTM {
          echo "</td>";
          echo "</tr>";
          
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<td >" . __('SMTP login (optional)') . "</td>";
          echo "<td><input type='text' name='smtp_username' size='40' value='" .
                     $CFG_GLPI["smtp_username"] . "'></td>";

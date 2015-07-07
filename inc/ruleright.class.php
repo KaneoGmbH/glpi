@@ -72,7 +72,7 @@ class RuleRight extends Rule {
       echo "<table  class='table table-striped'>";
       echo "<tr><th colspan='7'>" .__('Authorizations assignment rules') . "</th></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Name') . "</td><td>";
       Html::autocompletionTextField($this, "name", array('value' => '',
                                                          'size'  => 33));
@@ -89,7 +89,7 @@ class RuleRight extends Rule {
       echo "<input type='submit' name='execute' value=\""._sx('button','Add')."\" class='btn btn-primary'>";
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td class='center'>"._n('Profile', 'Profiles', 1) . "</td><td>";
       Profile::dropdown();
       echo "</td><td><span class='small_space'>".__('Recursive') . "</span></td><td colspan='3'>";

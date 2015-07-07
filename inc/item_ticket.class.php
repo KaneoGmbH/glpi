@@ -193,9 +193,9 @@ class Item_Ticket extends CommonDBRelation{
                 action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
          echo "<table class='table table-striped'>";
-         echo "<tr ><th colspan='2'>".__('Add an item')."</th></tr>";
+         echo "<tr class='tab_bg_1'><th colspan='2'>".__('Add an item')."</th></tr>";
 
-         echo "<tr ><td>";
+         echo "<tr class='tab_bg_1'><td>";
          // Select hardware on creation or if have update right
          $class        = new $ticket->userlinkclass();
          $tickets_user = $class->getActors($instID);
@@ -302,7 +302,7 @@ class Item_Ticket extends CommonDBRelation{
                   $namelink = $name;
                }
 
-               echo "<tr >";
+               echo "<tr class='tab_bg_1'>";
                if ($canedit) {
                   echo "<td width='10'>";
                   Html::showMassiveActionCheckBox(__CLASS__, $data["IDD"]);

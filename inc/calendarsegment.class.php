@@ -339,9 +339,9 @@ class CalendarSegment extends CommonDBChild {
                 action='";
          echo Toolbox::getItemTypeFormURL(__CLASS__)."'>";
          echo "<table class='table table-striped'>";
-         echo "<tr ><th colspan='7'>".__('Add a schedule')."</tr>";
+         echo "<tr class='tab_bg_1'><th colspan='7'>".__('Add a schedule')."</tr>";
 
-         echo "<tr ><td class='center'>".__('Day')."</td><td>";
+         echo "<tr class='tab_bg_1'><td class='center'>".__('Day')."</td><td>";
          echo "<input type='hidden' name='calendars_id' value='$ID'>";
          Dropdown::showFromArray('day', Toolbox::getDaysOfWeekArray());
          echo "</td><td class='center'>".__('Start').'</td><td>';
@@ -380,7 +380,7 @@ class CalendarSegment extends CommonDBChild {
 
       if ($numrows) {
          while ($data = $DB->fetch_assoc($result)) {
-            echo "<tr >";
+            echo "<tr class='tab_bg_1'>";
 
             if ($canedit) {
                echo "<td>";

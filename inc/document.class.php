@@ -360,7 +360,7 @@ class Document extends CommonDBTM {
          echo "</th></tr>\n";
       }
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Name')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "name");
@@ -376,7 +376,7 @@ class Document extends CommonDBTM {
       }
       echo "</tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Heading')."</td>";
       echo "<td>";
       DocumentCategory::dropdown(array('value' => $this->fields["documentcategories_id"]));
@@ -390,7 +390,7 @@ class Document extends CommonDBTM {
       }
       echo "</tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Web Link')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "link");
@@ -400,19 +400,19 @@ class Document extends CommonDBTM {
       echo "<textarea class='form-control'  cols='45' rows='6' name='comment' >".$this->fields["comment"]."</textarea>";
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('MIME type')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "mime");
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Blacklisted for import')."</td>";
       echo "<td>";
       Dropdown::showYesNo("is_blacklisted", $this->fields["is_blacklisted"]);
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Use a FTP installed file')."</td>";
       echo "<td>";
       $this->showUploadedFilesDropdown("upload_file");

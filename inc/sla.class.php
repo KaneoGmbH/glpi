@@ -145,7 +145,7 @@ class SLA extends CommonDBTM {
 
       $this->initForm($ID, $options);
       $this->showFormHeader($options);
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Name')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "name", array('value' => $this->fields["name"]));
@@ -155,14 +155,14 @@ class SLA extends CommonDBTM {
       echo "</td></tr>";
 
       if ($ID > 0) {
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<td>".__('Last update')."</td>";
          echo "<td>".($this->fields["date_mod"] ? Html::convDateTime($this->fields["date_mod"])
                                                 : __('Never'));
          echo "</td></tr>";
       }
 
-      echo "<tr ><td>".__('Calendar')."</td>";
+      echo "<tr class='tab_bg_1'><td>".__('Calendar')."</td>";
       echo "<td>";
 
       Calendar::dropdown(array('value'      => $this->fields["calendars_id"],
@@ -170,7 +170,7 @@ class SLA extends CommonDBTM {
                                'toadd'      => array('-1' => __('Calendar of the ticket'))));
       echo "</td></tr>";
 
-      echo "<tr ><td>".__('Maximum time to solve')."</td>";
+      echo "<tr class='tab_bg_1'><td>".__('Maximum time to solve')."</td>";
       echo "<td>";
       Dropdown::showNumber("resolution_time", array('value' => $this->fields["resolution_time"],
                                                     'min'   => 0));
@@ -194,7 +194,7 @@ class SLA extends CommonDBTM {
       echo "</script>\n";
 
       echo "</td></tr>";
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td><div id='title_endworkingday'>".__('End of working day')."</div></td>";
       echo "<td><div id='dropdown_endworkingday'>";
       Dropdown::showYesNo("end_of_working_day", $this->fields["end_of_working_day"]);

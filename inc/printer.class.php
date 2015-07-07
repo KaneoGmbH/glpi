@@ -269,7 +269,7 @@ class Printer  extends CommonDBTM {
       $withtemplate = $this->initForm($ID, $options);
       $this->showFormHeader($options);
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       //TRANS: %1$s is a string, %2$s a second one without spaces between them : to change for RTL
       echo "<td>".sprintf(__('%1$s%2$s'), __('Name'),
                           (isset($options['withtemplate']) && $options['withtemplate']?"*":"")).
@@ -287,7 +287,7 @@ class Printer  extends CommonDBTM {
                             'condition' => "`is_visible_printer`"));
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Location')."</td>\n";
       echo "<td>";
       Location::dropdown(array('value'  => $this->fields["locations_id"],
@@ -298,7 +298,7 @@ class Printer  extends CommonDBTM {
       PrinterType::dropdown(array('value' => $this->fields["printertypes_id"]));
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Technician in charge of the hardware')."</td>\n";
       echo "<td>";
       User::dropdown(array('name'   => 'users_id_tech',
@@ -311,7 +311,7 @@ class Printer  extends CommonDBTM {
       Manufacturer::dropdown(array('value' => $this->fields["manufacturers_id"]));
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Group in charge of the hardware')."</td>";
       echo "<td>";
       Group::dropdown(array('name'      => 'groups_id_tech',
@@ -324,7 +324,7 @@ class Printer  extends CommonDBTM {
       PrinterModel::dropdown(array('value' => $this->fields["printermodels_id"]));
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Alternate username number')."</td>\n";
       echo "<td>";
       Html::autocompletionTextField($this, "contact_num");
@@ -334,7 +334,7 @@ class Printer  extends CommonDBTM {
       Html::autocompletionTextField($this, "serial");
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Alternate username')."</td>\n";
       echo "<td>";
       Html::autocompletionTextField($this, "contact");
@@ -349,7 +349,7 @@ class Printer  extends CommonDBTM {
       Html::autocompletionTextField($this, 'otherserial', array('value' => $objectName));
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('User')."</td>\n";
       echo "<td>";
       User::dropdown(array('value'  => $this->fields["users_id"],
@@ -369,7 +369,7 @@ class Printer  extends CommonDBTM {
       Dropdown::showGlobalSwitch($this->fields["id"], $globalitem);
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Group')."</td>\n";
       echo "<td>";
       Group::dropdown(array('value'     => $this->fields["groups_id"],
@@ -392,7 +392,7 @@ class Printer  extends CommonDBTM {
           $rowspan       -= 2;
        }
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Domain')."</td>\n";
       echo "<td>";
       Domain::dropdown(array('value'  => $this->fields["domains_id"],
@@ -403,25 +403,25 @@ class Printer  extends CommonDBTM {
       echo "<textarea class='form-control'  cols='45' rows='".($rowspan+3)."' name='comment' >".$this->fields["comment"];
       echo "</textarea></td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Memory')."</td>\n";
       echo "<td>";
       Html::autocompletionTextField($this, "memory_size");
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Initial page counter')."</td>\n";
       echo "<td>";
       Html::autocompletionTextField($this, "init_pages_counter", array('size' => 10));
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Current counter of pages')."</td>\n";
       echo "<td>";
       Html::autocompletionTextField($this, "last_pages_counter", array('size' => 10));
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>"._n('Port','Ports', Session::getPluralNumber())."</td>";
       echo "<td>\n<table>";
       // serial interface
@@ -453,7 +453,7 @@ class Printer  extends CommonDBTM {
       }
       echo "</tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>";
       if ((!isset($options['withtemplate']) || ($options['withtemplate'] == 0))
           && !empty($this->fields['template_name'])) {

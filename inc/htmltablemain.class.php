@@ -236,7 +236,7 @@ class HTMLTableMain extends HTMLTableBase {
             echo "\t</thead>\n";
          }
 
-         echo "\t\t<tr >".
+         echo "\t\t<tr class='tab_bg_1'>".
               "<td class='center' colspan='$totalNumberOfColumn'>" . __('None') ."</td></tr>\n";
 
       } else {

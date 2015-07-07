@@ -176,7 +176,7 @@ class NotificationEvent extends CommonDBTM {
                               Notification::send($datas);
                            } else {
                               $notificationtarget->getFromDB($target['id']);
-                              echo "<tr ><td>".$label."</td>";
+                              echo "<tr class='tab_bg_1'><td>".$label."</td>";
                               echo "<td>".$notificationtarget->getNameID()."</td>";
                               echo "<td>".sprintf(__('%1$s (%2$s)'), $template->getName(),
                                                   $users_infos['language'])."</td>";

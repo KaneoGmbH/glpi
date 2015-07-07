@@ -169,7 +169,7 @@ class Contract extends CommonDBTM {
       $this->initForm($ID, $options);
       $this->showFormHeader($options);
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Name')."</td><td>";
       Html::autocompletionTextField($this, "name");
       echo "</td>";
@@ -177,14 +177,14 @@ class Contract extends CommonDBTM {
       ContractType::dropdown(array('value' => $this->fields["contracttypes_id"]));
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>"._x('phone', 'Number')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "num");
       echo "</td>";
       echo "<td colspan='2'></td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Start date')."</td>";
       echo "<td>";
       Html::showDateField("begin_date", array('value' => $this->fields["begin_date"]));
@@ -203,7 +203,7 @@ class Contract extends CommonDBTM {
       echo "</td>";
       echo "</tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Notice')."</td><td>";
       Dropdown::showNumber("notice", array('value' => $this->fields["notice"],
                                            'min'   => 0,
@@ -222,7 +222,7 @@ class Contract extends CommonDBTM {
       Html::autocompletionTextField($this, "accounting_number");
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Contract renewal period')."</td><td>";
       Dropdown::showNumber("periodicity",
                            array('value' => $this->fields["periodicity"],
@@ -251,7 +251,7 @@ class Contract extends CommonDBTM {
       echo "</td>";
       echo "</tr>";
 
-      echo "<tr ><td>".__('Renewal')."</td><td>";
+      echo "<tr class='tab_bg_1'><td>".__('Renewal')."</td><td>";
       self::dropdownContractRenewal("renewal", $this->fields["renewal"]);
       echo "</td>";
       echo "<td>".__('Max number of items')."</td><td>";
@@ -265,7 +265,7 @@ class Contract extends CommonDBTM {
 
 
       if (Entity::getUsedConfig("use_contracts_alert", $this->fields["entities_id"])) {
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<td>".__('Email alarms')."</td>";
          echo "<td>";
 
@@ -276,15 +276,15 @@ class Contract extends CommonDBTM {
          echo "<td colspan='2'>&nbsp;</td>";
          echo "</tr>";
       }
-      echo "<tr ><td class='top'>".__('Comments')."</td>";
+      echo "<tr class='tab_bg_1'><td class='top'>".__('Comments')."</td>";
       echo "<td class='center' colspan='3'>";
       echo "<textarea class='form-control'  cols='50' rows='4' name='comment' >".$this->fields["comment"]."</textarea>";
       echo "</td></tr>";
 
-      echo "<tr ><td>".__('Support hours')."</td>";
+      echo "<tr class='tab_bg_1'><td>".__('Support hours')."</td>";
       echo "<td colspan='3'>&nbsp;</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('on week')."</td>";
       echo "<td colspan='3'>";
       echo "<table width='100%'><tr><td width='20%'>";
@@ -299,7 +299,7 @@ class Contract extends CommonDBTM {
       echo "</td></tr></table>";
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('on Saturday')."</td>";
       echo "<td colspan='3'>";
       echo "<table width='100%'><tr><td width='20%'>";
@@ -315,7 +315,7 @@ class Contract extends CommonDBTM {
       echo "</td></tr></table>";
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Sundays and holidays')."</td>";
       echo "<td colspan='3'>";
       echo "<table width='100%'><tr><td width='20%'>";
@@ -874,7 +874,7 @@ class Contract extends CommonDBTM {
       echo '</h4></div>';
       
       echo "<table class='table table-striped table-hover'>";
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
 
       $options['reset'] = 'reset';
       $options['sort']  = 12;
@@ -893,7 +893,7 @@ class Contract extends CommonDBTM {
                  Toolbox::append_params($options,'&amp;')."\">".
                  __('Contracts expired in the last 30 days')."</a> </td>";
       echo "<td class='numeric'>".$contract0."</td></tr>";
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
 
       $options['criteria'][0]['value'] = 0;
       $options['criteria'][1]['value'] = '<7';
@@ -901,7 +901,7 @@ class Contract extends CommonDBTM {
                  Toolbox::append_params($options,'&amp;')."\">".
                  __('Contracts expiring in less than 7 days')."</a></td>";
       echo "<td class='numeric'>".$contract7."</td></tr>";
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
 
       $options['criteria'][0]['value'] = '>6';
       $options['criteria'][1]['value'] = '<30';
@@ -909,7 +909,7 @@ class Contract extends CommonDBTM {
                  Toolbox::append_params($options,'&amp;')."\">".
                  __('Contracts expiring in less than 30 days')."</a></td>";
       echo "<td class='numeric'>".$contract30."</td></tr>";
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
 
       $options['criteria'][0]['field'] = 13;
       $options['criteria'][0]['value'] = '>0';
@@ -920,7 +920,7 @@ class Contract extends CommonDBTM {
                  Toolbox::append_params($options,'&amp;')."\">".
                  __('Contracts where notice begins in less than 7 days')."</a></td>";
       echo "<td class='numeric'>".$contractpre7."</td></tr>";
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
 
 
       $options['criteria'][0]['value'] = '>6';

@@ -334,7 +334,7 @@ abstract class CommonITILCost extends CommonDBChild {
       }
 
       $this->showFormHeader($options);
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Name')."</td>";
       echo "<td>";
       echo "<input type='hidden' name='".static::$items_id."' value='".$item->fields['id']."'>";
@@ -347,7 +347,7 @@ abstract class CommonITILCost extends CommonDBChild {
       echo "</td>";
       echo "</tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Duration')."</td>";
       echo "<td>";
       Dropdown::showTimeStamp('actiontime', array('value'           => $this->fields['actiontime'],
@@ -359,7 +359,7 @@ abstract class CommonITILCost extends CommonDBChild {
       echo "</td>";
       echo "</tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Time cost')."</td><td>";
       echo "<input type='text' size='15' name='cost_time' value='".
              Html::formatNumber($this->fields["cost_time"], true)."'>";
@@ -371,21 +371,21 @@ abstract class CommonITILCost extends CommonDBChild {
            "</textarea>";
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Fixed cost')."</td><td>";
       echo "<input type='text' size='15' name='cost_fixed' value='".
              Html::formatNumber($this->fields["cost_fixed"], true)."'>";
       echo "</td>";
       echo "</tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Material cost')."</td><td>";
       echo "<input type='text' size='15' name='cost_material' value='".
              Html::formatNumber($this->fields["cost_material"], true)."'>";
       echo "</td>";
       echo "</tr>";
 
-      echo "<tr ><td>".__('Budget')."</td>";
+      echo "<tr class='tab_bg_1'><td>".__('Budget')."</td>";
       echo "<td>";
       Budget::dropdown(array('value'  => $this->fields["budgets_id"],
                              'entity' => $this->fields["entities_id"]));

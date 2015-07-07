@@ -438,9 +438,9 @@ class DBConnection extends CommonDBTM {
 
       // No need to translate, this part always display in english (for copy/paste to forum)
 
-      echo "<tr ><th>".self::getTypeName(Session::getPluralNumber())."</th></tr>";
+      echo "<tr class='tab_bg_1'><th>".self::getTypeName(Session::getPluralNumber())."</th></tr>";
 
-      echo "<tr ><td><pre>\n&nbsp;\n";
+      echo "<tr class='tab_bg_1'><td><pre>\n&nbsp;\n";
       if (self::isDBSlaveActive()) {
          echo "Active\n";
          self::showAllReplicateDelay();

@@ -906,7 +906,7 @@ class Dropdown {
    static function showItemTypeMenu($title, $optgroup, $value='') {
 
       echo "<table class='table table-striped table-hover' width='50%'>";
-      echo "<tr ><td class='b'>&nbsp;".$title."&nbsp; ";
+      echo "<tr class='tab_bg_1'><td class='b'>&nbsp;".$title."&nbsp; ";
       $values   = array('' => self::EMPTY_VALUE);
       $selected = '';
 

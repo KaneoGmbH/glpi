@@ -56,7 +56,7 @@ if (isset($_POST['inquest_config']) && isset($_POST['entities_id'])) {
 
    if ($_POST['inquest_config'] > 0) {
       echo "<table class='table table-striped' width='50%'>";
-      echo "<tr ><td width='50%'>".__('Create survey after')."</td>";
+      echo "<tr class='tab_bg_1'><td width='50%'>".__('Create survey after')."</td>";
       echo "<td>";
       Dropdown::showNumber('inquest_delay',
                            array('value' => $inquest_delay,
@@ -67,7 +67,7 @@ if (isset($_POST['inquest_config']) && isset($_POST['entities_id'])) {
                                  'unit'  => 'day'));
       echo "</td></tr>";
 
-      echo "<tr >".
+      echo "<tr class='tab_bg_1'>".
            "<td>".__('Rate to trigger survey')."</td>";
       echo "<td>";
       Dropdown::showNumber('inquest_rate', array('value'   => $inquest_rate,
@@ -79,12 +79,12 @@ if (isset($_POST['inquest_config']) && isset($_POST['entities_id'])) {
       echo "</td></tr>";
 
       if ($max_closedate != '') {
-         echo "<tr ><td>". __('For tickets closed after')."</td>";
+         echo "<tr class='tab_bg_1'><td>". __('For tickets closed after')."</td>";
          echo "<td>" . Html::convDateTime($max_closedate)."</td></tr>";
       }
 
       if ($_POST['inquest_config'] == 2) {
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<td>".__('Valid tags')."</td><td>".
                "[TICKET_ID] [TICKET_NAME] [TICKET_CREATEDATE] [TICKET_SOLVEDATE] ".
                "[REQUESTTYPE_ID] [REQUESTTYPE_NAME] [ITEMTYPE] [ITEM_ID] [ITEM_NAME] ".
@@ -92,7 +92,7 @@ if (isset($_POST['inquest_config']) && isset($_POST['entities_id'])) {
                "[TICKETTYPE_NAME] [SOLUTIONTYPE_ID] [SOLUTIONTYPE_NAME] ".
                "[SLA_ID] [SLA_NAME] [SLALEVEL_ID] [SLALEVEL_NAME]</td></tr>";
 
-         echo "<tr ><td>" . __('URL') . "</td>";
+         echo "<tr class='tab_bg_1'><td>" . __('URL') . "</td>";
          echo "<td>";
          Html::autocompletionTextField($entity, "inquest_URL");
          echo "</td></tr>";

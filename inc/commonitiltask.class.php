@@ -1133,7 +1133,7 @@ abstract class CommonITILTask  extends CommonDBTM {
       if (isset($this->fields["state"])) {
          $rowspan++;
       }
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td rowspan='$rowspan' class='middle'>".__('Description')."</td>";
       echo "<td class='center middle' rowspan='$rowspan'>".
            "<textarea class='form-control'  name='content' cols='50' rows='$rowspan'>".$this->fields["content"].
@@ -1150,21 +1150,21 @@ abstract class CommonITILTask  extends CommonDBTM {
       echo "<input type='hidden' name='$fkfield' value='".$this->fields[$fkfield]."'>";
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Category')."</td><td>";
       TaskCategory::dropdown(array('value'  => $this->fields["taskcategories_id"],
                                    'entity' => $item->fields["entities_id"]));
       echo "</td></tr>\n";
 
       if (isset($this->fields["state"])) {
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<td>".__('Status')."</td><td>";
          Planning::dropdownState("state", $this->fields["state"]);
          echo "</td></tr>\n";
       }
 
       if ($this->maybePrivate()) {
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<td>".__('Private')."</td>";
          echo "<td>";
          Dropdown::showYesNo('is_private',$this->fields["is_private"]);
@@ -1172,7 +1172,7 @@ abstract class CommonITILTask  extends CommonDBTM {
          echo "</tr>";
       }
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>". __('Duration')."</td><td>";
 
       $toadd = array();
@@ -1189,7 +1189,7 @@ abstract class CommonITILTask  extends CommonDBTM {
 
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('By');
       echo " <a href='#' onClick=\"".Html::jsGetElementbyID('planningcheck'.$rand).".dialog('open');\">";
       echo "<img src='".$CFG_GLPI["root_doc"]."/pics/reservation-3.png'
@@ -1290,7 +1290,7 @@ abstract class CommonITILTask  extends CommonDBTM {
       if (!empty($this->fields["begin"])
           && PlanningRecall::isAvailable()) {
 
-         echo "<tr ><td>"._x('Planning','Reminder')."</td><td class='center'>";
+         echo "<tr class='tab_bg_1'><td>"._x('Planning','Reminder')."</td><td class='center'>";
          PlanningRecall::dropdown(array('itemtype' => $this->getType(),
                                         'items_id' => $this->getID()));
          echo "</td></tr>";
@@ -1361,7 +1361,7 @@ abstract class CommonITILTask  extends CommonDBTM {
       }
 
       if ($DB->numrows($result) == 0) {
-         echo "<table class='table table-striped'><tr ><th>" . __('No task found.');
+         echo "<table class='table table-striped'><tr class='tab_bg_1'><th>" . __('No task found.');
          echo "</th></tr></table>";
       } else {
          echo "<table class='table table-hover'>";

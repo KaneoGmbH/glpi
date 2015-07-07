@@ -75,7 +75,7 @@ class NetworkPortAlias extends NetworkPortInstantiation {
 
    function showInstantiationForm(NetworkPort $netport, $options=array(), $recursiveItems) {
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       $this->showMacField($netport, $options);
       $this->showNetworkPortSelector($recursiveItems, $this->getType());
       echo "</tr>";

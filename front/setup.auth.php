@@ -40,10 +40,10 @@ Html::header(__('External authentication sources'), $_SERVER['PHP_SELF'], "confi
 echo "<table class='table table-striped table-hover'>";
 echo "<tr><th>&nbsp;" . __('External authentications') . "</th></tr>";
 if (Session::haveRight("config", UPDATE)) {
-   echo "<tr ><td class='center b'>".
+   echo "<tr class='tab_bg_1'><td class='center b'>".
         "<a href='auth.settings.php'>" .__('Setup')."</a></td></tr>";
 }
-echo "<tr ><td class='center b'>";
+echo "<tr class='tab_bg_1'><td class='center b'>";
 if (Toolbox::canUseLdap()) {
    echo "<a href='authldap.php'>". _n('LDAP directory', 'LDAP directories', 2)."</a>";
 } else {
@@ -51,7 +51,7 @@ if (Toolbox::canUseLdap()) {
    echo "<p>".__('Impossible to use LDAP as external source of connection').'</p>';
 }
 echo "</td></tr>";
-echo "<tr ><td class='center b'>";
+echo "<tr class='tab_bg_1'><td class='center b'>";
 if (Toolbox::canUseImapPop()) {
    echo "<a href='authmail.php'>". _n('Mail server', 'Mail servers', 2)."</a>";
 } else {
@@ -59,7 +59,7 @@ if (Toolbox::canUseImapPop()) {
    echo "<p>".__('Impossible to use email server as external source of connection').'</p>';
 }
 echo "</td> </tr>";
-echo "<tr ><td class='center'>".
+echo "<tr class='tab_bg_1'><td class='center'>".
      "<a href='auth.others.php'>" . __('Others authentication methods') ."</a></td></tr>";
 echo "</table>";
 

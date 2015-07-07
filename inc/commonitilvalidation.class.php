@@ -732,7 +732,7 @@ abstract class CommonITILValidation  extends CommonDBChild {
       echo "<th colspan='3'>".self::getTypeName(Session::getPluralNumber())."</th>";
       echo "</tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Global approval status')."</td>";
       echo "<td colspan='2'>";
       self::dropdownStatus("global_validation",
@@ -746,7 +746,7 @@ abstract class CommonITILValidation  extends CommonDBChild {
       echo "</th>";
       echo "</tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Minimum validation required')."</td>";
       if ($canadd) {
          echo "<td>";
@@ -911,7 +911,7 @@ abstract class CommonITILValidation  extends CommonDBChild {
                $validation_right = 'validate_request';
             }
          }
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<td>".__('Approval requester')."</td>";
          echo "<td>";
          echo "<input type='hidden' name='".static::$items_id."' value='".
@@ -919,7 +919,7 @@ abstract class CommonITILValidation  extends CommonDBChild {
          echo getUserName($this->fields["users_id"]);
          echo "</td></tr>";
 
-         echo "<tr ><td>".__('Approver')."</td>";
+         echo "<tr class='tab_bg_1'><td>".__('Approver')."</td>";
          echo "<td>";
 
          if ($ID > 0) {
@@ -936,21 +936,21 @@ abstract class CommonITILValidation  extends CommonDBChild {
          }
          echo "</td></tr>";
 
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<td>".__('Comments')."</td>";
          echo "<td><textarea class='form-control'  cols='60' rows='3' name='comment_submission'>".
                $this->fields["comment_submission"]."</textarea></td></tr>";
 
       } else {
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<td>".__('Approval requester')."</td>";
          echo "<td>".getUserName($this->fields["users_id"])."</td></tr>";
 
-         echo "<tr ><td>".__('Approver')."</td>";
+         echo "<tr class='tab_bg_1'><td>".__('Approver')."</td>";
          echo "<td>".getUserName($this->fields["users_id_validate"])."</td></tr>";
          echo "</td></tr>";
 
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<td>".__('Comments')."</td>";
          echo "<td>";
          echo $this->fields["comment_submission"];
@@ -958,22 +958,22 @@ abstract class CommonITILValidation  extends CommonDBChild {
       }
 
       if ($ID > 0) {
-         echo "<tr ><td colspan='2'>&nbsp;</td></tr>";
+         echo "<tr class='tab_bg_1'><td colspan='2'>&nbsp;</td></tr>";
 
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<td>".__('Status of the approval request')."</td>";
          $bgcolor = self::getStatusColor($this->fields['status']);
          echo "<td><span style='background-color:".$bgcolor.";'>".
                self::getStatus($this->fields["status"])."</span></td></tr>";
 
          if ($validator) {
-            echo "<tr >";
+            echo "<tr class='tab_bg_1'>";
             echo "<td>".__('Status of my validation')."</td>";
             echo "<td>";
             self::dropdownStatus("status", array('value' => $this->fields["status"]));
             echo "</td></tr>";
 
-            echo "<tr >";
+            echo "<tr class='tab_bg_1'>";
             echo "<td>".__('Approval comments')."<br>(".__('Optional when approved').")</td>";
             echo "<td><textarea class='form-control'  cols='60' rows='3' name='comment_validation'>".
                        $this->fields["comment_validation"]."</textarea>";
@@ -982,7 +982,7 @@ abstract class CommonITILValidation  extends CommonDBChild {
          } else {
             $status = array(self::REFUSED,self::ACCEPTED);
             if (in_array($this->fields["status"],$status)) {
-               echo "<tr >";
+               echo "<tr class='tab_bg_1'>";
                echo "<td>".__('Approval comments')."</td>";
                echo "<td>".$this->fields["comment_validation"]."</td></tr>";
             }

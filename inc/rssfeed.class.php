@@ -639,7 +639,7 @@ class RSSFeed extends CommonDBTM {
          } else {
             $this->setError(false);
          }
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<td>".__('Name')."</td>";
          echo "<td>";
          Html::autocompletionTextField($this, "name",
@@ -648,12 +648,12 @@ class RSSFeed extends CommonDBTM {
          echo "</td><td colspan ='2'>&nbsp;</td></tr>\n";
       }
 
-      echo "<tr ><td>" . __('URL') . "</td>";
+      echo "<tr class='tab_bg_1'><td>" . __('URL') . "</td>";
       echo "<td colspan='3'>";
       echo "<input type='text' name='url' size='100' value='".$this->fields["url"]."'>";
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('By')."</td>";
       echo "<td>";
       echo getUserName($this->fields["users_id"]);
@@ -665,13 +665,13 @@ class RSSFeed extends CommonDBTM {
            "</textarea>";
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Active')."</td>";
       echo "<td>";
       Dropdown::showYesNo('is_active', $this->fields['is_active']);
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Refresh rate')."</td>";
       echo "<td>";
       Dropdown::showTimeStamp("refresh_rate",
@@ -686,7 +686,7 @@ class RSSFeed extends CommonDBTM {
                                                                     45*MINUTE_TIMESTAMP)));
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Number of items displayed')."</td>";
       echo "<td>";
       Dropdown::showNumber("max_items", array('value'                => $this->fields["max_items"],
@@ -697,7 +697,7 @@ class RSSFeed extends CommonDBTM {
                                               'display_emptychoice'  => false));
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Error retrieving RSS feed')."</td>";
       echo "<td>";
       echo Dropdown::getYesNo($this->fields['have_error']);
@@ -760,7 +760,7 @@ class RSSFeed extends CommonDBTM {
          echo "<tr><th colspan='3'>".$feed->get_title()."</th>";
          foreach ($feed->get_items(0,$this->fields['max_items']) as $item) {
             $link = $item->get_permalink();
-            echo "<tr ><td>";
+            echo "<tr class='tab_bg_1'><td>";
             echo HTML::convDateTime($item->get_date('Y-m-d H:i:s'));
             echo "</td><td>";
             if (!is_null($link)) {
@@ -957,8 +957,8 @@ class RSSFeed extends CommonDBTM {
          echo " method='post' action='".Toolbox::getItemTypeFormURL('RSSFeed')."'>";
          echo "<input type='hidden' name='rssfeeds_id' value='$ID'>";
          echo "<table class='table table-striped'>";
-         echo "<tr ><th colspan='4'>".__('Add a target')."</tr>";
-         echo "<tr ><td  width='100px'>";
+         echo "<tr class='tab_bg_1'><th colspan='4'>".__('Add a target')."</tr>";
+         echo "<tr class='tab_bg_1'><td  width='100px'>";
 
          $types   = array('Entity', 'Group', 'Profile', 'User');
 
@@ -1012,7 +1012,7 @@ class RSSFeed extends CommonDBTM {
       if (count($this->users)) {
          foreach ($this->users as $key => $val) {
             foreach ($val as $data) {
-               echo "<tr >";
+               echo "<tr class='tab_bg_1'>";
                if ($canedit) {
                   echo "<td>";
                   Html::showMassiveActionCheckBox('RSSFeed_User',$data["id"]);
@@ -1029,7 +1029,7 @@ class RSSFeed extends CommonDBTM {
       if (count($this->groups)) {
          foreach ($this->groups as $key => $val) {
             foreach ($val as $data) {
-               echo "<tr >";
+               echo "<tr class='tab_bg_1'>";
                if ($canedit) {
                   echo "<td>";
                   Html::showMassiveActionCheckBox('Group_RSSFeed',$data["id"]);
@@ -1060,7 +1060,7 @@ class RSSFeed extends CommonDBTM {
       if (count($this->entities)) {
          foreach ($this->entities as $key => $val) {
             foreach ($val as $data) {
-               echo "<tr >";
+               echo "<tr class='tab_bg_1'>";
                if ($canedit) {
                   echo "<td>";
                   Html::showMassiveActionCheckBox('Entity_RSSFeed',$data["id"]);
@@ -1084,7 +1084,7 @@ class RSSFeed extends CommonDBTM {
       if (count($this->profiles)) {
          foreach ($this->profiles as $key => $val) {
             foreach ($val as $data) {
-               echo "<tr >";
+               echo "<tr class='tab_bg_1'>";
                if ($canedit) {
                   echo "<td>";
                   Html::showMassiveActionCheckBox('Profile_RSSFeed',$data["id"]);

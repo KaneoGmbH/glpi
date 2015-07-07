@@ -135,7 +135,7 @@ class KnowbaseItemTranslation extends CommonDBChild {
             Html::showMassiveActions($massiveactionparams);
          }
          echo "<div class='center'>";
-         echo "<table class='table table-hover'><tr >";
+         echo "<table class='table table-hover'><tr class='tab_bg_1'>";
          echo "<th colspan='4'>".__("List of translations")."</th></tr>";
          if ($canedit) {
             echo "<th width='10'>";
@@ -183,7 +183,7 @@ class KnowbaseItemTranslation extends CommonDBChild {
             Html::closeForm();
          }
       } else {
-         echo "<table class='table table-striped'><tr >";
+         echo "<table class='table table-striped'><tr class='tab_bg_1'>";
          echo "<th class='b'>" . __("No translation found")."</th></tr></table>";
       }
 
@@ -214,7 +214,7 @@ class KnowbaseItemTranslation extends CommonDBChild {
       }
       Html::initEditorSystem('answer');
       $this->showFormHeader($options);
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Language')."&nbsp;:</td>";
       echo "<td>";
       echo "<input type='hidden' name='knowbaseitems_id' value='".$item->getID()."'>";
@@ -228,13 +228,13 @@ class KnowbaseItemTranslation extends CommonDBChild {
       }
       echo "</td><td colspan='2'>&nbsp;</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Subject')."</td>";
       echo "<td colspan='3'>";
       echo "<textarea class='form-control'  cols='100' rows='1' name='name'>".$this->fields["name"]."</textarea>";
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Content')."</td>";
       echo "<td colspan='3'>";
       echo "<textarea class='form-control'  cols='100' rows='30' id='answer' name='answer'>".$this->fields["answer"];

@@ -207,8 +207,8 @@ class TicketTemplateMandatoryField extends CommonDBChild {
                    action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
             echo "<table class='table table-striped'>";
-            echo "<tr ><th colspan='2'>".__('Add a mandatory field')."</th></tr>";
-            echo "<tr ><td class='right'>";
+            echo "<tr class='tab_bg_1'><th colspan='2'>".__('Add a mandatory field')."</th></tr>";
+            echo "<tr class='tab_bg_1'><td class='right'>";
             echo "<input type='hidden' name='tickettemplates_id' value='$ID'>";
 
             $select_fields = $fields;
@@ -259,7 +259,7 @@ class TicketTemplateMandatoryField extends CommonDBChild {
             echo $header_begin.$header_top.$header_end;
 
             foreach ($mandatoryfields as $data) {
-               echo "<tr >";
+               echo "<tr class='tab_bg_1'>";
                if ($canedit) {
                   echo "<td>".Html::getMassiveActionCheckBox(__CLASS__, $data["id"])."</td>";
                }

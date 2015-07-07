@@ -111,7 +111,7 @@ class SoftwareVersion extends CommonDBChild {
 
       $this->showFormHeader($options);
 
-      echo "<tr ><td>"._n('Software', 'Software', Session::getPluralNumber())."</td>";
+      echo "<tr class='tab_bg_1'><td>"._n('Software', 'Software', Session::getPluralNumber())."</td>";
       echo "<td>";
       if ($this->isNewID($ID)) {
          echo "<input type='hidden' name='softwares_id' value='$softwares_id'>";
@@ -124,16 +124,16 @@ class SoftwareVersion extends CommonDBChild {
       echo "<textarea class='form-control'  cols='45' rows='3' name='comment' >".$this->fields["comment"];
       echo "</textarea></td></tr>\n";
 
-      echo "<tr ><td>".__('Name')."</td>";
+      echo "<tr class='tab_bg_1'><td>".__('Name')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this,"name");
       echo "</td></tr>\n";
 
-      echo "<tr ><td>" . __('Operating system') . "</td><td>";
+      echo "<tr class='tab_bg_1'><td>" . __('Operating system') . "</td><td>";
       OperatingSystem::dropdown(array('value' => $this->fields["operatingsystems_id"]));
       echo "</td></tr>\n";
 
-      echo "<tr ><td>" . __('Status') . "</td><td>";
+      echo "<tr class='tab_bg_1'><td>" . __('Status') . "</td><td>";
       State::dropdown(array('value'     => $this->fields["states_id"],
                             'entity'    => $this->fields["entities_id"],
                             'condition' => "`is_visible_softwareversion`"));
@@ -293,7 +293,7 @@ class SoftwareVersion extends CommonDBChild {
                Session::addToNavigateListItems('SoftwareVersion',$data['id']);
                $nb = Computer_SoftwareVersion::countForVersion($data['id']);
 
-               echo "<tr >";
+               echo "<tr class='tab_bg_1'>";
                echo "<td><a href='softwareversion.form.php?id=".$data['id']."'>";
                echo $data['name'].(empty($data['name'])?"(".$data['id'].")":"")."</a></td>";
                echo "<td>".$data['sname']."</td>";

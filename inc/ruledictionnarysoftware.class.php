@@ -157,7 +157,7 @@ class RuleDictionnarySoftware extends Rule {
             $actions = $this->getActions();
 
             //display the additionnal field
-            echo "<tr >";
+            echo "<tr class='tab_bg_1'>";
             echo "<td>".$this->fields['match']."</td>";
             echo "<td>".$actions[$action->fields['field']]['name']."</td>";
             echo "<td><input type='text' name='version' value='$value'></td></tr>";

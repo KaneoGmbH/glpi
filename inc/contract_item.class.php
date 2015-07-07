@@ -386,9 +386,9 @@ class Contract_Item extends CommonDBRelation{
          echo "<input type='hidden' name='itemtype' value='$itemtype'>";
 
          echo "<table class='table table-striped'>";
-         echo "<tr ><th colspan='2'>".__('Add a contract')."</th></tr>";
+         echo "<tr class='tab_bg_1'><th colspan='2'>".__('Add a contract')."</th></tr>";
 
-         echo "<tr ><td>";
+         echo "<tr class='tab_bg_1'><td>";
          Contract::dropdown(array('entity' => $item->getEntityID(),
                                   'used'   => $used));
 
@@ -586,9 +586,9 @@ class Contract_Item extends CommonDBRelation{
                 action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
          echo "<table class='table'>";
-         echo "<tr ><th colspan='2'>".__('Add an item')."</th></tr>";
+         echo "<tr class='tab_bg_1'><th colspan='2'>".__('Add an item')."</th></tr>";
 
-         echo "<tr ><td class='right'>";
+         echo "<tr class='tab_bg_1'><td class='right'>";
          Dropdown::showSelectItemFromItemtypes(array('itemtypes'
                                                        => $CFG_GLPI["contract_types"],
                                                      'entity_restrict'
@@ -638,7 +638,7 @@ class Contract_Item extends CommonDBRelation{
       foreach ($data as $itemtype => $datas) {
 
          if (isset($datas['longlist'])) {
-            echo "<tr >";
+            echo "<tr class='tab_bg_1'>";
             if ($canedit) {
                echo "<td>&nbsp;</td>";
             }
@@ -658,7 +658,7 @@ class Contract_Item extends CommonDBRelation{
                $link = Toolbox::getItemTypeFormURL($itemtype);
                $name = "<a href=\"".$link."?id=".$objdata["id"]."\">".$name."</a>";
 
-               echo "<tr >";
+               echo "<tr class='tab_bg_1'>";
                if ($canedit) {
                   echo "<td width='10'>";
                   Html::showMassiveActionCheckBox(__CLASS__, $objdata["IDD"]);

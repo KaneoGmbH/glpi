@@ -490,7 +490,7 @@ class NetworkPort extends CommonDBChild {
          echo "<input type='hidden' name='items_id' value='".$item->getID()."'>\n";
          echo "<input type='hidden' name='itemtype' value='".$item->getType()."'>\n";
          echo "<div class='firstbloc'><table class='table table-striped'>\n";
-         echo "<tr ><td class='center'>\n";
+         echo "<tr class='tab_bg_1'><td class='center'>\n";
          _e('Network port type to be added');
          echo "&nbsp;";
 
@@ -806,7 +806,7 @@ class NetworkPort extends CommonDBChild {
       $options['entities_id'] = $lastItem_entities_id;
       $this->showFormHeader($options);
 
-      echo "<tr ><td>";
+      echo "<tr class='tab_bg_1'><td>";
       $this->displayRecursiveItems($recursiveItems, 'Type');
       echo "&nbsp;:</td>\n<td>";
 
@@ -830,13 +830,13 @@ class NetworkPort extends CommonDBChild {
       echo "</td></tr>\n";
 
       if (!$options['several']) {
-         echo "<tr ><td>". _n('Port number', 'Ports number', 1) ."</td>\n";
+         echo "<tr class='tab_bg_1'><td>". _n('Port number', 'Ports number', 1) ."</td>\n";
          echo "<td>";
          Html::autocompletionTextField($this,"logical_number", array('size' => 5));
          echo "</td></tr>\n";
 
       } else {
-         echo "<tr ><td>". _n('Port number', 'Port numbers', Session::getPluralNumber()) ."</td>\n";
+         echo "<tr class='tab_bg_1'><td>". _n('Port number', 'Port numbers', Session::getPluralNumber()) ."</td>\n";
          echo "<td>";
          echo "<input type='hidden' name='several' value='yes'>";
          echo "<input type='hidden' name='logical_number' value=''>\n";
@@ -847,14 +847,14 @@ class NetworkPort extends CommonDBChild {
          echo "</td></tr>\n";
       }
 
-      echo "<tr ><td>" . __('Name') . "</td>\n";
+      echo "<tr class='tab_bg_1'><td>" . __('Name') . "</td>\n";
       echo "<td>";
       Html::autocompletionTextField($this, "name");
       echo "</td></tr>\n";
 
       $instantiation = $this->getInstantiation();
       if ($instantiation !== false) {
-         echo "<tr ><th colspan='4'>".$instantiation->getTypeName(1)."</th></tr>\n";
+         echo "<tr class='tab_bg_1'><th colspan='4'>".$instantiation->getTypeName(1)."</th></tr>\n";
          $instantiation->showInstantiationForm($this, $options, $recursiveItems);
          unset($instantiation);
       }

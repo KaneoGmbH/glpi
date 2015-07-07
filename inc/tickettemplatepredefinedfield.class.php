@@ -256,8 +256,8 @@ class TicketTemplatePredefinedField extends CommonDBChild {
                   action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
             echo "<table class='table table-striped'>";
-            echo "<tr ><th colspan='3'>".__('Add a predefined field')."</th></tr>";
-            echo "<tr ><td class='right top' width='30%'>";
+            echo "<tr class='tab_bg_1'><th colspan='3'>".__('Add a predefined field')."</th></tr>";
+            echo "<tr class='tab_bg_1'><td class='right top' width='30%'>";
             echo "<input type='hidden' name='tickettemplates_id' value='$ID'>";
             $display_fields[-1] = Dropdown::EMPTY_VALUE;
             $display_fields    += $fields;
@@ -330,7 +330,7 @@ class TicketTemplatePredefinedField extends CommonDBChild {
                   // could happen when itemtype removed and items_id present
                   continue;
                }
-               echo "<tr >";
+               echo "<tr class='tab_bg_1'>";
                if ($canedit) {
                   echo "<td>".Html::getMassiveActionCheckBox(__CLASS__, $data["id"])."</td>";
                }

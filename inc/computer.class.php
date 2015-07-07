@@ -418,7 +418,7 @@ class Computer extends CommonDBTM {
       $this->initForm($ID, $options);
       $this->showFormHeader($options);
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       //TRANS: %1$s is a string, %2$s a second one without spaces between them : to change for RTL
       echo "<td>".sprintf(__('%1$s%2$s'),__('Name'),
                           (isset($options['withtemplate']) && $options['withtemplate']?"*":"")).
@@ -436,7 +436,7 @@ class Computer extends CommonDBTM {
                             'condition' => "`is_visible_computer`"));
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Location')."</td>";
       echo "<td>";
       Location::dropdown(array('value'  => $this->fields["locations_id"],
@@ -447,7 +447,7 @@ class Computer extends CommonDBTM {
       ComputerType::dropdown(array('value' => $this->fields["computertypes_id"]));
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Technician in charge of the hardware')."</td>";
       echo "<td>";
       User::dropdown(array('name'   => 'users_id_tech',
@@ -460,7 +460,7 @@ class Computer extends CommonDBTM {
       Manufacturer::dropdown(array('value' => $this->fields["manufacturers_id"]));
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Group in charge of the hardware')."</td>";
       echo "<td>";
       Group::dropdown(array('name'      => 'groups_id_tech',
@@ -474,7 +474,7 @@ class Computer extends CommonDBTM {
       ComputerModel::dropdown(array('value' => $this->fields["computermodels_id"]));
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       //TRANS: Number of the alternate username
       echo "<td>".__('Alternate username number')."</td>";
       echo "<td >";
@@ -485,7 +485,7 @@ class Computer extends CommonDBTM {
       Html::autocompletionTextField($this,'serial');
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Alternate username')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this,'contact');
@@ -500,7 +500,7 @@ class Computer extends CommonDBTM {
       Html::autocompletionTextField($this, 'otherserial', array('value' => $objectName));
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('User')."</td>";
       echo "<td>";
       User::dropdown(array('value'  => $this->fields["users_id"],
@@ -512,7 +512,7 @@ class Computer extends CommonDBTM {
       Network::dropdown(array('value' => $this->fields["networks_id"]));
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Group')."</td>";
       echo "<td>";
       Group::dropdown(array('value'     => $this->fields["groups_id"],
@@ -537,39 +537,39 @@ class Computer extends CommonDBTM {
       echo "<textarea class='form-control'  cols='45' rows='".($rowspan+3)."' name='comment' >".$this->fields["comment"];
       echo "</textarea></td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Domain')."</td>";
       echo "<td >";
       Domain::dropdown(array('value'  => $this->fields["domains_id"],
                              'entity' => $this->fields["entities_id"]));
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Operating system')."</td>";
       echo "<td>";
       OperatingSystem::dropdown(array('value' => $this->fields["operatingsystems_id"]));
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Service pack')."</td>";
       echo "<td >";
       OperatingSystemServicePack::dropdown(array('value'
                                                  => $this->fields["operatingsystemservicepacks_id"]));
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Version of the operating system')."</td>";
       echo "<td >";
       OperatingSystemVersion::dropdown(array('value' => $this->fields["operatingsystemversions_id"]));
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Product ID of the operating system')."</td>";
       echo "<td >";
       Html::autocompletionTextField($this, 'os_licenseid');
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Serial of the operating system')."</td>";
       echo "<td >";
       Html::autocompletionTextField($this, 'os_license_number');
@@ -583,14 +583,14 @@ class Computer extends CommonDBTM {
       }
       echo "</tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('UUID')."</td>";
       echo "<td >";
       Html::autocompletionTextField($this, 'uuid');
       echo "</td>";
       echo "</tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>";
       if ((!isset($options['withtemplate']) || ($options['withtemplate'] == 0))
           && !empty($this->fields['template_name'])) {
@@ -610,7 +610,7 @@ class Computer extends CommonDBTM {
       }
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Update Source')."</td>";
       echo "<td >";
       AutoUpdateSystem::dropdown(array('value' => $this->fields["autoupdatesystems_id"]));

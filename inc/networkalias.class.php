@@ -113,7 +113,7 @@ class NetworkAlias extends FQDNLabel {
       $options['entities_id'] = $lastItem->getField('entities_id');
       $this->showFormHeader($options);
 
-      echo "<tr ><td>";
+      echo "<tr class='tab_bg_1'><td>";
       $this->displayRecursiveItems($recursiveItems, 'Type');
       echo "&nbsp;:</td>\n<td>";
 
@@ -126,7 +126,7 @@ class NetworkAlias extends FQDNLabel {
       Html::autocompletionTextField($this, "name");
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".FQDN::getTypeName()."</td><td>";
       Dropdown::show(getItemTypeForTable(getTableNameForForeignKeyField("fqdns_id")),
                      array('value'        => $this->fields["fqdns_id"],
@@ -313,7 +313,7 @@ class NetworkAlias extends FQDNLabel {
          $showviewjs = ($canedit
                         ? "style='cursor:pointer' onClick=\"viewEditAlias".$data['id']."$rand();\""
                         : '');
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          if ($canedit) {
             echo "<td>";
             Html::showMassiveActionCheckBox(__CLASS__, $data["id"]);
@@ -421,7 +421,7 @@ class NetworkAlias extends FQDNLabel {
          foreach ($DB->request($query) as $data) {
             Session::addToNavigateListItems($alias->getType(),$data["alias_id"]);
             if ($address->getFromDB($data["address_id"])) {
-               echo "<tr >";
+               echo "<tr class='tab_bg_1'>";
                echo "<td><a href='".$alias->getFormURL().'?id='.$data['alias_id']."'>" .
                           $data['alias']. "</a></td>";
                echo "<td><a href='".$address->getLinkURL()."'>".$address->getInternetName().

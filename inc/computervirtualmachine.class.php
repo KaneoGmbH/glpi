@@ -142,7 +142,7 @@ class ComputerVirtualMachine extends CommonDBChild {
          echo "<input type='hidden' name='computers_id' value='".$options['computers_id']."'>";
       }
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Computer')."</td>";
       echo "<td>".$comp->getLink()."</td>";
       if (Plugin::haveImport()) {
@@ -160,7 +160,7 @@ class ComputerVirtualMachine extends CommonDBChild {
       echo "</tr>\n";
 
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Name')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "name");
@@ -169,13 +169,13 @@ class ComputerVirtualMachine extends CommonDBChild {
       echo "<textarea class='form-control'  cols='45' rows='6' name='comment' >".$this->fields["comment"]."</textarea>";
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Virtualization system')."</td>";
       VirtualMachineType::dropdown(array('value' => $this->fields['virtualmachinetypes_id']));
       echo "<td>";
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Virtualization model')."</td>";
       VirtualMachineSystem::dropdown(array('value' => $this->fields['virtualmachinesystems_id']));
       echo "<td>";
@@ -186,7 +186,7 @@ class ComputerVirtualMachine extends CommonDBChild {
       VirtualMachineState::dropdown(array('value' => $this->fields['virtualmachinestates_id']));
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('UUID')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "uuid");
@@ -205,7 +205,7 @@ class ComputerVirtualMachine extends CommonDBChild {
       echo "</td>";
       echo "</tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".sprintf(__('%1$s (%2$s)'),__('Memory'),__('Mio'))."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "ram");
@@ -258,7 +258,7 @@ class ComputerVirtualMachine extends CommonDBChild {
             $computer = new Computer();
             foreach ($hosts as $host) {
 
-               echo "<tr >";
+               echo "<tr class='tab_bg_1'>";
                echo "<td>";
                if ($computer->can($host['computers_id'], READ)) {
                   echo "<a href='computer.form.php?id=".$computer->fields['id']."'>";
@@ -350,7 +350,7 @@ class ComputerVirtualMachine extends CommonDBChild {
          $vm = new self();
          foreach ($virtualmachines as $virtualmachine) {
             $vm->getFromDB($virtualmachine['id']);
-            echo "<tr >";
+            echo "<tr class='tab_bg_1'>";
             echo "<td>".$vm->getLink()."</td>";
             if (Plugin::haveImport()) {
                echo "<td>".Dropdown::getYesNo($vm->isDynamic())."</td>";

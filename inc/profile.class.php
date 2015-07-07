@@ -517,11 +517,11 @@ class Profile extends CommonDBTM {
 
       echo "<div class='spaced'>";
       echo "<table class='table table-striped'>";
-      echo "<tr ><td width='70' style='text-decoration:underline' class='b'>";
+      echo "<tr class='tab_bg_1'><td width='70' style='text-decoration:underline' class='b'>";
       echo __('Caption')."</td>";
       echo "<td  width='15' style='border:1px solid black'></td>";
       echo "<td class='b'>".__('Global right')."</td></tr>\n";
-      echo "<tr ><td></td>";
+      echo "<tr class='tab_bg_1'><td></td>";
       echo "<td  width='15' style='border:1px solid black'></td>";
       echo "<td class='b'>".__('Entity right')."</td></tr>";
       echo "</table></div>\n";
@@ -570,36 +570,36 @@ class Profile extends CommonDBTM {
 
       $this->showFormHeader($options);
 
-      echo "<tr ><td>".__('Name')."</td>";
+      echo "<tr class='tab_bg_1'><td>".__('Name')."</td>";
       echo "<td><input type='text' name='name' value=\"".$this->fields["name"]."\" $onfocus></td>";
       echo "<td rowspan='$rowspan' class='middle right'>".__('Comments')."</td>";
       echo "<td class='center middle' rowspan='$rowspan'>";
       echo "<textarea class='form-control'  cols='45' rows='4' name='comment' >".$this->fields["comment"]."</textarea>";
       echo "</td></tr>";
 
-      echo "<tr ><td>".__('Default profile')."</td><td>";
+      echo "<tr class='tab_bg_1'><td>".__('Default profile')."</td><td>";
       Html::showCheckbox(array('name'    => 'is_default',
                                'checked' => $this->fields['is_default']));
       echo "</td></tr>\n";
 
-      echo "<tr ><td>".__("Profile's interface")."</td>";
+      echo "<tr class='tab_bg_1'><td>".__("Profile's interface")."</td>";
       echo "<td>";
       Dropdown::showFromArray('interface', self::getInterfaces(),
                               array('value'=>$this->fields["interface"]));
       echo "</td></tr>\n";
 
-      echo "<tr ><td>".__('Update password')."</td><td>";
+      echo "<tr class='tab_bg_1'><td>".__('Update password')."</td><td>";
       Html::showCheckbox(array('name'    => '_password_update',
                                'checked' => $this->fields['password_update']));
       echo "</td></tr>\n";
 
-      echo "<tr ><td>".__('Ticket creation form on login')."</td><td>";
+      echo "<tr class='tab_bg_1'><td>".__('Ticket creation form on login')."</td><td>";
       Html::showCheckbox(array('name'    => 'create_ticket_on_login',
                                'checked' => $this->fields['create_ticket_on_login']));
       echo "</td></tr>\n";
 
       if ($ID > 0) {
-         echo "<tr ><td>".__('Last update')."</td>";
+         echo "<tr class='tab_bg_1'><td>".__('Last update')."</td>";
          echo "<td>";
          echo ($this->fields["date_mod"] ? Html::convDateTime($this->fields["date_mod"])
                                          : __('Never'));
@@ -649,15 +649,15 @@ class Profile extends CommonDBTM {
       $this->displayRightsChoiceMatrix($rights, $matrix_options);
 
       echo "<table class='table table-hover'>";
-      echo "<tr ><th colspan='2'>".__('Association')."</th></tr>\n";
+      echo "<tr class='tab_bg_1'><th colspan='2'>".__('Association')."</th></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td width=30%>".__('See hardware of my groups')."</td><td>";
       Html::showCheckbox(array('name'    => '_show_group_hardware',
                                'checked' => $this->fields['show_group_hardware']));
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Link with items for the creation of tickets')."</td>";
       echo "<td>";
       self::getLinearRightChoice(self::getHelpdeskHardwareTypes(true),
@@ -665,7 +665,7 @@ class Profile extends CommonDBTM {
                                        'value' => $this->fields['helpdesk_hardware']));
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Associable items to a ticket')."</td>";
       echo "<td><input type='hidden' name='_helpdesk_item_types' value='1'>";
       self::dropdownHelpdeskItemtypes(array('values' => $this->fields["helpdesk_item_type"]));
@@ -673,7 +673,7 @@ class Profile extends CommonDBTM {
       echo "</td>";
       echo "</tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Default ticket template')."</td><td>";
       // Only root entity ones and recursive
       $options = array('value'     => $this->fields["tickettemplates_id"],
@@ -690,7 +690,7 @@ class Profile extends CommonDBTM {
       echo "</tr>\n";
 
       if ($canedit) {
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<td colspan='4' class='center'>";
          echo "<input type='hidden' name='id' value='".$this->fields['id']."'>";
          echo "<input type='submit' name='update' value=\""._sx('button','Save')."\" class='btn btn-primary'>";
@@ -967,9 +967,9 @@ class Profile extends CommonDBTM {
 
       echo "<table class='table'>";
       // Assistance / Tracking-helpdesk
-      echo "<tr ><th colspan='2'>".__('Assistance')."</th></tr>\n";
+      echo "<tr class='tab_bg_1'><th colspan='2'>".__('Assistance')."</th></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>"._n('Ticket', 'Tickets', Session::getPluralNumber()).': '.__('Default ticket template')."</td><td  width='30%'>";
       // Only root entity ones and recursive
       $options = array('value'     => $this->fields["tickettemplates_id"],
@@ -1024,16 +1024,16 @@ class Profile extends CommonDBTM {
 
       echo "<table class='table'>";
 
-      echo "<tr ><th colspan='2'>".__('Association')."</th>";
+      echo "<tr class='tab_bg_1'><th colspan='2'>".__('Association')."</th>";
       echo "</tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('See hardware of my groups')."</td><td>";
       Html::showCheckbox(array('name'    => '_show_group_hardware',
                                'checked' => $this->fields['show_group_hardware']));
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Link with items for the creation of tickets')."</td>";
       echo "\n<td>";
       self::getLinearRightChoice(self::getHelpdeskHardwareTypes(true),
@@ -1041,7 +1041,7 @@ class Profile extends CommonDBTM {
                                        'value' => $this->fields['helpdesk_hardware']));
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Associable items to a ticket')."</td>";
       echo "<td><input type='hidden' name='_helpdesk_item_types' value='1'>";
       self::dropdownHelpdeskItemtypes(array('values' => $this->fields["helpdesk_item_type"]));

@@ -128,7 +128,7 @@ class Supplier extends CommonDBTM {
       $this->initForm($ID, $options);
       $this->showFormHeader($options);
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Name')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "name");
@@ -138,7 +138,7 @@ class Supplier extends CommonDBTM {
       SupplierType::dropdown(array('value' => $this->fields["suppliertypes_id"]));
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>". __('Phone')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "phonenumber");
@@ -148,31 +148,31 @@ class Supplier extends CommonDBTM {
       echo "<textarea class='form-control'  cols='45' rows='13' name='comment' >".$this->fields["comment"]."</textarea>";
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Fax')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "fax");
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Website')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "website");
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>"._n('Email', 'Emails', 1)."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "email");
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td class='middle'>".__('Address')."</td>";
       echo "<td class='middle'>";
       echo "<textarea class='form-control'  cols='37' rows='3' name='address'>".$this->fields["address"]."</textarea>";
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Postal code')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "postcode", array('size' => 10));
@@ -180,13 +180,13 @@ class Supplier extends CommonDBTM {
       Html::autocompletionTextField($this, "town", array('size' => 23));
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>"._x('location','State')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "state");
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Country')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "country");
@@ -459,7 +459,7 @@ class Supplier extends CommonDBTM {
             }
 
             if ($nb > $_SESSION['glpilist_limit']) {
-               echo "<tr >";
+               echo "<tr class='tab_bg_1'>";
                $title = $item->getTypeName($nb);
                if ($nb > 0) {
                   $title = sprintf(__('%1$s: %2$s'), $title, $nb);
@@ -489,7 +489,7 @@ class Supplier extends CommonDBTM {
                   $link = Toolbox::getItemTypeFormURL($linktype);
                   $name = "<a href=\"".$link."?id=".$data[$linkfield]."\">".$name."</a>";
 
-                  echo "<tr >";
+                  echo "<tr class='tab_bg_1'>";
                   if ($prem) {
                      $title = $item->getTypeName($nb);
                      if ($nb > 0) {
@@ -512,7 +512,7 @@ class Supplier extends CommonDBTM {
             $num += $nb;
          }
       }
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td class='center'>".(($num > 0) ? sprintf(__('%1$s = %2$s'), __('Total'), $num)
                                              : "&nbsp;")."</td>";
       echo "<td colspan='4'>&nbsp;</td></tr> ";

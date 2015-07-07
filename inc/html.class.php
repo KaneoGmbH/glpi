@@ -1014,7 +1014,7 @@ class Html {
         //  CSS link
       $cssFiles = array(
           $CFG_GLPI['root_doc']."/css/styles-bootstrap.css",
-          $CFG_GLPI['root_doc']."/lib/bootstrap/css/bootstrap.min.css",
+          $CFG_GLPI['root_doc']."/lib/bootstrap/css/yeti.css",
           $CFG_GLPI['root_doc']."/lib/jquery/css/bootstrap/jquery-ui-1.10.0.custom.css",
           $CFG_GLPI['root_doc']."/lib/jqueryplugins/rateit/rateit.css",
           $CFG_GLPI['root_doc']."/lib/jqueryplugins/select2/select2.css",
@@ -1024,8 +1024,9 @@ class Html {
           $CFG_GLPI['root_doc']."/lib/jqueryplugins/jquery-gantt/css/style.css",
           $CFG_GLPI['root_doc']."/css/jstree/style.css",
           $CFG_GLPI['root_doc']."/css/select2-bootstrap.css",
-          $CFG_GLPI['root_doc']."/css/glpi.css",
-          $CFG_GLPI['root_doc']."/templates/custom/css/styles.css"
+          $CFG_GLPI['root_doc']."/themes/core/res/css/styles.css",
+          //$CFG_GLPI['root_doc']."/themes/custom/res/css/styles.css",
+
       );
 
       // Add specific css for plugins
@@ -3574,7 +3575,7 @@ class Html {
          echo "<tr><th>KEY</th><th>=></th><th>VALUE</th></tr>";
 
          foreach ($tab as $key => $val) {
-            echo "<tr ><td class='top right'>";
+            echo "<tr class='tab_bg_1'><td class='top right'>";
             echo $key;
             $is_array = is_array($val);
             $rand     = mt_rand();
@@ -4894,7 +4895,7 @@ class Html {
       echo "\n<table class='".$param['table_class']."'>\n";
 
 
-      echo "\t<tr >\n";
+      echo "\t<tr class='tab_bg_1'>\n";
       echo "\t\t<td>".$param['first_cell']."</td>\n";
       foreach ($columns as $col_name => $column) {
          $nb_cb_per_col[$col_name] = array('total'   => 0,
@@ -4934,7 +4935,7 @@ class Html {
             continue;
          }
 
-         echo "\t<tr >\n";
+         echo "\t<tr class='tab_bg_1'>\n";
 
          if (is_string($row)) {
             echo "\t\t<th colspan='$number_columns'>$row</th>\n";
@@ -5027,7 +5028,7 @@ class Html {
       }
 
       if ($param['col_check_all']) {
-         echo "\t<tr >\n";
+         echo "\t<tr class='tab_bg_1'>\n";
          echo "\t\t<td>".__('Select/unselect all')."</td>\n";
          foreach ($columns as $col_name => $column) {
             echo "\t\t<td class='center'>";

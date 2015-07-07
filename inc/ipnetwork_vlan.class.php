@@ -133,7 +133,7 @@ class IPNetwork_Vlan extends CommonDBRelation {
          echo "<table class='table table-striped'>\n";
          echo "<tr><th>".__('Associate a VLAN')."</th></tr>";
 
-         echo "<tr ><td class='center'>";
+         echo "<tr class='tab_bg_1'><td class='center'>";
          echo "<input type='hidden' name='ipnetworks_id' value='$ID'>";
          Vlan::dropdown(array('used' => $used));
          echo "&nbsp;<input type='submit' name='add' value='"._sx('button','Associate').
@@ -172,7 +172,7 @@ class IPNetwork_Vlan extends CommonDBRelation {
 
       $used = array();
       foreach ($vlans as $data) {
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          if ($canedit) {
             echo "<td>";
             Html::showMassiveActionCheckBox(__CLASS__, $data["assocID"]);

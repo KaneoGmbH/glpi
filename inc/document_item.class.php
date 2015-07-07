@@ -310,9 +310,9 @@ class Document_Item extends CommonDBRelation{
                action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
          echo "<table class='table table-striped'>";
-         echo "<tr ><th colspan='2'>".__('Add an item')."</th></tr>";
+         echo "<tr class='tab_bg_1'><th colspan='2'>".__('Add an item')."</th></tr>";
 
-         echo "<tr ><td class='right'>";
+         echo "<tr class='tab_bg_1'><td class='right'>";
          Dropdown::showSelectItemFromItemtypes(array('itemtypes'
                                                        => Document::getItemtypesThatCanHave(),
                                                      'entity_restrict'
@@ -465,7 +465,7 @@ class Document_Item extends CommonDBRelation{
                      $link = Toolbox::getItemTypeFormURL($itemtype);
                      $name = "<a href=\"".$link."?id=".$data["id"]."\">".$linkname."</a>";
 
-                     echo "<tr >";
+                     echo "<tr class='tab_bg_1'>";
 
                      if ($canedit) {
                         echo "<td width='10'>";
@@ -670,8 +670,8 @@ class Document_Item extends CommonDBRelation{
                 action='".Toolbox::getItemTypeFormURL('Document')."' enctype=\"multipart/form-data\">";
 
          echo "<table class='table'>";
-         echo "<tr ><th colspan='5'>".__('Add a document')."</th></tr>";
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'><th colspan='5'>".__('Add a document')."</th></tr>";
+         echo "<tr class='tab_bg_1'>";
 
          echo "<td class='center'>";
          _e('Heading');
@@ -702,7 +702,7 @@ class Document_Item extends CommonDBRelation{
             echo "<form name='document_form$rand' id='document_form$rand' method='post'
                    action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
             echo "<table class='table'>";
-            echo "<tr >";
+            echo "<tr class='tab_bg_1'>";
             echo "<td colspan='4' class='center'>";
             echo "<input type='hidden' name='itemtype' value='".$item->getType()."'>";
             echo "<input type='hidden' name='items_id' value='$ID'>";

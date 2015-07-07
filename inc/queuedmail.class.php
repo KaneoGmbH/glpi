@@ -561,7 +561,7 @@ class QueuedMail extends CommonDBTM {
       $options['canedit'] = false;
 
       $this->showFormHeader($options);
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Type')."</td>";
 
       echo "<td>";
@@ -581,7 +581,7 @@ class QueuedMail extends CommonDBTM {
       }
       echo "</tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>"._n('Notification template', 'Notification templates', 1)."</td>";
       echo "<td>";
       echo Dropdown::getDropdownName('glpi_notificationtemplates',
@@ -591,7 +591,7 @@ class QueuedMail extends CommonDBTM {
       echo "<td>&nbsp;</td>";
       echo "</tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Creation date')."</td>";
       echo "<td>";
       echo Html::convDateTime($this->fields['create_time']);
@@ -599,7 +599,7 @@ class QueuedMail extends CommonDBTM {
       echo "<td>".Html::convDateTime($this->fields['send_time'])."</td>";
       echo "</tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Send date')."</td>";
       echo "<td>".Html::convDateTime($this->fields['sent_time'])."</td>";
       echo "<td>".__('Number of tries of sent')."</td>";
@@ -607,28 +607,28 @@ class QueuedMail extends CommonDBTM {
       echo "</tr>";
 
       echo "<tr><th colspan='4'>".__('Email')."</th></tr>";
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Sender email')."</td>";
       echo "<td>".$this->fields['sender']."</td>";
       echo "<td>".__('Sender name')."</td>";
       echo "<td>".$this->fields['sendername']."</td>";
       echo "</tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Recipient email')."</td>";
       echo "<td>".$this->fields['recipient']."</td>";
       echo "<td>".__('Recipient name')."</td>";
       echo "<td>".$this->fields['recipientname']."</td>";
       echo "</tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Reply-to email')."</td>";
       echo "<td>".$this->fields['replyto']."</td>";
       echo "<td>".__('Reply-to name')."</td>";
       echo "<td>".$this->fields['replytoname']."</td>";
       echo "</tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Message ID')."</td>";
       echo "<td>".$this->fields['messageid']."</td>";
       echo "<td>".__('Additional headers')."</td>";
@@ -636,7 +636,7 @@ class QueuedMail extends CommonDBTM {
       echo "</tr>";
 
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Subject')."</td>";
       echo "<td colspan=3>".$this->fields['name']."</td>";
       echo "</tr>";

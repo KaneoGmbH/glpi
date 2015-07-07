@@ -588,7 +588,7 @@ class RuleCriteria extends CommonDBChild {
       }
       $this->showFormHeader($options);
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td class='center'>"._n('Criterion', 'Criteria', 1) . "</td><td colspan='3'>";
       echo "<input type='hidden' name='".$rule->getRuleIdField()."' value='".
              $this->fields[$rule->getRuleIdField()]."'>";

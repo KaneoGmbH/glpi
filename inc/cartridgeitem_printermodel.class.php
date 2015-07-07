@@ -144,7 +144,7 @@ class CartridgeItem_PrinterModel extends CommonDBRelation {
          echo " action='".static::getFormURL()."'>";
 
          echo "<table class='table table-striped'>";
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<th colspan='6'>".__('Add a compatible printer model')."</th></tr>";
 
          echo "<tr><td class='tab_bg_2 center'>";
@@ -183,7 +183,7 @@ class CartridgeItem_PrinterModel extends CommonDBRelation {
          echo $header_begin.$header_top.$header_end;
 
          foreach ($datas as $data) {
-            echo "<tr >";
+            echo "<tr class='tab_bg_1'>";
             if ($canedit) {
                echo "<td width='10'>";
                Html::showMassiveActionCheckBox(__CLASS__, $data["id"]);
