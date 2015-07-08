@@ -141,7 +141,7 @@ if (isset($query) && count($query)) {
          echo "<th>".__('End date')."</th></tr>";
 
          while ($data = $DB->fetch_assoc($result)) {
-            echo "<tr >";
+            echo "<tr class='tab_bg_1'>";
             if ($data['itemname']) {
                echo "<td> ".$data['itemname']."</td>";
             } else {

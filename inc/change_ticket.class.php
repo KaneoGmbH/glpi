@@ -226,9 +226,9 @@ class Change_Ticket extends CommonDBRelation{
                 action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
          echo "<table class='table table-striped'>";
-         echo "<tr ><th colspan='2'>".__('Add a ticket')."</th></tr>";
+         echo "<tr class='tab_bg_1'><th colspan='2'>".__('Add a ticket')."</th></tr>";
 
-         echo "<tr ><td class='right'>";
+         echo "<tr class='tab_bg_1'><td class='right'>";
          echo "<input type='hidden' name='changes_id' value='$ID'>";
          Ticket::dropdown(array('used'        => $used,
                                 'entity'      => $change->getEntityID(),
@@ -328,8 +328,8 @@ class Change_Ticket extends CommonDBRelation{
                action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
          echo "<table class='table'>";
-         echo "<tr ><th colspan='3'>".__('Add a change')."</th></tr>";
-         echo "<tr ><td>";
+         echo "<tr class='tab_bg_1'><th colspan='3'>".__('Add a change')."</th></tr>";
+         echo "<tr class='tab_bg_1'><td>";
          echo "<input type='hidden' name='tickets_id' value='$ID'>";
          Change::dropdown(array('used'        => $used,
                                 'entity'      => $ticket->getEntityID()));

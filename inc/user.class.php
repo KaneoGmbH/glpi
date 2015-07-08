@@ -1816,7 +1816,7 @@ class User extends CommonDBTM {
       $this->showFormHeader($options);
       $rand = mt_rand();
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>" . __('Login') . "</td>";
       // si on est dans le cas d'un ajout , cet input ne doit plus etre hidden
       if ($this->fields["name"] == "") {
@@ -1852,11 +1852,11 @@ class User extends CommonDBTM {
       }
       echo "</tr>";
 
-      echo "<tr ><td>" . __('Surname') . "</td><td>";
+      echo "<tr class='tab_bg_1'><td>" . __('Surname') . "</td><td>";
       Html::autocompletionTextField($this,"realname");
       echo "</td></tr>";
 
-      echo "<tr ><td>" . __('First name') . "</td><td>";
+      echo "<tr class='tab_bg_1'><td>" . __('First name') . "</td><td>";
       Html::autocompletionTextField($this, "firstname");
       echo "</td></tr>";
 
@@ -1864,7 +1864,7 @@ class User extends CommonDBTM {
       if (self::canUpdate()
           && (!$extauth || empty($ID))
           && $caneditpassword) {
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<td>" . __('Password')."</td>";
          echo "<td><input id='password' type='password' name='password' value='' size='20'
                     autocomplete='off' onkeyup=\"return passwordCheck();\"></td>";
@@ -1873,7 +1873,7 @@ class User extends CommonDBTM {
          Config::displayPasswordSecurityChecks();
          echo "</td></tr>";
 
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<td>" . __('Password confirmation') . "</td>";
          echo "<td><input type='password' name='password2' value='' size='20' autocomplete='off'>";
          echo "</td></tr>";
@@ -1944,7 +1944,7 @@ class User extends CommonDBTM {
       echo "</tr>";
 
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>" . __('Mobile phone') . "</td><td>";
       Html::autocompletionTextField($this, "mobile");
       echo "</td>";
@@ -1952,7 +1952,7 @@ class User extends CommonDBTM {
       UserCategory::dropdown(array('value' => $this->fields["usercategories_id"]));
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>" .  __('Phone 2') . "</td><td>";
       Html::autocompletionTextField($this, "phone2");
       echo "</td>";
@@ -1961,15 +1961,15 @@ class User extends CommonDBTM {
       echo "<textarea class='form-control'  cols='45' rows='6' name='comment' >".$this->fields["comment"]."</textarea>";
       echo "</td></tr>";
 
-      echo "<tr ><td>" . __('Administrative number') . "</td><td>";
+      echo "<tr class='tab_bg_1'><td>" . __('Administrative number') . "</td><td>";
       Html::autocompletionTextField($this, "registration_number");
       echo "</td></tr>";
 
-      echo "<tr ><td>" . _x('person','Title') . "&nbsp;:</td><td>";
+      echo "<tr class='tab_bg_1'><td>" . _x('person','Title') . "&nbsp;:</td><td>";
       UserTitle::dropdown(array('value' => $this->fields["usertitles_id"]));
       echo "</td></tr>";
 
-      echo "<tr ><td>" . __('Location') . "</td><td>";
+      echo "<tr class='tab_bg_1'><td>" . __('Location') . "</td><td>";
       if (!empty($ID)) {
          $entities = Profile_User::getUserEntities($ID, true);
          if (count($entities) > 0) {
@@ -1990,12 +1990,12 @@ class User extends CommonDBTM {
       echo "</td></tr>";
 
       if (empty($ID)) {
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<th colspan='2'>"._n('Authorization','Authorizations',1)."</th>";
          echo "<td>" .  __('Recursive') . "</td><td>";
          Dropdown::showYesNo("_is_recursive",0);
          echo "</td></tr>";
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<td>" .  __('Profile') . "</td><td>";
          Profile::dropdownUnder(array('name'  => '_profiles_id',
                                       'value' => Profile::getDefault()));
@@ -2007,7 +2007,7 @@ class User extends CommonDBTM {
          echo "</td></tr>";
       } else {
          if ($caneditpassword) {
-            echo "<tr >";
+            echo "<tr class='tab_bg_1'>";
             echo "<td>" .  __('Default profile') . "</td><td>";
 
             $options = array(0 => Dropdown::EMPTY_VALUE);
@@ -2024,7 +2024,7 @@ class User extends CommonDBTM {
             echo "</td></tr>";
          }
 
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<td colspan='2' class='center'>" ;
          //TRANS: %s is the date
          printf(__('Last update on %s'), HTML::convDateTime($this->fields["date_mod"]));
@@ -2060,7 +2060,7 @@ class User extends CommonDBTM {
          return false;
       }
       echo "<table class='table left' width='100%'>";
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td class='b' width='20%'>";
       _e('Name');
       echo "</td><td width='30%'>";
@@ -2073,7 +2073,7 @@ class User extends CommonDBTM {
       echo "</td>";
       echo "</tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td class='b'>";
       _e('Phone 2');
       echo "</td><td>";
@@ -2086,7 +2086,7 @@ class User extends CommonDBTM {
       echo "</td>";
       echo "</tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td class='b'>";
       _e('Location');
       echo "</td><td>";
@@ -2141,7 +2141,7 @@ class User extends CommonDBTM {
          echo "<input type='hidden' name='id' value='" . $this->fields["id"] . "'>";
          echo "</th></tr>";
 
-         echo "<tr ><td>" . __('Surname') . "</td><td>";
+         echo "<tr class='tab_bg_1'><td>" . __('Surname') . "</td><td>";
 
          if ($extauth
              && isset($authtype['realname_field'])
@@ -2173,7 +2173,7 @@ class User extends CommonDBTM {
             echo "</tr>";
          }
 
-         echo "<tr ><td>" . __('First name') . "</td><td>";
+         echo "<tr class='tab_bg_1'><td>" . __('First name') . "</td><td>";
          if ($extauth
              && isset($authtype['firstname_field'])
              && !empty($authtype['firstname_field'])) {
@@ -2184,7 +2184,7 @@ class User extends CommonDBTM {
          }
          echo "</td></tr>";
 
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
 
          if (!GLPI_DEMO_MODE) {
             echo "<td>" . __('Language') . "</td><td>";
@@ -2199,7 +2199,7 @@ class User extends CommonDBTM {
          //do some rights verification
          if (!$extauth
              && Session::haveRight("password_update", "1")) {
-            echo "<tr >";
+            echo "<tr class='tab_bg_1'>";
             echo "<td>" . __('Password') . "</td>";
             echo "<td><input id='password' type='password' name='password' value='' size='30' autocomplete='off' onkeyup=\"return passwordCheck();\">";
             echo "</td>";
@@ -2209,7 +2209,7 @@ class User extends CommonDBTM {
             echo "</td>";
             echo "</tr>";
 
-            echo "<tr >";
+            echo "<tr class='tab_bg_1'>";
             echo "<td>" . __('Password confirmation') . "</td>";
             echo "<td><input type='password' name='password2' value='' size='30' autocomplete='off'>";
             echo "</td></tr>";
@@ -2217,7 +2217,7 @@ class User extends CommonDBTM {
          }
 
 
-         echo "<tr ><td>" .  __('Phone') . "</td><td>";
+         echo "<tr class='tab_bg_1'><td>" .  __('Phone') . "</td><td>";
 
          if ($extauth
              && isset($authtype['phone_field']) && !empty($authtype['phone_field'])) {
@@ -2233,7 +2233,7 @@ class User extends CommonDBTM {
          echo "</td>";
          echo "</tr>";
 
-         echo "<tr ><td>" . __('Mobile phone') . "&nbsp;:</td><td>";
+         echo "<tr class='tab_bg_1'><td>" . __('Mobile phone') . "&nbsp;:</td><td>";
 
          if ($extauth
              && isset($authtype['mobile_field']) && !empty($authtype['mobile_field'])) {
@@ -2260,7 +2260,7 @@ class User extends CommonDBTM {
 
 
 
-         echo "<tr ><td>" .  __('Phone 2') . "</td><td>";
+         echo "<tr class='tab_bg_1'><td>" .  __('Phone 2') . "</td><td>";
 
          if ($extauth
              && isset($authtype['phone2_field']) && !empty($authtype['phone2_field'])) {
@@ -2281,7 +2281,7 @@ class User extends CommonDBTM {
          }
          echo "</td></tr>";
 
-         echo "<tr ><td>" . __('Administrative number') . "</td><td>";
+         echo "<tr class='tab_bg_1'><td>" . __('Administrative number') . "</td><td>";
          if ($extauth
              && isset($authtype['registration_number_field']) && !empty($authtype['registration_number_field'])) {
             echo $this->fields["registration_number"];
@@ -2290,7 +2290,7 @@ class User extends CommonDBTM {
          }
          echo "</td><td colspan='2'></td></tr>";
 
-         echo "<tr ><td>" . __('Location') . "</td><td>";
+         echo "<tr class='tab_bg_1'><td>" . __('Location') . "</td><td>";
          $entities = Profile_User::getUserEntities($ID, true);
          Location::dropdown(array('value'  => $this->fields['locations_id'],
                                   'entity' => $entities));
@@ -3275,16 +3275,16 @@ class User extends CommonDBTM {
       echo "<table class='table table-striped table-hover'>\n";
       echo "<tr><th colspan='4'>".__('Automatically add a user of an external source')."</th></tr>\n";
 
-      echo "<tr ><td>".__('Login')."</td>\n";
+      echo "<tr class='tab_bg_1'><td>".__('Login')."</td>\n";
       echo "<td><input type='text' name='login'></td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td class='tab_bg_2 center' colspan='2'>\n";
       echo "<input type='submit' name='add_ext_auth_ldap' value=\"".__s('Import from directories')."\"
              class='btn btn-primary'>\n";
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td class='tab_bg_2 center' colspan='2'>\n";
       echo "<input type='submit' name='add_ext_auth_simple' value=\"".__s('Import from other sources')."\"
              class='btn btn-primary'>\n";
@@ -3467,7 +3467,7 @@ class User extends CommonDBTM {
                   if ($data[$field_user] == $ID) {
                      $linktype = self::getTypeName(1);
                   }
-                  echo "<tr ><td class='center'>$type_name</td>";
+                  echo "<tr class='tab_bg_1'><td class='center'>$type_name</td>";
                   echo "<td class='center'>".Dropdown::getDropdownName("glpi_entities",
                                                                        $data["entities_id"])."</td>";
                   echo "<td class='center'>$link</td>";
@@ -3550,7 +3550,7 @@ class User extends CommonDBTM {
                         $linktype = sprintf(__('%1$s = %2$s'), _n('Group','Groups',1),
                                             $groups[$data[$field_group]]);
                      }
-                     echo "<tr ><td class='center'>$type_name</td>";
+                     echo "<tr class='tab_bg_1'><td class='center'>$type_name</td>";
                      echo "<td class='center'>".Dropdown::getDropdownName("glpi_entities",
                                                                           $data["entities_id"]);
                      echo "</td><td class='center'>$link</td>";
@@ -3732,23 +3732,23 @@ class User extends CommonDBTM {
          echo "<table class='table table-striped table-hover'>";
          echo "<tr><th colspan='2'>" . __('Forgotten password?')."</th></tr>";
 
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<td colspan='2'>". __('Please confirm your email address and enter your new password.').
               "</td></tr>";
 
-         echo "<tr ><td>" . _n('Email', 'Emails', 1)."</td>";
+         echo "<tr class='tab_bg_1'><td>" . _n('Email', 'Emails', 1)."</td>";
          echo "<td><input type='text' name='email' value='' size='60'></td></tr>";
 
-         echo "<tr ><td>" . __('Password')."</td>";
+         echo "<tr class='tab_bg_1'><td>" . __('Password')."</td>";
          echo "<td><input id='password' type='password' name='password' value='' size='20'
                     autocomplete='off' onkeyup=\"return passwordCheck();\">";
          echo "</td></tr>";
 
-         echo "<tr ><td>" . __('Password confirmation')."</td>";
+         echo "<tr class='tab_bg_1'><td>" . __('Password confirmation')."</td>";
          echo "<td><input type='password' name='password2' value='' size='20' autocomplete='off'>";
          echo "</td></tr>";
 
-         echo "<tr ><td>".__('Password security policy')."</td>";
+         echo "<tr class='tab_bg_1'><td>".__('Password security policy')."</td>";
          echo "<td>";
          Config::displayPasswordSecurityChecks();
          echo "</td></tr>";
@@ -3780,7 +3780,7 @@ class User extends CommonDBTM {
       echo "<table class='table table-striped table-hover'>";
       echo "<tr><th colspan='2'>" . __('Forgotten password?')."</th></tr>";
 
-      echo "<tr ><td colspan='2'>" .
+      echo "<tr class='tab_bg_1'><td colspan='2'>" .
             __('Please enter your email address. An email will be sent to you and you will be able to choose a new password.').
            "</td></tr>";
 
@@ -3908,11 +3908,11 @@ class User extends CommonDBTM {
       echo "<table class='table'>";
       echo "<tr><th colspan='4'>".__('LDAP directory')."</th></tr>";
 
-      echo "<tr ><td>".__('User DN')."</td>";
+      echo "<tr class='tab_bg_1'><td>".__('User DN')."</td>";
       echo "<td>".$this->fields['user_dn']."</td></tr>\n";
 
       if ($this->fields['user_dn']) {
-         echo "<tr ><td>".__('User information')."</td><td>";
+         echo "<tr class='tab_bg_1'><td>".__('User information')."</td><td>";
          $config_ldap = new AuthLDAP();
          $ds          = false;
 

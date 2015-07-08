@@ -72,7 +72,7 @@ if (isset($_POST["itemtype"])
    $randsearch   = -1;
    $dropdownname = "searchtype$fieldname".$_POST["itemtype"].$_POST["num"];
    $searchopt    = array();
-   
+
    if (count($actions)>0) {
 
       // get already get search options
@@ -113,5 +113,4 @@ if (isset($_POST["itemtype"])
                                  $paramsaction);
    echo '</div>';
 }
-    
 ?>

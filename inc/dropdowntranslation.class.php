@@ -351,7 +351,7 @@ class DropdownTranslation extends CommonDBChild {
             Html::showMassiveActions($massiveactionparams);
          }
          echo "<div class='center'>";
-         echo "<table class='table table-hover'><tr >";
+         echo "<table class='table table-hover'><tr class='tab_bg_1'>";
          echo "<th colspan='4'>".__("List of translations")."</th></tr><tr>";
          if ($canedit) {
             echo "<th width='10'>";
@@ -367,7 +367,7 @@ class DropdownTranslation extends CommonDBChild {
                $onhover = "style='cursor:pointer'
                            onClick=\"viewEditTranslation".$data['itemtype'].$data['id']."$rand();\"";
             }
-            echo "<tr >";
+            echo "<tr class='tab_bg_1'>";
             if ($canedit) {
                echo "<td class='center'>";
                Html::showMassiveActionCheckBox(__CLASS__, $data["id"]);
@@ -402,7 +402,7 @@ class DropdownTranslation extends CommonDBChild {
             Html::closeForm();
          }
       } else {
-         echo "<table class='table table-striped'><tr >";
+         echo "<table class='table table-striped'><tr class='tab_bg_1'>";
          echo "<th class='b'>" . __("No translation found")."</th></tr></table>";
       }
       return true;
@@ -432,7 +432,7 @@ class DropdownTranslation extends CommonDBChild {
       }
       $rand = mt_rand();
       $this->showFormHeader($options);
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Language')."</td>";
       echo "<td>";
       echo "<input type='hidden' name='items_id' value='".$item->getID()."'>";
@@ -454,7 +454,7 @@ class DropdownTranslation extends CommonDBChild {
       }
       echo "</td><td colspan='2'>&nbsp;</td></tr>";
 
-      echo "<tr ><td>".__('Field')."</td>";
+      echo "<tr class='tab_bg_1'><td>".__('Field')."</td>";
       echo "<td>";
       if ($ID > 0) {
          echo "<input type='hidden' name='field' value='".$this->fields['field']."'>";

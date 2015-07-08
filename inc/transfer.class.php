@@ -3254,7 +3254,7 @@ class Transfer extends CommonDBTM {
       }
 
       if ($edit_form) {
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<td>".__('Name')."</td><td>";
          Html::autocompletionTextField($this, "name");
          echo "</td>";
@@ -3263,7 +3263,7 @@ class Transfer extends CommonDBTM {
                <textarea class='form-control'  cols='45' rows='3' name='comment' >".$this->fields["comment"]."</textarea>";
          echo "</td></tr>";
 
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<td>".__('Last update')."</td>";
          echo "<td>".($this->fields["date_mod"] ? Html::convDateTime($this->fields["date_mod"])
                                                 : __('Never'));
@@ -3277,7 +3277,7 @@ class Transfer extends CommonDBTM {
                      1 => _x('button', 'Put in dustbin'),
                      2 => _x('button', 'Delete permanently'));
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Historical')."</td><td>";
       $params['value'] = $this->fields['keep_history'];
       Dropdown::showFromArray('keep_history', $keep,$params);
@@ -3287,10 +3287,10 @@ class Transfer extends CommonDBTM {
       }
       echo "</tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td colspan='4' class='center b'>".__('Assets')."</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>"._n('Network port', 'Network ports', Session::getPluralNumber())."</td><td>";
       $options = array(0 => _x('button', 'Delete permanently'),
                        1 => _x('button', 'Disconnect') ,
@@ -3306,7 +3306,7 @@ class Transfer extends CommonDBTM {
       Dropdown::showFromArray('keep_ticket',$options,$params);
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Software of computers')."</td><td>";
       $params['value'] = $this->fields['keep_software'];
       Dropdown::showFromArray('keep_software', $keep,$params);
@@ -3316,7 +3316,7 @@ class Transfer extends CommonDBTM {
       Dropdown::showFromArray('clean_software', $clean,$params);
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>"._n('Reservation', 'Reservations', Session::getPluralNumber())."</td><td>";
       $params['value'] = $this->fields['keep_reservation'];
       Dropdown::showFromArray('keep_reservation',$keep, $params);
@@ -3326,7 +3326,7 @@ class Transfer extends CommonDBTM {
       Dropdown::showFromArray('keep_device',$keep, $params);
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Links between printers and cartridge types and cartridges');
       echo "</td><td>";
       $params['value'] = $this->fields['keep_cartridgeitem'];
@@ -3337,7 +3337,7 @@ class Transfer extends CommonDBTM {
       Dropdown::showFromArray('clean_cartridgeitem', $clean, $params);
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Links between cartridge types and cartridges')."</td><td>";
       $params['value'] = $this->fields['keep_cartridge'];
       Dropdown::showFromArray('keep_cartridge', $keep, $params);
@@ -3347,7 +3347,7 @@ class Transfer extends CommonDBTM {
       Dropdown::showFromArray('keep_infocom', $keep, $params);
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Links between consumable types and consumables')."</td><td>";
       $params['value'] = $this->fields['keep_consumable'];
       Dropdown::showFromArray('keep_consumable', $keep, $params);
@@ -3357,10 +3357,10 @@ class Transfer extends CommonDBTM {
       Dropdown::showFromArray('keep_disk', $keep, $params);
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td colspan='4' class='center b'>".__('Direct connections')."</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>"._n('Monitor', 'Monitors', Session::getPluralNumber())."</td><td>";
       $params['value'] = $this->fields['keep_dc_monitor'];
       Dropdown::showFromArray('keep_dc_monitor', $keep, $params);
@@ -3370,7 +3370,7 @@ class Transfer extends CommonDBTM {
       Dropdown::showFromArray('clean_dc_monitor', $clean, $params);
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>"._n('Printer', 'Printers', Session::getPluralNumber())."</td><td>";
       $params['value'] = $this->fields['keep_dc_printer'];
       Dropdown::showFromArray('keep_dc_printer', $keep, $params);
@@ -3380,7 +3380,7 @@ class Transfer extends CommonDBTM {
       Dropdown::showFromArray('clean_dc_printer', $clean, $params);
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>"._n('Device', 'Devices', Session::getPluralNumber())."</td><td>";
       $params['value'] = $this->fields['keep_dc_peripheral'];
       Dropdown::showFromArray('keep_dc_peripheral', $keep, $params);
@@ -3390,7 +3390,7 @@ class Transfer extends CommonDBTM {
       Dropdown::showFromArray('clean_dc_peripheral', $clean, $params);
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>"._n('Phone', 'Phones', Session::getPluralNumber())."</td><td>";
       $params['value'] = $this->fields['keep_dc_phone'];
       Dropdown::showFromArray('keep_dc_phone', $keep, $params);
@@ -3400,10 +3400,10 @@ class Transfer extends CommonDBTM {
       Dropdown::showFromArray('clean_dc_phone', $clean, $params);
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td colspan='4' class='center b'>".__('Management')."</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>"._n('Supplier', 'Suppliers', Session::getPluralNumber())."</td><td>";
       $params['value'] = $this->fields['keep_supplier'];
       Dropdown::showFromArray('keep_supplier', $keep, $params);
@@ -3413,7 +3413,7 @@ class Transfer extends CommonDBTM {
       Dropdown::showFromArray('clean_supplier', $clean, $params);
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Links between suppliers and contacts')."&nbsp;:</td><td>";
       $params['value'] = $this->fields['keep_contact'];
       Dropdown::showFromArray('keep_contact', $keep, $params);
@@ -3423,7 +3423,7 @@ class Transfer extends CommonDBTM {
       Dropdown::showFromArray('clean_contact', $clean, $params);
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>"._n('Document', 'Documents', Session::getPluralNumber())."</td><td>";
       $params['value'] = $this->fields['keep_document'];
       Dropdown::showFromArray('keep_document', $keep, $params);
@@ -3433,7 +3433,7 @@ class Transfer extends CommonDBTM {
       Dropdown::showFromArray('clean_document', $clean, $params);
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>"._n('Contract', 'Contracts', Session::getPluralNumber())."</td><td>";
       $params['value'] = $this->fields['keep_contract'];
       Dropdown::showFromArray('keep_contract', $keep, $params);

@@ -159,9 +159,9 @@ class Change_Project extends CommonDBRelation{
                 action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
          echo "<table class='table table-striped'>";
-         echo "<tr ><th colspan='2'>".__('Add a change')."</th></tr>";
+         echo "<tr class='tab_bg_1'><th colspan='2'>".__('Add a change')."</th></tr>";
 
-         echo "<tr ><td>";
+         echo "<tr class='tab_bg_1'><td>";
          echo "<input type='hidden' name='projects_id' value='$ID'>";
          Change::dropdown(array('used'        => $used,
                                 'entity'      => $project->getEntityID(),
@@ -255,9 +255,9 @@ class Change_Project extends CommonDBRelation{
                 action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
          echo "<table class='table'>";
-         echo "<tr ><th colspan='2'>".__('Add a project')."</th></tr>";
+         echo "<tr class='tab_bg_1'><th colspan='2'>".__('Add a project')."</th></tr>";
 
-         echo "<tr ><td>";
+         echo "<tr class='tab_bg_1'><td>";
          echo "<input type='hidden' name='changes_id' value='$ID'>";
          Project::dropdown(array('used'   => $used,
                                  'entity' => $change->getEntityID()));

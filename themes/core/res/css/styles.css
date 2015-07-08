@@ -1,25 +1,11 @@
-html {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
 body {
-    background-color:#F7F9FA;
-    padding-top:140px;
+    padding-top:110px;
 }
 
-.container-search {
-    background-color: #F7F9FA;
-    border-color: #F7F9FA;
-}
 footer {
     padding:15px;
     background-color: #F7F9FA;
     border-color: #F7F9FA;
-}
-.navbar-default {
-    background-color: #fff;
-    border-color: #F7F9FA;
-    margin-bottom: 0;
 }
 
 .navbar-brand {
@@ -110,16 +96,6 @@ form[role=login] > div {
     padding:15px;
 }
 
-.glpi-breadcrumb {
-    background-color: #F7F9FA;
-    margin-bottom: 20px;
-}
-
-.breadcrumb {
-    margin:0;
-    font-size:10px;
-    background-color:transparent;
-}
 
 .panel .pagination {
     margin:0;

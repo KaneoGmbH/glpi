@@ -637,7 +637,7 @@ class Change extends CommonITILObject {
       $this->showFormHeader($options);
 
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<th class='left' width='$colsize1%'>".__('Opening date')."</th>";
       echo "<td class='left' width='$colsize2%'>";
 
@@ -667,7 +667,7 @@ class Change extends CommonITILObject {
       echo "</td></tr>";
 
       if ($ID) {
-         echo "<tr ><th>".__('By')."</th><td>";
+         echo "<tr class='tab_bg_1'><th>".__('By')."</th><td>";
          User::dropdown(array('name'   => 'users_id_recipient',
                               'value'  => $this->fields["users_id_recipient"],
                               'entity' => $this->fields["entities_id"],
@@ -685,7 +685,7 @@ class Change extends CommonITILObject {
       if ($ID
           && (in_array($this->fields["status"], $this->getSolvedStatusArray())
               || in_array($this->fields["status"], $this->getClosedStatusArray()))) {
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<th>".__('Date of solving')."</th>";
          echo "<td>";
          Html::showDateTimeField("solvedate", array('value'      => $this->fields["solvedate"],
@@ -707,7 +707,7 @@ class Change extends CommonITILObject {
       echo "</table>";
 
       echo "<table class='table table-striped' id='mainformtable2'>";
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<th width='$colsize1%'>".__('Status')."</th>";
       echo "<td width='$colsize2%'>";
       self::dropdownStatus(array('value'    => $this->fields["status"],
@@ -721,7 +721,7 @@ class Change extends CommonITILObject {
       echo "</td>";
       echo "</tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<th>".__('Category')."</th>";
       echo "<td >";
       $opt = array('value'  => $this->fields["itilcategories_id"],
@@ -735,7 +735,7 @@ class Change extends CommonITILObject {
       echo "</td>";
       echo "</tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<th>".__('Total duration')."</th>";
       echo "<td>".parent::getActionTime($this->fields["actiontime"])."</td>";
       echo "<th class='left'>".__('Priority')."</th>";
@@ -758,7 +758,7 @@ class Change extends CommonITILObject {
       $this->showActorsPartForm($ID,$options);
 
       echo "<table class='table table-striped' id='mainformtable3'>";
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<th width='$colsize1%'>".__('Title')."</th>";
       echo "<td colspan='3'>";
       echo "<input type='text' size='90' maxlength=250 name='name' ".
@@ -766,7 +766,7 @@ class Change extends CommonITILObject {
       echo "</td>";
       echo "</tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<th>".__('Description')."</th>";
       echo "<td colspan='3'>";
       $rand = mt_rand();
@@ -794,7 +794,7 @@ class Change extends CommonITILObject {
       $options['canedit'] = false;
       $this->showFormHeader($options);
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Impacts')."</td><td colspan='3'>";
       if ($canedit) {
          echo "<textarea class='form-control'  id='impactcontent' name='impactcontent' rows='6' cols='110'>";
@@ -805,7 +805,7 @@ class Change extends CommonITILObject {
       }
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Control list')."</td><td colspan='3'>";
       if ($canedit) {
          echo "<textarea class='form-control'  id='controlistcontent' name='controlistcontent' rows='6' cols='110'>";
@@ -834,7 +834,7 @@ class Change extends CommonITILObject {
       $options['canedit'] = false;
       $this->showFormHeader($options);
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Deployment plan')."</td><td colspan='3'>";
       if ($canedit) {
          echo "<textarea class='form-control'  id='rolloutplancontent' name='rolloutplancontent' rows='6' cols='110'>";
@@ -845,7 +845,7 @@ class Change extends CommonITILObject {
       }
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Backup plan')."</td><td colspan='3'>";
       if ($canedit) {
          echo "<textarea class='form-control'  id='backoutplancontent' name='backoutplancontent' rows='6' cols='110'>";
@@ -856,7 +856,7 @@ class Change extends CommonITILObject {
       }
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Checklist')."</td><td colspan='3'>";
       if ($canedit) {
          echo "<textarea class='form-control'  id='checklistcontent' name='checklistcontent' rows='6' cols='110'>";

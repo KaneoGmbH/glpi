@@ -246,7 +246,7 @@ class SoftwareLicense extends CommonDBTM {
       $this->initForm($ID, $options);
       $this->showFormHeader($options);
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".Software::getTypeName(1)."</td>";
       echo "<td>";
       if ($ID > 0) {
@@ -262,7 +262,7 @@ class SoftwareLicense extends CommonDBTM {
       SoftwareLicenseType::dropdown(array('value' => $this->fields["softwarelicensetypes_id"]));
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Name')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this,"name");
@@ -272,7 +272,7 @@ class SoftwareLicense extends CommonDBTM {
       Html::autocompletionTextField($this,"serial");
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Purchase version')."</td>";
       echo "<td>";
       SoftwareVersion::dropdown(array('name'         => "softwareversions_id_buy",
@@ -284,7 +284,7 @@ class SoftwareLicense extends CommonDBTM {
       Html::autocompletionTextField($this,"otherserial");
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Version in use')."</td>";
       echo "<td>";
       SoftwareVersion::dropdown(array('name'         => "softwareversions_id_use",
@@ -296,7 +296,7 @@ class SoftwareLicense extends CommonDBTM {
       echo "<textarea class='form-control'  cols='45' rows='5' name='comment' >".$this->fields["comment"]."</textarea>";
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>"._x('quantity', 'Number')."</td>";
       echo "<td>";
       Dropdown::showNumber("number", array('value' => $this->fields["number"],
@@ -314,7 +314,7 @@ class SoftwareLicense extends CommonDBTM {
       }
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Expiration')."</td>";
       echo "<td>";
       Html::showDateField('expire', array('value' => $this->fields["expire"]));
@@ -327,7 +327,7 @@ class SoftwareLicense extends CommonDBTM {
       echo "</td></tr>\n";
 
       if ($ID > 0) {
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<td>".__('Last update')."</td>";
          echo "<td>".($this->fields["date_mod"] ? Html::convDateTime($this->fields["date_mod"])
                                                 : __('Never'));

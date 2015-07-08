@@ -73,7 +73,6 @@ if (isset($_GET["redirect"])) {
    Toolbox::manageRedirect($_GET["redirect"]);
 }
 
-
 $central = new Central();
 $template = new Template();
 $template->assign('central',$central);

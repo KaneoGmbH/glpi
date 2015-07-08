@@ -317,7 +317,7 @@ class Bookmark extends CommonDBTM {
       Html::autocompletionTextField($this, "name", array('user' => $this->fields["users_id"]));
       echo "</td></tr>";
 
-      echo "<tr ><td>".__('Type')."</td>";
+      echo "<tr class='tab_bg_1'><td>".__('Type')."</td>";
       echo "<td>";
 
       if (static::canCreate()) {
@@ -694,7 +694,7 @@ class Bookmark extends CommonDBTM {
             }
             $canedit = $this->canEdit($this->fields["id"]);
 
-            echo "<tr >";
+            echo "<tr class='tab_bg_1'>";
             echo "<td width='10px'>";
             if ($canedit) {
                Html::showMassiveActionCheckBox(__CLASS__, $this->fields["id"]);
@@ -764,7 +764,7 @@ class Bookmark extends CommonDBTM {
             Html::showMassiveActions($massiveactionparams);
          }
       } else {
-         echo "<tr ><td colspan='$colspan'>";
+         echo "<tr class='tab_bg_1'><td colspan='$colspan'>";
          _e('You have not recorded any bookmarks yet');
          echo "</td></tr></table>";
       }

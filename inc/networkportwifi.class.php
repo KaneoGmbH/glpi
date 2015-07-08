@@ -57,14 +57,14 @@ class NetworkPortWifi extends NetworkPortInstantiation {
    function showInstantiationForm(NetworkPort $netport, $options=array(), $recursiveItems) {
 
       if (!$options['several']) {
-         echo "<tr >\n";
+         echo "<tr class='tab_bg_1'>\n";
          $this->showNetworkCardField($netport, $options, $recursiveItems);
          echo "<td>" . WifiNetwork::getTypeName(1) . "</td><td>";
          WifiNetwork::dropdown(array('value'  => $this->fields["wifinetworks_id"]));
          echo "</td>";
          echo "</tr>\n";
 
-         echo "<tr >\n";
+         echo "<tr class='tab_bg_1'>\n";
          echo "<td>" . __('Wifi mode') . "</td>";
          echo "<td>";
 
@@ -80,7 +80,7 @@ class NetworkPortWifi extends NetworkPortInstantiation {
          echo "</td>\n";
          echo "</tr>\n";
 
-         echo "<tr >\n";
+         echo "<tr class='tab_bg_1'>\n";
          $this->showMacField($netport, $options);
          echo "</tr>\n";
       }

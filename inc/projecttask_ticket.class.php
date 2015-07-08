@@ -171,9 +171,9 @@ class ProjectTask_Ticket extends CommonDBRelation{
                 method='post' action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
          echo "<table class='table table-striped'>";
-         echo "<tr ><th colspan='3'>".__('Add a ticket')."</th></tr>";
+         echo "<tr class='tab_bg_1'><th colspan='3'>".__('Add a ticket')."</th></tr>";
 
-         echo "<tr ><td class='right'>";
+         echo "<tr class='tab_bg_1'><td class='right'>";
          echo "<input type='hidden' name='projecttasks_id' value='$ID'>";
          $condition = "`glpi_tickets`.`status`
                         NOT IN ('".implode("', '",

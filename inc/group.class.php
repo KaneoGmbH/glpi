@@ -451,26 +451,26 @@ class Group extends CommonTreeDropdown {
       if (Group::canUpdate()
           && Session::haveRight("user", User::UPDATEAUTHENT)
           && AuthLdap::useAuthLdap()) {
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<th colspan='2' class='center'>".__('In users')."</th></tr>";
 
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<td>".__('Attribute of the user containing its groups')."</td>";
          echo "<td>";
          Html::autocompletionTextField($this, "ldap_field");
          echo "</td></tr>";
 
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<td>".__('Attribute value')."</td>";
          echo "<td>";
          Html::autocompletionTextField($this, "ldap_value");
          echo "</td></tr>";
 
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<th colspan='2' class='center'>".__('In groups')."</th>";
          echo "</tr>";
 
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<td>".__('Group DN')."</td>";
          echo "<td>";
          Html::autocompletionTextField($this, "ldap_group_dn");
@@ -610,8 +610,8 @@ class Group extends CommonTreeDropdown {
       echo "<div class='spaced'>";
       // Mini Search engine
       echo "<table class='table'>";
-      echo "<tr ><th colspan='3'>$title</tr>";
-      echo "<tr ><td class='center'>";
+      echo "<tr class='tab_bg_1'><th colspan='3'>$title</tr>";
+      echo "<tr class='tab_bg_1'><td class='center'>";
       echo __('Type')."&nbsp;";
       Dropdown::showItemType($types,
                              array('value'      => $type,
@@ -683,7 +683,7 @@ class Group extends CommonTreeDropdown {
             if (!($item = getItemForItemtype($data['itemtype']))) {
                continue;
             }
-            echo "<tr ><td>";
+            echo "<tr class='tab_bg_1'><td>";
             if ($item->canEdit($data['items_id'])) {
                Html::showMassiveActionCheckBox($data['itemtype'], $data['items_id']);
             }

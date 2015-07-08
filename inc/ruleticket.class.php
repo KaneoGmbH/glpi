@@ -104,7 +104,7 @@ class RuleTicket extends Rule {
       }
       if ($showwarning) {
          echo "<table class='table table-striped'>";
-         echo "<tr ><td>".
+         echo "<tr class='tab_bg_1'><td>".
                __('Urgency or impact used in actions, think to add Prioriy: recompute action if needed.').
                "</td></tr>\n";
          echo "</table><br>";

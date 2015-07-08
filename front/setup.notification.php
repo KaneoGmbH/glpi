@@ -43,7 +43,7 @@ if (isset($_POST['activate'])) {
    $tmp['id']          = 1;
    $tmp['use_mailing'] = 1;
    $config->update($tmp);
-   //Html::back();
+   Html::back();
 }
 
 if (!$CFG_GLPI['use_mailing']) {
@@ -62,17 +62,17 @@ if (!$CFG_GLPI['use_mailing']) {
       echo "<table class='table table-striped table-hover'>";
       echo "<tr><th>" . _n('Notification', 'Notifications',2)."</th></tr>";
       if (Session::haveRight("config", UPDATE)) {
-         echo "<tr ><td class='center'>".
+         echo "<tr class='tab_bg_1'><td class='center'>".
               "<a href='notificationmailsetting.form.php'>". __('Email followups configuration') .
               "</a></td></tr>";
       }
       if (Session::haveRight("config", READ)) {
-         echo "<tr ><td class='center'><a href='notificationtemplate.php'>" .
+         echo "<tr class='tab_bg_1'><td class='center'><a href='notificationtemplate.php'>" .
                _n('Notification template', 'Notification templates', 2) ."</a></td> </tr>";
       }
 
       if (Session::haveRight("notification", READ) && $CFG_GLPI['use_mailing']) {
-         echo "<tr ><td class='center'>".
+         echo "<tr class='tab_bg_1'><td class='center'>".
               "<a href='notification.php'>". _n('Notification', 'Notifications',2)."</a></td></tr>";
       } else {
             echo "<tr class='tab_bg_1'><td class='center'>" .

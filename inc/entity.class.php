@@ -1021,7 +1021,7 @@ class Entity extends CommonTreeDropdown {
       echo "<table class='table table-striped'>";
       echo "<tr><th colspan='4'>".__('Address')."</th></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>". __('Phone')."</td>";
       echo "<td>";
       Html::autocompletionTextField($entity, "phonenumber");
@@ -1031,24 +1031,24 @@ class Entity extends CommonTreeDropdown {
       echo "<textarea class='form-control'  cols='45' rows='8' name='address'>". $entity->fields["address"]."</textarea>";
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Fax')."</td>";
       echo "<td>";
       Html::autocompletionTextField($entity, "fax");
       echo "</td></tr>";
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Website')."</td>";
       echo "<td>";
       Html::autocompletionTextField($entity, "website");
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>"._n('Email', 'Emails', 1)."</td>";
       echo "<td>";
       Html::autocompletionTextField($entity, "email");
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Postal code')."</td>";
       echo "<td>";
       Html::autocompletionTextField($entity,"postcode", array('size' => 7));
@@ -1056,13 +1056,13 @@ class Entity extends CommonTreeDropdown {
       Html::autocompletionTextField($entity, "town", array('size' => 27));
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>"._x('location','State')."</td>";
       echo "<td>";
       Html::autocompletionTextField($entity, "state");
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Country')."</td>";
       echo "<td>";
       Html::autocompletionTextField($entity, "country");
@@ -1111,25 +1111,25 @@ class Entity extends CommonTreeDropdown {
       echo "<tr><th colspan='2'>".__('Values for the generic rules for assignment to entities').
            "</th></tr>";
 
-      echo "<tr ><td colspan='2' class='center'>".
+      echo "<tr class='tab_bg_1'><td colspan='2' class='center'>".
              __('These parameters are used as actions in generic rules for assignment to entities').
            "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Information in inventory tool (TAG) representing the entity')."</td>";
       echo "<td>";
       Html::autocompletionTextField($entity, "tag", array('size' => 100));
       echo "</td></tr>";
 
       if (Toolbox::canUseLdap()) {
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<td>".__('LDAP directory information attribute representing the entity')."</td>";
          echo "<td>";
          Html::autocompletionTextField($entity, "ldap_dn", array('size' => 100));
          echo "</td></tr>";
       }
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Mail domain surrogates entity')."</td>";
       echo "<td>";
       Html::autocompletionTextField($entity, "mail_domain", array('size' => 100));
@@ -1140,7 +1140,7 @@ class Entity extends CommonTreeDropdown {
                 __('Values used in the interface to search users from a LDAP directory').
               "</th></tr>";
 
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<td>".__('LDAP directory of an entity')."</td>";
          echo "<td>";
          AuthLDAP::dropdown(array('value'      => $entity->fields['authldaps_id'],
@@ -1148,7 +1148,7 @@ class Entity extends CommonTreeDropdown {
                                   'condition'  => "`is_active` = '1'"));
          echo "</td></tr>";
 
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<td>".__('LDAP filter associated to the entity (if necessary)')."</td>";
          echo "<td>";
          Html::autocompletionTextField($entity, 'entity_ldapfilter', array('size' => 100));
@@ -1209,7 +1209,7 @@ class Entity extends CommonTreeDropdown {
 
       $options[Infocom::COPY_WARRANTY_DATE] = __('Copy the start date of warranty');
       //Buy date
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td> " . __('Date of purchase') . "</td>";
       echo "<td>";
       Dropdown::showFromArray('autofill_buy_date', $options,
@@ -1225,7 +1225,7 @@ class Entity extends CommonTreeDropdown {
       echo "</td></tr>";
 
       //Delivery date
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td> " . __('Delivery date') . "</td>";
       echo "<td>";
       $options[Infocom::COPY_ORDER_DATE] = __('Copy the order date');
@@ -1242,7 +1242,7 @@ class Entity extends CommonTreeDropdown {
       echo "</td></tr>";
 
       //Warranty date
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td> " . __('Start date of warranty') . "</td>";
       echo "<td>";
       $options = array(0                           => __('No autofill'),
@@ -1258,7 +1258,7 @@ class Entity extends CommonTreeDropdown {
       echo "</td><td colspan='2'></td></tr>";
 
       echo "<tr><th colspan='4'>"._n('Software', 'Software', Session::getPluralNumber())."</th></tr>";
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td> " . __('Entity for software creation') . "</td>";
       echo "<td>";
 
@@ -1331,7 +1331,7 @@ class Entity extends CommonTreeDropdown {
       echo "<table class='table'>";
       echo "<tr><th colspan='4'>".__('Notification options')."</th></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Administrator email')."</td>";
       echo "<td>";
       Html::autocompletionTextField($entity, "admin_email");
@@ -1340,7 +1340,7 @@ class Entity extends CommonTreeDropdown {
       Html::autocompletionTextField($entity, "admin_email_name");
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Administrator reply-to email (if needed)')."</td>";
       echo "<td>";
       Html::autocompletionTextField($entity, "admin_reply");
@@ -1349,7 +1349,7 @@ class Entity extends CommonTreeDropdown {
       Html::autocompletionTextField($entity, "admin_reply_name");
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Prefix for notifications')."</td>";
       echo "<td>";
       Html::autocompletionTextField($entity, "notification_subject_tag");
@@ -1406,7 +1406,7 @@ class Entity extends CommonTreeDropdown {
       echo "<table class='table'>";
       echo "<tr><th colspan='4'>".__('Alarms options')."</th></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<th colspan='2' rowspan='2'>";
       echo _n('Cartridge', 'Cartridges', Session::getPluralNumber());
       echo "</th>";
@@ -1424,7 +1424,7 @@ class Entity extends CommonTreeDropdown {
       }
 
       echo "</td></tr>";
-      echo "<tr ><td>" . __('Default threshold for cartridges count') ."</td><td>";
+      echo "<tr class='tab_bg_1'><td>" . __('Default threshold for cartridges count') ."</td><td>";
       if ($ID > 0) {
          $toadd = array(self::CONFIG_PARENT => __('Inheritance of the parent entity'),
                         self::CONFIG_NEVER => __('Never'));
@@ -1446,7 +1446,7 @@ class Entity extends CommonTreeDropdown {
       }
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<th colspan='2' rowspan='2'>";
       echo _n('Consumable', 'Consumables', Session::getPluralNumber());
       echo "</th>";
@@ -1464,7 +1464,7 @@ class Entity extends CommonTreeDropdown {
       }
       echo "</td></tr>";
 
-      echo "<tr ><td>" . __('Default threshold for consumables count') ."</td><td>";
+      echo "<tr class='tab_bg_1'><td>" . __('Default threshold for consumables count') ."</td><td>";
       if ($ID > 0) {
          $toadd = array(self::CONFIG_PARENT => __('Inheritance of the parent entity'),
                         self::CONFIG_NEVER => __('Never'));
@@ -1488,7 +1488,7 @@ class Entity extends CommonTreeDropdown {
       echo "</td></tr>";
 
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<th colspan='2' rowspan='3'>";
       echo _n('Contract', 'Contracts', Session::getPluralNumber());
       echo "</th>";
@@ -1505,7 +1505,7 @@ class Entity extends CommonTreeDropdown {
       }
       echo "</td></tr>";
 
-      echo "<tr ><td>".__('Default value') . "</td><td>";
+      echo "<tr class='tab_bg_1'><td>".__('Default value') . "</td><td>";
       Contract::dropdownAlert(array('name'           => "default_contract_alert",
                                     'value'          => $entity->fields["default_contract_alert"],
                                     'inherit_parent' => (($ID > 0) ? 1 : 0)));
@@ -1517,7 +1517,7 @@ class Entity extends CommonTreeDropdown {
       }
 
       echo "</td></tr>";
-      echo "<tr ><td>" . __('Send contract alarms before')."</td><td>";
+      echo "<tr class='tab_bg_1'><td>" . __('Send contract alarms before')."</td><td>";
       Alert::dropdownIntegerNever('send_contracts_alert_before_delay',
                                   $entity->fields['send_contracts_alert_before_delay'],
                                   array('max'            => 99,
@@ -1533,7 +1533,7 @@ class Entity extends CommonTreeDropdown {
       }
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<th colspan='2' rowspan='3'>";
       _e('Financial and administrative information');
       echo "</th>";
@@ -1550,7 +1550,7 @@ class Entity extends CommonTreeDropdown {
       }
 
       echo "</td></tr>";
-      echo "<tr ><td>" . __('Default value')."</td><td>";
+      echo "<tr class='tab_bg_1'><td>" . __('Default value')."</td><td>";
       Infocom::dropdownAlert(array('name'           => 'default_infocom_alert',
                                    'value'          => $entity->fields["default_infocom_alert"],
                                    'inherit_parent' => (($ID > 0) ? 1 : 0)));
@@ -1562,7 +1562,7 @@ class Entity extends CommonTreeDropdown {
       }
 
       echo "</td></tr>";
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>" . __('Send financial and administrative information alarms before')."</td><td>";
       Alert::dropdownIntegerNever('send_infocoms_alert_before_delay',
                                   $entity->fields['send_infocoms_alert_before_delay'],
@@ -1579,7 +1579,7 @@ class Entity extends CommonTreeDropdown {
       }
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<th colspan='2' rowspan='2'>";
       echo _n('License', 'Licenses', Session::getPluralNumber());
       echo "</th>";
@@ -1595,7 +1595,7 @@ class Entity extends CommonTreeDropdown {
          echo "</font>";
       }
       echo "</td></tr>";
-      echo "<tr ><td>" . __('Send license alarms before')."</td><td>";
+      echo "<tr class='tab_bg_1'><td>" . __('Send license alarms before')."</td><td>";
       Alert::dropdownIntegerNever('send_licenses_alert_before_delay',
                                   $entity->fields['send_licenses_alert_before_delay'],
                                   array('max'            => 99,
@@ -1612,7 +1612,7 @@ class Entity extends CommonTreeDropdown {
 
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<th colspan='2' rowspan='1'>";
       echo _n('Reservation', 'Reservations', Session::getPluralNumber());
       echo "</th>";
@@ -1630,7 +1630,7 @@ class Entity extends CommonTreeDropdown {
       }
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<th colspan='2' rowspan='1'>";
       echo _n('Ticket', 'Tickets', Session::getPluralNumber());
       echo "</th>";
@@ -1770,7 +1770,7 @@ class Entity extends CommonTreeDropdown {
       }
 
       echo "<table class='table'>";
-      echo "<tr ><td colspan='2'>"._n('Ticket template', 'Ticket templates', 1).
+      echo "<tr class='tab_bg_1'><td colspan='2'>"._n('Ticket template', 'Ticket templates', 1).
            "</td>";
       echo "<td colspan='2'>";
       $toadd = array();
@@ -1799,7 +1799,7 @@ class Entity extends CommonTreeDropdown {
       }
       echo "</td></tr>";
 
-      echo "<tr ><td colspan='2'>".__('Calendar')."</td>";
+      echo "<tr class='tab_bg_1'><td colspan='2'>".__('Calendar')."</td>";
       echo "<td colspan='2'>";
       $options = array('value'      => $entity->fields["calendars_id"],
                        'emptylabel' => __('24/7'));
@@ -1823,7 +1823,7 @@ class Entity extends CommonTreeDropdown {
       }
       echo "</td></tr>";
 
-      echo "<tr ><td colspan='2'>".__('Tickets default type')."</td>";
+      echo "<tr class='tab_bg_1'><td colspan='2'>".__('Tickets default type')."</td>";
       echo "<td colspan='2'>";
       $toadd = array();
       if ($ID != 0) {
@@ -1841,7 +1841,7 @@ class Entity extends CommonTreeDropdown {
       }
       echo "</td></tr>";
 
-      echo "<tr ><td  colspan='2'>".__('Automatic assignment of tickets')."</td>";
+      echo "<tr class='tab_bg_1'><td  colspan='2'>".__('Automatic assignment of tickets')."</td>";
       echo "<td colspan='2'>";
       $autoassign = self::getAutoAssignMode();
 
@@ -1863,7 +1863,7 @@ class Entity extends CommonTreeDropdown {
 
       echo "<tr><th colspan='4'>".__('Automatic closing configuration')."</th></tr>";
 
-      echo "<tr >".
+      echo "<tr class='tab_bg_1'>".
            "<td colspan='2'>".__('Automatic closing of solved tickets after')."</td>";
       echo "<td colspan='2'>";
       $autoclose = array(self::CONFIG_PARENT => __('Inheritance of the parent entity'),
@@ -1898,7 +1898,7 @@ class Entity extends CommonTreeDropdown {
 
       echo "<tr><th colspan='4'>".__('Configuring the satisfaction survey')."</th></tr>";
 
-      echo "<tr >".
+      echo "<tr class='tab_bg_1'>".
            "<td colspan='2'>".__('Configuring the satisfaction survey')."</td>";
       echo "<td colspan='2'>";
 
@@ -1924,7 +1924,7 @@ class Entity extends CommonTreeDropdown {
          $inquestconfig = self::getUsedConfig('inquest_config', $entity->fields['entities_id']);
          $inquestrate   = self::getUsedConfig('inquest_config', $entity->fields['entities_id'],
                                               'inquest_rate');
-         echo "<tr ><td colspan='4' class='green center'>";
+         echo "<tr class='tab_bg_1'><td colspan='4' class='green center'>";
 
          if ($inquestrate == 0) {
             _e('Disabled');
@@ -1947,7 +1947,7 @@ class Entity extends CommonTreeDropdown {
          echo "</td></tr>\n";
       }
 
-      echo "<tr ><td colspan='4'>";
+      echo "<tr class='tab_bg_1'><td colspan='4'>";
 
       $_POST  = array('inquest_config' => $entity->fields['inquest_config'],
                       'entities_id'    => $ID);
@@ -1960,7 +1960,7 @@ class Entity extends CommonTreeDropdown {
       echo "</td></tr>";
 
       if ($canedit) {
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<td class='center' colspan='4'>";
          echo "<input type='hidden' name='id' value='".$entity->fields["id"]."'>";
          echo "<input type='submit' name='update' value=\""._sx('button','Save')."\"

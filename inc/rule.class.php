@@ -823,7 +823,7 @@ class Rule extends CommonDBTM {
       $rand = mt_rand();
       $this->showFormHeader($options);
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Name')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "name");
@@ -833,7 +833,7 @@ class Rule extends CommonDBTM {
       Html::autocompletionTextField($this, "description");
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Logical operator')."</td>";
       echo "<td>";
       $this->dropdownRulesMatch(array('value' => $this->fields["match"]));
@@ -844,7 +844,7 @@ class Rule extends CommonDBTM {
       echo "</td></tr>\n";
 
       if ($this->useConditions()) {
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<td>".__('Use rule for')."</td>";
          echo "<td>";
          $this->dropdownConditions(array('value' => $this->fields["condition"]));
@@ -853,7 +853,7 @@ class Rule extends CommonDBTM {
          echo "</td></tr>\n";
       }
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Comments')."</td>";
       echo "<td class='middle' colspan='3'>";
       echo "<textarea class='form-control'  cols='110' rows='3' name='comment' >".$this->fields["comment"]."</textarea>";
@@ -968,7 +968,7 @@ class Rule extends CommonDBTM {
                  || in_array('append_regex_result', $val['force_actions']))) {
 
             echo "<table class='table table-striped'>";
-            echo "<tr ><td>".
+            echo "<tr class='tab_bg_1'><td>".
                   __('It is possible to affect the result of a regular expression using the string #0').
                  "</td></tr>\n";
             echo "</table><br>";
@@ -1817,7 +1817,7 @@ class Rule extends CommonDBTM {
       global $CFG_GLPI;
 
       $canedit = (self::canUpdate() && !$display_entities);
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
 
       if ($canedit) {
          echo "<td width='10'>";
@@ -1933,7 +1933,7 @@ class Rule extends CommonDBTM {
       $edit = ($canedit ? "style='cursor:pointer' onClick=\"viewEditAction".
                          $fields[$this->rules_id_field].$fields["id"]."$rand();\""
                         : '');
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       if ($canedit) {
          echo "<td width='10'>";
          Html::showMassiveActionCheckBox($this->ruleactionclass, $fields["id"]);
@@ -1979,7 +1979,7 @@ class Rule extends CommonDBTM {
       echo "<table class='table table-striped table-hover'>";
       echo "<tr><th colspan='4'>" . __('Result details') . "</th></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td class='center b'>"._n('Criterion', 'Criteria', 1)."</td>";
       echo "<td class='center b'>".__('Condition')."</td>";
       echo "<td class='center b'>".__('Reason')."</td>";
@@ -1987,7 +1987,7 @@ class Rule extends CommonDBTM {
       echo "</tr>\n";
 
       foreach ($check_results as $ID => $criteria_result) {
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          $criteria->getFromDB($criteria_result["id"]);
          echo $this->getMinimalCriteriaText($criteria->fields);
          if ($criteria->fields['condition'] != self::PATTERN_FIND) {
@@ -2003,7 +2003,7 @@ class Rule extends CommonDBTM {
       echo "<div class='spaced'>";
       echo "<table class='table table-striped table-hover'>";
       echo "<tr><th colspan='2'>" . __('Rule results') . "</th></tr>";
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td class='center b'>".__('Validation')."</td><td>";
       echo Dropdown::getYesNo($global_result)."</td></tr>";
 
@@ -2011,7 +2011,7 @@ class Rule extends CommonDBTM {
 
       foreach ($output as $criteria => $value) {
          if (isset($actions[$criteria])) {
-            echo "<tr >";
+            echo "<tr class='tab_bg_1'>";
             echo "<td>".$actions[$criteria]["name"]."</td>";
             if (isset($actions[$criteria]['type'])) {
                $actiontype = $actions[$criteria]['type'];
@@ -2025,14 +2025,14 @@ class Rule extends CommonDBTM {
 
       //If a regular expression was used, and matched, display the results
       if (count($this->regex_results)) {
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<td>".__('Result of the regular expression')."</td>";
          echo "<td>";
          if (!empty($this->regex_results[0])) {
             echo "<table class='table table-striped table-hover'>";
             echo "<tr><th>".__('Key')."</th><th>".__('Value')."</th></tr>";
             foreach ($this->regex_results[0] as $key => $value) {
-               echo "<tr >";
+               echo "<tr class='tab_bg_1'>";
                echo "<td>$key</td><td>$value</td></tr>";
             }
             echo "</table>";
@@ -2467,7 +2467,7 @@ class Rule extends CommonDBTM {
             //if present, don't display it again
             if (!in_array($criteria->fields["criteria"],$already_displayed)) {
                $already_displayed[] = $criteria->fields["criteria"];
-               echo "<tr >";
+               echo "<tr class='tab_bg_1'>";
                echo "<td>";
 
                if ($first) {
@@ -2687,7 +2687,7 @@ class Rule extends CommonDBTM {
       echo "<form method='post' action='".Toolbox::getItemTypeFormURL('Entity')."'>";
       echo "<table class='table'>";
       echo "<tr><th colspan='7'>" . $this->getTitle() . "</th></tr>\n";
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Name') . "</td><td>";
       Html::autocompletionTextField($this, "name", array('value' => '',
                                                          'size'  => 33));
@@ -2773,7 +2773,7 @@ class Rule extends CommonDBTM {
 
          foreach ($rules as $rule) {
             Session::addToNavigateListItems(get_class($this), $rule->fields["id"]);
-            echo "<tr >";
+            echo "<tr class='tab_bg_1'>";
 
             if ($canedit) {
                echo "<td width='10'>";

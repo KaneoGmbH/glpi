@@ -240,12 +240,12 @@ class MailCollector  extends CommonDBTM {
 
       if (!function_exists('mb_list_encodings')
           || !function_exists('mb_convert_encoding')) {
-         echo "<tr >".
+         echo "<tr class='tab_bg_1'>".
               "<td colspan='2'>".__('mbstring extension not found. Warning with charsets used.').
               "</td></tr>";
       }
 
-      echo "<tr ><td>".sprintf(__('%1$s (%2$s)'), __('Name'), __('Email address')).
+      echo "<tr class='tab_bg_1'><td>".sprintf(__('%1$s (%2$s)'), __('Name'), __('Email address')).
            "</td><td>";
       Html::autocompletionTextField($this, "name");
       echo "</td></tr>";
@@ -256,17 +256,17 @@ class MailCollector  extends CommonDBTM {
          echo "</tr>";
       }
 
-      echo "<tr ><td>".__('Active')."</td><td>";
+      echo "<tr class='tab_bg_1'><td>".__('Active')."</td><td>";
       Dropdown::showYesNo("is_active", $this->fields["is_active"]);
       echo "</td></tr>";
 
       $type = Toolbox::showMailServerConfig($this->fields["host"]);
 
-      echo "<tr ><td>".__('Login')."</td><td>";
+      echo "<tr class='tab_bg_1'><td>".__('Login')."</td><td>";
       Html::autocompletionTextField($this, "login");
       echo "</td></tr>";
 
-      echo "<tr ><td>".__('Password')."</td>";
+      echo "<tr class='tab_bg_1'><td>".__('Password')."</td>";
       echo "<td><input type='password' name='passwd' value='' size='20' autocomplete='off'>";
       if ($ID > 0) {
          echo "<input type='checkbox' name='_blank_passwd'>&nbsp;".__('Clear');
@@ -274,7 +274,7 @@ class MailCollector  extends CommonDBTM {
       echo "</td></tr>";
 
       if (version_compare(PHP_VERSION, '5.3.2', '>=')) {
-         echo "<tr ><td>" . __('Use Kerberos authentication') . "</td>";
+         echo "<tr class='tab_bg_1'><td>" . __('Use Kerberos authentication') . "</td>";
          echo "<td>";
          Dropdown::showYesNo("use_kerberos", $this->fields["use_kerberos"]);
          echo "</td></tr>\n";
@@ -282,28 +282,28 @@ class MailCollector  extends CommonDBTM {
 
 
       if ($type != "pop") {
-         echo "<tr ><td>" . __('Accepted mail archive folder (optional)') . "</td>";
+         echo "<tr class='tab_bg_1'><td>" . __('Accepted mail archive folder (optional)') . "</td>";
          echo "<td><input size='30' type='text' name='accepted' value=\"".$this->fields['accepted']."\">";
          echo "</td></tr>\n";
 
-         echo "<tr ><td>" . __('Refused mail archive folder (optional)') . "</td>";
+         echo "<tr class='tab_bg_1'><td>" . __('Refused mail archive folder (optional)') . "</td>";
          echo "<td><input size='30' type='text' name='refused' value=\"".$this->fields['refused']."\">";
          echo "</td></tr>\n";
       }
 
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td width='200px'> ". __('Maximum size of each file imported by the mails receiver').
            "</td><td>";
       self::showMaxFilesize('filesize_max', $this->fields["filesize_max"]);
       echo "</td></tr>";
 
-      echo "<tr ><td>" . __('Use mail date, instead of collect one') . "</td>";
+      echo "<tr class='tab_bg_1'><td>" . __('Use mail date, instead of collect one') . "</td>";
       echo "<td>";
       Dropdown::showYesNo("use_mail_date", $this->fields["use_mail_date"]);
       echo "</td></tr>\n";
 
-      echo "<tr ><td>".__('Comments')."</td>";
+      echo "<tr class='tab_bg_1'><td>".__('Comments')."</td>";
       echo "<td><textarea class='form-control'  cols='45' rows='5' name='comment' >".$this->fields["comment"]."</textarea>";
 
       if ($ID > 0) {
@@ -326,7 +326,7 @@ class MailCollector  extends CommonDBTM {
       echo "<br><br><div class='center'>";
       echo "<form name='form' method='post' action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
       echo "<table class='table table-striped table-hover'>";
-      echo "<tr ><td class='center'>";
+      echo "<tr class='tab_bg_1'><td class='center'>";
       echo "<input type='submit' name='get_mails' value=\""._sx('button','Get email tickets now').
              "\" class='btn btn-primary'>";
       echo "<input type='hidden' name='id' value='$ID'>";
@@ -1606,8 +1606,8 @@ class MailCollector  extends CommonDBTM {
 
       // No need to translate, this part always display in english (for copy/paste to forum)
 
-      echo "<tr ><th>Notifications</th></tr>\n";
-      echo "<tr ><td><pre>\n&nbsp;\n";
+      echo "<tr class='tab_bg_1'><th>Notifications</th></tr>\n";
+      echo "<tr class='tab_bg_1'><td><pre>\n&nbsp;\n";
 
       $msg = 'Way of sending emails: ';
       switch($CFG_GLPI['smtp_mode']) {
@@ -1634,8 +1634,8 @@ class MailCollector  extends CommonDBTM {
       echo wordwrap($msg."\n", $width, "\n\t\t");
       echo "\n</pre></td></tr>";
 
-      echo "<tr ><th>Mails receivers</th></tr>\n";
-      echo "<tr ><td><pre>\n&nbsp;\n";
+      echo "<tr class='tab_bg_1'><th>Mails receivers</th></tr>\n";
+      echo "<tr class='tab_bg_1'><td><pre>\n&nbsp;\n";
 
       foreach ($DB->request('glpi_mailcollectors') as $mc) {
          $msg  = "Name: '".$mc['name']."'";

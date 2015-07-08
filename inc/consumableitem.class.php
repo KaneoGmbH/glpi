@@ -141,7 +141,7 @@ class ConsumableItem extends CommonDBTM {
       $this->initForm($ID, $options);
       $this->showFormHeader($options);
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Name')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "name");
@@ -151,7 +151,7 @@ class ConsumableItem extends CommonDBTM {
       ConsumableItemType::dropdown(array('value' => $this->fields["consumableitemtypes_id"]));
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Reference')."</td>\n";
       echo "<td>";
       Html::autocompletionTextField($this, "ref");
@@ -161,7 +161,7 @@ class ConsumableItem extends CommonDBTM {
       Manufacturer::dropdown(array('value' => $this->fields["manufacturers_id"]));
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Technician in charge of the hardware')."</td>";
       echo "<td>";
       User::dropdown(array('name'   => 'users_id_tech',
@@ -174,7 +174,7 @@ class ConsumableItem extends CommonDBTM {
              <textarea class='form-control'  cols='45' rows='9' name='comment' >".$this->fields["comment"]."</textarea>";
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Group in charge of the hardware')."</td>";
       echo "<td>";
       Group::dropdown(array('name'      => 'groups_id_tech',
@@ -183,14 +183,14 @@ class ConsumableItem extends CommonDBTM {
                             'condition' => '`is_assign`'));
       echo "</td></tr>\n";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Stock location')."</td>";
       echo "<td>";
       Location::dropdown(array('value'  => $this->fields["locations_id"],
                                'entity' => $this->fields["entities_id"]));
       echo "</td></tr>";
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Alert threshold')."</td>";
       echo "<td>";
       Dropdown::showNumber('alarm_threshold', array('value' => $this->fields["alarm_threshold"],

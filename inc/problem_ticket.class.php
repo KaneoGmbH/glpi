@@ -267,9 +267,9 @@ class Problem_Ticket extends CommonDBRelation{
                action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
          echo "<table class='table table-striped'>";
-         echo "<tr ><th colspan='2'>".__('Add a ticket')."</th></tr>";
+         echo "<tr class='tab_bg_1'><th colspan='2'>".__('Add a ticket')."</th></tr>";
 
-         echo "<tr ><td class='right'>";
+         echo "<tr class='tab_bg_1'><td class='right'>";
          echo "<input type='hidden' name='problems_id' value='$ID'>";
          $condition = "`glpi_tickets`.`status`
                         NOT IN ('".implode("', '", array_merge(Ticket::getSolvedStatusArray(),
@@ -378,8 +378,8 @@ class Problem_Ticket extends CommonDBRelation{
                 action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
          echo "<table class='table'>";
-         echo "<tr ><th colspan='3'>".__('Add a problem')."</th></tr>";
-         echo "<tr ><td>";
+         echo "<tr class='tab_bg_1'><th colspan='3'>".__('Add a problem')."</th></tr>";
+         echo "<tr class='tab_bg_1'><td>";
          echo "<input type='hidden' name='tickets_id' value='$ID'>";
          $condition = "`glpi_problems`.`status` NOT IN ('".implode("', '",
                                                                   array_merge(Problem::getSolvedStatusArray(),

@@ -851,7 +851,7 @@ class Toolbox {
       echo "<tr><th>".__('Test done')."</th><th >".__('Results')."</th></tr>";
 
       // Parser test
-      echo "<tr ><td class='b left'>".__('Testing PHP Parser')."</td>";
+      echo "<tr class='tab_bg_1'><td class='b left'>".__('Testing PHP Parser')."</td>";
 
       // PHP Version  - exclude PHP3, PHP 4 and zend.ze1 compatibility
       if (version_compare(PHP_VERSION, '5.3.0') >= 0) {
@@ -877,7 +877,7 @@ class Toolbox {
       echo "</tr>";
 
       // Check for mysql extension ni php
-      echo "<tr ><td class='left b'>".__('MySQL Improved extension test')."</td>";
+      echo "<tr class='tab_bg_1'><td class='left b'>".__('MySQL Improved extension test')."</td>";
       if (class_exists("mysqli")) {
          echo "<td><img src='".$CFG_GLPI['root_doc']."/pics/greenbutton.png'
                     alt=\"". __s('Ok - the MySQLi class exist - Perfect!')."\"
@@ -891,7 +891,7 @@ class Toolbox {
       echo "</tr>";
 
       // session test
-      echo "<tr ><td class='b left'>".__('Sessions test')."</td>";
+      echo "<tr class='tab_bg_1'><td class='b left'>".__('Sessions test')."</td>";
 
       // check whether session are enabled at all!!
       if (!extension_loaded('session')) {
@@ -915,7 +915,7 @@ class Toolbox {
 
       // Test for session auto_start
       if (ini_get('session.auto_start')==1) {
-         echo "<tr ><td class='b'>".__('Test session auto start')."</td>";
+         echo "<tr class='tab_bg_1'><td class='b'>".__('Test session auto start')."</td>";
          echo "<td class='red'>";
          echo "<img src='".$CFG_GLPI['root_doc']."/pics/redbutton.png'>".
                __('session.auto_start is activated. See .htaccess file in the GLPI root for more information.').
@@ -924,7 +924,7 @@ class Toolbox {
       }
 
       // Test for option session use trans_id loaded or not.
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td class='left b'>".__('Test if Session_use_trans_sid is used')."</td>";
 
       if (isset($_POST[session_name()]) || isset($_GET[session_name()])) {
@@ -942,7 +942,7 @@ class Toolbox {
       echo "</tr>";
 
       // Test for sybase extension loaded or not.
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td class='left b'>".__('magic_quotes_sybase extension test')."</td>";
 
       if (ini_get('magic_quotes_sybase')) {
@@ -962,7 +962,7 @@ class Toolbox {
       echo "</tr>";
 
       // Test for ctype extension loaded or not (forhtmlawed)
-      echo "<tr ><td class='left b'>".__('Test ctype functions')."</td>";
+      echo "<tr class='tab_bg_1'><td class='left b'>".__('Test ctype functions')."</td>";
 
       if (!function_exists('ctype_digit')) {
          echo "<td><img src='".$CFG_GLPI['root_doc']."/pics/redbutton.png'>".
@@ -992,7 +992,7 @@ class Toolbox {
       echo "</tr>";
 
       // Test for json_encode function.
-      echo "<tr ><td class='left b'>".__('Test json functions')."</td>";
+      echo "<tr class='tab_bg_1'><td class='left b'>".__('Test json functions')."</td>";
 
       if (!function_exists('json_encode') || !function_exists('json_decode')) {
          echo "<td><img src='".$CFG_GLPI['root_doc']."/pics/redbutton.png'>".
@@ -1008,7 +1008,7 @@ class Toolbox {
       echo "</tr>";
 
       // Test for mbstring extension.
-      echo "<tr ><td class='left b'>".__('Mbstring extension test')."</td>";
+      echo "<tr class='tab_bg_1'><td class='left b'>".__('Mbstring extension test')."</td>";
 
       if (!extension_loaded('mbstring')) {
          echo "<td><img src='".$CFG_GLPI['root_doc']."/pics/redbutton.png'>".
@@ -1023,7 +1023,7 @@ class Toolbox {
       echo "</tr>";
 
       // Test for GD extension.
-      echo "<tr ><td class='left b'>".__('GD extension test')."</td>";
+      echo "<tr class='tab_bg_1'><td class='left b'>".__('GD extension test')."</td>";
 
       if (!extension_loaded('gd')) {
          echo "<td><img src='".$CFG_GLPI['root_doc']."/pics/redbutton.png'>".
@@ -1038,7 +1038,7 @@ class Toolbox {
       echo "</tr>";
 
       // Test for Cryptographic extension.
-      echo "<tr ><td class='left b'>".__('Cryptography test')."</td>";
+      echo "<tr class='tab_bg_1'><td class='left b'>".__('Cryptography test')."</td>";
 
       if (Auth::isCryptOk()) {
          echo "<td><img src='".$CFG_GLPI['root_doc']."/pics/greenbutton.png' alt=\"".
@@ -1054,7 +1054,7 @@ class Toolbox {
       echo "</tr>";
 
       // memory test
-      echo "<tr ><td class='left b'>".__('Allocated memory test')."</td>";
+      echo "<tr class='tab_bg_1'><td class='left b'>".__('Allocated memory test')."</td>";
 
       //Get memory limit
       $mem = self::getMemoryLimit();
@@ -1119,7 +1119,7 @@ class Toolbox {
       $mode = exec("/usr/sbin/getenforce");
       //TRANS: %s is mode name (Permissive, Enforcing of Disabled)
       $msg  = sprintf(__('SELinux mode is %s'), $mode);
-      echo "<tr ><td class='left b'>$msg</td>";
+      echo "<tr class='tab_bg_1'><td class='left b'>$msg</td>";
       // All modes should be ok
       echo "<td><img src='".$CFG_GLPI['root_doc']."/pics/greenbutton.png' alt='$mode' title='$mode'></td></tr>";
       if (!strcasecmp($mode, 'Disabled')) {
@@ -1140,7 +1140,7 @@ class Toolbox {
          $state = exec('/usr/sbin/getsebool '.$bool);
          //TRANS: %s is an option name
          $msg = sprintf(__('SELinux boolean configuration for %s'), $state);
-         echo "<tr ><td class='left b'>$msg</td>";
+         echo "<tr class='tab_bg_1'><td class='left b'>$msg</td>";
          if (substr($state, -2) == 'on') {
             echo "<td><img src='".$CFG_GLPI['root_doc']."/pics/greenbutton.png' alt='$state' title='$state'>".
                  "</td>";
@@ -2074,11 +2074,11 @@ class Toolbox {
 
       $tab = Toolbox::parseMailServerConnectString($value);
 
-      echo "<tr ><td>" . __('Server') . "</td>";
+      echo "<tr class='tab_bg_1'><td>" . __('Server') . "</td>";
       echo "<td><input size='30' type='text' name='mail_server' value=\"" .$tab['address']. "\">";
       echo "</td></tr>\n";
 
-      echo "<tr ><td>" . __('Connection options') . "</td><td>";
+      echo "<tr class='tab_bg_1'><td>" . __('Connection options') . "</td><td>";
       $values = array('' => '',
                      //TRANS: imap_open option see http://www.php.net/manual/en/function.imap-open.php
                      '/imap' => __('IMAP'),
@@ -2170,18 +2170,18 @@ class Toolbox {
       echo "<input type=hidden name=imap_string value='".$value."'>";
       echo "</td></tr>\n";
 
-      echo "<tr ><td>". __('Incoming mail folder (optional, often INBOX)')."</td>";
+      echo "<tr class='tab_bg_1'><td>". __('Incoming mail folder (optional, often INBOX)')."</td>";
       echo "<td><input size='30' type='text' name='server_mailbox' value=\"" . $tab['mailbox'] . "\" >";
       echo "</td></tr>\n";
 
       //TRANS: for mail connection system
-      echo "<tr ><td>" . __('Port (optional)') . "</td>";
+      echo "<tr class='tab_bg_1'><td>" . __('Port (optional)') . "</td>";
       echo "<td><input size='10' type='text' name='server_port' value='".$tab['port']."'></td></tr>\n";
       if (empty($value)) {
          $value = "&nbsp;";
       }
       //TRANS: for mail connection system
-      echo "<tr ><td>" . __('Connection string') . "</td>";
+      echo "<tr class='tab_bg_1'><td>" . __('Connection string') . "</td>";
       echo "<td class='b'>$value</td></tr>\n";
 
       return $tab['type'];

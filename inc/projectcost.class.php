@@ -262,7 +262,7 @@ class ProjectCost extends CommonDBChild {
       }
 
       $this->showFormHeader($options);
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Name')."</td>";
       echo "<td>";
       echo "<input type='hidden' name='projects_id' value='".$this->fields['projects_id']."'>";
@@ -274,7 +274,7 @@ class ProjectCost extends CommonDBChild {
              size='14'>";
       echo "</td></tr>";
 
-      echo "<tr ><td>".__('Begin date')."</td>";
+      echo "<tr class='tab_bg_1'><td>".__('Begin date')."</td>";
       echo "<td>";
       Html::showDateField("begin_date", array('value' => $this->fields['begin_date']));
       echo "</td>";
@@ -285,12 +285,12 @@ class ProjectCost extends CommonDBChild {
            "</textarea>";
       echo "</td></tr>\n";
 
-      echo "<tr ><td>".__('End date')."</td>";
+      echo "<tr class='tab_bg_1'><td>".__('End date')."</td>";
       echo "<td>";
       Html::showDateField("end_date", array('value' => $this->fields['end_date']));
       echo "</td></tr>";
 
-      echo "<tr ><td>".__('Budget')."</td>";
+      echo "<tr class='tab_bg_1'><td>".__('Budget')."</td>";
       echo "<td>";
       Budget::dropdown(array('value' => $this->fields["budgets_id"]));
       echo "</td></tr>";

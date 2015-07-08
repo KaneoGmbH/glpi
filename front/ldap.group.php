@@ -65,7 +65,7 @@ if (isset($_SESSION["ldap_group_filter2"])) {
 
 echo "<div class='center'><table class='table table-striped table-hover'>";
 echo "<tr><th>".__('Bulk import groups from a LDAP directory')."</th></tr>";
-echo "<tr ><td class='center b'>".
+echo "<tr class='tab_bg_1'><td class='center b'>".
      "<a href=\"ldap.group.import.php?next=servers\">". __('Import of new groups')."</a></td></tr>";
 echo "</table></div>";
 

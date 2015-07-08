@@ -528,7 +528,7 @@ class Computer_SoftwareVersion extends CommonDBRelation {
             do {
                Session::addToNavigateListItems('Computer',$data["cID"]);
 
-               echo "<tr >";
+               echo "<tr class='tab_bg_1'>";
                if ($canedit) {
                   echo "<td>";
                   Html::showMassiveActionCheckBox(__CLASS__, $data["id"]);
@@ -636,17 +636,17 @@ class Computer_SoftwareVersion extends CommonDBRelation {
       foreach ($DB->request($sql) as $ID => $data) {
          $nb = self::countForVersion($softwareversions_id,$ID);
          if ($nb > 0) {
-            echo "<tr ><td>" . $data["completename"] . "</td>";
+            echo "<tr class='tab_bg_1'><td>" . $data["completename"] . "</td>";
             echo "<td class='numeric'>".$nb."</td></tr>\n";
             $tot += $nb;
          }
       }
 
       if ($tot > 0) {
-         echo "<tr ><td class='center b'>".__('Total')."</td>";
+         echo "<tr class='tab_bg_1'><td class='center b'>".__('Total')."</td>";
          echo "<td class='numeric b'>".$tot."</td></tr>\n";
       } else {
-         echo "<tr ><td colspan='2 b'>" . __('No item found') . "</td></tr>\n";
+         echo "<tr class='tab_bg_1'><td colspan='2 b'>" . __('No item found') . "</td></tr>\n";
       }
       echo "</table></div>";
    }
@@ -714,7 +714,7 @@ class Computer_SoftwareVersion extends CommonDBRelation {
          echo "<form method='post' action='".
                 $CFG_GLPI["root_doc"]."/front/computer_softwareversion.form.php'>";
          echo "<div class='spaced'><table class='table'>";
-         echo "<tr ><td class='center'>";
+         echo "<tr class='tab_bg_1'><td class='center'>";
          echo _n('Software', 'Software', Session::getPluralNumber())."&nbsp;&nbsp;";
          echo "<input type='hidden' name='computers_id' value='$computers_id'>";
          Software::dropdownSoftwareToInstall("softwareversions_id", $entities_id);
@@ -743,8 +743,8 @@ class Computer_SoftwareVersion extends CommonDBRelation {
 
       // Mini Search engine
       echo "<table class='table'>";
-      echo "<tr ><th colspan='2'>".Software::getTypeName(Session::getPluralNumber())."</th></tr>";
-      echo "<tr ><td class='center'>";
+      echo "<tr class='tab_bg_1'><th colspan='2'>".Software::getTypeName(Session::getPluralNumber())."</th></tr>";
+      echo "<tr class='tab_bg_1'><td class='center'>";
       echo __('Category')."</td><td>";
       SoftwareCategory::dropdown(array('value'      => $crit,
                                        'toadd'      => array('-1' =>  __('All categories')),
@@ -832,7 +832,7 @@ class Computer_SoftwareVersion extends CommonDBRelation {
          echo "<form method='post' action='".$CFG_GLPI["root_doc"].
                 "/front/computer_softwarelicense.form.php'>";
          echo "<div class='spaced'><table class='table'>";
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          echo "<td class='center'>";
          echo _n('License', 'Licenses', Session::getPluralNumber())."&nbsp;&nbsp;";
          echo "<input type='hidden' name='computers_id' value='$computers_id'>";
@@ -949,7 +949,7 @@ class Computer_SoftwareVersion extends CommonDBRelation {
       $multiple = false;
 
       if ($display) {
-         echo "<tr >";
+         echo "<tr class='tab_bg_1'>";
          if ($canedit) {
             echo "<td>";
             Html::showMassiveActionCheckBox(__CLASS__, $data["id"]);
@@ -1048,7 +1048,7 @@ class Computer_SoftwareVersion extends CommonDBRelation {
       $link_item = Toolbox::getItemTypeFormURL('SoftwareLicense');
       $link      = $link_item."?id=".$data['id'];
 
-      echo "<tr >";
+      echo "<tr class='tab_bg_1'>";
       if ($canedit) {
          echo "<td>";
          if (empty($withtemplate) || ($withtemplate != 2)) {

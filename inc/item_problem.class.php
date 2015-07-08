@@ -129,9 +129,9 @@ class Item_Problem extends CommonDBRelation{
                 action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
          echo "<table class='table table-striped'>";
-         echo "<tr ><th colspan='2'>".__('Add an item')."</th></tr>";
+         echo "<tr class='tab_bg_1'><th colspan='2'>".__('Add an item')."</th></tr>";
 
-         echo "<tr ><td>";
+         echo "<tr class='tab_bg_1'><td>";
          $types = array();
          foreach ($problem->getAllTypesForHelpdesk() as $key => $val) {
             $types[] = $key;
@@ -220,7 +220,7 @@ class Item_Problem extends CommonDBRelation{
                $link     = Toolbox::getItemTypeFormURL($itemtype);
                $namelink = "<a href=\"".$link."?id=".$data["id"]."\">".$name."</a>";
 
-               echo "<tr >";
+               echo "<tr class='tab_bg_1'>";
                if ($canedit) {
                   echo "<td width='10'>";
                   Html::showMassiveActionCheckBox(__CLASS__, $data["IDD"]);

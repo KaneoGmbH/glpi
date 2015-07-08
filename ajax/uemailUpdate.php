@@ -73,8 +73,6 @@ if ((isset($_POST['field']) && ($_POST["value"] > 0))
    $rand = Dropdown::showYesNo($_POST['field'].'[use_notification]', $default_notif);
 
    $email_string = '';
-
-
    // Only one email
    if ((count($emails) == 1) && !empty($default_email) && NotificationMail::isUserAddressValid($default_email)) {
       // Clean alternative email
