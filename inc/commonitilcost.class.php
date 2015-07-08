@@ -467,11 +467,11 @@ abstract class CommonITILCost extends CommonDBChild {
          echo "<table class='table table-striped'>";
          echo "<tr class='noHover'>";
          if ($forproject) {
-            echo "<th colspan='10'>"._n('Ticket cost', 'Ticket costs', $DB->numrows($result))."</th>";
+            echo "<th colspan='10' class='col-md-12'>"._n('Ticket cost', 'Ticket costs', $DB->numrows($result))."</th>";
          } else {
-            echo "<th colspan='7'>".self::getTypeName($DB->numrows($result))."</th>";
-            echo "<th>".__('Item duration')."</th>";
-            echo "<th>".CommonITILObject::getActionTime($item->fields['actiontime'])."</th>";
+            echo "<th colspan='7' class='col-md-8'>".self::getTypeName($DB->numrows($result))."</th>";
+            echo "<th class='col-md-2 text-right'>".__('Item duration')."</th>";
+            echo "<th class='col-md-2 text-right'>".CommonITILObject::getActionTime($item->fields['actiontime'])."</th>";
          }
          echo "</tr>";
 
@@ -481,15 +481,15 @@ abstract class CommonITILCost extends CommonDBChild {
                echo "<th>".__('Ticket')."</th>";
                $ticket = new Ticket();
             }
-            echo "<th>".__('Name')."</th>";
-            echo "<th>".__('Begin date')."</th>";
-            echo "<th>".__('End date')."</th>";
-            echo "<th>".__('Budget')."</th>";
-            echo "<th>".__('Duration')."</th>";
-            echo "<th>".__('Time cost')."</th>";
-            echo "<th>".__('Fixed cost')."</th>";
-            echo "<th>".__('Material cost')."</th>";
-            echo "<th>".__('Total cost')."</th>";
+            echo "<th class='col-md-4'>".__('Name')."</th>";
+            echo "<th class='col-md-1'>".__('Begin date')."</th>";
+            echo "<th class='col-md-1'>".__('End date')."</th>";
+            echo "<th class='col-md-1'>".__('Budget')."</th>";
+            echo "<th class='text-right col-md-1'>".__('Duration')."</th>";
+            echo "<th class='text-right col-md-1'>".__('Time cost')."</th>";
+            echo "<th class='text-right col-md-1'>".__('Fixed cost')."</th>";
+            echo "<th class='text-right col-md-1'>".__('Material cost')."</th>";
+            echo "<th class='text-right col-md-1'>".__('Total cost')."</th>";
             echo "</tr>";
 
             Session::initNavigateListItems(static::getType(),
