@@ -136,7 +136,9 @@ class TicketFollowup  extends CommonDBTM {
    function canCreateItem() {
 
       $ticket = new Ticket();
-      if (!$ticket->can($this->getField('tickets_id'), READ)) {
+      if (!$ticket->can($this->getField('tickets_id'), READ)
+        // No validation for closed tickets
+        || in_array($ticket->fields['status'],$ticket->getClosedStatusArray())) {
          return false;
       }
       return $ticket->canAddFollowups();
@@ -325,6 +327,9 @@ class TicketFollowup  extends CommonDBTM {
 //      if ($input["_isadmin"] && $input["_type"]!="update") {
       if (isset($input["add_close"])) {
          $input['_close'] = 1;
+         if (empty($input['content'])) {
+            $input['content'] = __('Solution approved');
+         }
       }
 
       unset($input["add_close"]);
@@ -614,7 +619,7 @@ class TicketFollowup  extends CommonDBTM {
       }
 
       $tID = $ticket->fields['id'];
-      
+
       // Display existing Followups
       $showprivate   = Session::haveRight(self::$rightname, self::SEEPRIVATE);
       $caneditall    = Session::haveRight(self::$rightname, self::UPDATEALL);
@@ -750,7 +755,6 @@ class TicketFollowup  extends CommonDBTM {
             
          }
       }
-     
    }
 
 
@@ -788,7 +792,7 @@ class TicketFollowup  extends CommonDBTM {
             $showuserlink = 1;
          }
          while ($data = $DB->fetch_assoc($result)) {
-            $out .= "<tr class='tab_bg_1'>
+            $out .= "<tr class='tab_bg_3'>
                      <td class='center'>".Html::convDateTime($data["date"])."</td>
                      <td class='center'>".getUserName($data["users_id"], $showuserlink)."</td>
                      <td width='70%' class='b'>".Html::resume_text($data["content"],
@@ -826,7 +830,7 @@ class TicketFollowup  extends CommonDBTM {
                 RequestType::getDefault('helpdesk')."'>";
          echo "</td></tr>\n";
 
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr class='tab_bg_2'>";
          echo "<td class='tab_bg_2 center' colspan='2' width='200'>\n";
          echo "<input type='submit' name='add_close' value=\"".__('Approve the solution')."\"
                 class='btn btn-primary'>";

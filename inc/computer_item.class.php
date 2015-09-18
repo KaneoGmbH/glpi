@@ -396,7 +396,7 @@ class Computer_Item extends CommonDBRelation{
                 action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
          echo "<table class='table table-striped'>";
-         echo "<tr class='tab_bg_1'><th colspan='2'>".__('Connect an item')."</th></tr>";
+         echo "<tr class='tab_bg_2'><th colspan='2'>".__('Connect an item')."</th></tr>";
 
          echo "<tr class='tab_bg_1'><td>";
          if (!empty($withtemplate)) {
@@ -538,7 +538,7 @@ class Computer_Item extends CommonDBRelation{
                 action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
          echo "<table class='table'>";
-         echo "<tr class='tab_bg_1'><th colspan='2'>".__('Connect a computer')."</th></tr>";
+         echo "<tr class='tab_bg_2'><th colspan='2'>".__('Connect a computer')."</th></tr>";
 
          echo "<tr class='tab_bg_1'><td class='right'>";
          echo "<input type='hidden' name='items_id' value='$ID'>";

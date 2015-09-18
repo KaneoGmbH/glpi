@@ -186,10 +186,32 @@ class Contract_Item extends CommonDBRelation{
     * @param $item   Contract object
    **/
    static function countForContract(Contract $item) {
+      global $DB;
 
-      $restrict = "`glpi_contracts_items`.`contracts_id` = '".$item->getField('id')."'";
+      $sql = "SELECT  DISTINCT `itemtype`
+              FROM `glpi_contracts_items`
+              WHERE `glpi_contracts_items`.`contracts_id` = '".$item->getField('id')."'";
 
-      return countElementsInTable(array('glpi_contracts_items'), $restrict);
+      $nb = 0;
+
+      foreach ($DB->request($sql) as $data) {
+         $itemt = getItemForItemtype($data['itemtype']);
+
+         $query = "SELECT COUNT(*) AS cpt
+                   FROM `glpi_contracts_items`, `".$itemt->getTable()."`
+                   WHERE `glpi_contracts_items`.`contracts_id` = '".$item->getField('id')."'
+                         AND `glpi_contracts_items`.`itemtype` = '".$data['itemtype']."'
+                         AND `".$itemt->getTable()."`.`id` = `glpi_contracts_items`.`items_id`";
+
+         if ($itemt->maybeTemplate()) {
+            $query .= " AND NOT `".$itemt->getTable()."`.`is_template`";
+         }
+
+         foreach($DB->request($query) as $row) {
+            $nb += $row['cpt'];
+         }
+      }
+      return $nb;
    }
 
 
@@ -373,8 +395,8 @@ class Contract_Item extends CommonDBRelation{
       $used      = array();
       if ($number = $DB->numrows($result)) {
          while ($data = $DB->fetch_assoc($result)) {
-            $contracts[$data['id']] = $data;
-            $used[$data['id']]      = $data['id'];
+            $contracts[$data['id']]      = $data;
+            $used[$data['contracts_id']] = $data['contracts_id'];
          }
       }
 
@@ -386,7 +408,7 @@ class Contract_Item extends CommonDBRelation{
          echo "<input type='hidden' name='itemtype' value='$itemtype'>";
 
          echo "<table class='table table-striped'>";
-         echo "<tr class='tab_bg_1'><th colspan='2'>".__('Add a contract')."</th></tr>";
+         echo "<tr class='tab_bg_2'><th colspan='2'>".__('Add a contract')."</th></tr>";
 
          echo "<tr class='tab_bg_1'><td>";
          Contract::dropdown(array('entity' => $item->getEntityID(),
@@ -519,8 +541,10 @@ class Contract_Item extends CommonDBRelation{
       $result = $DB->query($query);
       $number = $DB->numrows($result);
 
-      $data = array();
+      $data    = array();
       $totalnb = 0;
+      $used    = array();
+
       for ($i=0 ; $i<$number ; $i++) {
          $itemtype = $DB->result($result, $i, "itemtype");
          if (!($item = getItemForItemtype($itemtype))) {
@@ -570,8 +594,10 @@ class Contract_Item extends CommonDBRelation{
                                                               $item->getTypeName($nb), $nb),
                                         'link'     => $link);
             } else if ($nb > 0) {
-               for ($prem=true ; $objdata=$DB->fetch_assoc($result_linked) ; $prem=false) {
+               $data[$itemtype] = array();
+               while ($objdata = $DB->fetch_assoc($result_linked)) {
                   $data[$itemtype][$objdata['id']] = $objdata;
+                  $used[$itemtype][$objdata['id']] = $objdata['id'];
                }
             }
             $totalnb += $nb;

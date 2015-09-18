@@ -199,7 +199,7 @@ class AuthMail extends CommonDBTM {
       } else {
          echo "<div class='center'>&nbsp;<table class='table table-striped'>";
          echo "<tr><th colspan='2'>" . __('Email server configuration') . "</th></tr>";
-         echo "<tr class='tab_bg_1'><td class='center'>";
+         echo "<tr class='tab_bg_2'><td class='center'>";
          echo "<p class='red'>".__('Your PHP parser was compiled without the IMAP functions')."</p>";
          echo "<p>". __('Impossible to use email server as external source of connection')."</p>";
          echo "</td></tr></table></div>";
@@ -217,14 +217,14 @@ class AuthMail extends CommonDBTM {
          echo "<div class='center'><table class='table table-striped table-hover'>";
          echo "<tr><th colspan='2'>" . __('Test connection to email server') . "</th></tr>";
 
-         echo "<tr class='tab_bg_1'><td class='center'>" . __('Login') . "</td>";
+         echo "<tr class='tab_bg_2'><td class='center'>" . __('Login') . "</td>";
          echo "<td><input size='30' type='text' name='imap_login' value=''></td></tr>";
 
-         echo "<tr class='tab_bg_1'><td class='center'>" . __('Password') . "</td>";
+         echo "<tr class='tab_bg_2'><td class='center'>" . __('Password') . "</td>";
          echo "<td><input size='30' type='password' name='imap_password' value=''
                     autocomplete='off'></td></tr>";
 
-         echo "<tr class='tab_bg_1'><td class='center' colspan='2'>";
+         echo "<tr class='tab_bg_2'><td class='center' colspan='2'>";
          echo "<input type='submit' name='test' class='btn btn-primary' value=\""._sx('button','Test')."\">".
               "</td>";
          echo "</tr></table></div>";

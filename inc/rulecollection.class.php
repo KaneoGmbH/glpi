@@ -837,7 +837,8 @@ class RuleCollection extends CommonDBTM {
       unset($rulecollection->fields['id']);
 
       //add new duplicate
-      $newID = $rulecollection->add($rulecollection->fields);
+      $input = toolbox::addslashes_deep($rulecollection->fields);
+      $newID = $rulecollection->add($input);
       $rule  = $rulecollection->getRuleClass();
       if (!$newID) {
          return false;
@@ -845,6 +846,7 @@ class RuleCollection extends CommonDBTM {
       //find and duplicate actions
       $ruleaction = new RuleAction(get_class($rule));
       $actions    = $ruleaction->find("`rules_id` = '$ID'");
+      $actions    = toolbox::addslashes_deep($actions);
       foreach ($actions as $action) {
          $action['rules_id'] = $newID;
          unset($action['id']);
@@ -856,6 +858,7 @@ class RuleCollection extends CommonDBTM {
       //find and duplicate criterias
       $rulecritera = new RuleCriteria(get_class($rule));
       $criteria   = $rulecritera->find("`rules_id` = '$ID'");
+      $criteria = toolbox::addslashes_deep($criteria);
       foreach ($criteria as $criterion) {
          $criterion['rules_id'] = $newID;
          unset($criterion['id']);
@@ -1173,9 +1176,9 @@ class RuleCollection extends CommonDBTM {
          foreach ($rules_refused as $k_rule => $refused) {
             $odd = !$odd;
             if ($odd) {
-               $class = "  ";
+               $class = " class='tab_bg_1' ";
             } else {
-               $class = "  ";
+               $class = " class='tab_bg_2' ";
             }
 
             $sub_type = $rules['rule'][$k_rule]['sub_type'];
@@ -1213,7 +1216,7 @@ class RuleCollection extends CommonDBTM {
                echo "<td>";
 
                echo "<table class='table table-striped table-hover' style='width:100%'>";
-               echo "<tr class='tab_bg_1'>";
+               echo "<tr class='tab_bg_2'>";
                echo "<th class='center b'>"._n('Criterion', 'Criteria', 1)."</th>\n";
                echo "<th class='center b'>".__('Condition')."</th>\n";
                echo "<th class='center b'>".__('Reason')."</th>\n";
@@ -1245,7 +1248,7 @@ class RuleCollection extends CommonDBTM {
                echo "<td>";
 
                echo "<table class='table table-striped table-hover' style='width:100%'>";
-               echo "<tr class='tab_bg_1'>";
+               echo "<tr class='tab_bg_2'>";
                echo "<th class='center b'>"._n('Field', 'Fields', Session::getPluralNumber())."</th>";
                echo "<th class='center b'>".__('Action type')."</th>";
                echo "<th class='center b'>".__('Value')."</th>";
@@ -1272,7 +1275,7 @@ class RuleCollection extends CommonDBTM {
 
 
          //display buttons
-         $class = ($odd?"  ":"  ");
+         $class = ($odd?" class='tab_bg_1' ":" class='tab_bg_2' ");
          echo "<tr $class><td colspan='3' class='center'>";
          echo "<input type='submit' name='import' value=\""._sx('button', 'Post').
                 "\" class='btn btn-primary'>";
@@ -1756,7 +1759,7 @@ class RuleCollection extends CommonDBTM {
 
       foreach ($output as $criteria => $value) {
          if (isset($actions[$criteria])) {
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr class='tab_bg_2'>";
             echo "<td>".$actions[$criteria]["name"]."</td>";
             $action_type = (isset($actions[$criteria]['action_type'])?$actions[$criteria]['action_type']:'');
             echo "<td>".$rule->getActionValue($criteria, $action_type, $value);

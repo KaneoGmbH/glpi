@@ -118,7 +118,7 @@ class Dropdown {
       $limit_length = $_SESSION["glpidropdown_chars_limit"];
 
       // Check default value for dropdown : need to be a numeric
-      if ((strlen($params['value']) == 0) || !is_numeric($params['value'])) {
+      if ((strlen($params['value']) == 0) || !is_numeric($params['value']) && $params['value'] != 'mygroups') {
          $params['value'] = 0;
       }
 
@@ -225,7 +225,6 @@ class Dropdown {
                $output .= Ajax::createIframeModalWindow('add_dropdown'.$params['rand'],
                                                         $item->getFormURL(),
                                                         array('display' => false));
-        
          }
          // Display specific Links
          if ($itemtype == "Supplier") {
@@ -567,7 +566,7 @@ class Dropdown {
                }
             }
             Dropdown::showFromArray($myname, $values,
-                                    array('value' => $file));
+                                    array('value' => $value));
 
          } else {
             //TRANS: %s is the store path
@@ -950,10 +949,10 @@ class Dropdown {
          echo "<tr><th>$label</th></tr>\n";
 
          foreach ($dp as $key => $val) {
-            $class="";
+            $class="class='tab_bg_4'";
             if (($itemtype = getItemForItemtype($key))
                 && $itemtype->isEntityAssign()) {
-               $class="";
+               $class="class='tab_bg_2'";
             }
             echo "<tr $class><td><a href='".$key::getSearchURL()."'>";
             echo "$val</a></td></tr>\n";
@@ -1217,6 +1216,7 @@ class Dropdown {
     *    - showItemSpecificity : given an item, the AJAX file to open if there is special
     *                            treatment. For instance, select a Item_Device* for CommonDevice
     *    - emptylabel          : Empty choice's label (default self::EMPTY_VALUE)
+    *    - used                : array / Already used items ID: not to display in dropdown (default empty)
    *
     * @return randomized value used to generate HTML IDs
    **/
@@ -1233,6 +1233,7 @@ class Dropdown {
       $params['checkright']          = false;
       $params['showItemSpecificity'] = '';
       $params['emptylabel']          = self::EMPTY_VALUE;
+      $params['used']                = array();
 
       if (is_array($options) && count($options)) {
          foreach ($options as $key => $val) {
@@ -1253,7 +1254,10 @@ class Dropdown {
 
          // manage condition
          if ($params['onlyglobal']) {
-            $p['condition'] = static::addNewCondition("`is_global` = 1");  ;
+            $p['condition'] = static::addNewCondition("`is_global` = 1");
+         }
+         if ($params['used']) {
+            $p['used'] = $params['used'];
          }
 
          $field_id = Html::cleanId("dropdown_".$params['itemtype_name'].$rand);
@@ -1676,7 +1680,7 @@ class Dropdown {
       $param['display']         = true;
       $param['other']           = false;
       $param['rand']            = mt_rand();
-      
+
       if (is_array($options) && count($options)) {
          if (isset($options['value']) && strlen($options['value'])) {
             $options['values'] = array($options['value']);
@@ -1708,7 +1712,6 @@ class Dropdown {
       }
 
       $output = '';
-
       // readonly mode
       $field_id = Html::cleanId("dropdown_".$name.$param['rand']);
       if ($param['readonly']) {
@@ -1804,8 +1807,7 @@ class Dropdown {
       }
 
       // Width set on select
-      // array('width' => $param["width"]);
-      $output .= Html::jsAdaptDropdown($field_id);
+      $output .= Html::jsAdaptDropdown($field_id, array('width' => $param["width"]));
 
       if ($param["multiple"]) {
          // Hack for All / None because select2 does not provide it
@@ -1832,8 +1834,6 @@ class Dropdown {
       }
       $output .= Ajax::commonDropdownUpdateItem($param, false);
 
-            
-      
       if ($param['display']) {
          echo $output;
          return $param['rand'];
@@ -2037,7 +2037,7 @@ class Dropdown {
       return self::showFromArray('glpilist_limit', $values,
                                  array('on_change' => $onchange,
                                        'value'     => $list_limit,
-                                       'width'     => '1%'));
+                                       'width'     => '20%'));
    }
 
 }

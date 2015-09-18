@@ -102,7 +102,7 @@ class Calendar_Holiday extends CommonDBRelation {
          echo Toolbox::getItemTypeFormURL(__CLASS__)."'>";
          echo "<table class='table table-striped'>";
          echo "<tr class='tab_bg_1'><th colspan='7'>".__('Add a close time')."</tr>";
-         echo "<tr class='tab_bg_1'><td class='right'  colspan='4'>";
+         echo "<tr class='tab_bg_2'><td class='right'  colspan='4'>";
          echo "<input type='hidden' name='calendars_id' value='$ID'>";
          Holiday::dropdown(array('used'   => $used,
                                  'entity' => $calendar->fields["entities_id"]));

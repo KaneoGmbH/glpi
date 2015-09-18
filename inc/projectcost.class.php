@@ -367,7 +367,7 @@ class ProjectCost extends CommonDBChild {
 
 
             while ($data = $DB->fetch_assoc($result)) {
-               echo "<tr  ".
+               echo "<tr class='tab_bg_2' ".
                      ($canedit
                       ? "style='cursor:pointer' onClick=\"viewEditCost".$data['projects_id']."_".
                         $data['id']."_$rand();\"": '') .">";

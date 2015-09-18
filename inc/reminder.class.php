@@ -69,7 +69,8 @@ class Reminder extends CommonDBTM {
 
    static function canView() {
 
-      return (Session::haveRight(self::$rightname, READ));
+      return (Session::haveRight(self::$rightname, READ)
+              || ($_SESSION['glpiactiveprofile']['interface'] != 'helpdesk'));
    }
 
 
@@ -676,7 +677,7 @@ class Reminder extends CommonDBTM {
 
       $this->showFormHeader($options);
 
-      echo "<tr class='tab_bg_1'><td>".__('Title')."</td>";
+      echo "<tr class='tab_bg_2'><td>".__('Title')."</td>";
       echo "<td>";
       if ($canedit) {
          Html::autocompletionTextField($this, "name",
@@ -696,7 +697,7 @@ class Reminder extends CommonDBTM {
       }
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr class='tab_bg_2'>";
       echo "<td>".__('Visibility')."</td>";
       echo "<td>";
       echo '<table><tr><td>';
@@ -724,7 +725,7 @@ class Reminder extends CommonDBTM {
       echo "</td>\n";
       echo "</tr>\n";
 
-      echo "<tr class='tab_bg_1'><td >".__('Calendar')."</td>";
+      echo "<tr class='tab_bg_2'><td >".__('Calendar')."</td>";
       echo "<td class='center'>";
 
       if ($canedit) {
@@ -796,7 +797,7 @@ class Reminder extends CommonDBTM {
       }
       echo "</tr>\n";
 
-      echo "<tr class='tab_bg_1'><td>".__('Description')."</td>".
+      echo "<tr class='tab_bg_2'><td>".__('Description')."</td>".
            "<td colspan='3'>";
 
       if ($canedit) {
@@ -955,7 +956,7 @@ class Reminder extends CommonDBTM {
    **/
    static function displayPlanningItem(array $val, $who, $type="", $complete=0) {
       global $CFG_GLPI;
- 
+
       $rand     = mt_rand();
       $users_id = "";  // show users_id reminder
       $img      = "rdv_private.png"; // default icon for reminder
@@ -1038,7 +1039,7 @@ class Reminder extends CommonDBTM {
                                     OR `glpi_reminders`.`begin_view_date` < '$now')
                               AND (`glpi_reminders`.`end_view_date` IS NULL
                                    OR `glpi_reminders`.`end_view_date` > '$now') ";
-     
+
       if ($personal) {
 
          /// Personal notes only for central view
@@ -1148,7 +1149,7 @@ class Reminder extends CommonDBTM {
          echo "<input type='hidden' name='reminders_id' value='$ID'>";
          echo "<table class='table table-striped'>";
          echo "<tr class='tab_bg_1'><th colspan='4'>".__('Add a target')."</tr>";
-         echo "<tr class='tab_bg_1'><td width='100px'>";
+         echo "<tr class='tab_bg_2'><td width='100px'>";
 
          $types = array('Entity', 'Group', 'Profile', 'User');
 
@@ -1203,7 +1204,7 @@ class Reminder extends CommonDBTM {
       if (count($this->users)) {
          foreach ($this->users as $key => $val) {
             foreach ($val as $data) {
-               echo "<tr class='tab_bg_1'>";
+               echo "<tr class='tab_bg_2'>";
                if ($canedit) {
                   echo "<td>";
                   Html::showMassiveActionCheckBox('Reminder_User',$data["id"]);
@@ -1219,7 +1220,7 @@ class Reminder extends CommonDBTM {
       if (count($this->groups)) {
          foreach ($this->groups as $key => $val) {
             foreach ($val as $data) {
-               echo "<tr class='tab_bg_1'>";
+               echo "<tr class='tab_bg_2'>";
                if ($canedit) {
                   echo "<td>";
                   Html::showMassiveActionCheckBox('Group_Reminder',$data["id"]);
@@ -1250,7 +1251,7 @@ class Reminder extends CommonDBTM {
       if (count($this->entities)) {
          foreach ($this->entities as $key => $val) {
             foreach ($val as $data) {
-               echo "<tr class='tab_bg_1'>";
+               echo "<tr class='tab_bg_2'>";
                if ($canedit) {
                   echo "<td>";
                   Html::showMassiveActionCheckBox('Entity_Reminder',$data["id"]);
@@ -1274,7 +1275,7 @@ class Reminder extends CommonDBTM {
       if (count($this->profiles)) {
          foreach ($this->profiles as $key => $val) {
             foreach ($val as $data) {
-               echo "<tr class='tab_bg_1'>";
+               echo "<tr class='tab_bg_2'>";
                if ($canedit) {
                   echo "<td>";
                   Html::showMassiveActionCheckBox('Profile_Reminder',$data["id"]);

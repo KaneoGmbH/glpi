@@ -309,7 +309,7 @@ class Lock {
          Html::openArrowMassives('lock_form', true);
          Html::closeArrowMassives(array('unlock' => _sx('button', 'Unlock')));
       } else {
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr class='tab_bg_2'>";
          echo "<td class='center' colspan='2'>". __('No locked item')."</td></tr>";
          echo "</table>";
       }

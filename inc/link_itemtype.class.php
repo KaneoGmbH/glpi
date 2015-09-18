@@ -92,9 +92,9 @@ class Link_Itemtype extends CommonDBChild {
                 action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
          echo "<table class='table table-striped'>";
-         echo "<tr class='tab_bg_1'><th colspan='2'>".__('Add an item type')."</th></tr>";
+         echo "<tr class='tab_bg_2'><th colspan='2'>".__('Add an item type')."</th></tr>";
 
-         echo "<tr class='tab_bg_1'><td class='right'>";
+         echo "<tr class='tab_bg_2'><td class='right'>";
          echo "<input type='hidden' name='links_id' value='$links_id'>";
          Dropdown::showItemTypes('itemtype', $CFG_GLPI["link_types"], array('used' => $used));
          echo "</td><td class='center'>";

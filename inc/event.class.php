@@ -266,7 +266,7 @@ class Event extends CommonDBTM {
             }
          }
 
-         echo "<tr class='tab_bg_1'><td>".$itemtype."</td>";
+         echo "<tr class='tab_bg_2'><td>".$itemtype."</td>";
          echo "<td class='center'>";
          self::displayItemLogID($type, $items_id);
          echo "</td><td class='center'>".Html::convDateTime($date)."</td>";
@@ -373,7 +373,7 @@ class Event extends CommonDBTM {
             }
          }
 
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr class='tab_bg_2'>";
          echo "<td>$itemtype</td>";
          echo "<td class='center b'>";
          self::displayItemLogID($type, $items_id);

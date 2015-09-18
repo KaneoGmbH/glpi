@@ -968,7 +968,7 @@ class Rule extends CommonDBTM {
                  || in_array('append_regex_result', $val['force_actions']))) {
 
             echo "<table class='table table-striped'>";
-            echo "<tr class='tab_bg_1'><td>".
+            echo "<tr class='tab_bg_2'><td>".
                   __('It is possible to affect the result of a regular expression using the string #0').
                  "</td></tr>\n";
             echo "</table><br>";
@@ -1979,7 +1979,7 @@ class Rule extends CommonDBTM {
       echo "<table class='table table-striped table-hover'>";
       echo "<tr><th colspan='4'>" . __('Result details') . "</th></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr class='tab_bg_2'>";
       echo "<td class='center b'>"._n('Criterion', 'Criteria', 1)."</td>";
       echo "<td class='center b'>".__('Condition')."</td>";
       echo "<td class='center b'>".__('Reason')."</td>";
@@ -2011,7 +2011,7 @@ class Rule extends CommonDBTM {
 
       foreach ($output as $criteria => $value) {
          if (isset($actions[$criteria])) {
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr class='tab_bg_2'>";
             echo "<td>".$actions[$criteria]["name"]."</td>";
             if (isset($actions[$criteria]['type'])) {
                $actiontype = $actions[$criteria]['type'];
@@ -2025,7 +2025,7 @@ class Rule extends CommonDBTM {
 
       //If a regular expression was used, and matched, display the results
       if (count($this->regex_results)) {
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr class='tab_bg_2'>";
          echo "<td>".__('Result of the regular expression')."</td>";
          echo "<td>";
          if (!empty($this->regex_results[0])) {
@@ -2057,7 +2057,7 @@ class Rule extends CommonDBTM {
       $edit = ($canedit ? "style='cursor:pointer' onClick=\"viewEditCriteria".
                          $fields[$this->rules_id_field].$fields["id"]."$rand();\""
                         : '');
-      echo "<tr  >";
+      echo "<tr class='tab_bg_1' >";
       if ($canedit) {
          echo "<td width='10'>";
          Html::showMassiveActionCheckBox($this->rulecriteriaclass, $fields["id"]);

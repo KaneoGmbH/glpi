@@ -129,7 +129,7 @@ class Item_Project extends CommonDBRelation{
                 action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
          echo "<table class='table table-striped'>";
-         echo "<tr class='tab_bg_1'><th colspan='2'>".__('Add an item')."</th></tr>";
+         echo "<tr class='tab_bg_2'><th colspan='2'>".__('Add an item')."</th></tr>";
 
          echo "<tr class='tab_bg_1'><td>";
          Dropdown::showSelectItemFromItemtypes(array('itemtypes'
@@ -242,7 +242,7 @@ class Item_Project extends CommonDBRelation{
          }
       }
       if ($totalnb > 0) {
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr class='tab_bg_2'>";
          echo "<td class='center' colspan='2'>".
                (($totalnb > 0) ? sprintf(__('%1$s = %2$s'), __('Total'), $totalnb) :"&nbsp;");
          echo "</td><td colspan='4'>&nbsp;</td></tr> ";

@@ -1703,7 +1703,7 @@ class Search {
       $p['actionname']   = 'search';
       $p['actionvalue']  = _sx('button', 'Search');
 
-    
+
       foreach ($params as $key => $val) {
          $p[$key] = $val;
       }
@@ -3852,7 +3852,7 @@ class Search {
    **/
    static function giveItem($itemtype, $ID, array $data, $num, $meta=0,
                             array $addobjectparams=array()) {
-      global $CFG_GLPI;
+      global $CFG_GLPI, $DB;
 
       $searchopt = &self::getOptions($itemtype);
       if (isset($CFG_GLPI["union_search_type"][$itemtype])
@@ -3892,7 +3892,6 @@ class Search {
 
 
          /// TODO try to clean all specific cases using SpecificToDisplay
-
          switch ($table.'.'.$field) {
             case "glpi_users.name" :
                // USER search case
@@ -4190,7 +4189,7 @@ class Search {
                   }
                   if (($data[$num][0]['status'] == Ticket::SOLVED)
                       || ($data[$num][0]['status'] == Ticket::CLOSED)) {
-                     return $data[$num][0]['name'];
+                     return Html::convDate($data[$num][0]['name']);
                   }
                   $itemtype = getItemTypeForTable($table);
                   $item = new $itemtype();
@@ -4315,6 +4314,27 @@ class Search {
                return "<img src=\"".Ticket::getStatusIconURL($data[$num][0]['name'])."\"
                         alt=\"$status\" title=\"$status\">&nbsp;$status";
 
+            case 'glpi_projectstates.name':
+               $out = '';
+               $query = "SELECT `color`
+                         FROM `glpi_projectstates`
+                         WHERE `name` = '".$data[$num][0]['name']."'";
+               foreach ($DB->request($query) as $color) {
+                  $color = $color['color'];
+                  $out   = "<div style=\"background-color:".$color.";\">";
+                  $name = $data[$num][0]['name'];
+                  if (isset($data[$num][0]['trans'])) {
+                     $name = $data[$num][0]['trans'];
+                  }
+                  if ($itemtype == 'ProjectState') {
+                     $out .=   "<a href='".$CFG_GLPI["root_doc"]."/front/projectstate.form.php?id=".
+                                 $data[$num][0]["id"]."'>". $name."</a></div>";
+                  } else {
+                     $out .= $name."</div>";
+                     }
+               }
+               return $out;
+
             case 'glpi_items_tickets.items_id' :
             case 'glpi_items_problems.items_id' :
                if (!empty($data[$num])) {
@@ -4342,7 +4362,13 @@ class Search {
                   foreach ($data[$num] as $key => $val) {
                      if (is_numeric($key)) {
                         if (!empty($val['name'])) {
-                           $itemtypes[] = __($val['name']);
+                           if (substr($val['name'],0, 6) == 'Plugin') {
+                              $plug = new $val['name']();
+                              $name = $plug->getTypeName();
+                              $itemtypes[] = __($name);
+                           } else {
+                              $itemtypes[] = __($val['name']);
+                           }
                         }
                      }
                   }
@@ -4428,8 +4454,11 @@ class Search {
 
             case 'glpi_links._virtual' :
                $out = '';
+               $link = new Link();
                if (($item = getItemForItemtype($itemtype))
-                   && $item->getFromDB($data['id'])) {
+                   && $item->getFromDB($data['id'])
+                   && $link->getfromDB($data[$num][0]['id'])
+                   && ($item->fields['entities_id'] == $link->fields['entities_id'])) {
                   if (count($data[$num])) {
                      $count_display = 0;
                      foreach ($data[$num] as$val) {
@@ -5195,7 +5224,9 @@ class Search {
          if (is_null($item)) { // Special union type
             $itemtable = $CFG_GLPI['union_search_type'][$itemtype];
          } else {
-            $itemtable = $item->getTable();
+            if ($item = getItemForItemtype($itemtype)) {
+               $itemtable = $item->getTable();
+            }
          }
 
          foreach ($search[$itemtype] as $key => $val) {

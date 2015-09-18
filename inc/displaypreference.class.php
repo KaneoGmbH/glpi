@@ -338,7 +338,7 @@ class DisplayPreference extends CommonDBTM {
          echo "</td></tr>\n";
 
          // print first element
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr class='tab_bg_2'>";
          echo "<td class='center' width='50%'>".$searchopt[1]["name"]."</td>";
          echo "<td colspan='3'>&nbsp;</td>";
          echo "</tr>";
@@ -351,7 +351,7 @@ class DisplayPreference extends CommonDBTM {
                  || (count($_SESSION["glpiactiveentities"]) > 1))
              && isset($searchopt[80])) {
 
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr class='tab_bg_2'>";
             echo "<td class='center' width='50%'>".$searchopt[80]["name"]."</td>";
             echo "<td colspan='3'>&nbsp;</td>";
             echo "</tr>";
@@ -361,7 +361,7 @@ class DisplayPreference extends CommonDBTM {
          if ($numrows) {
             while ($data = $DB->fetch_assoc($result)) {
                if (($data["num"] !=1) && isset($searchopt[$data["num"]])) {
-                  echo "<tr class='tab_bg_1'>";
+                  echo "<tr class='tab_bg_2'>";
                   echo "<td class='center' width='50%' >";
                   echo $searchopt[$data["num"]]["name"]."</td>";
 
@@ -487,7 +487,7 @@ class DisplayPreference extends CommonDBTM {
       }
 
       // print first element
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr class='tab_bg_2'>";
       echo "<td class='center' width='50%'>".$searchopt[1]["name"];
 
       if ($global_write) {
@@ -502,7 +502,7 @@ class DisplayPreference extends CommonDBTM {
               || (count($_SESSION["glpiactiveentities"]) > 1))
           && isset($searchopt[80])) {
 
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr class='tab_bg_2'>";
          echo "<td class='center' width='50%'>".$searchopt[80]["name"]."</td>";
          echo "<td colspan='3'>&nbsp;</td>";
          echo "</tr>";
@@ -516,7 +516,7 @@ class DisplayPreference extends CommonDBTM {
             if (($data["num"] != 1)
                 && isset($searchopt[$data["num"]])) {
 
-               echo "<tr class='tab_bg_1'><td class='center' width='50%'>";
+               echo "<tr class='tab_bg_2'><td class='center' width='50%'>";
                echo $searchopt[$data["num"]]["name"];
                echo "</td>";
 
@@ -634,7 +634,7 @@ class DisplayPreference extends CommonDBTM {
 
       } else {
          echo "<table class='table'>";
-         echo "<tr class='tab_bg_1'><td class='b center'>".__('No item found')."</td></tr>";
+         echo "<tr class='tab_bg_2'><td class='b center'>".__('No item found')."</td></tr>";
          echo "</table>";
       }
    }

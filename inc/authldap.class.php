@@ -327,7 +327,7 @@ class AuthLDAP extends CommonDBTM {
          $this->showFormHeader($options);
          if (empty($ID)) {
             $target = $this->getFormURL();
-            echo "<tr class='tab_bg_1'><td>".__('Preconfiguration')."</td> ";
+            echo "<tr class='tab_bg_2'><td>".__('Preconfiguration')."</td> ";
             echo "<td colspan='3'>";
             echo "<a href='$target?preconfig=AD'>".__('Active Directory')."</a>";
             echo "&nbsp;&nbsp;/&nbsp;&nbsp;";
@@ -412,7 +412,7 @@ class AuthLDAP extends CommonDBTM {
       } else {
          echo "<div class='center'>&nbsp;<table class='table table-striped'>";
          echo "<tr><th colspan='2'>" . self::getTypeName(1) . "</th></tr>";
-         echo "<tr class='tab_bg_1'><td class='center'>";
+         echo "<tr class='tab_bg_2'><td class='center'>";
          echo "<p class='red'>". __("The LDAP extension of your PHP parser isn't installed")."</p>";
          echo "<p>".__('Impossible to use LDAP as external source of connection')."</p>".
               "</td></tr></table></div>";
@@ -429,7 +429,7 @@ class AuthLDAP extends CommonDBTM {
       echo "<form method='post' action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
       echo "<table class='table'>";
 
-      echo "<tr class='tab_bg_1'><th colspan='4'>";
+      echo "<tr class='tab_bg_2'><th colspan='4'>";
       echo "<input type='hidden' name='id' value='$ID'>". __('Advanced information')."</th></tr>";
 
       echo "<tr class='tab_bg_1'>";
@@ -481,7 +481,7 @@ class AuthLDAP extends CommonDBTM {
                               array('value' => $this->fields["deref_option"]));
       echo"</td></tr>";
 
-      echo "<tr class='tab_bg_1'><td class='center' colspan='4'>";
+      echo "<tr class='tab_bg_2'><td class='center' colspan='4'>";
       echo "<input type='submit' name='update' class='btn btn-primary' value=\"".__s('Save')."\">";
       echo $hidden;
       echo "</td></tr>";
@@ -522,7 +522,7 @@ class AuthLDAP extends CommonDBTM {
               "<th colspan='4'>".__('List of LDAP directory replicates') . "</th></tr>";
 
          if (isset($_SESSION["LDAP_TEST_MESSAGE"])) {
-            echo "<tr class='tab_bg_1'><td class='center' colspan='4'>";
+            echo "<tr class='tab_bg_2'><td class='center' colspan='4'>";
             echo $_SESSION["LDAP_TEST_MESSAGE"];
             echo"</td></tr>";
             unset($_SESSION["LDAP_TEST_MESSAGE"]);
@@ -639,7 +639,7 @@ class AuthLDAP extends CommonDBTM {
       Dropdown::showYesNo("use_dn", $this->fields["use_dn"]);
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'><td class='center' colspan='4'>";
+      echo "<tr class='tab_bg_2'><td class='center' colspan='4'>";
       echo "<input type='submit' name='update' class='btn btn-primary' value=\"".__s('Save')."\">";
       echo "</td></tr>";
       echo "</table>";
@@ -660,13 +660,13 @@ class AuthLDAP extends CommonDBTM {
          echo "<tr><th colspan='4'>" . __('Test of connection to LDAP directory') . "</th></tr>";
 
          if (isset($_SESSION["LDAP_TEST_MESSAGE"])) {
-            echo "<tr class='tab_bg_1'><td class='center' colspan='4'>";
+            echo "<tr class='tab_bg_2'><td class='center' colspan='4'>";
             echo $_SESSION["LDAP_TEST_MESSAGE"];
             echo"</td></tr>";
             unset($_SESSION["LDAP_TEST_MESSAGE"]);
          }
 
-         echo "<tr class='tab_bg_1'><td class='center' colspan='4'>";
+         echo "<tr class='tab_bg_2'><td class='center' colspan='4'>";
          echo "<input type='submit' name='test_ldap' class='btn btn-primary' value=\"".
                 _sx('button','Test')."\">";
          echo "</td></tr>";
@@ -689,14 +689,14 @@ class AuthLDAP extends CommonDBTM {
       echo "<tr class='tab_bg_1'>";
       echo "<th class='center' colspan='4'>" . __('Binding to the LDAP directory') . "</th></tr>";
 
-      echo "<tr class='tab_bg_1'><td>" . __('Surname') . "</td>";
+      echo "<tr class='tab_bg_2'><td>" . __('Surname') . "</td>";
       echo "<td><input type='text' name='realname_field' value='".
                  $this->fields["realname_field"]."'></td>";
       echo "<td>" . __('First name') . "</td>";
       echo "<td><input type='text' name='firstname_field' value='".
                  $this->fields["firstname_field"]."'></td></tr>";
 
-      echo "<tr class='tab_bg_1'><td>" . __('Comments') . "</td>";
+      echo "<tr class='tab_bg_2'><td>" . __('Comments') . "</td>";
       echo "<td><input type='text' name='comment_field' value='".$this->fields["comment_field"]."'>";
       echo "</td>";
       echo "<td>" . __('Administrative number') . "</td>";
@@ -706,7 +706,7 @@ class AuthLDAP extends CommonDBTM {
       echo "</td></tr>";
 
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr class='tab_bg_2'>";
       echo "<td>" . __('Email') . "</td>";
       echo "<td><input type='text' name='email1_field' value='".$this->fields["email1_field"]."'>";
       echo "</td>";
@@ -714,7 +714,7 @@ class AuthLDAP extends CommonDBTM {
       echo "<td><input type='text' name='email2_field' value='".$this->fields["email2_field"]."'>";
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr class='tab_bg_2'>";
       echo "<td>" . sprintf(__('%1$s %2$s'),_n('Email','Emails',1),  '3') . "</td>";
       echo "<td><input type='text' name='email3_field' value='".$this->fields["email3_field"]."'>";
       echo "</td>";
@@ -722,33 +722,33 @@ class AuthLDAP extends CommonDBTM {
       echo "<td><input type='text' name='email4_field' value='".$this->fields["email4_field"]."'>";
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'><td>" . __('Phone') . "</td>";
+      echo "<tr class='tab_bg_2'><td>" . __('Phone') . "</td>";
       echo "<td><input type='text' name='phone_field'value='".$this->fields["phone_field"]."'>";
       echo "</td>";
       echo "<td>" .  __('Phone 2') . "</td>";
       echo "<td><input type='text' name='phone2_field'value='".$this->fields["phone2_field"]."'>";
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'><td>" . __('Mobile phone') . "</td>";
+      echo "<tr class='tab_bg_2'><td>" . __('Mobile phone') . "</td>";
       echo "<td><input type='text' name='mobile_field'value='".$this->fields["mobile_field"]."'>";
       echo "</td>";
       echo "<td>" . _x('person','Title') . "</td>";
       echo "<td><input type='text' name='title_field' value='".$this->fields["title_field"]."'>";
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'><td>" . __('Category') . "</td>";
+      echo "<tr class='tab_bg_2'><td>" . __('Category') . "</td>";
       echo "<td><input type='text' name='category_field' value='".
                  $this->fields["category_field"]."'></td>";
       echo "<td>" . __('Language') . "</td>";
       echo "<td><input type='text' name='language_field' value='".
                  $this->fields["language_field"]."'></td></tr>";
 
-      echo "<tr class='tab_bg_1'><td>" . __('Picture') . "</td>";
+      echo "<tr class='tab_bg_2'><td>" . __('Picture') . "</td>";
       echo "<td><input type='text' name='picture_field' value='".
                  $this->fields["picture_field"]."'></td><td colspan='2'></td></tr>";
 
 
-      echo "<tr class='tab_bg_1'><td class='center' colspan='4'>";
+      echo "<tr class='tab_bg_2'><td class='center' colspan='4'>";
       echo "<input type='submit' name='update' class='btn btn-primary' value=\"".__s('Save')."\">";
       echo "</td></tr>";
       echo "</table>";
@@ -779,7 +779,7 @@ class AuthLDAP extends CommonDBTM {
       echo "<input type='text' name='entity_condition' value='".$this->fields["entity_condition"]."'
              size='100'></td></tr>";
 
-      echo "<tr class='tab_bg_1'><td class='center' colspan='4'>";
+      echo "<tr class='tab_bg_2'><td class='center' colspan='4'>";
       echo "<input type='submit' name='update' class='btn btn-primary' value=\"".__s('Save')."\">";
       echo "</td></tr>";
       echo "</table>";
@@ -981,7 +981,7 @@ class AuthLDAP extends CommonDBTM {
       $ldap_servers = self::getLdapServers();
 
       if (!empty($ldap_servers)) {
-         echo "<tr class='tab_bg_1'><th>" . self::getTypeName(Session::getPluralNumber()) . "</th></tr>\n";
+         echo "<tr class='tab_bg_2'><th>" . self::getTypeName(Session::getPluralNumber()) . "</th></tr>\n";
          echo "<tr class='tab_bg_1'><td><pre>\n&nbsp;\n";
          foreach ($ldap_servers as $ID => $value) {
             $fields = array('Server'            => 'host',
@@ -1085,7 +1085,7 @@ class AuthLDAP extends CommonDBTM {
       echo "<tr><th colspan='2'>" . ($users?__('Search filter for users')
                                            :__('Filter to search in groups')) . "</th></tr>";
 
-      echo "<tr class='tab_bg_1'><td class='center'>";
+      echo "<tr class='tab_bg_2'><td class='center'>";
       echo "<input type='text' name='ldap_filter' value='". $_SESSION[$filter_var] ."' size='70'>";
       //Only display when looking for groups in users AND groups
       if (!$users
@@ -1098,12 +1098,12 @@ class AuthLDAP extends CommonDBTM {
 
          echo "<tr><th colspan='2'>" . __('Search filter for users') . "</th></tr>";
 
-         echo "<tr class='tab_bg_1'><td class='center'>";
+         echo "<tr class='tab_bg_2'><td class='center'>";
          echo "<input type='text' name='ldap_filter2' value='".$_SESSION["ldap_group_filter2"]."'
                 size='70'></td></tr>";
       }
 
-      echo "<tr class='tab_bg_1'><td class='center'>";
+      echo "<tr class='tab_bg_2'><td class='center'>";
       echo "<input class=submit type='submit' name='change_ldap_filter' value=\"".
              _sx('button','Post')."\"></td></tr>";
       echo "</table>";
@@ -1961,11 +1961,11 @@ class AuthLDAP extends CommonDBTM {
       echo "<form action='$target' method=\"post\">";
       echo "<p>" . __('Please choose LDAP directory to import users from') . "</p>";
       echo "<table class='table'>";
-      echo "<tr class='tab_bg_1'><th colspan='2'>" . __('LDAP directory choice') . "</th></tr>";
+      echo "<tr class='tab_bg_2'><th colspan='2'>" . __('LDAP directory choice') . "</th></tr>";
 
       //If more than one ldap server
       if ($DB->numrows($result) > 1) {
-         echo "<tr class='tab_bg_1'><td class='center'>" . __('Name') . "</td>";
+         echo "<tr class='tab_bg_2'><td class='center'>" . __('Name') . "</td>";
          echo "<td class='center'>";
          AuthLDAP::Dropdown(array('name'                => 'ldap_server',
                                   'display_emptychoice' => false,
@@ -1973,13 +1973,13 @@ class AuthLDAP extends CommonDBTM {
                                   'condition'           => "`is_active`='1'"));
          echo "</td></tr>";
 
-         echo "<tr class='tab_bg_1'><td class='center' colspan='2'>";
+         echo "<tr class='tab_bg_2'><td class='center' colspan='2'>";
          echo "<input class='btn btn-primary' type='submit' name='ldap_showusers' value=\"".
                _sx('button','Post') . "\"></td></tr>";
 
       } else {
          //No ldap server
-         echo "<tr class='tab_bg_1'>".
+         echo "<tr class='tab_bg_2'>".
               "<td class='center' colspan='2'>".__('No LDAP directory defined in GLPI')."</td></tr>";
       }
       echo "</table>";
@@ -2678,7 +2678,7 @@ class AuthLDAP extends CommonDBTM {
                 && ($_SESSION['ldap_import']['authldaps_id'] > 0)) {
 
                if (self::getNumberOfServers() > 1) {
-                  echo "<tr class='tab_bg_1'><td>".__('LDAP directory choice')."</td>";
+                  echo "<tr class='tab_bg_2'><td>".__('LDAP directory choice')."</td>";
                   echo "<td colspan='3'>";
                   self::dropdown(array('name'        => 'authldaps_id',
                                        'value'       => $_SESSION['ldap_import']['authldaps_id'],
@@ -2690,12 +2690,12 @@ class AuthLDAP extends CommonDBTM {
                   echo "</td></tr>";
                }
 
-               echo "<tr class='tab_bg_1'><td>".__('BaseDN')."</td><td colspan='3'>";
+               echo "<tr class='tab_bg_2'><td>".__('BaseDN')."</td><td colspan='3'>";
                echo "<input type='text' name='basedn' value=\"".$_SESSION['ldap_import']['basedn'].
                      "\" size='90' ".(!$_SESSION['ldap_import']['basedn']?"disabled":"").">";
                echo "</td></tr>";
 
-               echo "<tr class='tab_bg_1'><td>".__('Search filter for users')."</td><td colspan='3'>";
+               echo "<tr class='tab_bg_2'><td>".__('Search filter for users')."</td><td colspan='3'>";
                echo "<input type='text' name='ldap_filter' value=\"".
                       $_SESSION['ldap_import']['ldap_filter']."\" size='90'>";
                echo "</td></tr>";
@@ -2708,7 +2708,7 @@ class AuthLDAP extends CommonDBTM {
             //else no need to select entity
             if (Session::isMultiEntitiesMode()
                 && (count($_SESSION['glpiactiveentities']) > 1)) {
-               echo "<tr class='tab_bg_1'><td>".__('Select the desired entity')."</td>".
+               echo "<tr class='tab_bg_2'><td>".__('Select the desired entity')."</td>".
                     "<td colspan='3'>";
                Entity::dropdown(array('value'       => $_SESSION['ldap_import']['entities_id'],
                                       'entity'      => $_SESSION['glpiactiveentities'],
@@ -2790,17 +2790,17 @@ class AuthLDAP extends CommonDBTM {
           && ($_SESSION['ldap_import']['authldaps_id'] > 0)) {
 
          if ($_SESSION['ldap_import']['authldaps_id']) {
-            echo "<tr class='tab_bg_1'><td colspan='4' class='center'>";
+            echo "<tr class='tab_bg_2'><td colspan='4' class='center'>";
             echo "<input class='btn btn-primary' type='submit' name='search' value=\"".
                    _sx('button','Search')."\">";
             echo "</td></tr>";
          } else {
-            echo "<tr class='tab_bg_1'><".
+            echo "<tr class='tab_bg_2'><".
                  "td colspan='4' class='center'>".__('No directory selected')."</td></tr>";
          }
 
       } else {
-         echo "<tr class='tab_bg_1'><td colspan='4' class='center'>".
+         echo "<tr class='tab_bg_2'><td colspan='4' class='center'>".
                 __('No directory associated to entity: impossible search')."</td></tr>";
       }
       echo "</table>";
@@ -3006,7 +3006,7 @@ class AuthLDAP extends CommonDBTM {
    static function showDateRestrictionForm($options=array()) {
 
       echo "<table class='table'>";
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr class='tab_bg_2'>";
 
       $enabled = (isset($options['enabled'])?$options['enabled']:false);
       if (!$enabled) {
@@ -3031,7 +3031,7 @@ class AuthLDAP extends CommonDBTM {
          Html::showDateTimeField("end_date", array('value'    => $end_date,
                                                    'timestep' => 1));
          echo "</td></tr>";
-         echo "<tr class='tab_bg_1'><td colspan='4' class='center'>";
+         echo "<tr class='tab_bg_2'><td colspan='4' class='center'>";
          echo "<a href='#' onClick='deactivateRestriction()'>".__('Disable filtering by date')."</a>";
          echo "</td></tr>";
       }

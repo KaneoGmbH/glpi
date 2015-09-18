@@ -74,9 +74,13 @@ if ((isset($_POST['field']) && ($_POST["value"] > 0))
 
    $email_string = '';
    // Only one email
-   if ((count($emails) == 1) && !empty($default_email) && NotificationMail::isUserAddressValid($default_email)) {
+   if ((count($emails) == 1)
+       && !empty($default_email)
+       && NotificationMail::isUserAddressValid($default_email)) {
+      $email_string =  $default_email;
       // Clean alternative email
-      echo "<input type='hidden' class='form-control' name='".$_POST['field']."[alternative_email]' value=''>";
+      echo "<input type='hidden' size='25' name='".$_POST['field']."[alternative_email]'
+             value=''>";
 
    } else if (count($emails) > 1) {
       // Several emails : select in the list
@@ -92,7 +96,8 @@ if ((isset($_POST['field']) && ($_POST["value"] > 0))
                                               array('value'   => '',
                                                     'display' => false));
    } else {
-      $email_string = "<input type='text' class='form-control' name='".$_POST['field']."[alternative_email]' value='$default_email'>";
+      $email_string = "<input type='text' size='25' class='form-control' name='".$_POST['field']."[alternative_email]'
+                        value='$default_email'>";
    }
 
 

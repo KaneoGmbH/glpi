@@ -207,7 +207,7 @@ class Report extends CommonGLPI{
          $result = $DB->query($query);
          $number = $DB->result($result,0,0);
 
-         echo "<tr class='tab_bg_1'><td>".$itemtype::getTypeName(Session::getPluralNumber())."</td>";
+         echo "<tr class='tab_bg_2'><td>".$itemtype::getTypeName(Session::getPluralNumber())."</td>";
          echo "<td class='numeric'>$number</td></tr>";
       }
 
@@ -232,7 +232,7 @@ class Report extends CommonGLPI{
          if (empty($data['name'])) {
             $data['name'] = Dropdown::EMPTY_VALUE;
          }
-         echo "<tr class='tab_bg_1'><td>".$data['name']."</td>";
+         echo "<tr class='tab_bg_2'><td>".$data['name']."</td>";
          echo "<td class='numeric'>".$data['count']."</td></tr>";
       }
 
@@ -275,7 +275,7 @@ class Report extends CommonGLPI{
             if (empty($data['name'])) {
                $data['name'] = Dropdown:: EMPTY_VALUE;
             }
-            echo "<tr class='tab_bg_1'><td>".$data['name']."</td>";
+            echo "<tr class='tab_bg_2'><td>".$data['name']."</td>";
             echo "<td class='numeric'>".$data['count']."</td></tr>";
          }
       }

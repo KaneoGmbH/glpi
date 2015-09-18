@@ -285,7 +285,7 @@ class ComputerDisk extends CommonDBChild {
             $disk = new self();
             while ($data = $DB->fetch_assoc($result)) {
                $disk->getFromDB($data['id']);
-               echo "<tr class='tab_bg_1'>";
+               echo "<tr class='tab_bg_2'>";
                echo "<td>".$disk->getLink()."</td>";
                if (Plugin::haveImport()) {
                   echo "<td>".Dropdown::getYesNo($data['is_dynamic'])."</td>";
@@ -311,7 +311,7 @@ class ComputerDisk extends CommonDBChild {
             }
             echo $header;
          } else {
-            echo "<tr class='tab_bg_1'><th colspan='$colspan'>".__('No item found')."</th></tr>";
+            echo "<tr class='tab_bg_2'><th colspan='$colspan'>".__('No item found')."</th></tr>";
          }
 
          echo "</table>";

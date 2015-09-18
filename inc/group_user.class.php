@@ -145,7 +145,7 @@ class Group_User extends CommonDBRelation{
 
          echo "<table class='table table-striped'>";
          echo "<tr class='tab_bg_1'><th colspan='6'>".__('Associate to a group')."</th></tr>";
-         echo "<tr class='tab_bg_1'><td class='center'>";
+         echo "<tr class='tab_bg_2'><td class='center'>";
          echo "<input type='hidden' name='users_id' value='$ID'>";
 
          // All entities "edited user" have access
@@ -299,7 +299,7 @@ class Group_User extends CommonDBRelation{
          echo "<div class='firstbloc'>";
          echo "<table class='table'>";
          echo "<tr class='tab_bg_1'><th colspan='6'>".__('Add a user')."</th></tr>";
-         echo "<tr class='tab_bg_1'><td class='center'>";
+         echo "<tr class='tab_bg_2'><td class='center'>";
 
          User::dropdown(array('right'  => "all",
                               'entity' => $entityrestrict,

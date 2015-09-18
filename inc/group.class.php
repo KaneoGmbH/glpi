@@ -267,6 +267,31 @@ class Group extends CommonTreeDropdown {
 
 
    /**
+    * Print a good title for group pages
+    *
+    *@return nothing (display)
+    **/
+   function title() {
+      global $CFG_GLPI;
+
+      $buttons = array();
+      if (Group::canUpdate()
+          && Session::haveRight("user", User::UPDATEAUTHENT)
+          && AuthLdap::useAuthLdap()) {
+
+         $buttons["ldap.group.php"] = __('LDAP directory link');
+         $title                     = "";
+
+      } else {
+         $title = self::getTypeName(Session::getPluralNumber());
+      }
+
+      Html::displayTitle($CFG_GLPI["root_doc"] . "/pics/groupes.png", self::getTypeName(Session::getPluralNumber()), $title,
+                         $buttons);
+   }
+
+
+   /**
     * @see CommonDBTM::getSpecificMassiveActions()
    **/
    function getSpecificMassiveActions($checkitem=NULL) {

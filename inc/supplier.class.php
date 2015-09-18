@@ -512,7 +512,7 @@ class Supplier extends CommonDBTM {
             $num += $nb;
          }
       }
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr class='tab_bg_2'>";
       echo "<td class='center'>".(($num > 0) ? sprintf(__('%1$s = %2$s'), __('Total'), $num)
                                              : "&nbsp;")."</td>";
       echo "<td colspan='4'>&nbsp;</td></tr> ";

@@ -872,11 +872,11 @@ abstract class CommonITILObject extends CommonDBTM {
                $this->updates[] = 'status';
             }
 
-            $this->fields['status'] = self::INCOMING;
+  //          $this->fields['status'] = self::INCOMING;
             // Don't change status if it's a new status allow
-            if (in_array($this->oldvalues['status'], $this->getNewStatusArray())) {
+            if (in_array($this->oldvalues['status'], $this->getNewStatusArray())
+                && !in_array($this->input['status'], $this->getNewStatusArray())) {
                $this->fields['status'] = $this->oldvalues['status'];
-
             }
          }
 
@@ -3009,7 +3009,7 @@ abstract class CommonITILObject extends CommonDBTM {
    **/
    static function getActorIcon($user_group, $type) {
       global $CFG_GLPI;
-      return '';
+
       switch ($user_group) {
          case 'user' :
             $icontitle = __s('User').' - '.$type; // should never be used
@@ -3502,6 +3502,11 @@ abstract class CommonITILObject extends CommonDBTM {
          }
       }
       $can_admin      = $this->canAdminActors();
+      // on creation can select actor
+      if (!$ID) {
+         $can_admin = true;
+      }
+
       $can_assign     = $this->canAssign();
       $can_assigntome = $this->canAssignToMe();
 

@@ -312,12 +312,12 @@ class Bookmark extends CommonDBTM {
       }
       echo "</th></tr>";
 
-      echo "<tr><td >".__('Name')."</td>";
-      echo "<td >";
+      echo "<tr><td class='tab_bg_1'>".__('Name')."</td>";
+      echo "<td class='tab_bg_1'>";
       Html::autocompletionTextField($this, "name", array('user' => $this->fields["users_id"]));
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'><td>".__('Type')."</td>";
+      echo "<tr class='tab_bg_2'><td>".__('Type')."</td>";
       echo "<td>";
 
       if (static::canCreate()) {

@@ -104,7 +104,7 @@ class RuleTicket extends Rule {
       }
       if ($showwarning) {
          echo "<table class='table table-striped'>";
-         echo "<tr class='tab_bg_1'><td>".
+         echo "<tr class='tab_bg_2'><td>".
                __('Urgency or impact used in actions, think to add Prioriy: recompute action if needed.').
                "</td></tr>\n";
          echo "</table><br>";
@@ -231,7 +231,8 @@ class RuleTicket extends Rule {
                   break;
 
                case 'fromuser' :
-                  if ($action->fields['field'] == 'locations_id') {
+                  if (($action->fields['field'] == 'locations_id')
+                      && isset($output['users_locations'])) {
                      $output['locations_id'] = $output['users_locations'];
                   }
                   break;
@@ -262,7 +263,7 @@ class RuleTicket extends Rule {
                   } else {
                      $regexvalue = $action->fields["value"];
                   }
-                  
+
                   switch ($action->fields["action_type"]) {
                      case "affectbyip" :
                         $result = IPAddress::getUniqueItemByIPAddress($regexvalue,
@@ -568,6 +569,10 @@ class RuleTicket extends Rule {
       $actions['locations_id']['type']                      = 'dropdown';
       $actions['locations_id']['table']                     = 'glpi_locations';
       $actions['locations_id']['force_actions']             = array('assign', 'fromuser', 'fromitem');
+
+      $actions['requesttypes_id']['name']                 = __('Request source');
+      $actions['requesttypes_id']['type']                 = 'dropdown';
+      $actions['requesttypes_id']['table']                = 'glpi_requesttypes';
 
       return $actions;
    }

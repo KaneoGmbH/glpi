@@ -64,6 +64,25 @@ class Document_Item extends CommonDBRelation{
    }
 
 
+   /**
+    * @since version 0.85.5
+    * @see CommonDBRelation::canCreateItem()
+   **/
+   function canCreateItem() {
+
+      if ($this->fields['itemtype'] == 'Ticket') {
+         $ticket = new Ticket();
+         // Not item linked for closed tickets
+         if ($ticket->getFromDB($this->fields['items_id'])
+             && in_array($ticket->fields['status'],$ticket->getClosedStatusArray())) {
+           return false;
+         }
+      }
+
+      return parent::canCreateItem();
+   }
+
+
    function prepareInputForAdd($input) {
 
       if ((empty($input['items_id']) || ($input['items_id'] == 0))
@@ -310,7 +329,7 @@ class Document_Item extends CommonDBRelation{
                action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
 
          echo "<table class='table table-striped'>";
-         echo "<tr class='tab_bg_1'><th colspan='2'>".__('Add an item')."</th></tr>";
+         echo "<tr class='tab_bg_2'><th colspan='2'>".__('Add an item')."</th></tr>";
 
          echo "<tr class='tab_bg_1'><td class='right'>";
          Dropdown::showSelectItemFromItemtypes(array('itemtypes'
@@ -670,7 +689,7 @@ class Document_Item extends CommonDBRelation{
                 action='".Toolbox::getItemTypeFormURL('Document')."' enctype=\"multipart/form-data\">";
 
          echo "<table class='table'>";
-         echo "<tr class='tab_bg_1'><th colspan='5'>".__('Add a document')."</th></tr>";
+         echo "<tr class='tab_bg_2'><th colspan='5'>".__('Add a document')."</th></tr>";
          echo "<tr class='tab_bg_1'>";
 
          echo "<td class='center'>";

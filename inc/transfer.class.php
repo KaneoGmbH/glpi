@@ -3287,7 +3287,7 @@ class Transfer extends CommonDBTM {
       }
       echo "</tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr class='tab_bg_2'>";
       echo "<td colspan='4' class='center b'>".__('Assets')."</td></tr>";
 
       echo "<tr class='tab_bg_1'>";
@@ -3357,7 +3357,7 @@ class Transfer extends CommonDBTM {
       Dropdown::showFromArray('keep_disk', $keep, $params);
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr class='tab_bg_2'>";
       echo "<td colspan='4' class='center b'>".__('Direct connections')."</td></tr>";
 
       echo "<tr class='tab_bg_1'>";
@@ -3400,7 +3400,7 @@ class Transfer extends CommonDBTM {
       Dropdown::showFromArray('clean_dc_phone', $clean, $params);
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr class='tab_bg_2'>";
       echo "<td colspan='4' class='center b'>".__('Management')."</td></tr>";
 
       echo "<tr class='tab_bg_1'>";

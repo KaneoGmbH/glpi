@@ -1,7 +1,9 @@
-files/_*
-files/ODS
-files/ODT
-files/PDF
-config/config_db.php
+config/config_db*
+config/config_path.php
+plugins/
+files/
+.buildpath
+.project
+.settings/
 .idea/
 /nbproject

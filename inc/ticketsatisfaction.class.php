@@ -117,7 +117,7 @@ class TicketSatisfaction extends CommonDBTM {
          if (is_null($this->fields["satisfaction"])) {
             $this->fields["satisfaction"] = 3;
          }
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr class='tab_bg_2'>";
          echo "<td>".__('Satisfaction with the resolution of the ticket')."</td>";
          echo "<td>";
          echo "<input type='hidden' name='tickets_id' value='$tid'>";
@@ -142,14 +142,14 @@ class TicketSatisfaction extends CommonDBTM {
 
          echo "</td></tr>";
 
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr class='tab_bg_2'>";
          echo "<td rowspan='1'>".__('Comments')."</td>";
          echo "<td rowspan='1' class='middle'>";
          echo "<textarea class='form-control'  cols='45' rows='7' name='comment' >".$this->fields["comment"]."</textarea>";
          echo "</td></tr>\n";
 
          if ($this->fields["date_answered"] > 0) {
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr class='tab_bg_2'>";
             echo "<td>".__('Response date to the satisfaction survey')."</td><td>";
             echo Html::convDateTime($this->fields["date_answered"])."</td></tr>\n";
          }

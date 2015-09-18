@@ -805,7 +805,7 @@ class KnowbaseItem extends CommonDBTM {
       $tmp = "<a href='".$this->getSearchURL().
              "?knowbaseitemcategories_id=$knowbaseitemcategories_id'>".$fullcategoryname."</a>";
       //echo "<table class='table table-striped'>";
-      //echo "<tr class='tab_bg_1'><th colspan='4'>".sprintf(__('%1$s: %2$s'), __('Category'), $tmp);
+      //echo "<tr class='tab_bg_3'><th colspan='4'>".sprintf(__('%1$s: %2$s'), __('Category'), $tmp);
       //echo "</th></tr>";
 
       //echo "<tr class='tab_bg_1'><td class='left' colspan='4'><h2>".__('Subject')."</h2>";

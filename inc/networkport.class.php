@@ -490,7 +490,7 @@ class NetworkPort extends CommonDBChild {
          echo "<input type='hidden' name='items_id' value='".$item->getID()."'>\n";
          echo "<input type='hidden' name='itemtype' value='".$item->getType()."'>\n";
          echo "<div class='firstbloc'><table class='table table-striped'>\n";
-         echo "<tr class='tab_bg_1'><td class='center'>\n";
+         echo "<tr class='tab_bg_2'><td class='center'>\n";
          _e('Network port type to be added');
          echo "&nbsp;";
 

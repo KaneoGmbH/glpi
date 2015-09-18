@@ -121,7 +121,7 @@ class SlaLevel extends RuleTicket {
          echo "<table class='table table-striped'>";
          echo "<tr class='tab_bg_1'><th colspan='7'>".__('Add an escalation level')."</tr>";
 
-         echo "<tr class='tab_bg_1'><td class='center'>".__('Name')."";
+         echo "<tr class='tab_bg_2'><td class='center'>".__('Name')."";
          echo "<input type='hidden' name='slas_id' value='$ID'>";
          echo "<input type='hidden' name='entities_id' value='".$sla->getEntityID()."'>";
          echo "<input type='hidden' name='is_recursive' value='".$sla->isRecursive()."'>";

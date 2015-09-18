@@ -884,7 +884,7 @@ class Planning extends CommonGLPI {
             break;
 
          case "month" :
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr class='tab_bg_3'>";
             // Display first day out of the month
             for ($i=1 ; $i<$begin_month_day ; $i++) {
                echo "<td style='background-color:#ffffff'>&nbsp;</td>";
@@ -904,7 +904,7 @@ class Planning extends CommonGLPI {
                echo "<span style='font-family: arial,helvetica,sans-serif; font-size: 14px; color: black'>".
                       $day."</span></td></tr>";
 
-               echo "<tr class='tab_bg_1'>";
+               echo "<tr class='tab_bg_3'>";
                echo "<td class='tab_bg_3 top' width='12%'>";
                $begin_day = date("Y-m-d H:i:s", $time);
                $end_day   = date("Y-m-d H:i:s", $time+DAY_TIMESTAMP);
@@ -994,6 +994,7 @@ class Planning extends CommonGLPI {
       // Plugins case
       if (isset($val['itemtype']) && !empty($val['itemtype'])) {
          $val['itemtype']::displayPlanningItem($val, $who, $type, $complete);
+
       }
 
       echo "</div>";

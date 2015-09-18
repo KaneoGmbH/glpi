@@ -368,7 +368,7 @@ if ($offsettable>=0 && $complete_utf8) {
    }
 
 } else {
-   echo "<p><a class='btn btn-info btn-xs' href='../index.php'>".__('Use GLPI')."</a></p>";
+   echo "<p><a class='vsubmit' href='../index.php'>".__('Use GLPI')."</a></p>";
    echo "</div></div></body></html>";
 }
 

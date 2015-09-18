@@ -968,7 +968,7 @@ class Software extends CommonDBTM {
          echo "<th>"._n('License', 'Licenses', Session::getPluralNumber())."</th></tr>";
 
          foreach ($req as $data) {
-            echo "<tr class='tab_bg_1'>";
+            echo "<tr class='tab_bg_2'>";
             echo "<td>".Html::getMassiveActionCheckBox(__CLASS__, $data["id"])."</td>";
             echo "<td><a href='".$link."?id=".$data["id"]."'>".$data["name"]."</a></td>";
             echo "<td>".$data["entity"]."</td>";
@@ -1002,7 +1002,7 @@ class Software extends CommonDBTM {
 
       echo "<div class='center'>";
       echo "<table class='table table-striped table-hover'><tr><th>".__('Merging')."</th></tr>";
-      echo "<tr class='tab_bg_1'><td>";
+      echo "<tr class='tab_bg_2'><td>";
       Html::createProgressBar(__('Work in progress...'));
       echo "</td></tr></table></div>\n";
 

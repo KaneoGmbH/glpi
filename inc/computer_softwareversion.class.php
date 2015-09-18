@@ -528,7 +528,7 @@ class Computer_SoftwareVersion extends CommonDBRelation {
             do {
                Session::addToNavigateListItems('Computer',$data["cID"]);
 
-               echo "<tr class='tab_bg_1'>";
+               echo "<tr class='tab_bg_2'>";
                if ($canedit) {
                   echo "<td>";
                   Html::showMassiveActionCheckBox(__CLASS__, $data["id"]);
@@ -636,7 +636,7 @@ class Computer_SoftwareVersion extends CommonDBRelation {
       foreach ($DB->request($sql) as $ID => $data) {
          $nb = self::countForVersion($softwareversions_id,$ID);
          if ($nb > 0) {
-            echo "<tr class='tab_bg_1'><td>" . $data["completename"] . "</td>";
+            echo "<tr class='tab_bg_2'><td>" . $data["completename"] . "</td>";
             echo "<td class='numeric'>".$nb."</td></tr>\n";
             $tot += $nb;
          }

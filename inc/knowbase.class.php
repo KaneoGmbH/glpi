@@ -100,7 +100,7 @@ class Knowbase extends CommonGLPI {
     * Show the knowbase search view
    **/
    static function showSearchView() {
-      
+
       // Search a solution
       if (!isset($_GET["contains"])
           && isset($_GET["itemtype"])

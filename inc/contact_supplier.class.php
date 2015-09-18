@@ -185,7 +185,7 @@ class Contact_Supplier extends CommonDBRelation{
          echo "<table class='table table-striped'>";
          echo "<tr class='tab_bg_1'><th colspan='2'>".__('Add a supplier')."</tr>";
 
-         echo "<tr class='tab_bg_1'><td class='center'>";
+         echo "<tr class='tab_bg_2'><td class='center'>";
          echo "<input type='hidden' name='contacts_id' value='$instID'>";
          Supplier::dropdown(array('used'        => $used,
                                   'entity'      => $contact->fields["entities_id"],
@@ -320,7 +320,7 @@ class Contact_Supplier extends CommonDBRelation{
          echo "<table class='table'>";
          echo "<tr class='tab_bg_1'><th colspan='2'>".__('Add a contact')."</tr>";
 
-         echo "<tr class='tab_bg_1'><td class='center'>";
+         echo "<tr class='tab_bg_2'><td class='center'>";
          echo "<input type='hidden' name='suppliers_id' value='$instID'>";
 
          Contact::dropdown(array('used'        => $used,

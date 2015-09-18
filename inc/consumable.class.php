@@ -646,7 +646,7 @@ class Consumable extends CommonDBChild {
          echo "</tr>";
 
          // new
-         echo "<tr class='tab_bg_1'><td class='b'>".__('In stock')."</td>";
+         echo "<tr class='tab_bg_2'><td class='b'>".__('In stock')."</td>";
          $tot = 0;
          foreach ($types as $id_type => $type) {
             if (!isset($new[$id_type])) {
@@ -660,7 +660,7 @@ class Consumable extends CommonDBChild {
          echo "</tr>";
 
          foreach ($used as $itemtype_items_id => $val) {
-            echo "<tr class='tab_bg_1'><td>";
+            echo "<tr class='tab_bg_2'><td>";
             list($itemtype,$items_id) = explode('####',$itemtype_items_id);
             $item = new $itemtype();
             if ($item->getFromDB($items_id)) {

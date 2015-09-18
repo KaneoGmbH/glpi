@@ -217,7 +217,9 @@ class Project extends CommonDBTM {
       $links = array();
       if (static::canView()
           || Session::haveRight('projecttask', ProjectTask::READMY)) {
-         $pic_validate = _sn('Task','Tasks', 2);
+         $pic_validate = "<img title=\""._sn('Task','Tasks',2)."\" alt=\"".
+                           _sn('Task','Tasks',2)."\" src='".
+                           $CFG_GLPI["root_doc"]."/pics/menu_showall.png'>";
 
          $links[$pic_validate] = '/front/projecttask.php';
 
@@ -470,7 +472,7 @@ class Project extends CommonDBTM {
       $tab[17]['nosearch']        = true;
       $tab[17]['massiveaction']   = false;
       $tab[17]['nosort']          = true;
-      
+
       $tab[9]['table']           = $this->getTable();
       $tab[9]['field']           = 'real_start_date';
       $tab[9]['name']            = __('Real start date');
@@ -488,7 +490,7 @@ class Project extends CommonDBTM {
       $tab[18]['nosearch']        = true;
       $tab[18]['massiveaction']   = false;
       $tab[18]['nosort']          = true;
-      
+
       $tab[16]['table']          = $this->getTable();
       $tab[16]['field']          = 'comment';
       $tab[16]['name']           = __('Comments');
@@ -617,11 +619,18 @@ class Project extends CommonDBTM {
          echo Search::showItem($p['output_type'], $id_col, $item_num, $p['row_num'], $align);
          // First column
          $first_col = '';
-         /// TODO add color of project state
+         $color     = '';
          if ($item->fields["projectstates_id"]) {
+            $query = "SELECT `color`
+                      FROM `glpi_projectstates`
+                      WHERE `id` = '".$item->fields["projectstates_id"]."'";
+            foreach ($DB->request($query) as $color) {
+               $color = $color['color'];
+            }
             $first_col = Dropdown::getDropdownName('glpi_projectstates', $item->fields["projectstates_id"]);
          }
-         echo Search::showItem($p['output_type'], $first_col, $item_num, $p['row_num'], $align);
+         echo Search::showItem($p['output_type'], $first_col, $item_num, $p['row_num'],
+                               "$align bgcolor='$color'");
 
          // Second column
          $second_col = sprintf(__('Opened on %s'),
@@ -681,7 +690,7 @@ class Project extends CommonDBTM {
          // Add link
          if ($item->canViewItem()) {
             $eigth_column = "<a id='".$item->getType().$item->fields["id"]."$rand' href=\"".
-                              $item->getLinkURL()."\">$eigth_column</a>";
+                              $item->getLinkURL()."&amp;forcetab=Project$\">$eigth_column</a>";
          }
 
          if ($p['output_type'] == Search::HTML_OUTPUT) {
@@ -701,7 +710,7 @@ class Project extends CommonDBTM {
          // Finish Line
          echo Search::showEndLine($p['output_type']);
       } else {
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr class='tab_bg_2'>";
          echo "<td colspan='6' ><i>".__('No item in progress.')."</i></td></tr>";
       }
    }
@@ -753,6 +762,18 @@ class Project extends CommonDBTM {
                 WHERE `".$this->getForeignKeyField()."` = '$ID'";
       if ($result = $DB->query($query)) {
          $numrows = $DB->numrows($result);
+      }
+
+      if ($this->can($ID, UPDATE)) {
+         echo "<div class='firstbloc'>";
+         echo "<form name='project_form$rand' id='project_form$rand' method='post'
+         action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
+
+         echo "<a href='".Toolbox::getItemTypeFormURL('Project')."?projects_id=$ID'>";
+         _e('Create a sub project from this project');
+         echo "</a>";
+         Html::closeForm();
+         echo "</div>";
       }
 
       echo "<div class='spaced'>";
@@ -1005,7 +1026,7 @@ class Project extends CommonDBTM {
          echo "<input type='hidden' name='projects_id' value='$ID'>";
          echo "<table class='table table-striped'>";
          echo "<tr class='tab_bg_1'><th colspan='2'>".__('Add a team member')."</tr>";
-         echo "<tr class='tab_bg_1'><td>";
+         echo "<tr class='tab_bg_2'><td>";
 
          $params = array('itemtypes'       => ProjectTeam::$available_types,
                          'entity_restrict' => ($project->fields['is_recursive']
@@ -1060,7 +1081,7 @@ class Project extends CommonDBTM {
             if ($item = getItemForItemtype($type)) {
                foreach ($project->team[$type] as $data) {
                   $item->getFromDB($data['items_id']);
-                  echo "<tr class='tab_bg_1'>";
+                  echo "<tr class='tab_bg_2'>";
                   if ($canedit) {
                      echo "<td>";
                      Html::showMassiveActionCheckBox('ProjectTeam',$data["id"]);

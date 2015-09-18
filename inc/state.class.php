@@ -167,7 +167,7 @@ class State extends CommonTreeDropdown {
 
          // No state
          $tot = 0;
-         echo "<tr class='tab_bg_1'><td>---</td>";
+         echo "<tr class='tab_bg_2'><td>---</td>";
          foreach ($state_type as $itemtype) {
             echo "<td class='numeric'>";
 
@@ -185,7 +185,7 @@ class State extends CommonTreeDropdown {
 
          while ($data = $DB->fetch_assoc($result)) {
             $tot = 0;
-            echo "<tr class='tab_bg_1'><td class='b'>";
+            echo "<tr class='tab_bg_2'><td class='b'>";
 
             $opt = array('reset'    => 'reset',
                         'sort'     => 1,
@@ -211,7 +211,7 @@ class State extends CommonTreeDropdown {
             echo "<td class='numeric b'>$tot</td>";
             echo "</tr>";
          }
-         echo "<tr class='tab_bg_1'><td class='center b'>".__('Total')."</td>";
+         echo "<tr class='tab_bg_2'><td class='center b'>".__('Total')."</td>";
          $tot = 0;
 
          foreach ($state_type as $itemtype) {

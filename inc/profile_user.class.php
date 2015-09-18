@@ -135,7 +135,7 @@ class Profile_User extends CommonDBRelation {
          echo "<table class='table table-striped'>";
          echo "<tr class='tab_bg_1'><th colspan='6'>".__('Add an authorization to a user')."</tr>";
 
-         echo "<tr class='tab_bg_1'><td class='center'>";
+         echo "<tr class='tab_bg_2'><td class='center'>";
          echo "<input type='hidden' name='users_id' value='$ID'>";
          Entity::dropdown(array('entity' => $_SESSION['glpiactiveentities']));
          echo "</td><td class='center'>".self::getTypeName(1)."</td><td>";
@@ -501,7 +501,7 @@ class Profile_User extends CommonDBRelation {
                   if ($canedit_entity) {
                      echo "<td width='10'>&nbsp;</td>";
                   }
-                  echo "<td >&nbsp;</td>\n";
+                  echo "<td class='tab_bg_1'>&nbsp;</td>\n";
                   $i++;
                }
 
@@ -516,7 +516,7 @@ class Profile_User extends CommonDBRelation {
                $temp           = $data["entity"];
                $canedit_entity = $canedit && in_array($temp, $_SESSION['glpiactiveentities']);
                $rand           = mt_rand();
-               echo "<tr class='tab_bg_1'>";
+               echo "<tr class='tab_bg_2'>";
                echo "<td>";
                echo "<a href=\"javascript:showHideDiv('entity$temp$rand','imgcat$temp', '".
                         $CFG_GLPI['root_doc']."/pics/folder.png','".$CFG_GLPI['root_doc']."/pics/folder-open.png');\">";
@@ -527,7 +527,7 @@ class Profile_User extends CommonDBRelation {
 
                echo "</td></tr>\n";
 
-               echo "<tr class='tab_bg_1'><td>";
+               echo "<tr class='tab_bg_2'><td>";
                echo "<div class='center' id='entity$temp$rand' style='display:none;'>\n";
                echo Html::checkAllAsCheckbox("entity$temp$rand").__('All');
 
@@ -564,7 +564,7 @@ class Profile_User extends CommonDBRelation {
                }
                $username = sprintf(__('%1$s%2$s'), $username, ")</span>");
             }
-            echo "<td >". $username."</td>\n";
+            echo "<td class='tab_bg_1'>". $username."</td>\n";
             $i++;
          }
 
@@ -573,7 +573,7 @@ class Profile_User extends CommonDBRelation {
                if ($canedit_entity) {
                   echo "<td width='10'>&nbsp;</td>";
                }
-               echo "<td >&nbsp;</td>";
+               echo "<td class='tab_bg_1'>&nbsp;</td>";
                $i++;
             }
          }

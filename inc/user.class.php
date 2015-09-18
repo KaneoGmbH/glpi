@@ -84,6 +84,7 @@ class User extends CommonDBTM {
       return false;
    }
 
+
    function canViewItem() {
 
       $entities = Profile_User::getUserEntities($this->fields['id'], true);
@@ -1764,6 +1765,37 @@ class User extends CommonDBTM {
                    WHERE `name` = '" . $this->fields["name"] . "'";
          $DB->query($query);
       }
+   }
+
+
+   /**
+    * Print a good title for user pages
+    *
+    * @return nothing (display)
+   **/
+   function title() {
+      global $CFG_GLPI;
+
+      $buttons = array();
+      $title   = self::getTypeName(Session::getPluralNumber());
+
+      if (static::canCreate()) {
+         $buttons["user.form.php"] = __('Add user...');
+         $title                    = "";
+
+         if (Auth::useAuthExt()
+             && Session::haveRight("user", self::IMPORTEXTAUTHUSERS)) {
+            // This requires write access because don't use entity config.
+            $buttons["user.form.php?new=1&amp;ext_auth=1"] = __('... From an external source');
+         }
+      }
+      if (Session::haveRight("user", self::IMPORTEXTAUTHUSERS)) {
+         if (AuthLdap::useAuthLdap()) {
+            $buttons["ldap.php"] = __('LDAP directory link');
+         }
+      }
+      Html::displayTitle($CFG_GLPI["root_doc"] . "/pics/users.png", self::getTypeName(Session::getPluralNumber()), $title,
+                         $buttons);
    }
 
 
@@ -3908,11 +3940,11 @@ class User extends CommonDBTM {
       echo "<table class='table'>";
       echo "<tr><th colspan='4'>".__('LDAP directory')."</th></tr>";
 
-      echo "<tr class='tab_bg_1'><td>".__('User DN')."</td>";
+      echo "<tr class='tab_bg_2'><td>".__('User DN')."</td>";
       echo "<td>".$this->fields['user_dn']."</td></tr>\n";
 
       if ($this->fields['user_dn']) {
-         echo "<tr class='tab_bg_1'><td>".__('User information')."</td><td>";
+         echo "<tr class='tab_bg_2'><td>".__('User information')."</td><td>";
          $config_ldap = new AuthLDAP();
          $ds          = false;
 

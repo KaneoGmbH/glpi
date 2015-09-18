@@ -329,7 +329,7 @@ class ReservationItem extends CommonDBChild {
          echo "<td><textarea class='form-control'  name='comment' cols='30' rows='10' >".$r->fields["comment"];
          echo "</textarea></td></tr>\n";
 
-         echo "<tr class='tab_bg_1'><td colspan='2' class='top center'>";
+         echo "<tr class='tab_bg_2'><td colspan='2' class='top center'>";
          echo "<input type='submit' name='update' value=\""._sx('button','Save')."\" class='btn btn-primary'>";
          echo "</td></tr>\n";
 
@@ -383,14 +383,14 @@ class ReservationItem extends CommonDBChild {
       echo "<th colspan='3'>".__('Find a free item in a specific period')."</th></tr>";
 
 
-      echo "<tr class='tab_bg_1'><td>".__('Start date')."</td><td>";
+      echo "<tr class='tab_bg_2'><td>".__('Start date')."</td><td>";
       Html::showDateTimeField("reserve[begin]", array('value'      =>  $_POST['reserve']["begin"],
                                                       'maybeempty' => false));
       echo "</td><td rowspan='3'>";
       echo "<input type='submit' class='btn btn-primary' name='submit' value=\""._sx('button', 'Search')."\">";
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'><td>".__('Duration')."</td><td>";
+      echo "<tr class='tab_bg_2'><td>".__('Duration')."</td><td>";
       $default_delay = floor((strtotime($_POST['reserve']["end"]) - strtotime($_POST['reserve']["begin"]))
                              /$CFG_GLPI['time_step']/MINUTE_TIMESTAMP)
                        *$CFG_GLPI['time_step']*MINUTE_TIMESTAMP;
@@ -407,7 +407,7 @@ class ReservationItem extends CommonDBChild {
                                     $CFG_GLPI["root_doc"]."/ajax/planningend.php", $params);
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'><td>".__('Item type')."</td><td>";
+      echo "<tr class='tab_bg_2'><td>".__('Item type')."</td><td>";
 
       $sql = "SELECT DISTINCT(`itemtype`)
               FROM `glpi_reservationitems`
@@ -510,7 +510,7 @@ class ReservationItem extends CommonDBChild {
 
          if ($result = $DB->query($query)) {
             while ($row = $DB->fetch_assoc($result)) {
-               echo "<tr class='tab_bg_1'><td>";
+               echo "<tr class='tab_bg_2'><td>";
                echo "<input type='checkbox' name='item[".$row["id"]."]' value='".$row["id"]."'>".
                     "</td>";
                $typename = $item->getTypeName();

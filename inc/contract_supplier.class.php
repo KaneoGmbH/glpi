@@ -178,7 +178,7 @@ class Contract_Supplier extends CommonDBRelation {
          echo "<input type='hidden' name='suppliers_id' value='$ID'>";
 
          echo "<table class='table table-striped'>";
-         echo "<tr class='tab_bg_1'><th colspan='2'>".__('Add a contract')."</th></tr>";
+         echo "<tr class='tab_bg_2'><th colspan='2'>".__('Add a contract')."</th></tr>";
 
          echo "<tr class='tab_bg_1'><td class='right'>";
          Contract::dropdown(array('used'         => $used,
@@ -322,7 +322,7 @@ class Contract_Supplier extends CommonDBRelation {
          echo "<input type='hidden' name='contracts_id' value='$instID'>";
 
          echo "<table class='table'>";
-         echo "<tr class='tab_bg_1'><th colspan='2'>".__('Add a supplier')."</th></tr>";
+         echo "<tr class='tab_bg_2'><th colspan='2'>".__('Add a supplier')."</th></tr>";
 
          echo "<tr class='tab_bg_1'><td class='right'>";
 

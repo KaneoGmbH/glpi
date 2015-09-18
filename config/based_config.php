@@ -143,7 +143,8 @@ if (!defined("GLPI_TCPDF_DIR")) {
 
 // Default EZ Components path to base.php
 if (!defined("GLPI_EZC_BASE")) {
-   define("GLPI_EZC_BASE", GLPI_ROOT."/lib/ezcomponents/Base/src/base.php");
+   //define("GLPI_EZC_BASE", GLPI_ROOT."/lib/ezcomponents/Base/src/base.php");
+   define("GLPI_EZC_BASE", GLPI_ROOT."/lib/zeta/Base/src/base.php");
 
    # if EZ components installed as PEAR extension, use (in config_path.php)
    # define("GLPI_EZC_BASE", "ezc/Base/base.php");
@@ -174,7 +175,7 @@ if (!defined("GLPI_PHPCAS")) {
 
 // Default path to FreeSans.ttf
 if (!defined("GLPI_FONT_FREESANS")) {
-   define("GLPI_FONT_FREESANS", GLPI_ROOT . '/lib/ezcomponents/FreeSans.ttf');
+   define("GLPI_FONT_FREESANS", GLPI_ROOT . '/lib/FreeSans.ttf');
 
    # if FreeSans.ttf available in system, use (in config_path.php)
    # define("GLPI_FONT_FREESANS", '/usr/share/fonts/gnu-free/FreeSans.ttf');

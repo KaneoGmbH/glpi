@@ -281,7 +281,7 @@ class Contract extends CommonDBTM {
       echo "<textarea class='form-control'  cols='50' rows='4' name='comment' >".$this->fields["comment"]."</textarea>";
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'><td>".__('Support hours')."</td>";
+      echo "<tr class='tab_bg_2'><td>".__('Support hours')."</td>";
       echo "<td colspan='3'>&nbsp;</td></tr>";
 
       echo "<tr class='tab_bg_1'>";
@@ -874,7 +874,7 @@ class Contract extends CommonDBTM {
       echo '</h4></div>';
       
       echo "<table class='table table-striped table-hover'>";
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr class='tab_bg_2'>";
 
       $options['reset'] = 'reset';
       $options['sort']  = 12;
@@ -893,7 +893,7 @@ class Contract extends CommonDBTM {
                  Toolbox::append_params($options,'&amp;')."\">".
                  __('Contracts expired in the last 30 days')."</a> </td>";
       echo "<td class='numeric'>".$contract0."</td></tr>";
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr class='tab_bg_2'>";
 
       $options['criteria'][0]['value'] = 0;
       $options['criteria'][1]['value'] = '<7';
@@ -901,7 +901,7 @@ class Contract extends CommonDBTM {
                  Toolbox::append_params($options,'&amp;')."\">".
                  __('Contracts expiring in less than 7 days')."</a></td>";
       echo "<td class='numeric'>".$contract7."</td></tr>";
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr class='tab_bg_2'>";
 
       $options['criteria'][0]['value'] = '>6';
       $options['criteria'][1]['value'] = '<30';
@@ -909,7 +909,7 @@ class Contract extends CommonDBTM {
                  Toolbox::append_params($options,'&amp;')."\">".
                  __('Contracts expiring in less than 30 days')."</a></td>";
       echo "<td class='numeric'>".$contract30."</td></tr>";
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr class='tab_bg_2'>";
 
       $options['criteria'][0]['field'] = 13;
       $options['criteria'][0]['value'] = '>0';
@@ -920,7 +920,7 @@ class Contract extends CommonDBTM {
                  Toolbox::append_params($options,'&amp;')."\">".
                  __('Contracts where notice begins in less than 7 days')."</a></td>";
       echo "<td class='numeric'>".$contractpre7."</td></tr>";
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr class='tab_bg_2'>";
 
 
       $options['criteria'][0]['value'] = '>6';

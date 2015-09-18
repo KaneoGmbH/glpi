@@ -298,7 +298,7 @@ class CalendarSegment extends CommonDBChild {
                       AND `day` = '$day'
                       AND `begin` <= '$hour'
                       AND `end` >= '$hour'";
- //     Toolbox::logDebug($query);
+
       if ($result = $DB->query($query)) {
          if ($DB->numrows($result)) {
             return true;
@@ -341,7 +341,7 @@ class CalendarSegment extends CommonDBChild {
          echo "<table class='table table-striped'>";
          echo "<tr class='tab_bg_1'><th colspan='7'>".__('Add a schedule')."</tr>";
 
-         echo "<tr class='tab_bg_1'><td class='center'>".__('Day')."</td><td>";
+         echo "<tr class='tab_bg_2'><td class='center'>".__('Day')."</td><td>";
          echo "<input type='hidden' name='calendars_id' value='$ID'>";
          Dropdown::showFromArray('day', Toolbox::getDaysOfWeekArray());
          echo "</td><td class='center'>".__('Start').'</td><td>';

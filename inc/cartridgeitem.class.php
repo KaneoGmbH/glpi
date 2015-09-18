@@ -553,6 +553,6 @@ class CartridgeItem extends CommonDBTM {
       $options['items']       = array($item);
       NotificationEvent::debugEvent($this, $options);
    }
-   
+
 }
 ?>

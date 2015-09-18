@@ -52,9 +52,12 @@ class Link extends CommonDBTM {
 
       if (self::canView()) {
          if ($_SESSION['glpishow_count_on_tabs']) {
+            $restrict = "`glpi_links_itemtypes`.`links_id` = `glpi_links`.`id`
+                         AND `glpi_links_itemtypes`.`itemtype` = '".$item->getType()."'".
+                          getEntitiesRestrictRequest(" AND ", "glpi_links", '', '', true);
             return self::createTabEntry(_n('Link','Links', Session::getPluralNumber()),
-                                        countElementsInTable('glpi_links_itemtypes',
-                                                             "`itemtype` = '".$item->getType()."'"));
+                                        countElementsInTable(array('glpi_links_itemtypes','glpi_links'),
+                                                             $restrict));
          }
          return _n('Link','Links', Session::getPluralNumber());
       }
@@ -420,15 +423,15 @@ class Link extends CommonDBTM {
             $links = self::getAllLinksFor($item, $data);
 
             foreach ($links as $link) {
-               echo "<tr class='tab_bg_1'>";
+               echo "<tr class='tab_bg_2'>";
                echo "<td class='center'>$link</td></tr>";
             }
          }
          echo "</table></div>";
 
       } else {
-         echo "<tr class='tab_bg_1'><th>".self::getTypeName(Session::getPluralNumber())."</th></tr>";
-         echo "<tr class='tab_bg_1'><td class='center b'>".__('No link defined')."</td></tr>";
+         echo "<tr class='tab_bg_2'><th>".self::getTypeName(Session::getPluralNumber())."</th></tr>";
+         echo "<tr class='tab_bg_2'><td class='center b'>".__('No link defined')."</td></tr>";
          echo "</table></div>";
       }
    }
@@ -529,7 +532,9 @@ class Link extends CommonDBTM {
       $tab[145]['joinparams']        = array('beforejoin'
                                               => array('table'      => 'glpi_links_itemtypes',
                                                        'joinparams' => array('jointype'
-                                                                              => 'itemtypeonly')));
+                                                                              => 'itemtypeonly')),
+                                             'condition'
+                                              => getEntitiesRestrictRequest('AND', 'NEWTABLE'));
 
       return $tab;
    }

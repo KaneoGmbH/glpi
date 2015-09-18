@@ -293,7 +293,7 @@ class SoftwareVersion extends CommonDBChild {
                Session::addToNavigateListItems('SoftwareVersion',$data['id']);
                $nb = Computer_SoftwareVersion::countForVersion($data['id']);
 
-               echo "<tr class='tab_bg_1'>";
+               echo "<tr class='tab_bg_2'>";
                echo "<td><a href='softwareversion.form.php?id=".$data['id']."'>";
                echo $data['name'].(empty($data['name'])?"(".$data['id'].")":"")."</a></td>";
                echo "<td>".$data['sname']."</td>";

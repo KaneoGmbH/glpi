@@ -639,7 +639,7 @@ class RSSFeed extends CommonDBTM {
          } else {
             $this->setError(false);
          }
-         echo "<tr class='tab_bg_1'>";
+         echo "<tr class='tab_bg_2'>";
          echo "<td>".__('Name')."</td>";
          echo "<td>";
          Html::autocompletionTextField($this, "name",
@@ -653,7 +653,7 @@ class RSSFeed extends CommonDBTM {
       echo "<input type='text' name='url' size='100' value='".$this->fields["url"]."'>";
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr class='tab_bg_2'>";
       echo "<td>".__('By')."</td>";
       echo "<td>";
       echo getUserName($this->fields["users_id"]);
@@ -665,13 +665,13 @@ class RSSFeed extends CommonDBTM {
            "</textarea>";
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr class='tab_bg_2'>";
       echo "<td>".__('Active')."</td>";
       echo "<td>";
       Dropdown::showYesNo('is_active', $this->fields['is_active']);
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr class='tab_bg_2'>";
       echo "<td>".__('Refresh rate')."</td>";
       echo "<td>";
       Dropdown::showTimeStamp("refresh_rate",
@@ -686,7 +686,7 @@ class RSSFeed extends CommonDBTM {
                                                                     45*MINUTE_TIMESTAMP)));
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr class='tab_bg_2'>";
       echo "<td>".__('Number of items displayed')."</td>";
       echo "<td>";
       Dropdown::showNumber("max_items", array('value'                => $this->fields["max_items"],
@@ -697,7 +697,7 @@ class RSSFeed extends CommonDBTM {
                                               'display_emptychoice'  => false));
       echo "</td></tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr class='tab_bg_2'>";
       echo "<td>".__('Error retrieving RSS feed')."</td>";
       echo "<td>";
       echo Dropdown::getYesNo($this->fields['have_error']);
@@ -958,7 +958,7 @@ class RSSFeed extends CommonDBTM {
          echo "<input type='hidden' name='rssfeeds_id' value='$ID'>";
          echo "<table class='table table-striped'>";
          echo "<tr class='tab_bg_1'><th colspan='4'>".__('Add a target')."</tr>";
-         echo "<tr class='tab_bg_1'><td  width='100px'>";
+         echo "<tr class='tab_bg_1'><td class='tab_bg_2' width='100px'>";
 
          $types   = array('Entity', 'Group', 'Profile', 'User');
 

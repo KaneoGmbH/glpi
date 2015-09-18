@@ -145,7 +145,7 @@ class KnowbaseItemTranslation extends CommonDBChild {
          echo "<th>".__("Language")."</th>";
          echo "<th>".__("Subject")."</th>";
          foreach ($found as $data) {
-            echo "<tr  ".($canedit ? "style='cursor:pointer'
+            echo "<tr class='tab_bg_1' ".($canedit ? "style='cursor:pointer'
                      onClick=\"viewEditTranslation".$data['id']."$rand();\"" : '') .
                  ">";
             if ($canedit) {

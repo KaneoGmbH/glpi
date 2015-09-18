@@ -68,12 +68,12 @@ class Html {
                               );
 
       $value = preg_replace($search, '', $value);
-
+      
       $search        = array('@<!DOCTYPE[^>]*?>@si', // Strip out !DOCTYPE
                               );
 
       $value = preg_replace($search, '', $value);
-
+      
       include_once(GLPI_HTMLAWED);
 
       $value = htmLawed($value, array('elements' => 'none',
@@ -1350,7 +1350,8 @@ class Html {
             }
          }
 
-         $allassets = array('Computer', 'Monitor', 'Peripheral', 'NetworkEquipment', 'Phone','Printer');
+         $allassets = array('Computer', 'Monitor', 'Peripheral', 'NetworkEquipment', 'Phone',
+                            'Printer');
 
          foreach ($allassets as $type) {
             if (isset($menu['assets']['content'][strtolower($type)])) {
@@ -2747,9 +2748,11 @@ class Html {
                   showButtonPanel: true,
                   changeMonth: true,
                   changeYear: true,
-                  showWeek: true
-
-                  ";
+                  showOn: 'button',
+                  showWeek: true,
+                  controlType: 'select',
+                  buttonImage: '".$CFG_GLPI['root_doc']."/pics/calendar.png',
+                  buttonImageOnly: true";
       if (!$p['canedit']) {
          $js .= ",disabled: true";
       }
@@ -3118,9 +3121,7 @@ class Html {
     * @return nothing
    **/
    static function showProfileSelecter($target) {
-
       global $CFG_GLPI;
-
 
       if (count($_SESSION["glpiprofiles"])>1) {
          echo '<li><form name="form" method="post" action="'.$target.'">';
@@ -3532,7 +3533,7 @@ class Html {
       self::printPagerForm();
       echo "</td>";
       if (!empty($additional_info)) {
-         echo "<td >";
+         echo "<td class='tab_bg_2'>";
          echo $additional_info;
          echo "</td>";
       }
@@ -4080,7 +4081,6 @@ class Html {
                   closeOnSelect: false,
                   quietMillis: 100,
                   minimumResultsForSearch: ".$CFG_GLPI['ajax_limit_count']."});";
-
       return Html::scriptBlock($js);
    }
 
@@ -4378,7 +4378,6 @@ class Html {
       if (!isset($options['class'])) {
          $options['class'] = 'submit btn btn-primary';
       }
-
       if (isset($options['confirm'])) {
          if (!empty($options['confirm'])) {
             $confirmMessage = $options['confirm'];

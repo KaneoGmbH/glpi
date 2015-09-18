@@ -451,7 +451,7 @@ class NotificationTemplateTranslation extends CommonDBChild {
       $id    = Session::getSavedOption(__CLASS__, $key, 0);
       $event = Session::getSavedOption(__CLASS__, $key.'_event', '');
 
-      echo "<tr class='tab_bg_1'><td>".$item->getTypeName(1)."&nbsp;";
+      echo "<tr class='tab_bg_2'><td>".$item->getTypeName(1)."&nbsp;";
       $item->dropdown(array('value'     => $id,
                             'on_change' => 'reloadTab("'.$key.'="+this.value)'));
       echo "</td><td>".NotificationEvent::getTypeName(1)."&nbsp;";
@@ -488,7 +488,7 @@ class NotificationTemplateTranslation extends CommonDBChild {
 
             echo "<tr><th>".__('Email text body')."</th>";
             echo "<th>".__('Email HTML body')."</th></tr>";
-            echo "<tr class='tab_bg_1'><td>".nl2br($data['content_text'])."</td>";
+            echo "<tr class='tab_bg_2'><td>".nl2br($data['content_text'])."</td>";
             echo "<td>".$data['content_html']."</td></tr>";
          }
       }

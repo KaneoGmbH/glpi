@@ -794,7 +794,7 @@ class Change extends CommonITILObject {
       $options['canedit'] = false;
       $this->showFormHeader($options);
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr class='tab_bg_2'>";
       echo "<td>".__('Impacts')."</td><td colspan='3'>";
       if ($canedit) {
          echo "<textarea class='form-control'  id='impactcontent' name='impactcontent' rows='6' cols='110'>";
@@ -805,7 +805,7 @@ class Change extends CommonITILObject {
       }
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr class='tab_bg_2'>";
       echo "<td>".__('Control list')."</td><td colspan='3'>";
       if ($canedit) {
          echo "<textarea class='form-control'  id='controlistcontent' name='controlistcontent' rows='6' cols='110'>";
@@ -834,7 +834,7 @@ class Change extends CommonITILObject {
       $options['canedit'] = false;
       $this->showFormHeader($options);
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr class='tab_bg_2'>";
       echo "<td>".__('Deployment plan')."</td><td colspan='3'>";
       if ($canedit) {
          echo "<textarea class='form-control'  id='rolloutplancontent' name='rolloutplancontent' rows='6' cols='110'>";
@@ -845,7 +845,7 @@ class Change extends CommonITILObject {
       }
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr class='tab_bg_2'>";
       echo "<td>".__('Backup plan')."</td><td colspan='3'>";
       if ($canedit) {
          echo "<textarea class='form-control'  id='backoutplancontent' name='backoutplancontent' rows='6' cols='110'>";
@@ -856,7 +856,7 @@ class Change extends CommonITILObject {
       }
       echo "</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr class='tab_bg_2'>";
       echo "<td>".__('Checklist')."</td><td colspan='3'>";
       if ($canedit) {
          echo "<textarea class='form-control'  id='checklistcontent' name='checklistcontent' rows='6' cols='110'>";
