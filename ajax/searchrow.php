@@ -51,7 +51,7 @@ if (isset($_POST["itemtype"])
    $rowid    = 'searchrow'.$_POST['itemtype'].$randrow;
 
    echo "<div id='$rowid'>";
-   
+
    echo '<div class="row spaceafter">';
    echo '<div class="col-md-12">';
    // First line display add / delete images for normal and meta search items
@@ -82,7 +82,7 @@ if (isset($_POST["itemtype"])
                               echo __s('Add a global search criterion');
 
           echo '</button> ';
-          
+
          $js = Html::jsGetElementbyID("addmetasearchcriteria$randrow").".on('click', function(e) {
              e.preventDefault();
                   $.post( '".$CFG_GLPI['root_doc']."/ajax/searchmetarow.php',
@@ -118,7 +118,7 @@ if (isset($_POST["itemtype"])
   echo '</div>';
 
   echo '<div class="row spaceafter">';
-  
+
    $criteria = array();
 
    if (isset($_SESSION['glpisearch'][$_POST["itemtype"]]['criteria'][$_POST["num"]])
@@ -143,10 +143,10 @@ if (isset($_POST["itemtype"])
       Dropdown::showFromArray("criteria[".$_POST["num"]."][link]",
                               Search::getLogicalOperators(),
                               array('value' => $value));
-    
+
       echo '</div>';
       }
- 
+
    $selected = $first = '';
    $values   = array();
    // display select box to define search item
@@ -177,11 +177,11 @@ if (isset($_POST["itemtype"])
 
    if (isset($criteria['field'])) {
       $value = $criteria['field'];
-   } 
+   }
    echo '<div class="col-md-3">';
    $rand = Dropdown::showFromArray("criteria[".$_POST["num"]."][field]", $values,array('value' => $value));
    echo '</div>';
-  
+
    $field_id = Html::cleanId("dropdown_criteria[".$_POST["num"]."][field]$rand");
 
    $spanid= 'SearchSpan'.$_POST["itemtype"].$_POST["num"];
@@ -210,6 +210,6 @@ if (isset($_POST["itemtype"])
                                  $CFG_GLPI["root_doc"]."/ajax/searchoption.php", $params);
 
    echo "</div>";
-   echo "</div>";
+
 }
 ?>
