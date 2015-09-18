@@ -68,12 +68,12 @@ class Html {
                               );
 
       $value = preg_replace($search, '', $value);
-      
+
       $search        = array('@<!DOCTYPE[^>]*?>@si', // Strip out !DOCTYPE
                               );
 
       $value = preg_replace($search, '', $value);
-      
+
       include_once(GLPI_HTMLAWED);
 
       $value = htmLawed($value, array('elements' => 'none',
@@ -556,7 +556,7 @@ class Html {
 
       // Affichage du message apres redirection
       if (count($_SESSION["MESSAGE_AFTER_REDIRECT"]) && is_array($_SESSION["MESSAGE_AFTER_REDIRECT"])) {
-          
+
           foreach($_SESSION["MESSAGE_AFTER_REDIRECT"] as $message){
               switch($message['type']){
                   case ERROR: $class = 'danger'; break;
@@ -564,7 +564,7 @@ class Html {
                   case INFO: $class = 'success'; break;
                   default: $class = 'info';
               }
-                      
+
             echo '<div class="alert alert-'.$class.'" role="alert">';
                 echo $message['msg'];
             echo '</div>';
@@ -1014,7 +1014,7 @@ class Html {
         //  CSS link
       $cssFiles = array(
           $CFG_GLPI['root_doc']."/css/styles-bootstrap.css",
-          $CFG_GLPI['root_doc']."/lib/bootstrap/css/yeti.css",
+          $CFG_GLPI['root_doc']."/lib/bootstrap/css/bootstrap.css",
           $CFG_GLPI['root_doc']."/lib/jquery/css/bootstrap/jquery-ui-1.10.0.custom.css",
           $CFG_GLPI['root_doc']."/lib/jqueryplugins/rateit/rateit.css",
           $CFG_GLPI['root_doc']."/lib/jqueryplugins/select2/select2.css",
@@ -1719,10 +1719,10 @@ class Html {
         if($HEADER_LOADED){
             return;
         }
-        
-        $target = $CFG_GLPI["root_doc"].'/front/helpdesk.public.php'; 
+
+        $target = $CFG_GLPI["root_doc"].'/front/helpdesk.public.php';
         $header = static::header($title,$url,'none','none','',true,$target);
-        
+
         $header->assign('showSearch',false);
         $header->assign('homePage',$target);
        /**
@@ -2407,7 +2407,7 @@ class Html {
                                           'height'          => $p['height'],
                                           'js_modal_fields' => $js_modal_fields));
          }
-                   
+
          echo "<a class='btn btn-info btn-xs' ";
          if (is_array($p['confirm'] || strlen($p['confirm']))) {
             echo self::addConfirmationOnAction($p['confirm'], "massiveaction_window$identifier.dialog(\"open\");");
@@ -2421,7 +2421,7 @@ class Html {
              echo '<i class="glyphicon glyphicon-arrow-up"></i> ';
          }
          echo $p['title']."</a>";
-         
+
          if (!$p['ontop']|| (isset($p['forcecreate']) && $p['forcecreate'])) {
             $_SESSION['glpimassiveactionselected'] = array();
          }
@@ -3693,7 +3693,7 @@ class Html {
        if (!empty($additional_info)) {
            $tmpl->assign('additionanInfo',$additional_info);
        }
-       
+
        $tmpl->assign('printPageFormParam',"$target?$parameters&amp;start=$start");
 
 
@@ -3728,7 +3728,7 @@ class Html {
     */
 
       $tmpl->assign('pagerText',sprintf(__('From %1$d to %2$d on %3$d'), $current_start, $current_end, $numrows));
-      
+
      if($current_end<$numrows){
        $pagination[] = array(
            'href' => "$target?$parameters&amp;start=$forward",
@@ -3745,7 +3745,7 @@ class Html {
       }
            $tmpl->assign('pagination',$pagination);
            $tmpl->display('components/navigation-header.tpl.php');
-     
+
 
    }
 
@@ -3762,7 +3762,7 @@ class Html {
    static function printPagerForm($action="") {
 
       if ($action) {
-         $jsAction = 'document.location = "'.$action.'&amp;glpilist_limit="+this.value';  
+         $jsAction = 'document.location = "'.$action.'&amp;glpilist_limit="+this.value';
          Dropdown::showListLimit($jsAction);
       } else {
          echo "<form method='POST' action =''>\n";
@@ -3772,7 +3772,7 @@ class Html {
       }
    }
 
-   
+
    /**
     * Create a title for list, as  "List (5 on 35)"
     *
@@ -3855,7 +3855,7 @@ class Html {
     if($btimage){
         $link .= '<span class="'.$btimage.'" aria-hidden="true"></span>';
     }
-     
+
       $link .= $btlabel;
 
       $link .="</a>";
@@ -4080,7 +4080,7 @@ class Html {
                   closeOnSelect: false,
                   quietMillis: 100,
                   minimumResultsForSearch: ".$CFG_GLPI['ajax_limit_count']."});";
-      
+
       return Html::scriptBlock($js);
    }
 
@@ -4378,7 +4378,7 @@ class Html {
       if (!isset($options['class'])) {
          $options['class'] = 'submit btn btn-primary';
       }
-    
+
       if (isset($options['confirm'])) {
          if (!empty($options['confirm'])) {
             $confirmMessage = $options['confirm'];

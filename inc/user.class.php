@@ -93,11 +93,11 @@ class User extends CommonDBTM {
       }
       return false;
    }
-   
+
    /**
     * @see CommonGLPI::getAdditionalMenuLinks()
    **/
-   static function getAdditionalMenuLinks() {   
+   static function getAdditionalMenuLinks() {
       global $CFG_GLPI;
 
       $links = array();
@@ -112,15 +112,15 @@ class User extends CommonDBTM {
       }
       if (Session::haveRight("user", self::IMPORTEXTAUTHUSERS)) {
          if (AuthLdap::useAuthLdap()) {
-             $links['LDAP directory link'] = '/front/ldap.php'; 
+             $links['LDAP directory link'] = '/front/ldap.php';
          }
-      }  
+      }
       if(count($links)){
 
          return $links;
       }
       return false;
-  
+
    }
 
    function canCreateItem() {
@@ -1835,8 +1835,8 @@ class User extends CommonDBTM {
       if (!empty($this->fields["name"])) {
          echo "<td rowspan='3'>" . __('Picture') . "</td>";
          echo "<td rowspan='3'>";
-         echo "<div class='user_picture_border_small' id='picture$rand'>";
-         echo "<img class='user_picture_small' alt=\"".__s('Picture')."\" src='".
+         echo "<div class='' id='picture$rand'>";
+         echo "<img class='img-circle' alt=\"".__s('Picture')."\" src='".
                 User::getThumbnailURLForPicture($this->fields['picture'])."'>";
 //         echo "<img src='".self::getURLForPicture($this->fields["picture"])."' class='user_picture'/>";
          echo "</div>";
