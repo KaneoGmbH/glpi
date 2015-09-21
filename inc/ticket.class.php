@@ -3495,7 +3495,7 @@ class Ticket extends CommonITILObject {
          }
       }
       echo "<div class='spaced' id='tabsbody'>";
-      echo "<table class='tab_cadre_fixe' id='mainformtable'>";
+      echo "<table class='table' id='mainformtable'>";
 
       // Optional line
       $ismultientities = Session::isMultiEntitiesMode();
@@ -3709,7 +3709,7 @@ class Ticket extends CommonITILObject {
 
       if ($ID) {
          echo "</table>";
-         echo "<table  class='tab_cadre_fixe' id='mainformtable2'>";
+         echo "<table  class='table' id='mainformtable2'>";
       }
 
       echo "<tr class='tab_bg_1'>";
@@ -3789,7 +3789,7 @@ class Ticket extends CommonITILObject {
       if (!$ID) {
          echo "</table>";
          $this->showActorsPartForm($ID, $values);
-         echo "<table class='tab_cadre_fixe' id='mainformtable3'>";
+         echo "<table class='table' id='mainformtable3'>";
       }
 
       echo "<tr class='tab_bg_1'>";
@@ -4050,7 +4050,7 @@ class Ticket extends CommonITILObject {
 
       $view_linked_tickets = ($ID || $canupdate);
 
-      echo "<table class='tab_cadre_fixe' id='mainformtable4'>";
+      echo "<table class='table' id='mainformtable4'>";
       echo "<tr class='tab_bg_1'>";
       echo "<th width='$colsize1%'>".$tt->getBeginHiddenFieldText('name');
       printf(__('%1$s%2$s'), __('Title'), $tt->getMandatoryMark('name'));
@@ -4059,7 +4059,7 @@ class Ticket extends CommonITILObject {
       if (!$ID
           || $canupdate_descr) {
          echo $tt->getBeginHiddenFieldValue('name');
-         echo "<input type='text' size='90' maxlength=250 name='name' ".
+         echo "<input type='text' size='90' maxlength=250 class='form-control' name='name' ".
                 " value=\"".Html::cleanInputText($this->fields["name"])."\">";
          echo $tt->getEndHiddenFieldValue('name', $this);
       } else {
@@ -4101,7 +4101,7 @@ class Ticket extends CommonITILObject {
          }
 
          echo "<div id='content$rand_text'>";
-         echo "<textarea id='$content_id' name='content' cols='$cols' rows='$rows'>".
+         echo "<textarea class='form-control' id='$content_id' name='content' cols='$cols' rows='$rows'>".
                 $this->fields["content"]."</textarea></div>";
          echo $tt->getEndHiddenFieldValue('content', $this);
 
@@ -4205,24 +4205,24 @@ class Ticket extends CommonITILObject {
                echo "<td class='tab_bg_2 center' colspan='4'>";
                if ($this->fields["is_deleted"] == 1) {
                   if (self::canPurge()) {
-                     echo "<input type='submit' class='submit' name='restore' value='".
+                     echo "<input type='submit' class='btn btn-primary' name='restore' value='".
                             _sx('button', 'Restore')."'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
                   }
                } else {
                   if (self::canUpdate() ) {
-                     echo "<input type='submit' class='submit' name='update' value='".
+                     echo "<input type='submit' class='btn btn-primary' name='update' value='".
                             _sx('button', 'Save')."'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
                   }
                }
                if ($this->fields["is_deleted"] == 1) {
                   if (self::canPurge()) {
-                     echo "<input type='submit' class='submit' name='purge' value='".
+                     echo "<input type='submit' class='btn btn-danger' name='purge' value='".
                             _sx('button', 'Delete permanently')."' ".
                             Html::addConfirmationOnAction(__('Confirm the final deletion?')).">";
                   }
                } else {
                   if (self::canDelete()) {
-                     echo "<input type='submit' class='submit' name='delete' value='".
+                     echo "<input type='submit' class='btn btn-danger' name='delete' value='".
                             _sx('button', 'Put in dustbin')."'>";
                   }
                }
@@ -4850,7 +4850,7 @@ class Ticket extends CommonITILObject {
 
       } else {
          echo "<div class='center'>";
-         echo "<table class='tab_cadre_fixe'>";
+         echo "<table class='table'>";
          echo "<tr><th>".__('No ticket found.')."</th></tr>";
          echo "</table>";
          echo "</div><br>";
