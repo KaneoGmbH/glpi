@@ -4671,12 +4671,12 @@ class Ticket extends CommonITILObject {
                   $title = __('Your tickets in progress');
             }
          }
-          echo "<h4>";
+          echo '<div class="panel-body"><h4>';
           echo $title;
           echo " <a href=\"".$CFG_GLPI["root_doc"]."/front/ticket.php?".Toolbox::append_params($options,'&amp;')."\">";
           echo '<small><i class="glyphicon glyphicon-link"></i></small>';
                echo "</a>";
-          echo '</div>';
+          echo '</h4></div>';
 
 
          if ($number) {
@@ -4692,7 +4692,7 @@ class Ticket extends CommonITILObject {
             }
               echo "</table>";
          }
-       
+
 
       }
    }
@@ -4777,14 +4777,14 @@ class Ticket extends CommonITILObject {
       $options['reset']         ='reset';
       echo '<div class="panel-body"><h4>';
       echo __('Your tickets');
-   
+
       if ($_SESSION["glpiactiveprofile"]["interface"] != "central") {
          echo " <a href=\"".$CFG_GLPI["root_doc"]."/front/helpdesk.public.php?create_ticket=1\"><small><i class='glyphicon glyphicon-plus'></i>".__('Create a ticket')."</small></a>";
       } else {
          echo " <a href=\"".$CFG_GLPI["root_doc"]."/front/ticket.php?".Toolbox::append_params($options,'&amp;')."\"><small><i class='glyphicon glyphicon-plus'></i>".__('Ticket followup')."</small></a>";
       }
       echo '</h4></div>';
-      
+
       echo "<table class='table table-hover' >";
       echo "<tr><th>".__('Status')."</th><th class='text-right'>"._x('quantity', 'Number')."</th></tr>";
 

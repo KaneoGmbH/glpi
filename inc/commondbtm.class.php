@@ -1981,10 +1981,10 @@ class CommonDBTM extends CommonGLPI {
          }
          return false;
       }
-      
+
       // Close for Form
       echo "</table></div>";
-      
+
       echo '<div class="text-right">';
       if ($params['withtemplate'] ||$this->isNewID($ID)) {
 
@@ -2022,7 +2022,7 @@ class CommonDBTM extends CommonGLPI {
                   echo ">";
                }
                echo Html::submit(_x('button','Delete permanently'), array('name' => 'purge'));
-       
+
 
             } else {
 
@@ -2059,7 +2059,7 @@ class CommonDBTM extends CommonGLPI {
          foreach ($params['addbuttons'] as $key => $val) {
             echo "<input class='btn btn-primary' type='submit' name='$key' value=\"".Html::entities_deep($val)."\">";
          }
-    
+
       }
       echo '</div>';
 
@@ -2189,7 +2189,7 @@ class CommonDBTM extends CommonGLPI {
           && $this->isEntityAssign()) {
          $entityname = ' - '.Dropdown::getDropdownName("glpi_entities", $this->fields["entities_id"]);
       }
-      
+
       $name = '';
       if (!empty($params['withtemplate']) && ($params['withtemplate'] == 2)
           && !$this->isNewID($ID)) {
@@ -2211,16 +2211,16 @@ class CommonDBTM extends CommonGLPI {
       }
 
 
-    
+
       if (get_class($this) == 'Entity') {
          // is recursive but cannot be change
 
       } else {
          if ($this->maybeRecursive()) {
             if (Session::isMultiEntitiesMode()) {
-               
+
                echo __('Child entities');
-              
+
                if ($params['canedit']) {
                   if ( $this instanceof CommonDBChild) {
                      echo Dropdown::getYesNo($this->isRecursive());
@@ -2239,12 +2239,12 @@ class CommonDBTM extends CommonGLPI {
                      Dropdown::showYesNo("is_recursive", $this->fields["is_recursive"]);
                      $comment = __('Change visibility in child entities');
                   }
-                  
+
                   Html::showToolTip($comment);
                } else {
                   echo Dropdown::getYesNo($this->fields["is_recursive"]);
                }
-            
+
             } else {
                echo $entityname;
                echo "<input type='hidden' name='is_recursive' value='0'>";
