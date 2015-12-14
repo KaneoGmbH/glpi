@@ -68,12 +68,12 @@ class Html {
                               );
 
       $value = preg_replace($search, '', $value);
-      
+
       $search        = array('@<!DOCTYPE[^>]*?>@si', // Strip out !DOCTYPE
                               );
 
       $value = preg_replace($search, '', $value);
-      
+
       include_once(GLPI_HTMLAWED);
 
       $value = htmLawed($value, array('elements' => 'none',
@@ -1015,7 +1015,7 @@ class Html {
       $cssFiles = array(
           $CFG_GLPI['root_doc']."/css/styles-bootstrap.css",
           $CFG_GLPI['root_doc']."/lib/bootstrap/css/bootstrap.css",
-          $CFG_GLPI['root_doc']."/lib/jquery/css/bootstrap/jquery-ui-1.10.0.custom.css",
+          $CFG_GLPI['root_doc']."/lib/jquery/css/smoothness/jquery-ui-1.10.4.custom.css",
           $CFG_GLPI['root_doc']."/lib/jqueryplugins/rateit/rateit.css",
           $CFG_GLPI['root_doc']."/lib/jqueryplugins/select2/select2.css",
           $CFG_GLPI['root_doc']."/lib/jqueryplugins/qtip2/jquery.qtip.min.css",
@@ -1025,7 +1025,7 @@ class Html {
           $CFG_GLPI['root_doc']."/css/jstree/style.css",
           $CFG_GLPI['root_doc']."/css/select2-bootstrap.css",
           $CFG_GLPI['root_doc']."/themes/core/res/css/styles.css",
-          //$CFG_GLPI['root_doc']."/themes/custom/res/css/styles.css",
+          $CFG_GLPI['root_doc']."/themes/custom/res/css/styles.css",
 
       );
 
@@ -2490,15 +2490,21 @@ class Html {
             $p[$key] = $val;
          }
       }
-      $output = "<input id='showdate".$p['rand']."' type='text' size='10' name='_$name' ".
-                  "value='".self::convDate($p['value'])."'>";
-      $output .= Html::hidden($name, array('value' => $p['value'],
-                                           'id'    => "hiddendate".$p['rand'],
-                                           'size'  => 10));
+
+      $output = '';
+      $output .= '<div class="control-group">';
+      $output .= '<div class="controls">';
+      $output .= '<div class="input-group">';
+      $output .= "<input class='form-control' id='showdate".$p['rand']."' type='text' size='10' name='_$name' ".  "value='".self::convDate($p['value'])."'>";
+      $output .= '<label for="showdate'.$p["rand"].'" class="input-group-addon btn"><span class="glyphicon glyphicon-calendar"></span></label>';
       if ($p['maybeempty'] && $p['canedit']) {
-         $output .= "<img src='".$CFG_GLPI['root_doc']."/pics/reset.png' alt=\"".__('Clear').
-                      "\" id='resetdate".$p['rand']."'>";
+       $output .= '<label id="resetdate'.$p['rand'].'" class="input-group-addon btn"><span class="glyphicon glyphicon-remove"></span></label>';
       }
+      $output .= Html::hidden($name, array('value' => $p['value'],'id'    => "hiddendate".$p['rand'],'size'  => 10));
+      $output .= '</div>';
+      $output .= '</div>';
+      $output .= '</div>';
+
 
       $js = '';
       if ($p['maybeempty'] && $p['canedit']) {
@@ -2516,7 +2522,7 @@ class Html {
                   showButtonPanel: true,
                   changeMonth: true,
                   changeYear: true,
-                  showOn: 'button',
+                  showOn: 'focus',
                   showWeek: true,
                   buttonImage: '".$CFG_GLPI['root_doc']."/pics/calendar.png',
                   buttonImageOnly: true  ";
@@ -2748,7 +2754,7 @@ class Html {
                   showButtonPanel: true,
                   changeMonth: true,
                   changeYear: true,
-                  showOn: 'button',
+                  showOn: 'focus',
                   showWeek: true,
                   controlType: 'select',
                   buttonImage: '".$CFG_GLPI['root_doc']."/pics/calendar.png',

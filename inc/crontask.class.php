@@ -748,7 +748,7 @@ class CronTask extends CommonDBTM{
     *
     * @return the name of last task launched
    **/
-   static public function launch($mode, $max=5, $name='') {
+   static public function launch($mode, $max=20, $name='') {
       global $CFG_GLPI;
 
       // No cron in maintenance mode

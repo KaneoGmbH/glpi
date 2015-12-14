@@ -2,24 +2,12 @@
  * This file is to customize the Template
  **/
 
-
-.container-search {
-    background-image: url("../images/imagedoc-darknoise.png");
+body {
+    padding-top:133px;
 }
 
 .tooltip-box {
     display: none;
-}
-
-.navbar {
-    border-top: 5px solid #70be44;
-}
-.navbar-brand {
-    height:76px;
-}
-
-.navbar-brand img {
-    height:60px!important;
 }
 
 .navbar-form {
@@ -29,4 +17,12 @@
 footer {
     margin-top:50px;
     padding:10px;
+}
+
+.link.glyphicon-plus-sign {
+    display:none;
+}
+
+.navbar-brand {
+    margin-top:10px;
 }

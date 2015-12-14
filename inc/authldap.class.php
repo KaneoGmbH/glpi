@@ -1181,6 +1181,7 @@ class AuthLDAP extends CommonDBTM {
                                   $config_ldap->fields['use_tls'],
                                   $config_ldap->fields['deref_option']);
       if ($ds) {
+         echo Toolbox::decrypt($config_ldap->fields['rootdn_passwd'], GLPIKEY);
          return true;
       }
       return false;
@@ -3052,7 +3053,7 @@ class AuthLDAP extends CommonDBTM {
          $ong[1]  = _sx('button','Test');                     // test connexion
          $ong[2]  = _n('User', 'Users', Session::getPluralNumber());
          $ong[3]  = _n('Group', 'Groups', Session::getPluralNumber());
-/// TODO clean fields entity_XXX if not used         
+/// TODO clean fields entity_XXX if not used
 //          $ong[4]  = __('Entity');                  // params for entity config
          $ong[5]  = __('Advanced information');   // params for entity advanced config
          $ong[6]  = _n('Replicate', 'Replicates', Session::getPluralNumber());

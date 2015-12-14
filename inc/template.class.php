@@ -46,7 +46,9 @@ class Template extends Savant3 {
         global $CFG_GLPI;
 
         if (!isset($config['template_path'])) {
+//            $config['template_path'][] = GLPI_ROOT.'/templates/core';
             $config['template_path'][] = GLPI_ROOT.'/themes/core/templates';
+
         }
         $plugins = glob(GLPI_ROOT.'/plugins/*/templates',GLOB_ONLYDIR);
         if($plugins){
@@ -71,7 +73,7 @@ class Template extends Savant3 {
         }
 
         if($func == 'img'){
-            if(file_exists(GLPI_ROOT.'/themes/custom/images/'.$args[0])){
+            if(file_exists(GLPI_ROOT.'/themes/custom/res/images/'.$args[0])){
                 $args[0] = $CFG_GLPI['root_doc'].'/themes/custom/res/images/'.$args[0];
             }else{
                 $args[0] = $CFG_GLPI['root_doc'].'/themes/core/res/images/'.$args[0];
