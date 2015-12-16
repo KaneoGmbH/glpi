@@ -4232,8 +4232,8 @@ class Ticket extends CommonITILObject {
 
 
          } else {
-            echo "<td class='tab_bg_2 center' colspan='4'>";
-            echo "<input type='submit' name='add' value=\""._sx('button','Add')."\" class='submit'>";
+            echo "<td class='tab_bg_2 center' style='text-align:right;' colspan='4'>";
+            echo "<input type='submit' class='btn btn-primary' name='add' value=\""._sx('button','Add')."\" class='submit'>";
             if ($tt->isField('id') && ($tt->fields['id'] > 0)) {
                echo "<input type='hidden' name='_tickettemplates_id' value='".$tt->fields['id']."'>";
                echo "<input type='hidden' name='_predefined_fields'

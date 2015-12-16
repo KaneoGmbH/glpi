@@ -1,6 +1,6 @@
 <strong><a href="<?php echo $this->listUrl; ?>"><i class="glyphicon glyphicon-arrow-left"></i> Zurück</a></strong>
 
-<h2><?php echo $this->entityName; ?></h2>
+<h4><?php echo $this->entityName; ?></h4>
 
 <p><?php echo __('Item') ?>: <?php echo $this->itemsCurrent; ?> / <?php echo $this->itemsTotal; ?></p>
 <nav>

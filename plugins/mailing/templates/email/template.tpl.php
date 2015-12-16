@@ -794,7 +794,7 @@
                                             <table class="twelve columns">
                                                 <tr>
                                                     <td class="six sub-columns">
-                                                        <img src="http://placehold.it/200x50">
+
                                                     </td>
                                                     <td class="six sub-columns last" style="text-align:right; vertical-align:middle;">
                                                         <span class="template-label"><a href="">Login to GLPI</a></span>
@@ -823,7 +823,8 @@
                                         <table class="twelve columns">
                                             <tr>
                                                 <td>
-                                                    <h3><?php echo $this->subject; ?></h3>
+                                                    <strong><?php echo $this->subject; ?></strong>
+                                                    <br /><br />
                                                     <?php echo $this->content; ?>
                                                 </td>
                                                 <td class="expander"></td>
@@ -842,7 +843,6 @@
                                             <tr>
                                                 <td align="center">
                                                     <center>
-                                                        <p style="text-align:center;"><a href="#">Terms</a> | <a href="#">Privacy</a> | <a href="#">Unsubscribe</a></p>
                                                     </center>
                                                 </td>
                                                 <td class="expander"></td>

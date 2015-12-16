@@ -3,7 +3,7 @@
 function plugin_version_mailing(){
 
     return array(
-        'name'				=> "Timereport",
+        'name'				=> "E-Mail Template",
         'version' 			=> '1.0',
         'author'			=> 'kaneo GmbH',
         'license'		 	=> 'GPLv2+',

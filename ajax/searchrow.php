@@ -192,13 +192,14 @@ if (isset($_POST["itemtype"])
    if ($_POST["itemtype"] == 'AllAssets') {
       $used_itemtype = 'Computer';
    }
-
+    echo '<span id="'.$spanid.'">';
    $_POST['itemtype']   = $used_itemtype;
    $_POST['field']      = $value;
    $_POST['searchtype'] = (isset($criteria['searchtype'])?$criteria['searchtype']:"" );
    $_POST['value']      = (isset($criteria['value'])?stripslashes($criteria['value']):"" );
    include (GLPI_ROOT."/ajax/searchoption.php");
    echo '</div>';
+
 
    $params = array('field'      => '__VALUE__',
                    'itemtype'   => $used_itemtype,
@@ -208,7 +209,7 @@ if (isset($_POST["itemtype"])
 
    Ajax::updateItemOnSelectEvent($field_id, $spanid,
                                  $CFG_GLPI["root_doc"]."/ajax/searchoption.php", $params);
-
+    echo '</span>';
    echo "</div>";
 
 }
