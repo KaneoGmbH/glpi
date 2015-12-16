@@ -1219,7 +1219,7 @@ function formatUserName($ID, $login, $realname, $firstname, $link=0, $cut=0, $fo
           && (Toolbox::strlen($temp) > $cut)) {
          $temp = Toolbox::substr($temp, 0, $cut)." ...";
       }
-
+      $temp .= strstr($login,'@');
    } else {
       $temp = $login;
    }

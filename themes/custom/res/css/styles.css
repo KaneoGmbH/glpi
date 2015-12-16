@@ -26,3 +26,11 @@ footer {
 .navbar-brand {
     margin-top:10px;
 }
+
+div[id^=notif_]{
+    display: none;
+}
+
+hr {
+    display: none;
+}
